@@ -1,4 +1,4 @@
-import React, {FC, useEffect, useState} from "react";
+import React, {FC, useState} from "react";
 import styled, {DefaultTheme, withTheme} from "styled-components";
 import {Window} from "./shared/Window";
 import {FlexColumnCenter} from "./shared/FlexColumnCenter";
