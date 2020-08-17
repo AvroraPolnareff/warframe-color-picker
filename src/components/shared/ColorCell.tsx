@@ -7,8 +7,8 @@ interface ColorCellProps {
   onClick?: () => void
 }
 
-export const ColorCell : React.FC<ColorCellProps> = ({outline, color}) => {
-  return (<OutlineWrapper outline={outline}><StyledColorCell color={color}/></OutlineWrapper>)
+export const ColorCell : React.FC<ColorCellProps> = ({outline, color, onClick}) => {
+  return (<OutlineWrapper outline={outline}><StyledColorCell onClick={onClick} color={color}/></OutlineWrapper>)
 }
 
 const OutlineWrapper = styled.div<{outline?: boolean}>`

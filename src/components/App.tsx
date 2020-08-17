@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
+import TargetScheme from "./TargetScheme";
 
 
 function App() {
@@ -8,7 +9,7 @@ function App() {
   
   return (
     <StyledApp>
-    
+      <TargetScheme colors={initColors} onCellChange={console.log}/>
     </StyledApp>
   );
 }

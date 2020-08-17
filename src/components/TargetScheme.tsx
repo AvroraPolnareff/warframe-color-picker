@@ -14,10 +14,11 @@ interface TargetSchemeProps {
 
 const TargetScheme: FC<TargetSchemeProps> = ({theme, colors, onCellChange}) => {
   return (
-    <Window>
-      <Header>TARGET SCHEME</Header>
+    <Window width={12}>
+      
       <FlexColumnCenter>
-        <div>
+        <Header>TARGET SCHEME</Header>
+        <div style={{marginBottom: "0.2rem"}}>
           <Button selected backgroundColor={theme.colors.defaultButton}>default</Button>
           <Button backgroundColor={theme.colors.manualButton}>manual</Button>
         </div>
@@ -41,7 +42,7 @@ const Default: FC<DefaultProps> = ({colors, onCellChange}) => {
   
   const onCellClick = (number: number) => {
     setCurrentCell(number)
-    onCellChange(currentCell)
+    onCellChange(number)
   }
   
   return (
@@ -56,9 +57,9 @@ const Default: FC<DefaultProps> = ({colors, onCellChange}) => {
                   onClick={() => onCellClick(3)} color={colors[3]}/>
       <Divider/>
       
-      <StyledColorEntry onClick={() => onCellClick(4)}>
-        <ColorCell outline={isSelected(4)} color={colors[4]}/>
-        <ColorCell outline={isSelected(5)} color={colors[5]}/>
+      <StyledColorEntry >
+        <ColorCell outline={isSelected(4)} color={colors[4]} onClick={() => onCellClick(4)}/>
+        <ColorCell outline={isSelected(5)} color={colors[5]} onClick={() => onCellClick(5)}/>
         <ColorName>EMISSIVE 1, 2</ColorName>
       </StyledColorEntry>
       
@@ -78,9 +79,9 @@ interface ColorEntryProps {
   onClick: () => void
 }
 
-const ColorEntry: FC<ColorEntryProps> = ({text, color, selected}) => {
+const ColorEntry: FC<ColorEntryProps> = ({text, color, selected, onClick}) => {
   return (
-    <StyledColorEntry>
+    <StyledColorEntry onClick={onClick}>
       <ColorCell outline={selected} color={color}/>
       <ColorName>{text}</ColorName>
     </StyledColorEntry>
@@ -109,6 +110,7 @@ const StyledColorEntry = styled.div`
 const Header = styled.h2`
     font-weight: 900;
     color: ${props => props.theme.colors.targetSchemeHeader};
+    margin: 0.2rem 0;
     font-size: 1.4rem
 `
 

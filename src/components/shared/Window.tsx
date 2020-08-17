@@ -1,10 +1,10 @@
 import React from 'react'
 import styled from "styled-components"
 
-export const Window: React.FC = ({children}) => {
+export const Window: React.FC<{width?: number, height?: number}> = ({children, width, height}) => {
   return (
       <WindowBorder>
-        <Content>
+        <Content width={width} height={height}>
           {children}
         </Content>
     </WindowBorder>
@@ -12,11 +12,13 @@ export const Window: React.FC = ({children}) => {
   )
 }
 
-const Content = styled.div`
+const Content = styled.div<{width?: number, height?: number}>`
     padding: 0.5rem 0.35rem;
     border-radius: 1em;
     background-color: ${props => props.theme.colors.windowBackground};
     color: ${props => props.theme.colors.primaryText};
+    ${props => props.width ? `width: ${props.width}rem;`: ""}
+    ${props => props.height ? `height: ${props.height}rem;`: ""}
 `
 
 const WindowBorder = styled.div`
