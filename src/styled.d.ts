@@ -4,16 +4,18 @@ declare module 'styled-components' {
   export interface DefaultTheme {
     colors: {
       primaryText: string;
-      borders: string;
-      windowsBackground: string;
-      dividers: string;
+      
+      border: string;
+      windowBackground: string;
+      divider: string;
       
       targetSchemeHeader: string;
       defaultButton: string;
       manualButton: string;
+      buttonText: string;
       
-      badges: string;
-      badgesText: string;
+      badge: string;
+      badgeText: string;
     }
   }
 }
