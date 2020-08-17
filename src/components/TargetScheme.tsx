@@ -48,7 +48,7 @@ const Default: FC<DefaultProps> = ({color, onColorChange}) => {
   
   const onCellClick = (number: number) => {
     setCurrentCell(number)
-    
+    onColorChange(colors[currentCell])
   }
   return (
     <div>
