@@ -1,9 +1,11 @@
 export interface Palette {
   name: string,
-  colors: {
-    hex: string,
-    position: Position
-  }
+  colors: PaletteColor[]
+}
+
+export interface PaletteColor {
+  hex: string,
+  position: Position
 }
 
 export interface Position {
