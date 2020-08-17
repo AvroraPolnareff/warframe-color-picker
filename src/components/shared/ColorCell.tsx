@@ -2,15 +2,16 @@ import React from 'react'
 import styled from "styled-components"
 
 interface ColorCellProps {
-  outline: boolean;
+  outline?: boolean;
   color: string;
+  onClick?: () => void
 }
 
 export const ColorCell : React.FC<ColorCellProps> = ({outline, color}) => {
   return (<OutlineWrapper outline={outline}><StyledColorCell color={color}/></OutlineWrapper>)
 }
 
-const OutlineWrapper = styled.div<{outline: boolean}>`
+const OutlineWrapper = styled.div<{outline?: boolean}>`
     display: flex;
     align-items: center;
     justify-content: center;

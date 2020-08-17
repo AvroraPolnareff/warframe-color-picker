@@ -2,7 +2,7 @@ import styled from "styled-components"
 
 interface ButtonProps {
   backgroundColor: string,
-  selected: boolean
+  selected?: boolean
 }
 
 export const Button = styled.button<ButtonProps>`
