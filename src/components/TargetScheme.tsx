@@ -8,11 +8,11 @@ import {ColorCell} from "./shared/ColorCell";
 
 interface TargetSchemeProps {
   theme: DefaultTheme;
-  color: string;
-  onColorChange: (color: string) => void
+  colors: string[];
+  onCellChange: (colorPosition: number) => void
 }
 
-const TargetScheme: FC<TargetSchemeProps> = ({theme, color, onColorChange}) => {
+const TargetScheme: FC<TargetSchemeProps> = ({theme, colors, onCellChange}) => {
   return (
     <Window>
       <Header>TARGET SCHEME</Header>
@@ -23,33 +23,27 @@ const TargetScheme: FC<TargetSchemeProps> = ({theme, color, onColorChange}) => {
         </div>
         <Divider/>
       </FlexColumnCenter>
-      <Default color={color} onColorChange={onColorChange}/>
+      <Default colors={colors} onCellChange={onCellChange}/>
     </Window>
   )
 }
 
 interface DefaultProps {
-  color: string,
-  onColorChange: (color: string) => void
+  colors: string[],
+  onCellChange: (colorPosition: number) => void
 }
 
-const Default: FC<DefaultProps> = ({color, onColorChange}) => {
-  const initColors = ["#f8f5ed", "#525757", '#a64731', "#c0cbcf", "#dffefb", "#53bcb1", "#dffefb", "#53bcb1"]
-  const [currentCell, setCurrentCell] = useState(0)
-  const [colors, setColors] = useState(initColors)
+const Default: FC<DefaultProps> = ({colors, onCellChange}) => {
   
-  useEffect(() => {
-    const newColors = colors.slice()
-    newColors[currentCell] = color
-    setColors(newColors)
-  }, [color])
+  const [currentCell, setCurrentCell] = useState(0)
   
   const isSelected = (number: number) => currentCell === number;
   
   const onCellClick = (number: number) => {
     setCurrentCell(number)
-    onColorChange(colors[currentCell])
+    onCellChange(currentCell)
   }
+  
   return (
     <div>
       <ColorEntry text="PRIMARY" selected={isSelected(0)}

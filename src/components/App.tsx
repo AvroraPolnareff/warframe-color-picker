@@ -3,6 +3,9 @@ import styled from "styled-components";
 
 
 function App() {
+  
+  const initColors = ["#f8f5ed", "#525757", '#a64731', "#c0cbcf", "#dffefb", "#53bcb1", "#dffefb", "#53bcb1"]
+  
   return (
     <StyledApp>
     
