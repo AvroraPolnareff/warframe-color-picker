@@ -180,8 +180,8 @@ const StyledHexInput = styled.input<{valid: boolean}>`
     margin: 0 0.2rem;
     border-radius: 0.4rem;
     font-weight: 600;
-    font-size: 14px;
-    width: 3.7rem;
+    font-size: 15px;
+    width: 3.9rem;
     border: none;
     
     &:focus {
@@ -191,8 +191,8 @@ const StyledHexInput = styled.input<{valid: boolean}>`
 
 const HeaderWrapper = styled.div`
     position: relative;
-    top: -2em;
-    left: -3em;
+    top: -2.7em;
+    left: -1.2em;
 
 
 `

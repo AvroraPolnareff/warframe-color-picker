@@ -26,4 +26,5 @@ const WindowBorder = styled.div`
     background-color: ${props => props.theme.colors.border};
     border-radius: 1em;
     width: fit-content;
+    margin: 0.5rem;
 `

@@ -11,7 +11,7 @@ import {SelectedColor} from "./SelectedColor";
 
 function App() {
   const initColors = ["#f8f5ed", "#525757", '#a64731', "#c0cbcf", "#dffefb", "#53bcb1", "#dffefb", "#53bcb1"]
-  const initMatchedColor = {distance: 0, color: "#000000", paletteName: "Classic", position: {x:0, y:0}}
+  const initMatchedColor = {distance: 0, color: "#000000", paletteName: "Classic", position: {x: 0, y: 0}}
   
   const [colors, setColors] = useState(initColors)
   const [currentColor, setCurrentColor] = useState(0)
@@ -27,20 +27,25 @@ function App() {
     const newColors = colors.slice()
     newColors[currentColor] = color.hex()
     setColors(newColors)
-  
+    
   }
   const onSuggestionClick = (key: string) => {
     const filteredColor = matchedColors.filter(({paletteName, color}) => paletteName + color === key)[0]
     return setSelectedColor(filteredColor);
-  
+    
   }
   
   return (
-    <StyledApp style={{display: "flex", alignItems: "center", justifyContent: "space-around"}}>
-      <ColorPicker color={Color().hex(colors[currentColor])} onColorChange={onColorChange}/>
-      <TargetScheme colors={colors} onCellChange={setCurrentColor}/>
-      <Suggestions matchedColors={matchedColors} onSuggestionClick={onSuggestionClick}/>
-      <SelectedColor paletteName={selectedColor.paletteName} colorPosition={selectedColor.position}/>
+    <StyledApp>
+      <div/>
+      <div style={{display: "flex", alignItems: "start", justifyContent: "center", marginTop: "2rem"}}>
+        <ColorPicker color={Color().hex(colors[currentColor])} onColorChange={onColorChange}/>
+        <div style={{display: "flex", flexDirection: "column"}}>
+          <TargetScheme colors={colors} onCellChange={setCurrentColor}/>
+          <Suggestions matchedColors={matchedColors} onSuggestionClick={onSuggestionClick}/>
+        </div>
+        <SelectedColor paletteName={selectedColor.paletteName} colorPosition={selectedColor.position}/>
+      </div>
     </StyledApp>
   );
 }

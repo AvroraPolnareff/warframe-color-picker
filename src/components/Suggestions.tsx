@@ -22,7 +22,7 @@ export interface MatchedColor {
 
 export const Suggestions : FC<SuggestionsProps> = ({matchedColors, onSuggestionClick}) => {
   return (
-    <Window>
+    <Window width={12}>
       <FlexColumnCenter>
         <img src={header}/>
         <ItalicText>SCROLL FOR MORE!</ItalicText>
@@ -60,7 +60,7 @@ const Suggestion : FC<SuggestionProps> = ({color, name, value, onClick}) => {
           <ColorCell color={color}/>
         </ColorBadge>
         <Badge>
-          {name}
+          {name.slice(0, 11) + (name.length > 12 ? "." : "")}
         </Badge>
       </FlexCentred>
       <Badge>
