@@ -69,7 +69,6 @@ const WarframePalette : FC<WarframePaletteProps> = ({ size, paletteName, colorPo
       ctx.clearRect(0, 0, canvas.width, canvas.height);
   
       const palette = palettes.filter(palette => palette.name === paletteName)[0];
-      console.log(paletteName)
       for (const color of palette.colors) {
         if (colorPosition.x === color.position.x && colorPosition.y === color.position.y) {
           ctx.fillStyle = color.hex
