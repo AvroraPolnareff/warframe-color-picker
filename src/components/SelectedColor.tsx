@@ -35,6 +35,7 @@ const StyledWarframePalette = styled.div`
 const Header = styled.h2`
     font-weight: 300;
     font-size: 2.1rem;
+    margin: 0.3rem 0;
     text-align: center;
     background: rgb(233,165,165);
     background: linear-gradient(90deg, rgba(233,165,165,1) 0%, rgba(184,193,192,1) 25%, rgba(101,192,224,1) 50%, rgba(174,162,219,1) 75%, rgba(129,193,217,1) 100%);
