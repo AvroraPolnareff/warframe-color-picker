@@ -10,7 +10,14 @@ export const defaultTheme : DefaultTheme = {
     divider: "#ebebeb",
     primaryText: "#d1d1d1",
     targetSchemeHeader: "#e8a5a5",
-    windowBackground: "#ffffff"
+    windowBackground: "#ffffff",
+    
+    switch: {
+      background: "#E4E4E4",
+      front: "#A5E8E8",
+      leftText: "#ffffff",
+      rightText: "#ffffff",
+    }
   }
   
 }

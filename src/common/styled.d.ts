@@ -16,6 +16,13 @@ declare module 'styled-components' {
       
       badge: string;
       badgeText: string;
+      
+      switch: {
+        background: string;
+        rightText: string;
+        leftText: string;
+        front: string;
+      }
     }
   }
 }
