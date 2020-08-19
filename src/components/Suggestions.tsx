@@ -22,7 +22,7 @@ export interface MatchedColor {
 
 export const Suggestions : FC<SuggestionsProps> = ({matchedColors, onSuggestionClick}) => {
   return (
-    <Window width={12}>
+    <Window width={11.3}>
       <FlexColumnCenter>
         <img src={header}/>
         <ItalicText>SCROLL FOR MORE!</ItalicText>
@@ -81,6 +81,7 @@ const ColorBadge = styled.div`
 `
 
 const StyledSuggestion = styled.div`
+    font-size: 0.7rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
