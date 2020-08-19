@@ -42,24 +42,25 @@ interface NumbersPickerProps {
 const NumbersPicker : FC<NumbersPickerProps> = ({color, onColorChange}) => {
   
   const onChange = (e : React.ChangeEvent<HTMLInputElement>) => {
-    switch (e.target.name) {
+    const value = e.target.value === "" ? "0" : e.target.value
+     switch (e.target.name) {
       case "red":
-        onColorChange(color.red(parseInt(e.target.value)))
+        onColorChange(color.red(parseInt(value)))
         break
       case "green":
-        onColorChange(color.green(parseInt(e.target.value)))
+        onColorChange(color.green(parseInt(value)))
         break
       case "blue":
-        onColorChange(color.blue(parseInt(e.target.value)))
+        onColorChange(color.blue(parseInt(value)))
         break
       case "hue":
-        onColorChange(color.hue(parseInt(e.target.value)))
+        onColorChange(color.hue(parseInt(value)))
         break
       case "saturation":
-        onColorChange(color.saturate(parseInt(e.target.value)))
+        onColorChange(color.saturate(parseInt(value)))
         break
       case "lightness":
-        onColorChange(color.lightness(parseInt(e.target.value)))
+        onColorChange(color.lightness(parseInt(value)))
         break
       default:
         return
@@ -70,9 +71,9 @@ const NumbersPicker : FC<NumbersPickerProps> = ({color, onColorChange}) => {
     <StyledPicker>
       <Grid2X4>
         <ColorSchemeName>RGB</ColorSchemeName>
-        <ColorInput min={0} max={255} name={"red"} onChange={onChange} color="#dba3a3" value={color.red()}/>
-        <ColorInput min={0} max={255} name={"green"} onChange={onChange} color="#a3dba3" value={color.green()}/>
-        <ColorInput min={0} max={255} name={"blue"} onChange={onChange} color="#a3a3db" value={color.blue()}/>
+        <ColorInput name={"red"} onChange={onChange} color="#dba3a3" value={color.red()}/>
+        <ColorInput name={"green"} onChange={onChange} color="#a3dba3" value={color.green()}/>
+        <ColorInput name={"blue"} onChange={onChange} color="#a3a3db" value={color.blue()}/>
         <ColorSchemeName>HSL</ColorSchemeName>
         <ColorInput name={"hue"} onChange={onChange} value={Math.round(color.hue())}/>
         <ColorInput name={"saturation"} onChange={onChange} value={Math.round(color.saturationl())}/>
@@ -114,7 +115,6 @@ const Grid2X4 = styled.div`
     row-gap: 0.3rem;
     justify-items: start;
     justify-content: start;
-    //margin-right: 2.6rem;
     width: fit-content;
     margin-left: 0.5rem;
 `
@@ -163,14 +163,15 @@ const HexInput : FC<HexInputProps> = ({onChange, color }) => {
   
   return (
     <StyledHexInput
-       type={"text"}
        value={inputField}
       onChange={changeHex} valid={validHex}
     />
   )
 }
 
-const StyledHexInput = styled.input<{valid: boolean}>`
+const StyledHexInput = styled.input.attrs(props => ({
+  spellCheck: "false", type: "text"
+}))<{ valid: boolean}>`
     display: flex;
     align-items: center;
     background-color: ${props => props.valid ? props.theme.colors.badge : "#dba3a3"};
@@ -179,7 +180,7 @@ const StyledHexInput = styled.input<{valid: boolean}>`
     max-height: 1.2rem;
     margin: 0 0.2rem;
     border-radius: 0.4rem;
-    font-weight: 600;
+    font-weight: normal;
     font-size: 15px;
     width: 3.9rem;
     border: none;
