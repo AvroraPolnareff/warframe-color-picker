@@ -5,29 +5,64 @@ import {FlexColumnCenter} from "./shared/FlexColumnCenter";
 import {Button} from "./shared/Button";
 import {Divider} from "./shared/Divider";
 import {ColorCell} from "./shared/ColorCell";
+import {Switch} from "./shared/Switch";
 
 interface TargetSchemeProps {
-  theme: DefaultTheme;
-  colors: string[];
-  onCellChange: (colorPosition: number) => void
+  defaultColors: string[];
+  manualColors: string[];
+  onCellChange: (colorPosition: number) => void;
+  switched: boolean;
+  onSwitch: () => void;
 }
 
-const TargetScheme: FC<TargetSchemeProps> = ({theme, colors, onCellChange}) => {
+const TargetScheme: FC<TargetSchemeProps> = ({ defaultColors, manualColors, onCellChange, switched, onSwitch}) => {
+  
   return (
-    <Window width={12}>
+    <Window width={11.3}>
       
       <FlexColumnCenter>
         <Header>TARGET SCHEME</Header>
         <div style={{marginBottom: "0.2rem"}}>
-          <Button selected backgroundColor={theme.colors.defaultButton}>default</Button>
-          <Button backgroundColor={theme.colors.manualButton}>manual</Button>
+          <Switch switched={switched} width={9.8} onClick={onSwitch}/>
         </div>
         <Divider/>
       </FlexColumnCenter>
-      <Default colors={colors} onCellChange={onCellChange}/>
+      {switched
+        ? <Manual colors={manualColors} onCellChange={onCellChange}/> :
+        <Default colors={defaultColors} onCellChange={onCellChange}/>
+      }
     </Window>
   )
 }
+
+interface ManualProps {
+  colors: string[],
+  onCellChange: (colorPosition: number) => void
+}
+
+const Manual : FC<ManualProps> = ({colors, onCellChange}) => {
+  const [currentCell, setCurrentCell] = useState(0)
+  
+  const isSelected = (number: number) => currentCell === number;
+  
+  const onCellClick = (number: number) => {
+    setCurrentCell(number)
+    onCellChange(number)
+  }
+  
+  return (
+    <StyledManual>
+      
+      {colors.map((color, key) => <ColorCell color={color} outline={isSelected(key)} onClick={() => onCellClick(key)}/>)}
+    </StyledManual>
+  )
+}
+
+const StyledManual = styled.div`
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+`
 
 interface DefaultProps {
   colors: string[],
@@ -91,7 +126,7 @@ const ColorEntry: FC<ColorEntryProps> = ({text, color, selected, onClick}) => {
 
 
 const ColorName = styled.span`
-    
+    font-weight: normal;
     &:before {
         margin-right: 0.3rem;
         content: "•";
@@ -110,8 +145,9 @@ const StyledColorEntry = styled.div`
 const Header = styled.h2`
     font-weight: 900;
     color: ${props => props.theme.colors.targetSchemeHeader};
-    margin: 0.2rem 0;
+    margin-bottom: 0.2rem; margin-top: 0 ;
+    //margin: 0.2rem 0;
     font-size: 1.4rem
 `
 
-export default withTheme(TargetScheme)
+export default TargetScheme

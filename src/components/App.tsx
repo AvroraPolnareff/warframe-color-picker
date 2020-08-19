@@ -10,23 +10,48 @@ import {SelectedColor} from "./SelectedColor";
 
 
 function App() {
-  const initColors = ["#f8f5ed", "#525757", '#a64731', "#c0cbcf", "#dffefb", "#53bcb1", "#dffefb", "#53bcb1"]
+  const initManualColors = [
+    "#5BCEFA", "#A3A3DB", "#5BCEFA", "#A3A3DB", "#5BCEFA", "#A3A3DB", "#5BCEFA", "#A3A3DB",
+    "#F5A9B8", "#5BCEFA", "#F5A9B8", "#5BCEFA", "#F5A9B8", "#5BCEFA", "#F5A9B8", "#5BCEFA",
+    "#F4F4F4", "#F5A9B8", "#F4F4F4", "#F5A9B8", "#F4F4F4", "#F5A9B8", "#F4F4F4", "#F5A9B8",
+    "#F5A9B8", "#F4F4F4", "#F5A9B8", "#F4F4F4", "#F5A9B8", "#F4F4F4", "#F5A9B8", "#F4F4F4",
+    "#5BCEFA", "#F5A9B8", "#5BCEFA", "#F5A9B8", "#5BCEFA", "#F5A9B8", "#5BCEFA", "#F5A9B8",
+    "#A3A3DB", "#5BCEFA", "#A3A3DB", "#5BCEFA", "#A3A3DB", "#5BCEFA", "#A3A3DB", "#5BCEFA",
+  ]
+  const initDefaultColors = ["#f8f5ed", "#525757", '#a64731', "#c0cbcf", "#dffefb", "#53bcb1", "#dffefb", "#53bcb1"]
   const initMatchedColor = {distance: 0, color: "#000000", paletteName: "Classic", position: {x: 0, y: 0}}
   
-  const [colors, setColors] = useState(initColors)
-  const [currentColor, setCurrentColor] = useState(0)
+  const [defaultColors, setDefaultColors] = useState(initDefaultColors)
+  const [manualColors, setManualColors] = useState(initManualColors)
+  const [currentColors, setCurrentColors] = useState({default: 0, manual: 0})
   const [matchedColors, setMatchedColors] = useState<MatchedColor[]>([])
   const [selectedColor, setSelectedColor] = useState<MatchedColor>(initMatchedColor)
+  const [switched, setSwitched] = useState(false)
+  
+  const getCurrentColor = () : string => {
+    if (switched) {
+      return manualColors[currentColors.manual]
+    } else {
+      return defaultColors[currentColors.default]
+    }
+  }
   
   useEffect(() => {
-    const closestColors = findClosestColors(colors[currentColor], palettes, 8)
+    const closestColors = findClosestColors(getCurrentColor(), palettes, 8)
     setMatchedColors(closestColors)
-  }, [colors, currentColor])
+  }, [defaultColors, manualColors, currentColors])
   
   const onColorChange = (color: Color) => {
-    const newColors = colors.slice()
-    newColors[currentColor] = color.hex()
-    setColors(newColors)
+    if (!switched) {
+      const newColors = defaultColors.slice()
+      newColors[currentColors.default] = color.hex()
+      setDefaultColors(newColors)
+    } else {
+      const newColors = manualColors.slice()
+      newColors[currentColors.manual] = color.hex()
+      setManualColors(newColors)
+    }
+    
     
   }
   const onSuggestionClick = (key: string) => {
@@ -35,25 +60,39 @@ function App() {
     
   }
   
+  const onCellChange = (key: number) => {
+    if (switched) {
+      setCurrentColors({...currentColors, manual: key})
+    } else {
+      setCurrentColors({...currentColors, default: key})
+    }
+  }
+  
+  const onSwitch = () => {
+    setCurrentColors({default: 0, manual: 0})
+    setSwitched(!switched)
+  }
+  
   return (
     <StyledApp>
       <div/>
       <div style={{display: "flex", alignItems: "start", justifyContent: "center", marginTop: "2rem"}}>
-        <ColorPicker color={Color().hex(colors[currentColor])} onColorChange={onColorChange}/>
+        <ColorPicker color={Color().hex(getCurrentColor())} onColorChange={onColorChange}/>
         <div style={{display: "flex", flexDirection: "column"}}>
-          <TargetScheme colors={colors} onCellChange={setCurrentColor}/>
+          <TargetScheme switched={switched} onSwitch={onSwitch} defaultColors={defaultColors} manualColors={manualColors} onCellChange={onCellChange}/>
           <Suggestions matchedColors={matchedColors} onSuggestionClick={onSuggestionClick}/>
         </div>
         <SelectedColor paletteName={selectedColor.paletteName} colorPosition={selectedColor.position}/>
       </div>
+      
     </StyledApp>
   );
 }
 
 export const StyledApp = styled.div`
     height: 100vh;
-    font-size: 12px;
-    font-weight: 700;
+    font-size: 14px;
+    font-weight: bold;
     margin: 0;
     font-family: "Gilroy", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',

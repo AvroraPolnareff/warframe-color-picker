@@ -5,16 +5,22 @@ import styled from "styled-components";
 interface SwitchProps {
   switched: boolean,
   width: number
+  onClick: () => void
 }
 
-export const Switch : FC<SwitchProps> = ({switched, width}) => {
+export const Switch : FC<SwitchProps> = ({switched, width, onClick}) => {
+  const onTextClick = (type: boolean) => {
+    if (switched !== type) {
+      onClick()
+    }
+  }
   return (
     <NewWrapper width={width}>
       
       <Selection switched={switched} width={width}/>
       <FlexWrapper>
-        <LeftText>Default</LeftText>
-        <RightText>Manual</RightText>
+        <LeftText onClick={() => onTextClick(false)}>Default</LeftText>
+        <RightText onClick={() => onTextClick(true)}>Manual</RightText>
         
       </FlexWrapper>
       
@@ -23,8 +29,8 @@ export const Switch : FC<SwitchProps> = ({switched, width}) => {
   )
 }
 
-const offset = 0.11
-const height = 0.8
+const offset = 0.13
+const height = 0.95
 const borderRadius = 2
 
 const Selection = styled.div<{switched: boolean, width: number}>`
