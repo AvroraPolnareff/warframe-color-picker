@@ -1,4 +1,4 @@
-import React, {FC, useEffect, useState} from "react";
+import React, {FC, useEffect, useRef, useState} from "react";
 import Color from "color";
 import {Window} from "./shared/Window";
 import {FlexColumnCenter} from "./shared/FlexColumnCenter";
@@ -6,14 +6,64 @@ import styled from "styled-components";
 import {Divider} from "./shared/Divider";
 import header from "../assets/color_picker_header.svg"
 import picker from "../assets/picker.png"
+import {Picker} from "./Picker";
 
 interface ColorPickerProps {
   color: Color,
   onColorChange: (color: Color) => void
 }
 
-export const ColorPicker: FC<ColorPickerProps> = ({onColorChange, color}) => {
+
+
+const drawWheel = (ctx: CanvasRenderingContext2D, canvasWidth: number, wheelWidth: number) => {
+  const center = canvasWidth / 2
+  const outerRadius = canvasWidth / 2
+  const innerRadius = canvasWidth / 2 - wheelWidth
+  let hAngle = 0;
+  for (let angle = 0; angle <= 360; angle++ ) {
+    const startAngle = (angle - 2) * Math.PI / 180;
+    const endAngle = (angle) * Math.PI / 180;
+    
+    ctx.beginPath()
+    ctx.moveTo(center, center);
+    ctx.arc(center, center, outerRadius, startAngle, endAngle, false)
+    ctx.closePath()
+    
+    const targetColor = Color().hsv(hAngle, 100, 100);
+    ctx.fillStyle = `rgb(${targetColor.red()}, ${targetColor.green()}, ${targetColor.blue()} )`
+    
+    ctx.fill()
+    
+    hAngle++
+    if (hAngle >= 360)
+      hAngle = 0
+    
+  }
   
+  
+  ctx.globalCompositeOperation = "destination-out";
+  ctx.beginPath();
+  ctx.arc(center, center, innerRadius, 0, Math.PI * 2)
+  ctx.fill();
+  ctx.globalCompositeOperation = "source-over";
+}
+
+
+
+export const ColorPicker: FC<ColorPickerProps> = ({onColorChange, color}) => {
+  const ref = useRef<HTMLCanvasElement>(null)
+  useEffect(() => {
+    if (!ref.current) {
+      return
+    }
+    const ctx = ref.current.getContext("2d")
+    if (!ctx) {
+      return
+    }
+    
+    
+    
+  }, [color])
   return (
     <Window width={12.3}>
       <FlexColumnCenter>
@@ -26,7 +76,8 @@ export const ColorPicker: FC<ColorPickerProps> = ({onColorChange, color}) => {
             onChange={(e) => onColorChange(Color().hex(e.target.value))}
           />
         </FlexRow>
-        <PickerImg src={picker}/>
+        {/*<PickerImg src={picker}/>*/}
+        <Picker size={180} color={color} onChange={onColorChange}/>
         <Divider/>
       </FlexColumnCenter>
       <NumbersPicker color={color} onColorChange={onColorChange}/>
@@ -39,11 +90,11 @@ interface NumbersPickerProps {
   onColorChange: (color: Color) => void
 }
 
-const NumbersPicker : FC<NumbersPickerProps> = ({color, onColorChange}) => {
+const NumbersPicker: FC<NumbersPickerProps> = ({color, onColorChange}) => {
   
-  const onChange = (e : React.ChangeEvent<HTMLInputElement>) => {
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value === "" ? "0" : e.target.value
-     switch (e.target.name) {
+    switch (e.target.name) {
       case "red":
         onColorChange(color.red(parseInt(value)))
         break
@@ -128,11 +179,11 @@ interface HexInputProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-const HexInput : FC<HexInputProps> = ({onChange, color }) => {
+const HexInput: FC<HexInputProps> = ({onChange, color}) => {
   const [validHex, setValidHex] = useState(true)
   const [inputField, setInputField] = useState("#909090")
   const [userTyping, setUserTyping] = useState(false)
-  const [timer, setTimer ] = useState(0)
+  const [timer, setTimer] = useState(0)
   const [onChangeTimeout, setOnChangeTimeout] = useState(0)
   
   useEffect(() => {
@@ -140,12 +191,12 @@ const HexInput : FC<HexInputProps> = ({onChange, color }) => {
       setInputField(color.hex())
       setValidHex(true)
     }
-  },[color])
+  }, [color])
   
-  const changeHex = (e : React.ChangeEvent<HTMLInputElement>) => {
+  const changeHex = (e: React.ChangeEvent<HTMLInputElement>) => {
     clearTimeout(timer)
     clearTimeout(onChangeTimeout)
-    setTimer(setTimeout(() =>setUserTyping(false), 1000))
+    setTimer(setTimeout(() => setUserTyping(false), 1000))
     try {
       if (e.target.value.length <= 7) {
         Color().hex(e.target.value)
@@ -163,7 +214,7 @@ const HexInput : FC<HexInputProps> = ({onChange, color }) => {
   
   return (
     <StyledHexInput
-       value={inputField}
+      value={inputField}
       onChange={changeHex} valid={validHex}
     />
   )
@@ -171,7 +222,7 @@ const HexInput : FC<HexInputProps> = ({onChange, color }) => {
 
 const StyledHexInput = styled.input.attrs(props => ({
   spellCheck: "false", type: "text"
-}))<{ valid: boolean}>`
+}))<{ valid: boolean }>`
     display: flex;
     align-items: center;
     background-color: ${props => props.valid ? props.theme.colors.badge : "#dba3a3"};
@@ -206,3 +257,4 @@ const FlexRow = styled.div`
 const PickerImg = styled.img`
     margin-bottom: 0.5em;
 `
+
