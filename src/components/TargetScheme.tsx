@@ -13,9 +13,17 @@ interface TargetSchemeProps {
   onCellChange: (colorPosition: number) => void;
   switched: boolean;
   onSwitch: () => void;
+  onImportClick: () => void;
+  onExportClick: () => void;
 }
 
-const TargetScheme: FC<TargetSchemeProps> = ({ defaultColors, manualColors, onCellChange, switched, onSwitch}) => {
+const TargetScheme: FC<TargetSchemeProps> = (
+  { defaultColors, manualColors,
+    onCellChange, switched,
+    onSwitch, onImportClick,
+    onExportClick}) => {
+  
+  
   
   return (
     <Window width={11.3}>
@@ -33,7 +41,8 @@ const TargetScheme: FC<TargetSchemeProps> = ({ defaultColors, manualColors, onCe
       }
       <Divider/>
       <div style={{textAlign: "right"}}>
-        <Button round small>import</Button> <Button round small>export</Button>
+        <Button round small onClick={onImportClick}>import</Button>
+        <Button round small onClick={onExportClick}>export</Button>
       </div>
     </Window>
   )

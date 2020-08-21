@@ -73,13 +73,39 @@ function App() {
     setSwitched(!switched)
   }
   
+  const onImportClick = () => {
+    navigator.clipboard.readText().then(
+      clipText => {
+        const importData = JSON.parse(clipText)
+        if (!importData) {
+          alert("wrong data!")
+          return
+        }
+        setDefaultColors(importData.default)
+        setManualColors(importData.manual)
+      }
+    ).catch(() => {alert("error!")})
+  }
+  
+  const onExportClick = () => {
+    const exportData = JSON.stringify({default: defaultColors, manual: manualColors})
+    navigator.clipboard.writeText(exportData).then(() => {
+      alert("copied!")
+    }).catch(() => {alert("error!")})
+  }
+  
   return (
     <StyledApp>
       <div/>
       <div style={{display: "flex", alignItems: "start", justifyContent: "center", marginTop: "2rem"}}>
         <ColorPicker color={Color().hex(getCurrentColor())} onColorChange={onColorChange}/>
         <div style={{display: "flex", flexDirection: "column"}}>
-          <TargetScheme switched={switched} onSwitch={onSwitch} defaultColors={defaultColors} manualColors={manualColors} onCellChange={onCellChange}/>
+          <TargetScheme
+            switched={switched} onSwitch={onSwitch}
+            defaultColors={defaultColors} manualColors={manualColors}
+            onCellChange={onCellChange} onImportClick={onImportClick}
+            onExportClick={onExportClick}
+          />
           <Suggestions matchedColors={matchedColors} onSuggestionClick={onSuggestionClick}/>
         </div>
         <SelectedColor paletteName={selectedColor.paletteName} colorPosition={selectedColor.position}/>
