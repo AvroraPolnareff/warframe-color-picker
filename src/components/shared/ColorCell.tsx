@@ -24,6 +24,7 @@ const gradient = keyframes`
 `
 
 const OutlineWrapper = styled.div<{outline?: boolean}>`
+    cursor: ${props => props.outline ? "default" : "pointer"};
     display: flex;
     align-items: center;
     justify-content: center;
@@ -35,9 +36,11 @@ const OutlineWrapper = styled.div<{outline?: boolean}>`
     animation: ${gradient} 3s ease infinite;
 `
 
-const StyledColorCell = styled.div`
+const StyledColorCell = styled.div.attrs<{color: string}>((props) => ({
+  style: {background: props.color}
+}))`
     content: " ";
-    background-color: ${props => props.color || "#000000"};
+    //background-color: #000000;
     height: 0.9rem;
     margin: 0.09rem 0.16rem;
     width: 1.1rem;

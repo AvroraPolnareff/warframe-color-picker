@@ -15,7 +15,7 @@ export const Switch : FC<SwitchProps> = ({switched, width, onClick}) => {
     }
   }
   return (
-    <NewWrapper width={width}>
+    <Wrapper width={width}>
       
       <Selection switched={switched} width={width}/>
       <FlexWrapper>
@@ -24,7 +24,7 @@ export const Switch : FC<SwitchProps> = ({switched, width, onClick}) => {
         
       </FlexWrapper>
       
-    </NewWrapper>
+    </Wrapper>
       
   )
 }
@@ -53,13 +53,13 @@ const LeftText = styled.div`
   color: ${props => props.theme.colors.switch.leftText};
   z-index: 1;
   text-transform: uppercase;
-  
+  user-select: none;
 `
 const RightText = styled.div`
   color: ${props => props.theme.colors.switch.rightText};
   z-index: 1;
   text-transform: uppercase;
-  
+  user-select: none;
 `
 
 const FlexWrapper = styled.div`
@@ -69,13 +69,14 @@ const FlexWrapper = styled.div`
   height: inherit;
 `
 
-const NewWrapper = styled.div<{ width: number}>`
+const Wrapper = styled.div<{ width: number}>`
   position: relative;
   padding: ${offset}rem;
   background: ${props => props.theme.colors.switch.background};
   border-radius: ${borderRadius}rem;
   width: ${props => props.width + offset}rem;
   height: ${height + offset*2 }rem;
+  cursor: pointer;
 `
 
 

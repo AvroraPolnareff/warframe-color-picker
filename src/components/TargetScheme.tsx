@@ -22,7 +22,7 @@ const TargetScheme: FC<TargetSchemeProps> = ({ defaultColors, manualColors, onCe
       
       <FlexColumnCenter>
         <Header>TARGET SCHEME</Header>
-        <div style={{marginBottom: "0.2rem"}}>
+        <div style={{marginBottom: "0.2rem", }}>
           <Switch switched={switched} width={9.8} onClick={onSwitch}/>
         </div>
         <Divider/>
@@ -31,6 +31,10 @@ const TargetScheme: FC<TargetSchemeProps> = ({ defaultColors, manualColors, onCe
         ? <Manual colors={manualColors} onCellChange={onCellChange}/> :
         <Default colors={defaultColors} onCellChange={onCellChange}/>
       }
+      <Divider/>
+      <div style={{textAlign: "right"}}>
+        <Button round small>import</Button> <Button round small>export</Button>
+      </div>
     </Window>
   )
 }
@@ -51,7 +55,7 @@ const Manual : FC<ManualProps> = ({colors, onCellChange}) => {
   }
   
   return (
-    <StyledManual>
+    <StyledManual style={{height: "8.2rem", paddingBottom: "0.25rem"}}>
       
       {colors.map((color, key) => <ColorCell color={color} outline={isSelected(key)} onClick={() => onCellClick(key)}/>)}
     </StyledManual>
@@ -62,6 +66,7 @@ const StyledManual = styled.div`
   display: grid;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  row-gap: 0.21rem;
 `
 
 interface DefaultProps {
@@ -81,7 +86,7 @@ const Default: FC<DefaultProps> = ({colors, onCellChange}) => {
   }
   
   return (
-    <div>
+    <div style={{height: "8.2rem", paddingBottom: "0.25rem"}}>
       <ColorEntry text="PRIMARY" selected={isSelected(0)}
                   onClick={() => onCellClick(0)} color={colors[0]}/>
       <ColorEntry text="SECONDARY" selected={isSelected(1)}
@@ -137,7 +142,7 @@ const StyledColorEntry = styled.div`
     display: flex;
     align-items: center;
     width: 100%;
-    margin-bottom: 0.2rem;
+    margin-bottom: 0;
     padding: 1px;
 `
 
