@@ -8,7 +8,13 @@ export const findClosestColors = (colorToCompare : string, palettes : Palette[],
     return palette.colors.map((color) => {
       const currentPosition = color.position
       const distance = colorDistance(colorToCompare, color.hex)
-      return {distance, color: color.hex, position: currentPosition, paletteName: palette.name} as MatchedColor
+      return {
+        distance,
+        color: color.hex,
+        position: currentPosition,
+        paletteName: palette.name,
+        uid: `${distance}${JSON.stringify(currentPosition)}${palette.name}`
+      } as MatchedColor
     })
   })
   

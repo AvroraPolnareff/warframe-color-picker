@@ -19,7 +19,7 @@ function App() {
     "#A3A3DB", "#5BCEFA", "#A3A3DB", "#5BCEFA", "#A3A3DB", "#5BCEFA", "#A3A3DB", "#5BCEFA",
   ]
   const initDefaultColors = ["#f8f5ed", "#525757", '#a64731', "#c0cbcf", "#dffefb", "#53bcb1", "#dffefb", "#53bcb1"]
-  const initMatchedColor = {distance: 0, color: "#000000", paletteName: "Classic", position: {x: 0, y: 0}}
+  const initMatchedColor = {distance: 0, color: "#000000", paletteName: "Classic", position: {x: 0, y: 0}, uid: "3274823"}
   
   const [defaultColors, setDefaultColors] = useState(initDefaultColors)
   const [manualColors, setManualColors] = useState(initManualColors)
@@ -55,7 +55,7 @@ function App() {
     
   }
   const onSuggestionClick = (key: string) => {
-    const filteredColor = matchedColors.filter(({paletteName, color}) => paletteName + color === key)[0]
+    const filteredColor = matchedColors.filter(({uid}) => uid === key)[0]
     return setSelectedColor(filteredColor);
     
   }
@@ -92,6 +92,7 @@ function App() {
 export const StyledApp = styled.div`
     height: 100vh;
     font-size: 14px;
+    letter-spacing: 0.015em;
     font-weight: bold;
     margin: 0;
     font-family: "Gilroy", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

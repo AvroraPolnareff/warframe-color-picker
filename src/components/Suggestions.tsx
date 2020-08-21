@@ -1,4 +1,4 @@
-import React, {FC} from "react"
+import React, {Component, ComponentProps, FC} from "react"
 import {Position} from "../common/Palette";
 import {Divider} from "./shared/Divider";
 import {FlexColumnCenter} from "./shared/FlexColumnCenter";
@@ -7,6 +7,7 @@ import header from "../assets/suggestions.svg"
 import styled from "styled-components";
 import {ColorCell} from "./shared/ColorCell";
 import {Badge} from "./shared/Badge";
+import {throttle} from "lodash"
 
 interface SuggestionsProps {
   matchedColors: MatchedColor[],
@@ -17,28 +18,66 @@ export interface MatchedColor {
   color: string,
   paletteName: string,
   distance: number,
-  position: Position
+  position: Position,
+  uid: string
 }
 
-export const Suggestions : FC<SuggestionsProps> = ({matchedColors, onSuggestionClick}) => {
-  return (
-    <Window width={11.3}>
-      <FlexColumnCenter>
-        <img src={header}/>
-        <ItalicText>SCROLL FOR MORE!</ItalicText>
-      </FlexColumnCenter>
-      <Divider/>
-      {
-        matchedColors.map(({color, paletteName, distance, position}) => (
-          <Suggestion
-            color={color} name={paletteName}
-            value={distance}
-            onClick={onSuggestionClick} key={color + paletteName} />
-        ))
-      }
-    </Window>
-  )
+export class Suggestions extends Component<SuggestionsProps, {throttledColors : MatchedColor[]}> {
+  constructor(props: Readonly<SuggestionsProps>) {
+    super(props);
+    this.state = {throttledColors: []}
+  }
+  
+  throttle = throttle((fn, data) => fn(data), 500)
+  
+  componentDidMount = () => {
+    this.setState({throttledColors: this.props.matchedColors})
+  }
+  
+  componentDidUpdate = (prevProps: Readonly<SuggestionsProps>, prevState: Readonly<{}>, snapshot?: any) => {
+    this.throttle(this.setState.bind(this), {throttledColors: this.props.matchedColors})
+  }
+  
+  render() {
+    return (
+      <Window width={11.3}>
+        <FlexColumnCenter>
+          <img src={header}/>
+          <ItalicText>SCROLL FOR MORE!</ItalicText>
+        </FlexColumnCenter>
+        <Divider/>
+        {
+          this.state.throttledColors.map(({color, paletteName, distance, position, uid}) => (
+            <Suggestion
+              color={color} name={paletteName}
+              value={distance}
+              onClick={this.props.onSuggestionClick} uid={uid} />
+          ))
+        }
+      </Window>
+    )
+  }
 }
+
+// export const Suggestions : FC<SuggestionsProps> = ({matchedColors, onSuggestionClick}) => {
+//   return (
+//     <Window width={11.3}>
+//       <FlexColumnCenter>
+//         <img src={header}/>
+//         <ItalicText>SCROLL FOR MORE!</ItalicText>
+//       </FlexColumnCenter>
+//       <Divider/>
+//       {
+//         matchedColors.map(({color, paletteName, distance, position}) => (
+//           <Suggestion
+//             color={color} name={paletteName}
+//             value={distance}
+//             onClick={onSuggestionClick} key={color + paletteName} />
+//         ))
+//       }
+//     </Window>
+//   )
+// }
 
 const ItalicText = styled.div`
     font-style: italic;
@@ -49,12 +88,13 @@ interface SuggestionProps {
   color: string,
   name: string,
   value: number,
-  onClick: (key: string) => void
+  onClick: (key: string) => void,
+  uid: string
 }
 
-const Suggestion : FC<SuggestionProps> = ({color, name, value, onClick}) => {
+const Suggestion : FC<SuggestionProps> = ({color, name, value, onClick, uid}, props) => {
   return (
-    <StyledSuggestion onClick={() => onClick(name + color)}>
+    <StyledSuggestion onClick={() => onClick(uid)}>
       <FlexCentred>
         <ColorBadge>
           <ColorCell color={color}/>
