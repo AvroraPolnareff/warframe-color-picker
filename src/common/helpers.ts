@@ -1,5 +1,6 @@
 import {MatchedColor} from "../components/Suggestions";
 import {Palette} from "./Palette";
+import {useEffect, useState} from "react";
 
 
 export const findClosestColors = (colorToCompare : string, palettes : Palette[], limit: number) : MatchedColor[] => {
@@ -36,5 +37,17 @@ function hexToRgb(hex : string) {
       b: parseInt(result[3], 16)
     };
   } else return {r: 0, b:0, g: 0}
+}
+
+export const useStickyState = <T>(initState: T, sticker: string) => {
+  const [value, setValue] = useState(() => {
+    const stickyValue = window.localStorage.getItem(sticker)
+    return stickyValue !== null ? JSON.parse(stickyValue) : initState
+  })
   
+  useEffect(() => {
+    window.localStorage.setItem(sticker, JSON.stringify(value))
+  }, [sticker, value])
+  
+  return [value, setValue];
 }

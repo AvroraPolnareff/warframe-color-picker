@@ -3,7 +3,7 @@ import styled from "styled-components";
 import TargetScheme from "./TargetScheme";
 import {ColorPicker} from "./ColorPicker";
 import Color from "color";
-import {findClosestColors} from "../common/helpers";
+import {findClosestColors, useStickyState} from "../common/helpers";
 import {palettes} from "../common/palettes";
 import {MatchedColor, Suggestions} from "./Suggestions";
 import {SelectedColor} from "./SelectedColor";
@@ -21,8 +21,8 @@ function App() {
   const initDefaultColors = ["#f8f5ed", "#525757", '#a64731', "#c0cbcf", "#dffefb", "#53bcb1", "#dffefb", "#53bcb1"]
   const initMatchedColor = {distance: 0, color: "#000000", paletteName: "Classic", position: {x: 0, y: 0}, uid: "3274823"}
   
-  const [defaultColors, setDefaultColors] = useState(initDefaultColors)
-  const [manualColors, setManualColors] = useState(initManualColors)
+  const [defaultColors, setDefaultColors] = useStickyState(initDefaultColors, "defaultColors")
+  const [manualColors, setManualColors] = useStickyState(initManualColors, "manualColors")
   const [currentColors, setCurrentColors] = useState({default: 0, manual: 0})
   const [matchedColors, setMatchedColors] = useState<MatchedColor[]>([])
   const [selectedColor, setSelectedColor] = useState<MatchedColor>(initMatchedColor)
