@@ -4,48 +4,13 @@ import {Window} from "./shared/Window";
 import {FlexColumnCenter} from "./shared/FlexColumnCenter";
 import styled from "styled-components";
 import {Divider} from "./shared/Divider";
-import header from "../assets/color_picker_header.svg"
-import picker from "../assets/picker.png"
+import {ColorPickerHeader} from "../assets/ColorPickerHeader"
 import {Picker} from "./Picker";
+import {Header} from "../stories/example/Header";
 
 interface ColorPickerProps {
   color: Color,
   onColorChange: (color: Color) => void
-}
-
-
-
-const drawWheel = (ctx: CanvasRenderingContext2D, canvasWidth: number, wheelWidth: number) => {
-  const center = canvasWidth / 2
-  const outerRadius = canvasWidth / 2
-  const innerRadius = canvasWidth / 2 - wheelWidth
-  let hAngle = 0;
-  for (let angle = 0; angle <= 360; angle++ ) {
-    const startAngle = (angle - 2) * Math.PI / 180;
-    const endAngle = (angle) * Math.PI / 180;
-    
-    ctx.beginPath()
-    ctx.moveTo(center, center);
-    ctx.arc(center, center, outerRadius, startAngle, endAngle, false)
-    ctx.closePath()
-    
-    const targetColor = Color().hsv(hAngle, 100, 100);
-    ctx.fillStyle = `rgb(${targetColor.red()}, ${targetColor.green()}, ${targetColor.blue()} )`
-    
-    ctx.fill()
-    
-    hAngle++
-    if (hAngle >= 360)
-      hAngle = 0
-    
-  }
-  
-  
-  ctx.globalCompositeOperation = "destination-out";
-  ctx.beginPath();
-  ctx.arc(center, center, innerRadius, 0, Math.PI * 2)
-  ctx.fill();
-  ctx.globalCompositeOperation = "source-over";
 }
 
 
@@ -69,7 +34,7 @@ export const ColorPicker: FC<ColorPickerProps> = ({onColorChange, color}) => {
       <FlexColumnCenter>
         <FlexRow>
           <HeaderWrapper>
-            <img src={header}/>
+            <ColorPickerHeader headerColor={color}/>
           </HeaderWrapper>
           <HexInput
             color={color}
