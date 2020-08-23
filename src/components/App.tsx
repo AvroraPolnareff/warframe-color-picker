@@ -7,6 +7,7 @@ import {findClosestColors, useStickyState} from "../common/helpers";
 import {palettes} from "../common/palettes";
 import {MatchedColor, Suggestions} from "./Suggestions";
 import {SelectedColor} from "./SelectedColor";
+import {Header} from "./Header";
 
 
 function App() {
@@ -37,8 +38,9 @@ function App() {
   }
   
   useEffect(() => {
-    const closestColors = findClosestColors(getCurrentColor(), palettes, 8)
+    const closestColors = findClosestColors(getCurrentColor(), palettes, 14)
     setMatchedColors(closestColors)
+    setSelectedColor(closestColors[0])
   }, [defaultColors, manualColors, currentColors])
   
   const onColorChange = (color: Color) => {
@@ -51,8 +53,6 @@ function App() {
       newColors[currentColors.manual] = color.hex()
       setManualColors(newColors)
     }
-    
-    
   }
   const onSuggestionClick = (key: string) => {
     const filteredColor = matchedColors.filter(({uid}) => uid === key)[0]
@@ -87,15 +87,10 @@ function App() {
     ).catch(() => {alert("error!")})
   }
   
-  const onExportClick = () => {
-    const exportData = JSON.stringify({default: defaultColors, manual: manualColors})
-    navigator.clipboard.writeText(exportData).then(() => {
-      alert("copied!")
-    }).catch(() => {alert("error!")})
-  }
   
   return (
     <StyledApp>
+      <Header/>
       <div/>
       <div style={{display: "flex", alignItems: "start", justifyContent: "center", marginTop: "2rem"}}>
         <ColorPicker color={Color().hex(getCurrentColor())} onColorChange={onColorChange}/>
@@ -104,7 +99,6 @@ function App() {
             switched={switched} onSwitch={onSwitch}
             defaultColors={defaultColors} manualColors={manualColors}
             onCellChange={onCellChange} onImportClick={onImportClick}
-            onExportClick={onExportClick}
           />
           <Suggestions matchedColors={matchedColors} onSuggestionClick={onSuggestionClick}/>
         </div>
@@ -119,6 +113,7 @@ export const StyledApp = styled.div`
     height: 100vh;
     font-size: 14px;
     letter-spacing: 0.015em;
+    color: ${props => props.theme.colors.secondary}
     font-weight: bold;
     margin: 0;
     font-family: "Gilroy", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

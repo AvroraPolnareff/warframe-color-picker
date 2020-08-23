@@ -14,24 +14,34 @@ interface TargetSchemeProps {
   switched: boolean;
   onSwitch: () => void;
   onImportClick: () => void;
-  onExportClick: () => void;
 }
 
 const TargetScheme: FC<TargetSchemeProps> = (
   { defaultColors, manualColors,
     onCellChange, switched,
-    onSwitch, onImportClick,
-    onExportClick}) => {
+    onSwitch, onImportClick}) => {
+  
+  const [exportButton, setExportButton] = useState("export")
+  
+  const onExportClick = () => {
+    const exportData = JSON.stringify({default: defaultColors, manual: manualColors})
+    navigator.clipboard.writeText(exportData).then(() => {
+      setExportButton("copied!")
+      setTimeout(() => {
+        setExportButton("export")
+      }, 2000)
+    }).catch(() => {alert("error!")})
+  }
   
   
   
   return (
-    <Window width={11.3}>
+    <Window width={11.1}>
       
       <FlexColumnCenter>
         <Header>TARGET SCHEME</Header>
         <div style={{marginBottom: "0.2rem", }}>
-          <Switch switched={switched} width={9.8} onClick={onSwitch}/>
+          <Switch switched={switched} width={9.5} onClick={onSwitch} leftText={"default"} rightText={"manual"}/>
         </div>
         <Divider/>
       </FlexColumnCenter>
@@ -41,8 +51,8 @@ const TargetScheme: FC<TargetSchemeProps> = (
       }
       <Divider/>
       <div style={{textAlign: "right"}}>
-        <Button round small onClick={onImportClick}>import</Button>
-        <Button round small onClick={onExportClick}>export</Button>
+        <Button round small onClick={onImportClick} primary>import</Button>
+        <Button round small onClick={onExportClick} style={{width: "4em"}} success={"copied!" === exportButton}>{exportButton}</Button>
       </div>
     </Window>
   )
@@ -144,6 +154,7 @@ const ColorName = styled.span`
     &:before {
         margin-right: 0.3rem;
         content: "•";
+        margin-left: 0.3rem;
     }
 `
 

@@ -4,6 +4,12 @@ declare module 'styled-components' {
   export interface DefaultTheme {
     colors: {
       primaryText: string;
+      primary: string;
+      secondary: string;
+      tertiary: string;
+      quaternary: string;
+      danger: string;
+      success: string;
       
       border: string;
       windowBackground: string;

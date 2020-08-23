@@ -6,7 +6,6 @@ import styled from "styled-components";
 import {Divider} from "./shared/Divider";
 import {ColorPickerHeader} from "../assets/ColorPickerHeader"
 import {Picker} from "./Picker";
-import {Header} from "../stories/example/Header";
 
 interface ColorPickerProps {
   color: Color,
@@ -42,7 +41,9 @@ export const ColorPicker: FC<ColorPickerProps> = ({onColorChange, color}) => {
           />
         </FlexRow>
         {/*<PickerImg src={picker}/>*/}
-        <Picker size={180} color={color} onChange={onColorChange}/>
+        <div style={{marginBottom: "0.3rem"}}>
+          <Picker size={160} color={color} onChange={onColorChange} />
+        </div>
         <Divider/>
       </FlexColumnCenter>
       <NumbersPicker color={color} onColorChange={onColorChange}/>
@@ -76,7 +77,7 @@ const NumbersPicker: FC<NumbersPickerProps> = ({color, onColorChange}) => {
         onColorChange(color.saturate(parseInt(value)))
         break
       case "lightness":
-        onColorChange(color.lightness(parseInt(value)))
+        onColorChange(color.value(parseInt(value)))
         break
       default:
         return
@@ -90,33 +91,38 @@ const NumbersPicker: FC<NumbersPickerProps> = ({color, onColorChange}) => {
         <ColorInput name={"red"} onChange={onChange} color="#dba3a3" value={color.red()}/>
         <ColorInput name={"green"} onChange={onChange} color="#a3dba3" value={color.green()}/>
         <ColorInput name={"blue"} onChange={onChange} color="#a3a3db" value={color.blue()}/>
-        <ColorSchemeName>HSL</ColorSchemeName>
+        <ColorSchemeName>HSV</ColorSchemeName>
         <ColorInput name={"hue"} onChange={onChange} value={Math.round(color.hue())}/>
-        <ColorInput name={"saturation"} onChange={onChange} value={Math.round(color.saturationl())}/>
-        <ColorInput name={"lightness"} onChange={onChange} value={Math.round(color.lightness())}/>
+        <ColorInput name={"saturation"} onChange={onChange} value={Math.round(color.saturationv())}/>
+        <ColorInput name={"lightness"} onChange={onChange} value={Math.round(color.value())}/>
       </Grid2X4>
     </StyledPicker>
   )
 }
 
 const StyledPicker = styled.div`
-    margin-top: 0.3em;
+    margin-top: 0.35rem;
     font-size: 14px
 `
 
 const ColorInput = styled.input`
     display: flex;
-    align-items: center;
-    background-color: ${props => props.color || props.theme.colors.badge};
+    align-items: baseline;
+    background-color: ${props => props.color || props.theme.colors.secondary};
     color: ${props => props.theme.colors.badgeText};
     padding: 0.1rem 0.3rem;
     max-height: 1.2rem;
     margin: 0 0.2rem;
-    border-radius: 0.4rem;
+    border-radius: 0.3rem;
     font-weight: 600;
     font-size: 14px;
-    width: 1.5rem;
+    width: 1.4rem;
     border: none;
+    transition: background-color 0.15s linear;
+  
+    &:focus, &:hover {
+      background-color: ${props => Color(props.color || props.theme.colors.secondary).darken(0.2).toString()};
+    }
     
     &:focus {
         outline: none;
@@ -126,9 +132,10 @@ const ColorInput = styled.input`
 
 const Grid2X4 = styled.div`
     display: grid;
+    align-items: baseline;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
-    row-gap: 0.3rem;
+    row-gap: 0.7rem;
     justify-items: start;
     justify-content: start;
     width: fit-content;
@@ -190,16 +197,23 @@ const StyledHexInput = styled.input.attrs(props => ({
 }))<{ valid: boolean }>`
     display: flex;
     align-items: center;
-    background-color: ${props => props.valid ? props.theme.colors.badge : "#dba3a3"};
+    background-color: ${props => props.valid ? props.theme.colors.secondary : props.theme.colors.danger};
     color: ${props => props.theme.colors.badgeText};
     padding: 0.1rem 0.3rem;
     max-height: 1.2rem;
-    margin: 0 0.2rem;
+    //margin: 0 0.5rem;
+    margin-right: 0.8rem;
+    margin-top: 0.2rem;
     border-radius: 0.4rem;
     font-weight: normal;
     font-size: 15px;
     width: 3.9rem;
     border: none;
+    transition: background-color 0.15s linear;
+  
+    &:hover {
+      background-color: ${props => Color( props.valid ? props.theme.colors.secondary : props.theme.colors.danger).darken(0.2).toString()};
+    }
     
     &:focus {
         outline: none;

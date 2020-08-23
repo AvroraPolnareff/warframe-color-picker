@@ -1,13 +1,15 @@
-import React, {Component, ComponentProps, FC} from "react"
+import React, {Component, FC} from "react"
 import {Position} from "../common/Palette";
 import {Divider} from "./shared/Divider";
 import {FlexColumnCenter} from "./shared/FlexColumnCenter";
 import {Window} from "./shared/Window";
-import header from "../assets/suggestions.svg"
+import header from "../assets/SUGGESTIONS.svg"
 import styled from "styled-components";
 import {ColorCell} from "./shared/ColorCell";
 import {Badge} from "./shared/Badge";
 import {throttle} from "lodash"
+import {Switch} from "./shared/Switch";
+import {Button} from "./shared/Button";
 
 interface SuggestionsProps {
   matchedColors: MatchedColor[],
@@ -22,62 +24,90 @@ export interface MatchedColor {
   uid: string
 }
 
-export class Suggestions extends Component<SuggestionsProps, {throttledColors : MatchedColor[]}> {
+export class Suggestions extends Component<SuggestionsProps, {
+  throttledColors : MatchedColor[],
+  switched: boolean,
+  selected: string
+}> {
   constructor(props: Readonly<SuggestionsProps>) {
     super(props);
-    this.state = {throttledColors: []}
+    this.state = {throttledColors: [], switched: false, selected: ""}
   }
   
-  throttle = throttle((fn, data) => fn(data), 500)
+  //throttle = throttle((fn, data) => fn(data), 500)
   
   componentDidMount = () => {
-    this.setState({throttledColors: this.props.matchedColors})
+    this.setState((state, props) => ({...state, throttledColors: props.matchedColors}))
+    this.setState((state, props) => ({...state, selected: props.matchedColors[0].uid}))
   }
   
   componentDidUpdate = (prevProps: Readonly<SuggestionsProps>, prevState: Readonly<{}>, snapshot?: any) => {
-    this.throttle(this.setState.bind(this), {throttledColors: this.props.matchedColors})
+    //this.throttle(this.setState.bind(this), {throttledColors: this.props.matchedColors})
+    
   }
+  
+  onSwitch = () => {
+    this.setState((state, props) => ({...state, switched: !state.switched}))
+  }
+  
+  isSelected = (uid: string) => {
+    return this.state.selected === uid
+  }
+  
+  onSuggestionClick = (uid: string) => {
+    this.props.onSuggestionClick(uid)
+    this.setState((state, props) => ({...state, selected: uid}))
+
+  }
+  
   
   render() {
     return (
-      <Window width={11.3}>
+      <Window width={11.1}>
         <FlexColumnCenter>
-          <img src={header}/>
+          <img src={header} style={{width: "11rem", marginTop: "0.2rem"}}/>
           <ItalicText>SCROLL FOR MORE!</ItalicText>
+          <div style={{
+            display: "flex", justifyContent: "space-between",
+            marginTop: "0.35rem", marginBottom: "0.3rem", marginRight:"0.3rem"
+          }}>
+            <Button round>palettes</Button>
+            <Switch switched={this.state.switched} width={2.7} onClick={this.onSwitch} leftText={"%"} rightText={"D"}/>
+          </div>
+          
         </FlexColumnCenter>
         <Divider/>
-        {
-          this.state.throttledColors.map(({color, paletteName, distance, position, uid}) => (
-            <Suggestion
-              color={color} name={paletteName}
-              value={distance}
-              onClick={this.props.onSuggestionClick} uid={uid} />
-          ))
-        }
+        <Faded>
+  
+          {
+            this.props.matchedColors.map(({color, paletteName, distance, position, uid}) => (
+              <Suggestion onSuggestionClick={this.onSuggestionClick}
+                          color={color} name={paletteName}
+                          value={(!this.state.switched ? Math.round(100 - distance) + "%" : distance.toFixed(2)).toString()}
+                          uid={uid} selected={this.isSelected(uid)} key={uid}/>
+            ))
+          }
+        </Faded>
       </Window>
     )
   }
 }
 
-// export const Suggestions : FC<SuggestionsProps> = ({matchedColors, onSuggestionClick}) => {
-//   return (
-//     <Window width={11.3}>
-//       <FlexColumnCenter>
-//         <img src={header}/>
-//         <ItalicText>SCROLL FOR MORE!</ItalicText>
-//       </FlexColumnCenter>
-//       <Divider/>
-//       {
-//         matchedColors.map(({color, paletteName, distance, position}) => (
-//           <Suggestion
-//             color={color} name={paletteName}
-//             value={distance}
-//             onClick={onSuggestionClick} key={color + paletteName} />
-//         ))
-//       }
-//     </Window>
-//   )
-// }
+const Faded = styled.div`
+  margin-top: 0.4rem;
+  position: relative;
+  
+  &:after {
+    content: "";
+    position: absolute;
+    height: 100%;
+    bottom: 0;
+    width: 100%;
+    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(0,0,0,0) 30%);
+    pointer-events: none;
+  }
+`
+
 
 const ItalicText = styled.div`
     font-style: italic;
@@ -87,46 +117,40 @@ const ItalicText = styled.div`
 interface SuggestionProps {
   color: string,
   name: string,
-  value: number,
-  onClick: (key: string) => void,
+  value: string,
+  onSuggestionClick: (uid: string) => void,
   uid: string
+  selected: boolean
 }
 
-const Suggestion : FC<SuggestionProps> = ({color, name, value, onClick, uid}, props) => {
+const Suggestion : FC<SuggestionProps> = ({color, name, value, onSuggestionClick, uid, selected}, key) => {
   return (
-    <StyledSuggestion onClick={() => onClick(uid)}>
+    <StyledSuggestion onClick={() => onSuggestionClick(uid)} selected={selected}>
       <FlexCentred>
-        <ColorBadge>
-          <ColorCell color={color}/>
-        </ColorBadge>
-        <Badge>
+          <ColorCell color={color} outline={selected}/>
+        <Badge hoverable={!selected} selected={selected}>
           {name.slice(0, 11) + (name.length > 12 ? "." : "")}
         </Badge>
       </FlexCentred>
-      <Badge>
-        {Math.round(100 - value) + "%"}
+      <Badge width={1.7}>
+        {value}
       </Badge>
     </StyledSuggestion>
   )
 }
 
-const ColorBadge = styled.div`
-    display: flex;
-    align-items: center;
-    background-color: ${props => props.theme.colors.badge};
-    color: ${props => props.theme.colors.badgeText};
-    padding: 0.1rem;
-    margin: 0 0.2rem;
-    border-radius: 0.4rem;
-`
 
-const StyledSuggestion = styled.div`
-    font-size: 0.7rem;
+
+const StyledSuggestion = styled.div<{selected: boolean}>`
+    ${props => !props.selected && "cursor: pointer"};
+    font-size: 0.75rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     text-transform: uppercase;
-    padding-bottom: 0.3rem;
+    padding-bottom: 0.055rem;
+    -webkit-tap-highlight-color: transparent;
+    
 `
 
 const FlexCentred = styled.div`

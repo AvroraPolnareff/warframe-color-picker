@@ -4,6 +4,7 @@ import {FlexColumnCenter} from "./shared/FlexColumnCenter";
 import styled from "styled-components";
 import {Position} from "../common/Palette";
 import {palettes} from "../common/palettes";
+import waves from "../assets/waves.svg"
 import Color from "color";
 
 interface SelectedColorProps {
@@ -13,12 +14,14 @@ interface SelectedColorProps {
 
 export const SelectedColor : FC<SelectedColorProps> = ({paletteName, colorPosition}) => {
   return (
-    <Window>
+    <Window width={8}>
       <FlexColumnCenter>
+        <img src={waves} style={{width: "8.5em", marginTop: "0.5em", marginBottom: "0"}}/>
         <Header>SELECTED <br /> COLOR</Header>
+        <img src={waves} style={{width: "8.5em", marginTop: "0", marginBottom: "0.5em"}}/>
         <PaletteName>{paletteName}</PaletteName>
         <StyledWarframePalette>
-          <WarframePalette size={29} paletteName={paletteName} colorPosition={colorPosition}/>
+          <WarframePalette size={25} paletteName={paletteName} colorPosition={colorPosition}/>
         </StyledWarframePalette>
       </FlexColumnCenter>
     </Window>
@@ -29,13 +32,15 @@ const StyledWarframePalette = styled.div`
     border-radius: 0.5rem;
     overflow: hidden;
     border: 3px solid ${props => props.theme.colors.border};
-    height:522px;
+    height:${25 * 18}px;
 `
 
-const Header = styled.h2`
+const Header = styled.div`
     font-weight: 300;
-    font-size: 2.1rem;
-    margin: 0.3rem 0;
+    font-size: 1.75rem;
+    letter-spacing: 0.001em;
+    line-height: 1em;
+    margin: 0 0;
     text-align: center;
     background: rgb(233,165,165);
     background: linear-gradient(90deg, rgba(233,165,165,1) 0%, rgba(184,193,192,1) 25%, rgba(101,192,224,1) 50%, rgba(174,162,219,1) 75%, rgba(129,193,217,1) 100%);
@@ -46,7 +51,8 @@ const Header = styled.h2`
 const PaletteName = styled.div`
     text-align: center;
     font-weight: 500;
-    padding: 0.4rem 0;
+    padding: 0.3rem 0;
+    padding-bottom: 0.5rem;
     margin-bottom: 0.5rem;
     width: 95%;
     border: 2px solid ${props => props.theme.colors.border};

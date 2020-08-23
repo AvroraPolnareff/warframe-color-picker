@@ -1,16 +1,28 @@
-import styled from "styled-components";
+import styled, {css} from "styled-components";
 
 
 
-export const Badge = styled.div`
-    display: flex;
-    align-items: center;
-    background-color: ${props => props.color || props.theme.colors.badge};
+export const Badge = styled.div<{color?: string, width?: number, hoverable?: boolean, selected?: boolean}>`
+    background-color: ${props => props.color || props.theme.colors.secondary};
+    ${props => props.selected && ("background-color: " + props.theme.colors.primary)};
     color: ${props => props.theme.colors.badgeText};
-    padding: 0.1rem 0.3rem;
-    max-height: 1.2rem;
+    padding: 0.02rem 0.3rem;
+    max-height: 1.1rem;
     margin: 0 0.2rem;
-    border-radius: 0.4rem;
+    text-align: right;
+    border-radius: 0.6rem;
     font-weight: 600;
+    ${props => props.width && `width: ${props.width}rem`};
+    
+    ${props => props.hoverable && css`
+   
+    
+    &:hover {
+      background-color: ${props => props.theme.colors.primary};
+      
+    }
+    `}
+    
+    
 `;
 
