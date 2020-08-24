@@ -1,4 +1,4 @@
-import React, {Component, FC} from "react";
+import React, {Component} from "react";
 import {throttle} from "lodash"
 import Color from "color";
 
@@ -10,7 +10,7 @@ type PickerProps = {
 }
 
 export class Picker extends Component<PickerProps> {
-  throttle = throttle((fn, data, func) => fn(data, func), 50)
+  throttle = throttle((fn, data, func) => fn(data, func), 20)
   ref: HTMLCanvasElement | null = null
   picker : CanvasPicker | null = null
   
@@ -42,6 +42,8 @@ export class Picker extends Component<PickerProps> {
   
   handleMouseUp = () => {
     this.unbindEventListeners()
+    if (!this.picker) return
+    this.picker.handleMouseUp()
   }
   
   unbindEventListeners() {
@@ -67,6 +69,11 @@ interface Position {
   y: number
 }
 
+enum Drag {
+  wheel,
+  quad,
+  none
+}
 
 
 class CanvasPicker {
@@ -77,6 +84,7 @@ class CanvasPicker {
   private color : Color
   private wheelCursor : WheelCursor
   private quadCursor : QuadCursor
+  public drag : Drag = Drag.none
   
   constructor(size: number, canvas : HTMLCanvasElement, color: Color) {
     this.size = size
@@ -146,18 +154,47 @@ class CanvasPicker {
   public mouseDownEventHandler = (e : any | Event | undefined, onChange: (color: Color) => void) => {
     e.preventDefault()
     let mousePosition = this.getEventDot(e)
-    
-    if (this.wheel.isDotIn(mousePosition)) {
-      const hue = this.hueByDot(mousePosition)
-      this.color = this.color.hue(hue)
-      onChange(this.color)
-      this.draw()
-    } else if (this.quad.isDotIn(mousePosition)) {
-      const saturation = this.quad.dotToSaturation(mousePosition)
-      const value = this.quad.dotToValue(mousePosition)
-      this.color = this.color.saturationv(saturation * 100).value(value * 100)
-      onChange(this.color)
+  
+    switch (this.drag) {
+      case Drag.none:
+        if (this.wheel.isDotIn(mousePosition)) {
+          this.drag = Drag.wheel
+          const hue = this.hueByDot(mousePosition)
+          this.color = this.color.hue(hue)
+          onChange(this.color)
+          this.draw()
+        } else if (this.quad.isDotIn(mousePosition)) {
+          this.drag = Drag.quad
+          const saturation = this.quad.dotToSaturation(mousePosition)
+          const value = this.quad.dotToValue(mousePosition)
+          this.color = this.color.saturationv(saturation * 100).value(value * 100)
+          onChange(this.color)
+          this.draw()
+        }
+        break;
+        
+      case Drag.wheel:
+        const hue = this.hueByDot(mousePosition)
+        this.color = this.color.hue(hue)
+        onChange(this.color)
+        this.draw()
+        break;
+        
+      case Drag.quad:
+        const saturation = this.quad.dotToSaturation(mousePosition)
+        const value = this.quad.dotToValue(mousePosition)
+        this.color = this.color.saturationv(saturation * 100).value(value * 100)
+        onChange(this.color)
+        this.draw()
+        break;
     }
+  
+  
+  }
+  
+  
+  public handleMouseUp = () => {
+    this.drag = Drag.none
   }
   
   public draw() {
@@ -256,10 +293,8 @@ class QuadCursor {
   public draw = (canvas : HTMLCanvasElement, color: Color, dot : Position) => {
     const ctx = canvas.getContext('2d')
     if (!ctx) return
-    if (color.value() > 0.5 && color.saturationv() < 0.5)
-      ctx.strokeStyle = 'rgba(0, 0, 0, 1)';
-    else
-      ctx.strokeStyle = 'rgba(255, 255, 255, 1)';
+    
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.7)';
   
     ctx.beginPath();
     ctx.lineWidth = this.lineWidth;
@@ -332,6 +367,7 @@ class Quad {
   private padding : number
   private path : Position []
   private renderedQuad : ImageData | null = null
+  private previosHue : number = 0
   
   constructor(wheel: Wheel) {
     this.padding = 2
@@ -360,37 +396,26 @@ class Quad {
   }
   
   public dotToSaturation = (dot: Position) => {
-    return Math.abs(this.path[3].x - dot.x) / this.size
+    const relationalX = this.path[3].x - dot.x
+    const absX = Math.abs(relationalX > 0 ? 0 : relationalX)
+    return absX / this.size
   }
   
   public dotToValue = (dot: Position)  => {
-    return Math.abs(this.path[3].y - dot.y) /this.size
+    const relationalY = this.path[3].y - dot.y
+    const absY = Math.abs(relationalY < 0 ? 0 : relationalY)
+    return absY /this.size
   }
   
   public saturationValueToDot = (saturation: number, value: number) => {
+
     const quadX = this.path[0].x
-    const quadY = this.path[0].y
+    const quadY = this.path[2].y
     
-    let error = 0.02
-    if (this.size < 150) {
-      error = 0.07
-    } else if (this.size < 100) {
-      error = 0.16
+    return {
+      x: Math.floor(saturation/100 * this.size + quadX),
+      y: Math.floor(-value/100 * this.size + quadY),
     }
-    
-    for (let y = 0; y < this.size; y++) {
-      for (let x = 0; x < this.size; x++) {
-        const dot = {x: x + quadX, y: y + quadY}
-        const targetSaturation = this.dotToSaturation(dot)
-        const targetValue = this.dotToValue(dot)
-        const saturationError = Math.abs(targetSaturation - saturation)
-        const valueError = Math.abs(targetValue - value)
-        
-        if (saturationError < error && valueError < error)
-          return dot
-      }
-    }
-    return  {x: 0, y: 0}
   }
   
   public draw = (canvas : HTMLCanvasElement, hue: number) => {
@@ -399,23 +424,29 @@ class Quad {
     
     if (!this.renderedQuad)
       this.renderedQuad = ctx.createImageData(this.size, this.size)
-  
+    
     const quadX = this.path[0].x
     const quadY = this.path[0].y
     
-    let i = 0
-    
-    for (let y = 0; y < this.size; y++) {
-      for (let x = 0; x < this.size; x++) {
-        const dot = {x: x + quadX, y: y + quadY}
-        const color = hsvToRgb(hue, this.dotToSaturation(dot) * 100, this.dotToValue(dot) * 100)
-        this.renderedQuad.data[i + 0] = color[0]
-        this.renderedQuad.data[i + 1] = color[1]
-        this.renderedQuad.data[i + 2] = color[2]
-        this.renderedQuad.data[i + 3] = 255
-        i += 4
+    if(this.previosHue !== hue) {
+      
+  
+      let i = 0
+  
+      for (let y = 0; y < this.size; y++) {
+        for (let x = 0; x < this.size; x++) {
+          const dot = {x: x + quadX, y: y + quadY}
+          const color = hsvToRgb(hue, this.dotToSaturation(dot) * 100, this.dotToValue(dot) * 100)
+          this.renderedQuad.data[i + 0] = color[0]
+          this.renderedQuad.data[i + 1] = color[1]
+          this.renderedQuad.data[i + 2] = color[2]
+          this.renderedQuad.data[i + 3] = 255
+          i += 4
+        }
       }
     }
+    
+    this.previosHue = hue
     
     ctx.putImageData(this.renderedQuad, quadX, quadY);
     
