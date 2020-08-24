@@ -222,8 +222,8 @@ const StyledHexInput = styled.input.attrs(props => ({
 
 const HeaderWrapper = styled.div`
     position: relative;
-    top: -2.7em;
-    left: -1.2em;
+    top: -2.2em;
+    left: -0.7em;
 
 
 `
