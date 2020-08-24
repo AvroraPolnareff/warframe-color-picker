@@ -12,18 +12,14 @@ interface SwitchProps {
 }
 
 export const Switch : FC<SwitchProps> = ({switched, width, onClick, leftText, rightText}) => {
-  const onTextClick = (type: boolean) => {
-    if (switched !== type) {
-      onClick()
-    }
-  }
+  
   return (
-    <Wrapper width={width}>
+    <Wrapper width={width} onClick={onClick}>
       
       <Selection switched={switched} width={width}/>
       <FlexWrapper>
-        <LeftText onClick={() => onTextClick(false)}>{leftText}</LeftText>
-        <RightText onClick={() => onTextClick(true)}>{rightText}</RightText>
+        <LeftText >{leftText}</LeftText>
+        <RightText >{rightText}</RightText>
         
       </FlexWrapper>
       
