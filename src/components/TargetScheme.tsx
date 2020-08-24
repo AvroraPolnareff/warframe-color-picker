@@ -125,7 +125,7 @@ const Default: FC<DefaultProps> = ({colors, onCellChange}) => {
       <StyledColorEntry>
         <ColorCell onClick={() => onCellClick(6)} outline={isSelected(6)} color={colors[6]}/>
         <ColorCell onClick={() => onCellClick(7)} outline={isSelected(7)} color={colors[7]}/>
-        <ColorName>"ENERGY 1, 2"</ColorName>
+        <ColorName>ENERGY 1, 2</ColorName>
       </StyledColorEntry>
     </div>
   )

@@ -17,7 +17,7 @@ export const SelectedColor : FC<SelectedColorProps> = ({paletteName, colorPositi
     <Window width={8}>
       <FlexColumnCenter>
         <img src={waves} style={{width: "8.5em", marginTop: "0.5em", marginBottom: "0"}}/>
-        <Header>SELECTED <br /> COLOR</Header>
+        <Header>SELECTED COLOR</Header>
         <img src={waves} style={{width: "8.5em", marginTop: "0", marginBottom: "0.5em"}}/>
         <PaletteName>{paletteName}</PaletteName>
         <StyledWarframePalette>
