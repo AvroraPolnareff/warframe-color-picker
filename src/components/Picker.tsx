@@ -25,6 +25,12 @@ export class Picker extends Component<PickerProps> {
     this.picker.draw()
   }
   
+  componentDidUpdate(prevProps: Readonly<PickerProps>, prevState: Readonly<{}>, snapshot?: any) {
+    if (!this.picker) return
+    this.picker.color = this.props.color
+    this.picker.draw()
+  }
+  
   handleChange = (e: React.MouseEvent<HTMLCanvasElement, MouseEvent> | Event) => {
     if (!this.picker) return
     typeof this.props.onChange === 'function' && this.throttle(
@@ -53,7 +59,7 @@ export class Picker extends Component<PickerProps> {
   
   render() {
     return (
-      <canvas
+      <canvas style={{imageRendering: "pixelated"}}
         height={this.props.size}
         width={this.props.size}
         onMouseDown={this.handleMouseDown}
@@ -81,7 +87,7 @@ class CanvasPicker {
   private size : number
   private canvas : HTMLCanvasElement
   private quad : Quad
-  private color : Color
+  public color : Color
   private wheelCursor : WheelCursor
   private quadCursor : QuadCursor
   public drag : Drag = Drag.none
@@ -201,6 +207,8 @@ class CanvasPicker {
     const ctx = this.canvas.getContext('2d')
     if (!ctx) return
     ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
+
+    
     
     this.wheel.draw(this.canvas)
     this.quad.draw(this.canvas, this.color.hue())
@@ -234,6 +242,7 @@ class Wheel {
     const startHAngle = this.hAngle
     const ctx = canvas.getContext('2d')
     if (!ctx) return;
+    ctx.imageSmoothingEnabled = false
     if (this.renderedWheel) {
       ctx.putImageData(this.renderedWheel, 0, 0);
       return
@@ -453,9 +462,6 @@ class Quad {
     
     
   }
-  
-  
-  
 }
 
 const toRadians = (i: number) => i * (Math.PI / 180)
