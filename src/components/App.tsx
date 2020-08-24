@@ -8,8 +8,8 @@ import {palettes} from "../common/palettes";
 import {MatchedColor, Suggestions} from "./Suggestions";
 import {SelectedColor} from "./SelectedColor";
 import {Header} from "./Header";
-import {Modal} from "./shared/Modal";
 import {ImportModal} from "./ImportModal";
+import {PalettesModal} from "./shared/PalettesModal";
 
 
 function App() {
@@ -21,6 +21,27 @@ function App() {
     "#5BCEFA", "#F5A9B8", "#5BCEFA", "#F5A9B8", "#5BCEFA", "#F5A9B8", "#5BCEFA", "#F5A9B8",
     "#A3A3DB", "#5BCEFA", "#A3A3DB", "#5BCEFA", "#A3A3DB", "#5BCEFA", "#A3A3DB", "#5BCEFA",
   ]
+  
+  const initAvailablePalettes = [
+    'Agony',             'Beach',
+    'Classic Saturated', 'Classic',
+    'Conquest',          'Corpus',
+    'Darkness',          'Daybreak',
+    'Discord',           'Dojo',
+    'Easter',            'Eminence',
+    'Eximus',            'Fear',
+    'Fire',              'Grineer',
+    'Halloween',         'Hatred',
+    'Ice',               'Infested',
+    "Ki'Teer",           'Lotus',
+    'Orokin',            'Rollers',
+    'Rot',               'Shamrock',
+    'Smoke Colors',      'Storm',
+    'Tenno II',          'Tenno',
+    'Transmission',      'Twilight',
+    'Undying',           'Valentine'
+  ]
+  
   const initDefaultColors = ["#f8f5ed", "#525757", '#a64731', "#c0cbcf", "#dffefb", "#53bcb1", "#dffefb", "#53bcb1"]
   const initMatchedColor = {distance: 0, color: "#000000", paletteName: "Classic", position: {x: 0, y: 0}, uid: "3274823"}
   
@@ -31,6 +52,8 @@ function App() {
   const [selectedColor, setSelectedColor] = useState<MatchedColor>(initMatchedColor)
   const [switched, setSwitched] = useState(false)
   const [showImportModal, setShowImportModal] = useState(false)
+  const [showPalettesModal, setShowPalettesModal] = useState(false)
+  const [availablePalettes, setAvailablePalettes] = useStickyState<string[]>(initAvailablePalettes, "availablePalettes")
   
   const getCurrentColor = () : string => {
     if (switched) {
@@ -41,10 +64,11 @@ function App() {
   }
   
   useEffect(() => {
-    const closestColors = findClosestColors(getCurrentColor(), palettes, 14)
+    const filteredPalettes = palettes.filter(palette => availablePalettes.indexOf(palette.name) !== -1)
+    const closestColors = findClosestColors(getCurrentColor(), filteredPalettes, 14)
     setMatchedColors(closestColors)
     setSelectedColor(closestColors[0])
-  }, [defaultColors, manualColors, currentColors])
+  }, [defaultColors, manualColors, currentColors, availablePalettes])
   
   const onColorChange = (color: Color) => {
     if (!switched) {
@@ -87,10 +111,28 @@ function App() {
     setShowImportModal(false)
   }
   
+  const onPaletteClick = (paletteName: string) => {
+    const isExists = availablePalettes.indexOf(paletteName) !== -1
+    if (isExists) {
+      if(availablePalettes.length === 1) {
+        setAvailablePalettes(["Classic"])
+        return
+      }
+      setAvailablePalettes(availablePalettes.filter((el: string) => el !== paletteName))
+    } else {
+      setAvailablePalettes([...availablePalettes, paletteName])
+    }
+  }
+
+  
   return (
     <StyledApp>
       <Header/>
       <div/>
+      <PalettesModal availablePalettes={availablePalettes} show={showPalettesModal}
+                     onPaletteClick={onPaletteClick} onDisableAll={() => setAvailablePalettes(["Classic"])}
+                     onEnableAll={() => setAvailablePalettes(initAvailablePalettes)}
+                     onExit={() =>setShowPalettesModal(false)}/>
       <ImportModal show={showImportModal} onAccept={onAcceptImport} onExit={() => {setShowImportModal(false)}}/>
       <div style={{display: "flex", alignItems: "start", justifyContent: "center", marginTop: "2rem"}}>
         <ColorPicker color={Color().hex(getCurrentColor())} onColorChange={onColorChange}/>
@@ -100,7 +142,9 @@ function App() {
             defaultColors={defaultColors} manualColors={manualColors}
             onCellChange={onCellChange} onImportClick={() => setShowImportModal(true)}
           />
-          <Suggestions matchedColors={matchedColors} onSuggestionClick={onSuggestionClick}/>
+          <Suggestions matchedColors={matchedColors}
+                       onSuggestionClick={onSuggestionClick}
+                       onPalettesClick={() => setShowPalettesModal(true)}/>
         </div>
         <SelectedColor paletteName={selectedColor.paletteName} colorPosition={selectedColor.position}/>
       </div>

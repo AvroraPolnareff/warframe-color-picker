@@ -31,7 +31,7 @@ export const SelectedColor : FC<SelectedColorProps> = ({paletteName, colorPositi
 const StyledWarframePalette = styled.div`
     border-radius: 0.5rem;
     overflow: hidden;
-    border: 3px solid ${props => props.theme.colors.border};
+    border: 3px solid ${props => props.theme.colors.tertiary};
     height:${25 * 18}px;
 `
 
@@ -51,22 +51,22 @@ const Header = styled.div`
 const PaletteName = styled.div`
     text-align: center;
     font-weight: 500;
-    padding: 0.3rem 0;
-    padding-bottom: 0.5rem;
+    padding: 0.5rem 0;
     margin-bottom: 0.5rem;
     width: 95%;
-    border: 2px solid ${props => props.theme.colors.border};
-    border-radius: 0.3rem;
+    font-size: 0.7rem;
+    border: 2px solid ${props => props.theme.colors.tertiary};
+    border-radius: 0.5rem;
     text-transform: uppercase;
 `
 
 interface WarframePaletteProps {
   size: number,
   paletteName: string,
-  colorPosition: Position
+  colorPosition?: Position
 }
 
-const WarframePalette : FC<WarframePaletteProps> = ({ size, paletteName, colorPosition }) => {
+export const WarframePalette : FC<WarframePaletteProps> = ({ size, paletteName, colorPosition }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   
   useEffect(() => {
@@ -77,7 +77,8 @@ const WarframePalette : FC<WarframePaletteProps> = ({ size, paletteName, colorPo
   
       const palette = palettes.filter(palette => palette.name === paletteName)[0];
       for (const color of palette.colors) {
-        if (colorPosition.x === color.position.x && colorPosition.y === color.position.y) {
+        
+        if (colorPosition && (colorPosition.x === color.position.x && colorPosition.y === color.position.y)) {
           ctx.fillStyle = color.hex
           ctx.fillRect(
             size * color.position.x + 2,

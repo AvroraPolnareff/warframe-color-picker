@@ -224,8 +224,6 @@ const HeaderWrapper = styled.div`
     position: relative;
     top: -2.2em;
     left: -0.7em;
-
-
 `
 
 const FlexRow = styled.div`

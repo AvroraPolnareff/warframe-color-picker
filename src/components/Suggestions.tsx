@@ -13,7 +13,8 @@ import {Button} from "./shared/Button";
 
 interface SuggestionsProps {
   matchedColors: MatchedColor[],
-  onSuggestionClick: (key: string) => void
+  onSuggestionClick: (key: string) => void,
+  onPalettesClick: () => void
 }
 
 export interface MatchedColor {
@@ -71,7 +72,7 @@ export class Suggestions extends Component<SuggestionsProps, {
             display: "flex", justifyContent: "space-between",
             marginTop: "0.35rem", marginBottom: "0.3rem", marginRight:"0.3rem"
           }}>
-            <Button round>palettes</Button>
+            <Button round onClick={this.props.onPalettesClick}>palettes</Button>
             <Switch switched={this.state.switched} width={2.7} onClick={this.onSwitch} leftText={"%"} rightText={"D"}/>
           </div>
           
