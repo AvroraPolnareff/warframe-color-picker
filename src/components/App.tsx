@@ -8,6 +8,8 @@ import {palettes} from "../common/palettes";
 import {MatchedColor, Suggestions} from "./Suggestions";
 import {SelectedColor} from "./SelectedColor";
 import {Header} from "./Header";
+import {Modal} from "./shared/Modal";
+import {ImportModal} from "./ImportModal";
 
 
 function App() {
@@ -28,6 +30,7 @@ function App() {
   const [matchedColors, setMatchedColors] = useState<MatchedColor[]>([])
   const [selectedColor, setSelectedColor] = useState<MatchedColor>(initMatchedColor)
   const [switched, setSwitched] = useState(false)
+  const [showImportModal, setShowImportModal] = useState(false)
   
   const getCurrentColor = () : string => {
     if (switched) {
@@ -73,32 +76,29 @@ function App() {
     setSwitched(!switched)
   }
   
-  const onImportClick = () => {
-    navigator.clipboard.readText().then(
-      clipText => {
-        const importData = JSON.parse(clipText)
-        if (!importData) {
-          alert("wrong data!")
-          return
-        }
-        setDefaultColors(importData.default)
-        setManualColors(importData.manual)
-      }
-    ).catch(() => {alert("error!")})
+  const onAcceptImport = (data: string) => {
+    const importData = JSON.parse(data)
+    if (!importData) {
+      alert("wrong data!")
+      return
+    }
+    setDefaultColors(importData.default)
+    setManualColors(importData.manual)
+    setShowImportModal(false)
   }
-  
   
   return (
     <StyledApp>
       <Header/>
       <div/>
+      <ImportModal show={showImportModal} onAccept={onAcceptImport} onExit={() => {setShowImportModal(false)}}/>
       <div style={{display: "flex", alignItems: "start", justifyContent: "center", marginTop: "2rem"}}>
         <ColorPicker color={Color().hex(getCurrentColor())} onColorChange={onColorChange}/>
         <div style={{display: "flex", flexDirection: "column"}}>
           <TargetScheme
             switched={switched} onSwitch={onSwitch}
             defaultColors={defaultColors} manualColors={manualColors}
-            onCellChange={onCellChange} onImportClick={onImportClick}
+            onCellChange={onCellChange} onImportClick={() => setShowImportModal(true)}
           />
           <Suggestions matchedColors={matchedColors} onSuggestionClick={onSuggestionClick}/>
         </div>

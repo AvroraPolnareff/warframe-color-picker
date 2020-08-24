@@ -83,7 +83,7 @@ const Wrapper = styled.div.attrs(props => ({tabIndex: 0}))<{ width: number}>`
   width: ${props => props.width + offset}rem;
   height: ${height + offset*2 }rem;
   cursor: pointer;
-  transition: background-color 0.15s linear;
+  transition: background-color 0.15s linear, box-shadow 0.2s linear;
   -webkit-tap-highlight-color: transparent;
   outline: none;
   
@@ -92,7 +92,6 @@ const Wrapper = styled.div.attrs(props => ({tabIndex: 0}))<{ width: number}>`
   }
   &:focus {
     box-shadow: 0 0 2pt 1pt #A5E8E8;
-    transition: box-shadow 0.1s linear;
   }
 
 `

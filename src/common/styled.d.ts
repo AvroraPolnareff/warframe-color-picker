@@ -10,6 +10,7 @@ declare module 'styled-components' {
       quaternary: string;
       danger: string;
       success: string;
+      warning: string;
       
       border: string;
       windowBackground: string;

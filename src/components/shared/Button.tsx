@@ -6,13 +6,15 @@ interface ButtonProps {
   round?: boolean,
   small?: boolean,
   primary?: boolean,
-  success?: boolean
+  success?: boolean,
+  warning?: boolean,
 }
 
 export const Button = styled.div<ButtonProps>`
   background-color: ${props => props.backgroundColor || props.theme.colors.secondary};
   background-color: ${props => props.primary && props.theme.colors.primary};
   background-color: ${props => props.success && props.theme.colors.success};
+  background-color: ${props => props.warning && props.theme.colors.warning};
   color: ${props => props.theme.colors.buttonText};
   font-weight: bold;
   border: 0;
@@ -39,6 +41,7 @@ export const Button = styled.div<ButtonProps>`
     background-color: ${props => Color(props.theme.colors.secondary).darken(0.2).toString()};
     background-color: ${props => props.primary && Color(props.theme.colors.primary).darken(0.2).toString()};
     background-color: ${props => props.success && props.theme.colors.success};
+    background-color: ${props => props.warning && Color(props.theme.colors.warning).darken(0.2).toString()};
   }
 
   &:focus {

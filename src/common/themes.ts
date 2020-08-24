@@ -7,6 +7,7 @@ export const defaultTheme : DefaultTheme = {
     quaternary: "",
     danger: "#dba3a3",
     success: "#A3DBA3",
+    warning: "#e8dba5",
     
     
     badge: "#dadada",
