@@ -1,7 +1,7 @@
 import React, {FC, useEffect, useRef} from "react"
 import {Window} from "./shared/Window";
 import {FlexColumnCenter} from "./shared/FlexColumnCenter";
-import styled from "styled-components";
+import styled, {keyframes} from "styled-components";
 import {Position} from "../common/Palette";
 import {palettes} from "../common/palettes";
 import waves from "../assets/waves.svg"
@@ -14,30 +14,24 @@ interface SelectedColorProps {
 
 export const SelectedColor : FC<SelectedColorProps> = ({paletteName, colorPosition}) => {
   return (
-    <Window width={8}>
+    <Window width={11}>
       <FlexColumnCenter>
-        <img src={waves} style={{width: "8.5em", marginTop: "0.5em", marginBottom: "0"}}/>
+        <img src={waves} style={{width: "8.7em", marginTop: "0.2em", marginBottom: "0.1em"}}/>
         <Header>SELECTED COLOR</Header>
-        <img src={waves} style={{width: "8.5em", marginTop: "0", marginBottom: "0.5em"}}/>
+        <img src={waves} style={{width: "8.7em", marginTop: "0", marginBottom: "0.5em"}}/>
         <PaletteName>{paletteName}</PaletteName>
-        <StyledWarframePalette>
-          <WarframePalette size={25} paletteName={paletteName} colorPosition={colorPosition}/>
-        </StyledWarframePalette>
+
+          <WarframePalette size={1.75} paletteName={paletteName} colorPosition={colorPosition}/>
+
       </FlexColumnCenter>
     </Window>
   )
 }
 
-const StyledWarframePalette = styled.div`
-    border-radius: 0.5rem;
-    overflow: hidden;
-    border: 3px solid ${props => props.theme.colors.tertiary};
-    height:${25 * 18}px;
-`
 
 const Header = styled.div`
     font-weight: 300;
-    font-size: 1.75rem;
+    font-size: 1.75em;
     letter-spacing: 0.001em;
     line-height: 1em;
     margin: 0 0;
@@ -50,13 +44,13 @@ const Header = styled.div`
 
 const PaletteName = styled.div`
     text-align: center;
-    font-weight: 500;
-    padding: 0.5rem 0;
-    margin-bottom: 0.5rem;
+    font-weight: 900;
+    padding: 0.6em 0 0.4em 0;
+    margin-bottom: 0.5em;
     width: 95%;
-    font-size: 0.7rem;
-    border: 2px solid ${props => props.theme.colors.tertiary};
-    border-radius: 0.5rem;
+    font-size: 0.8em;
+    border: 0.15em solid ${props => props.theme.colors.tertiary};
+    border-radius: 0.5em;
     text-transform: uppercase;
 `
 
@@ -67,40 +61,66 @@ interface WarframePaletteProps {
 }
 
 export const WarframePalette : FC<WarframePaletteProps> = ({ size, paletteName, colorPosition }) => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    const ctx = canvas?.getContext('2d');
-    if (ctx && canvas) {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-  
-      const palette = palettes.filter(palette => palette.name === paletteName)[0];
-      for (const color of palette.colors) {
-        
-        if (colorPosition && (colorPosition.x === color.position.x && colorPosition.y === color.position.y)) {
-          ctx.fillStyle = color.hex
-          ctx.fillRect(
-            size * color.position.x + 2,
-            size * color.position.y + 2,
-            size - 4,
-            size - 4
-          );
-          ctx.strokeStyle = Color().hex(color.hex).negate().hex();
-          ctx.lineWidth = 3;
-          ctx.stroke();
-        }
-        else {
-          ctx.fillStyle = color.hex;
-          ctx.fillRect(size * color.position.x, size * color.position.y, size, size);
-        }
-      }
-    }
-  });
+  const palette = palettes.filter(palette => palette.name === paletteName)[0]
   
   return (
-    <div>
-      <canvas ref={canvasRef} width={5 * size} height={18 * size} style={{ maxHeight: 18 * size }} />
-    </div>
-  );
-};
+    <StyledWarframePalette size={size}>
+      <div style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(5, 1fr)",
+        gridTemplateRows: "repeat(18, 1fr)",
+        justifyItems: "center",
+        alignItems: "center"
+      }}>
+      {palette.colors.map(color => (
+        !(color.position.x === colorPosition?.x && colorPosition.y === color.position.y) ?
+          <PaletteCell size={size} color={color.hex}/> :
+          <BackgroundGradient size={size}><SelectedCell size={size} color={color.hex}/></BackgroundGradient>
+      ))}
+      </div>
+    </StyledWarframePalette>
+  )
+}
+
+const StyledWarframePalette = styled.div<{size: number}>`
+  //display: grid;
+  //grid-template-columns: repeat(5, 1fr);
+  border: 0.2em solid ${props => props.theme.colors.tertiary};
+  border-radius: 0.633em;
+  overflow: hidden;
+`
+
+const PaletteCell = styled.div.attrs(props => ({style: {background: props.color}}))<{size: number, color: string}>`
+  height: ${props => props.size }em;
+  width: ${props => props.size }em;
+`
+
+const moveGradient = keyframes`
+  50% {
+    background-position: 100% 50%;
+  }
+`
+
+const BackgroundGradient = styled.div<{size: number}>`
+  height: ${props => props.size }em;
+  width: ${props => props.size }em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+      60deg,
+      rgba(233,165,165,1) 0%,
+      rgba(184,193,192,1) 25%, rgba(101,192,224,1) 50%,
+      rgba(174,162,219,1) 75%, rgba(129,193,217,1) 100%
+    );
+    background-size: 300% 300%;
+    background-position: 0 50%;
+    animation: ${moveGradient} 4s alternate infinite;
+`
+
+const SelectedCell = styled(PaletteCell)<{size: number, color: string}>`
+    max-height: ${props => props.size - 0.2}em;
+    max-width: ${props => props.size - 0.2}em;
+
+`
+

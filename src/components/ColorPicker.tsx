@@ -15,34 +15,20 @@ interface ColorPickerProps {
 
 
 export const ColorPicker: FC<ColorPickerProps> = ({onColorChange, color}) => {
-  const ref = useRef<HTMLCanvasElement>(null)
-  useEffect(() => {
-    if (!ref.current) {
-      return
-    }
-    const ctx = ref.current.getContext("2d")
-    if (!ctx) {
-      return
-    }
-    
-    
-    
-  }, [color])
   return (
-    <Window width={12.3}>
+    <Window width={15.757}>
       <FlexColumnCenter>
         <FlexRow>
           <HeaderWrapper>
-            <ColorPickerHeader headerColor={color}/>
+            <ColorPickerHeader headerColor={color} width={8.2}/>
           </HeaderWrapper>
           <HexInput
             color={color}
             onChange={(e) => onColorChange(Color().hex(e.target.value))}
           />
         </FlexRow>
-        {/*<PickerImg src={picker}/>*/}
-        <div style={{marginBottom: "0.3rem"}}>
-          <Picker size={160} color={color} onChange={onColorChange} />
+        <div style={{marginBottom: "0.4rem", marginTop: "0.4em"}}>
+          <Picker size={11 * 19.88} color={color} onChange={onColorChange} />
         </div>
         <Divider/>
       </FlexColumnCenter>
@@ -102,7 +88,6 @@ const NumbersPicker: FC<NumbersPickerProps> = ({color, onColorChange}) => {
 
 const StyledPicker = styled.div`
     margin-top: 0.35rem;
-    font-size: 14px
 `
 
 const ColorInput = styled.input`
@@ -110,13 +95,13 @@ const ColorInput = styled.input`
     align-items: baseline;
     background-color: ${props => props.color || props.theme.colors.secondary};
     color: ${props => props.theme.colors.badgeText};
-    padding: 0.1rem 0.3rem;
-    max-height: 1.2rem;
-    margin: 0 0.2rem;
-    border-radius: 0.3rem;
+    padding: 0.2em 0.3em;
+    max-height: 1.3em;
+    margin: 0 0.2em;
+    border-radius: 0.3em;
     font-weight: 600;
-    font-size: 14px;
-    width: 1.4rem;
+    font-size: 1.06em;
+    width: 2.05em;
     border: none;
     transition: background-color 0.15s linear;
   
@@ -135,11 +120,13 @@ const Grid2X4 = styled.div`
     align-items: baseline;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
-    row-gap: 0.7rem;
+    row-gap: 0.7em;
     justify-items: start;
     justify-content: start;
     width: fit-content;
-    margin-left: 0.5rem;
+    margin-left: 0.9em;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
 `
 
 const ColorSchemeName = styled.div`
@@ -199,20 +186,20 @@ const StyledHexInput = styled.input.attrs(props => ({
     align-items: center;
     background-color: ${props => props.valid ? props.theme.colors.secondary : props.theme.colors.danger};
     color: ${props => props.theme.colors.badgeText};
-    padding: 0.1rem 0.3rem;
-    max-height: 1.2rem;
+    padding: 0.2em 0.3em;
+    max-height: 1.3em;
     //margin: 0 0.5rem;
-    margin-right: 0.8rem;
-    margin-top: 0.2rem;
-    border-radius: 0.4rem;
+    margin-right: 0.3em;
+    margin-top: 0.3em;
+    border-radius: 0.4em;
     font-weight: normal;
-    font-size: 15px;
-    width: 3.9rem;
+    font-size: 1.06em;
+    width: 5em;
     border: none;
     transition: background-color 0.15s linear;
   
     &:hover {
-      background-color: ${props => Color( props.valid ? props.theme.colors.secondary : props.theme.colors.danger).darken(0.2).toString()};
+      background-color: ${props => props.valid ? props.theme.colors.darken.secondary : props.theme.colors.darken.danger};
     }
     
     &:focus {
@@ -222,16 +209,12 @@ const StyledHexInput = styled.input.attrs(props => ({
 
 const HeaderWrapper = styled.div`
     position: relative;
-    top: -2.2em;
-    left: -0.7em;
+    top: -1.7em;
+    left: -1em;
 `
 
 const FlexRow = styled.div`
     display: flex;
     max-height: 2.3rem;
-`
-
-const PickerImg = styled.img`
-    margin-bottom: 0.5em;
 `
 

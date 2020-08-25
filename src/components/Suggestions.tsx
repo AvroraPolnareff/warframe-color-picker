@@ -7,7 +7,6 @@ import header from "../assets/SUGGESTIONS.svg"
 import styled from "styled-components";
 import {ColorCell} from "./shared/ColorCell";
 import {Badge} from "./shared/Badge";
-import {throttle} from "lodash"
 import {Switch} from "./shared/Switch";
 import {Button} from "./shared/Button";
 
@@ -66,14 +65,14 @@ export class Suggestions extends Component<SuggestionsProps, {
     return (
       <Window width={14.321}>
         <FlexColumnCenter>
-          <img src={header} style={{width: "13rem", marginTop: "0.2rem", pointerEvents: "none", userSelect: "none" }}/>
+          <img src={header} style={{width: "12.3rem", marginTop: "0.25rem", pointerEvents: "none", userSelect: "none" }}/>
           <ItalicText>SCROLL FOR MORE!</ItalicText>
           <div style={{
             display: "flex", justifyContent: "space-between",
-            marginTop: "0.35rem", marginBottom: "0.3rem", marginRight:"0.3rem"
+            marginTop: "0.27rem", marginBottom: "0.3rem", marginRight:"0.3rem"
           }}>
             <Button round onClick={this.props.onPalettesClick}>palettes</Button>
-            <Switch switched={this.state.switched} width={2.7} onClick={this.onSwitch} leftText={"%"} rightText={"D"}/>
+            <Switch switched={this.state.switched} width={3.5} onClick={this.onSwitch} leftText={"%"} rightText={"D"}/>
           </div>
           
         </FlexColumnCenter>
@@ -95,7 +94,7 @@ export class Suggestions extends Component<SuggestionsProps, {
 }
 
 const Faded = styled.div`
-  margin-top: 0.4rem;
+  margin-top: 0.4em;
   position: relative;
   
   &:after {
@@ -111,8 +110,9 @@ const Faded = styled.div`
 
 
 const ItalicText = styled.div`
-    font-style: italic;
-    font-weight: 400;
+  margin-top: 0.2em;
+  font-style: italic;
+  font-weight: 400;
 `
 
 interface SuggestionProps {
@@ -133,7 +133,7 @@ const Suggestion : FC<SuggestionProps> = ({color, name, value, onSuggestionClick
           {name.slice(0, 11) + (name.length > 12 ? "." : "")}
         </Badge>
       </FlexCentred>
-      <Badge width={1.7}>
+      <Badge >
         {value}
       </Badge>
     </StyledSuggestion>
@@ -144,7 +144,6 @@ const Suggestion : FC<SuggestionProps> = ({color, name, value, onSuggestionClick
 
 const StyledSuggestion = styled.div<{selected: boolean}>`
     ${props => !props.selected && "cursor: pointer"};
-    font-size: 0.75rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
