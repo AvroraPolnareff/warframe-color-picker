@@ -7,7 +7,10 @@ import {defaultTheme} from "./common/themes";
 
 const GlobalStyle = createGlobalStyle`
   html {
-    font-size: 20px;
+    font-size: 19.88px;
+  }
+  * {
+    box-sizing: border-box;
   }
 `
 

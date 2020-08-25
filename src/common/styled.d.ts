@@ -12,6 +12,16 @@ declare module 'styled-components' {
       success: string;
       warning: string;
       
+      darken: {
+        primary: string;
+        secondary: string;
+        tertiary: string;
+        quaternary: string;
+        danger: string;
+        success: string;
+        warning: string;
+      }
+      
       border: string;
       windowBackground: string;
       divider: string;

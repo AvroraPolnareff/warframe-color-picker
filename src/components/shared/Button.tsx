@@ -21,16 +21,16 @@ export const Button = styled.div<ButtonProps>`
   cursor: pointer;
   display: inline-block;
   line-height: 1;
-  padding: 0.25em 1.3rem;
-  margin: 0 0.5rem;
+  padding: 0.25em 1.3em;
+  margin: 0 0.5em;
   text-transform: uppercase;
   transition: border-radius 0.50s linear, box-shadow 0.2s linear, background-color 0.15s linear;
   border-radius: ${props => props.round ? "3em" : "0.25em"};
   ${props => props.small && css`
-  font-size: 0.67rem;
+  font-size: 0.8em;
   letter-spacing: 0.035em;
-  padding: 0.2em 0.4rem;
-  margin: 0 0.08rem;
+  padding: 0.2em 0.4em;
+  margin: 0;
   
   `};
   font-stretch: 50%;

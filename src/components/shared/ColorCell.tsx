@@ -35,15 +35,15 @@ const OutlineWrapper = styled.div<{outline?: boolean}>`
     align-items: center;
     justify-content: center;
     margin: 0 0;
-    border-radius: 0.7rem;
+    border-radius: 0.7em;
     //height: 1.20rem;
-    background: ${ props => props.outline &&
-        "linear-gradient(30deg, rgba(233,165,165,1) 0%, " +
+    background: repeat ${ props => props.outline &&
+        "linear-gradient(120deg, rgba(233,165,165,1) 0%, " +
         "rgba(184,193,192,1) 25%, rgba(101,192,224,1) 50%, " +
         "rgba(174,162,219,1) 75%, rgba(129,193,217,1) 100%)"
     };
-    background-size: 400% 400%;
-    animation: ${gradient} 3s ease infinite;
+    background-size: 900% 900%;
+    animation: ${gradient} 10s ease infinite;
     -webkit-tap-highlight-color: transparent;
 `
 
@@ -52,10 +52,10 @@ const StyledColorCell = styled.div.attrs<{color: string}>((props) => ({
 }))`
     content: " ";
     //background-color: #000000;
-    height: 0.9rem;
-    margin: 2px 2px;
-    width: 1.18rem;
-    border-radius: 0.55rem;
+    height: 1.07em;
+    margin: 0.15em;
+    width: 1.27em;
+    border-radius: 0.55em;
     /*box-shadow:
         0 1px 2px #fff, /*bottom external highlight*/
 

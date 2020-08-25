@@ -36,12 +36,12 @@ const TargetScheme: FC<TargetSchemeProps> = (
   
   
   return (
-    <Window width={11.1}>
+    <Window width={14.321}>
       
       <FlexColumnCenter>
         <Header>TARGET SCHEME</Header>
-        <div style={{marginBottom: "0.2rem", }}>
-          <Switch switched={switched} width={9.5} onClick={onSwitch} leftText={"default"} rightText={"manual"}/>
+        <div style={{marginBottom: "0.3em", }}>
+          <Switch switched={switched} width={11.13} onClick={onSwitch} leftText={"default"} rightText={"manual"}/>
         </div>
         <Divider/>
       </FlexColumnCenter>
@@ -50,9 +50,9 @@ const TargetScheme: FC<TargetSchemeProps> = (
         <Default colors={defaultColors} onCellChange={onCellChange}/>
       }
       <Divider/>
-      <div style={{textAlign: "right"}}>
+      <div style={{textAlign: "right", marginTop: "0.5em", marginBottom: "0.2em"}}>
         <Button round small onClick={onImportClick} primary>import</Button>
-        <Button round small onClick={onExportClick} style={{width: "4em"}} success={"copied!" === exportButton}>{exportButton}</Button>
+        <Button round small onClick={onExportClick} style={{width: "4.7em", marginLeft: "0.5em"}} success={"copied!" === exportButton}>{exportButton}</Button>
       </div>
     </Window>
   )
@@ -74,7 +74,7 @@ const Manual : FC<ManualProps> = ({colors, onCellChange}) => {
   }
   
   return (
-    <StyledManual style={{height: "8.2rem", paddingBottom: "0.25rem"}}>
+    <StyledManual style={{height: "9.2em", paddingBottom: "0.25em", marginTop: "0.2em"}}>
       
       {colors.map((color, key) => <ColorCell color={color} outline={isSelected(key)} onClick={() => onCellClick(key)}/>)}
     </StyledManual>
@@ -85,7 +85,7 @@ const StyledManual = styled.div`
   display: grid;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  row-gap: 0.21rem;
+  row-gap: 0.15em;
 `
 
 interface DefaultProps {
@@ -105,7 +105,7 @@ const Default: FC<DefaultProps> = ({colors, onCellChange}) => {
   }
   
   return (
-    <div style={{height: "8.2rem", paddingBottom: "0.25rem"}}>
+    <div style={{height: "9.2em", paddingBottom: "0.25em", marginTop: "0.2em"}}>
       <ColorEntry text="PRIMARY" selected={isSelected(0)}
                   onClick={() => onCellClick(0)} color={colors[0]}/>
       <ColorEntry text="SECONDARY" selected={isSelected(1)}
@@ -114,7 +114,7 @@ const Default: FC<DefaultProps> = ({colors, onCellChange}) => {
                   onClick={() => onCellClick(2)} color={colors[2]}/>
       <ColorEntry text="QUATERNARY" selected={isSelected(3)}
                   onClick={() => onCellClick(3)} color={colors[3]}/>
-      <Divider/>
+      <Divider style={{marginTop: "0.09em"}}/>
       
       <StyledColorEntry >
         <ColorCell outline={isSelected(4)} color={colors[4]} onClick={() => onCellClick(4)}/>
@@ -151,10 +151,12 @@ const ColorEntry: FC<ColorEntryProps> = ({text, color, selected, onClick}) => {
 
 const ColorName = styled.span`
     font-weight: normal;
+    font-size: 1em;
+    letter-spacing: 0.05em;
     &:before {
-        margin-right: 0.3rem;
+        margin-right: 0.3em;
         content: "•";
-        margin-left: 0.3rem;
+        margin-left: 0.4em;
     }
 `
 
@@ -162,17 +164,15 @@ const StyledColorEntry = styled.div`
     display: flex;
     align-items: center;
     width: 100%;
-    margin-bottom: 0;
-    padding: 1px;
+    margin-bottom: 0.11em;
 `
 
 
 const Header = styled.h2`
     font-weight: 900;
     color: ${props => props.theme.colors.targetSchemeHeader};
-    margin-bottom: 0.2rem; margin-top: 0 ;
-    //margin: 0.2rem 0;
-    font-size: 1.4rem
+    margin-bottom: 0.15rem; margin-top: 0 ;
+    font-size: 1.6rem
 `
 
 export default TargetScheme

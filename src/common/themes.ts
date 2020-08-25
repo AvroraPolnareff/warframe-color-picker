@@ -1,4 +1,5 @@
 import {DefaultTheme} from 'styled-components'
+import Color from "color";
 export const defaultTheme : DefaultTheme = {
   colors: {
     primary: "#A5E8E8",
@@ -8,7 +9,15 @@ export const defaultTheme : DefaultTheme = {
     danger: "#dba3a3",
     success: "#A3DBA3",
     warning: "#e8dba5",
-    
+    darken: {
+      primary: Color("#A5E8E8").darken(0.2).toString(),
+      secondary: Color("#DADADA").darken(0.2).toString(),
+      tertiary: Color("#ebebeb").darken(0.2).toString(),
+      quaternary: "",
+      danger: Color("#dba3a3").darken(0.2).toString(),
+      success: Color("#A3DBA3").darken(0.2).toString(),
+      warning: Color("#e8dba5").darken(0.2).toString(),
+    },
     
     badge: "#dadada",
     badgeText: "#ffffff",

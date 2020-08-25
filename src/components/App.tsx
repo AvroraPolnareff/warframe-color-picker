@@ -155,7 +155,6 @@ function App() {
 
 export const StyledApp = styled.div`
     height: 100vh;
-    letter-spacing: 0.015em;
     color: ${props => props.theme.colors.secondary}
     font-weight: bold;
     margin: 0;
