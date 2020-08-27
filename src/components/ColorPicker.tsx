@@ -167,7 +167,11 @@ const HexInput: FC<HexInputProps> = ({onChange, color}) => {
       
     } catch (error) {
       setValidHex(false)
-      setInputField(e.target.value)
+      if (e.target.value[0] !== "#" ) {
+        setInputField("#" + e.target.value)
+      } else {
+        setInputField(e.target.value)
+      }
     }
   }
   
