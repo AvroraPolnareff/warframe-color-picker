@@ -65,7 +65,7 @@ export class Suggestions extends Component<SuggestionsProps, {
     return (
       <Window width={14.321}>
         <FlexColumnCenter>
-          <img src={header} style={{width: "12.3rem", marginTop: "0.25rem", pointerEvents: "none", userSelect: "none" }}/>
+          <img src={header} style={{width: "12em", marginTop: "0.25em", pointerEvents: "none", userSelect: "none" }}/>
           <ItalicText>SCROLL FOR MORE!</ItalicText>
           <div style={{
             display: "flex", justifyContent: "space-between",

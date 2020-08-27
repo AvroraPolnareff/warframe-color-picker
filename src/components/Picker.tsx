@@ -94,7 +94,7 @@ class CanvasPicker {
   
   constructor(size: number, canvas : HTMLCanvasElement, color: Color) {
     this.size = size
-    this.wheel = new Wheel(this.size, 22)
+    this.wheel = new Wheel(this.size, size/10)
     this.quad = new Quad(this.wheel)
     this.wheelCursor = new WheelCursor(this.wheel)
     this.quadCursor = new QuadCursor(4, 2)

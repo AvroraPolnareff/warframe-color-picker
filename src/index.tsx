@@ -6,9 +6,15 @@ import {createGlobalStyle, ThemeProvider} from "styled-components";
 import {defaultTheme} from "./common/themes";
 
 const GlobalStyle = createGlobalStyle`
-  html {
-    font-size: 19.88px;
+  body {
+    font-size: 14px;
   }
+  @media (min-width: 1600px) {
+    body {
+      font-size: 19.88px;
+    }
+  }
+  
   * {
     box-sizing: border-box;
   }

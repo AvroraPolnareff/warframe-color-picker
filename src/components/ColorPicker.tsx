@@ -1,8 +1,8 @@
-import React, {FC, useEffect, useRef, useState} from "react";
+import React, {FC, useContext, useEffect, useRef, useState} from "react";
 import Color from "color";
 import {Window} from "./shared/Window";
 import {FlexColumnCenter} from "./shared/FlexColumnCenter";
-import styled from "styled-components";
+import styled, {ThemeContext} from "styled-components";
 import {Divider} from "./shared/Divider";
 import {ColorPickerHeader} from "../assets/ColorPickerHeader"
 import {Picker} from "./Picker";
@@ -15,6 +15,9 @@ interface ColorPickerProps {
 
 
 export const ColorPicker: FC<ColorPickerProps> = ({onColorChange, color}) => {
+  
+  const fontSize = parseFloat(window.getComputedStyle(document.body, null).getPropertyValue('font-size'))
+  
   return (
     <Window width={15.757}>
       <FlexColumnCenter>
@@ -28,7 +31,7 @@ export const ColorPicker: FC<ColorPickerProps> = ({onColorChange, color}) => {
           />
         </FlexRow>
         <div style={{marginBottom: "0.4rem", marginTop: "0.4em"}}>
-          <Picker size={11 * 19.88} color={color} onChange={onColorChange} />
+          <Picker size={11 * fontSize} color={color} onChange={onColorChange} />
         </div>
         <Divider/>
       </FlexColumnCenter>
@@ -36,6 +39,8 @@ export const ColorPicker: FC<ColorPickerProps> = ({onColorChange, color}) => {
     </Window>
   )
 }
+
+
 
 interface NumbersPickerProps {
   color: Color,
