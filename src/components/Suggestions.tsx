@@ -9,6 +9,7 @@ import {ColorCell} from "./shared/ColorCell";
 import {Badge} from "./shared/Badge";
 import {Switch} from "./shared/Switch";
 import {Button} from "./shared/Button";
+import {Scrollbars} from "react-custom-scrollbars"
 
 interface SuggestionsProps {
   matchedColors: MatchedColor[],
@@ -78,7 +79,10 @@ export class Suggestions extends Component<SuggestionsProps, {
         </FlexColumnCenter>
         <Divider/>
         <Faded>
-  
+        <Scrollbars
+          style={{height: "20em"}}
+          autoHide autoHideDuration={200}
+        >
           {
             this.props.matchedColors.map(({color, paletteName, distance, position, uid}) => (
               <Suggestion onSuggestionClick={this.onSuggestionClick}
@@ -87,6 +91,7 @@ export class Suggestions extends Component<SuggestionsProps, {
                           uid={uid} selected={this.isSelected(uid)} key={uid}/>
             ))
           }
+        </Scrollbars>
         </Faded>
       </Window>
     )

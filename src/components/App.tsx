@@ -67,7 +67,7 @@ function App() {
   
   useEffect(() => {
     const filteredPalettes = palettes.filter(palette => availablePalettes.indexOf(palette.name) !== -1)
-    const closestColors = findClosestColors(getCurrentColor(), filteredPalettes, 14)
+    const closestColors = findClosestColors(getCurrentColor(), filteredPalettes, 100)
     setMatchedColors(closestColors)
     setSelectedColor(closestColors[0])
   }, [defaultColors, manualColors, currentColors, availablePalettes])
@@ -161,8 +161,7 @@ function App() {
 
 export const StyledApp = styled.div`
     height: 100vh;
-    color: ${props => props.theme.colors.secondary}
-    font-weight: bold;
+    color: ${props => props.theme.colors.secondary};
     margin: 0;
     font-family: "Gilroy", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
