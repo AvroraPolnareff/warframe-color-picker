@@ -55,6 +55,8 @@ function App() {
   const [showPalettesModal, setShowPalettesModal] = useState(false)
   const [availablePalettes, setAvailablePalettes] = useStickyState<string[]>(initAvailablePalettes, "availablePalettes")
   
+  
+  
   const getCurrentColor = () : string => {
     if (switched) {
       return manualColors[currentColors.manual]
@@ -73,11 +75,11 @@ function App() {
   const onColorChange = (color: Color) => {
     if (!switched) {
       const newColors = defaultColors.slice()
-      newColors[currentColors.default] = color.hex()
+      newColors[currentColors.default] = color.toString()
       setDefaultColors(newColors)
     } else {
       const newColors = manualColors.slice()
-      newColors[currentColors.manual] = color.hex()
+      newColors[currentColors.manual] = color.toString()
       setManualColors(newColors)
     }
   }
@@ -129,13 +131,17 @@ function App() {
     <StyledApp>
       <Header/>
       <div/>
-      <PalettesModal availablePalettes={availablePalettes} show={showPalettesModal}
-                     onPaletteClick={onPaletteClick} onDisableAll={() => setAvailablePalettes(["Classic"])}
-                     onEnableAll={() => setAvailablePalettes(initAvailablePalettes)}
-                     onExit={() =>setShowPalettesModal(false)}/>
+      {showPalettesModal ?
+        <PalettesModal availablePalettes={availablePalettes} show={showPalettesModal}
+                       onPaletteClick={onPaletteClick} onDisableAll={() => setAvailablePalettes(["Classic"])}
+                       onEnableAll={() => setAvailablePalettes(initAvailablePalettes)}
+                       onExit={() =>setShowPalettesModal(false)}/>
+                       : null
+      }
+      
       <ImportModal show={showImportModal} onAccept={onAcceptImport} onExit={() => {setShowImportModal(false)}}/>
       <div style={{display: "flex", alignItems: "start", justifyContent: "center", marginTop: "2rem"}}>
-        <ColorPicker color={Color().hex(getCurrentColor())} onColorChange={onColorChange}/>
+        <ColorPicker color={Color(getCurrentColor())} onColorChange={onColorChange}/>
         <div style={{display: "flex", flexDirection: "column"}}>
           <TargetScheme
             switched={switched} onSwitch={onSwitch}

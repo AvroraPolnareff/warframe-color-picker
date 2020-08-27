@@ -189,7 +189,7 @@ class CanvasPicker {
       case Drag.quad:
         const saturation = this.quad.dotToSaturation(mousePosition)
         const value = this.quad.dotToValue(mousePosition)
-        this.color = this.color.saturationv(saturation * 100).value(value * 100)
+        this.color = this.color.saturationv(saturation * 100).value(value * 100).hsl()
         onChange(this.color)
         this.draw()
         break;

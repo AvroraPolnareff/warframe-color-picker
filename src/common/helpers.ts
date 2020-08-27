@@ -1,6 +1,7 @@
 import {MatchedColor} from "../components/Suggestions";
 import {Palette} from "./Palette";
 import {useEffect, useState} from "react";
+import Color from "color";
 
 
 export const findClosestColors = (colorToCompare : string, palettes : Palette[], limit: number) : MatchedColor[] => {
@@ -8,7 +9,7 @@ export const findClosestColors = (colorToCompare : string, palettes : Palette[],
   const distances = palettes.map(palette => {
     return palette.colors.map((color) => {
       const currentPosition = color.position
-      const distance = colorDistance(colorToCompare, color.hex)
+      const distance = colorDistance(Color(colorToCompare).hex(), color.hex)
       return {
         distance,
         color: color.hex,

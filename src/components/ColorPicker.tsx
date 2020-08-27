@@ -60,10 +60,10 @@ const NumbersPicker: FC<NumbersPickerProps> = ({color, onColorChange}) => {
         onColorChange(color.hue(parseInt(value)))
         break
       case "saturation":
-        onColorChange(color.saturate(parseInt(value)))
+        onColorChange(color.saturationl(parseInt(value)))
         break
       case "lightness":
-        onColorChange(color.value(parseInt(value)))
+        onColorChange(color.lightness(parseInt(value)))
         break
       default:
         return
@@ -74,13 +74,13 @@ const NumbersPicker: FC<NumbersPickerProps> = ({color, onColorChange}) => {
     <StyledPicker>
       <Grid2X4>
         <ColorSchemeName>RGB</ColorSchemeName>
-        <ColorInput name={"red"} onChange={onChange} color="#dba3a3" value={color.red()}/>
-        <ColorInput name={"green"} onChange={onChange} color="#a3dba3" value={color.green()}/>
-        <ColorInput name={"blue"} onChange={onChange} color="#a3a3db" value={color.blue()}/>
-        <ColorSchemeName>HSV</ColorSchemeName>
+        <ColorInput name={"red"} onChange={onChange} color="#dba3a3" value={color.red().toFixed(0)}/>
+        <ColorInput name={"green"} onChange={onChange} color="#a3dba3" value={color.green().toFixed(0)}/>
+        <ColorInput name={"blue"} onChange={onChange} color="#a3a3db" value={color.blue().toFixed(0)}/>
+        <ColorSchemeName>HSL</ColorSchemeName>
         <ColorInput name={"hue"} onChange={onChange} value={Math.round(color.hue())}/>
-        <ColorInput name={"saturation"} onChange={onChange} value={Math.round(color.saturationv())}/>
-        <ColorInput name={"lightness"} onChange={onChange} value={Math.round(color.value())}/>
+        <ColorInput name={"saturation"} onChange={onChange} value={Math.round(color.saturationl())}/>
+        <ColorInput name={"lightness"} onChange={onChange} value={Math.round(color.lightness())}/>
       </Grid2X4>
     </StyledPicker>
   )
@@ -147,10 +147,11 @@ const HexInput: FC<HexInputProps> = ({onChange, color}) => {
   
   useEffect(() => {
     if (!userTyping) {
+      console.log("lalk")
       setInputField(color.hex())
       setValidHex(true)
     }
-  }, [color])
+  }, [userTyping])
   
   const changeHex = (e: React.ChangeEvent<HTMLInputElement>) => {
     clearTimeout(timer)
