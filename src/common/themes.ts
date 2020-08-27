@@ -3,7 +3,7 @@ import Color from "color";
 export const defaultTheme : DefaultTheme = {
   colors: {
     primary: "#A5E8E8",
-    secondary: "#DADADA",
+    secondary: "#d0d0d0",
     tertiary: "#ebebeb",
     quaternary: "",
     danger: "#dba3a3",
