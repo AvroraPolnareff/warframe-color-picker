@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "686d702d125d15f281956960d1766ff4",
+    "revision": "b3c1aa10c62dbaab7248837e1110e05c",
     "url": "/warframe-color-picker-ts/index.html"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/warframe-color-picker-ts/static/js/2.68c98a72.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "f4a277c4c5d460792504",
-    "url": "/warframe-color-picker-ts/static/js/main.00fe0765.chunk.js"
+    "revision": "e73b0714d5bde1fcc3a8",
+    "url": "/warframe-color-picker-ts/static/js/main.6e6bd943.chunk.js"
   },
   {
     "revision": "580e6a4703e83d21f834",
