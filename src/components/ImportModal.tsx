@@ -17,7 +17,7 @@ export const ImportModal : FC<ImportModalProps> = ({show, onAccept, onExit}) => 
     <Modal show={show} width={24.3} height={7} name={"Scheme Import"} description={"Insert the code below"} onExit={onExit}>
       <TextArea onChange={e => setContent(e.target.value)} value={content}/>
       <div style={{textAlign: "right"}}>
-        <Button round small warning onClick={() => setContent("")}>clear</Button>
+        <Button round small warning onClick={() => setContent("")} style={{marginRight: '0.4em'}}>clear</Button>
         <Button round small primary onClick={() => onAccept(content)}>accept</Button>
       </div>
     </Modal>

@@ -113,6 +113,8 @@ const ItalicText = styled.div`
   margin-top: 0.2em;
   font-style: italic;
   font-weight: 400;
+  pointer-events: none;
+  user-select: none;
 `
 
 interface SuggestionProps {

@@ -11,6 +11,7 @@ interface ButtonProps {
 }
 
 export const Button = styled.div<ButtonProps>`
+  user-select: none;
   background-color: ${props => props.backgroundColor || props.theme.colors.secondary};
   background-color: ${props => props.primary && props.theme.colors.primary};
   background-color: ${props => props.success && props.theme.colors.success};

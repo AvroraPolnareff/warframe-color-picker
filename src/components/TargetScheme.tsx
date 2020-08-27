@@ -173,6 +173,8 @@ const Header = styled.h2`
     color: ${props => props.theme.colors.targetSchemeHeader};
     margin-bottom: 0.15rem; margin-top: 0 ;
     font-size: 1.6rem
+    pointer-events: none;
+    user-select: none;
 `
 
 export default TargetScheme

@@ -101,7 +101,7 @@ const ColorInput = styled.input`
     border-radius: 0.3em;
     font-weight: 600;
     font-size: 1.06em;
-    width: 2.05em;
+    width: 2.35em;
     border: none;
     transition: background-color 0.15s linear;
   

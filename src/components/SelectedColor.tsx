@@ -16,9 +16,9 @@ export const SelectedColor : FC<SelectedColorProps> = ({paletteName, colorPositi
   return (
     <Window width={11}>
       <FlexColumnCenter>
-        <img src={waves} style={{width: "8.7em", marginTop: "0.2em", marginBottom: "0.1em"}}/>
+        <img src={waves} style={{width: "8.7em", marginTop: "0.2em", marginBottom: "0.1em", pointerEvents: "none", userSelect: "none"}}/>
         <Header>SELECTED COLOR</Header>
-        <img src={waves} style={{width: "8.7em", marginTop: "0", marginBottom: "0.5em"}}/>
+        <img src={waves} style={{width: "8.7em", marginTop: "0", marginBottom: "0.5em", pointerEvents: "none", userSelect: "none"}}/>
         <PaletteName>{paletteName}</PaletteName>
 
           <WarframePalette size={1.75} paletteName={paletteName} colorPosition={colorPosition}/>
@@ -40,6 +40,8 @@ const Header = styled.div`
     background: linear-gradient(90deg, rgba(233,165,165,1) 0%, rgba(184,193,192,1) 25%, rgba(101,192,224,1) 50%, rgba(174,162,219,1) 75%, rgba(129,193,217,1) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    pointer-events: none;
+    user-select: none;
 `
 
 const PaletteName = styled.div`
