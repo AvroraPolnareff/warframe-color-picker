@@ -39,33 +39,34 @@ const StyledModal = styled.div<{show: boolean}>`
 `
 
 const WindowWrapper = styled.div<{width?: number, height?: number}>`
-  ${props => props.width && `width: ${props.width}rem`};
+  ${props => props.width && `width: ${props.width}em`};
+  ${props => props.height && `height: ${props.height}em`};
   margin: 10% auto;
 `
 const Borders = styled.div`
   background-color: ${props => props.theme.colors.secondary};
-  padding: 4px 5px;
+  padding: 0.3em 0.35em;
   border-radius: 10px;
 `
 
 const ModalContent = styled.div`
   background-color: white;
-  border-radius: 6px;
-  padding: 8px 8px;
+  border-radius: 0.3em;
+  padding: 0.4em 0.4em;
 `
 
 const TopBar = styled.div`
   display: flex;
   justify-content: space-between;
   background-color: ${props => props.theme.colors.secondary};
-  height: 1.2rem;
+  height: 1.2em;
   
 `
 
 const Header = styled.div`
   font-weight: bold;
-  margin: 0 0.5rem;
-  font-size: 0.9rem;
+  margin: 0 0.3em;
+  font-size: 1em;
   color: white;
   text-transform: uppercase;
 `
@@ -74,8 +75,8 @@ const ExitButton = styled.img.attrs((props) => ({src: exitButton}))`
   cursor: pointer;
   font-weight: bold;
   border: none;
-  font-size: 2rem;
-  height: 1rem;
+
+  height: 1em;
   
 `
 
