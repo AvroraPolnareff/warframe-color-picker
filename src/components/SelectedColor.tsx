@@ -92,9 +92,10 @@ const StyledWarframePalette = styled.div<{size: number}>`
   overflow: hidden;
 `
 
-const PaletteCell = styled.div.attrs(props => ({style: {background: props.color}}))<{size: number, color: string}>`
+const PaletteCell = styled.div.attrs(props => ({style: {backgroundColor: props.color}}))<{size: number, color: string}>`
   height: ${props => props.size }em;
   width: ${props => props.size }em;
+  transition: background-color 0.5s linear;
 `
 
 const moveGradient = keyframes`
@@ -115,9 +116,9 @@ const BackgroundGradient = styled.div<{size: number}>`
       rgba(184,193,192,1) 25%, rgba(101,192,224,1) 50%,
       rgba(174,162,219,1) 75%, rgba(129,193,217,1) 100%
     );
-    background-size: 300% 300%;
-    background-position: 0 50%;
-    animation: ${moveGradient} 4s alternate infinite;
+  background-size: 300% 300%;
+  background-position: 0 50%;
+  animation: ${moveGradient} 4s alternate infinite;
 `
 
 const SelectedCell = styled(PaletteCell)<{size: number, color: string}>`
