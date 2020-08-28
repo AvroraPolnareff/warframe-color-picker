@@ -121,8 +121,8 @@ const BackgroundGradient = styled.div<{size: number}>`
 `
 
 const SelectedCell = styled(PaletteCell)<{size: number, color: string}>`
-    max-height: ${props => props.size - 0.2}em;
-    max-width: ${props => props.size - 0.2}em;
+    max-height: ${props => props.size - 0.4}em;
+    max-width: ${props => props.size - 0.4}em;
 
 `
 
