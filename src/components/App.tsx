@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import styled from "styled-components";
 import TargetScheme from "./TargetScheme";
 import {ColorPicker} from "./ColorPicker";
@@ -16,7 +16,7 @@ import discordLogo from "../assets/discord-logo-DADADA 1.svg"
 import githubLogo from "../assets/github-logo-DADADA.png"
 import warframeLogo from "../assets/wf-logo-DADADA 1.png"
 import {Link} from "./shared/Link";
-
+import {debounce} from "lodash"
 
 function App() {
   const initManualColors = [
@@ -55,6 +55,7 @@ function App() {
   const [manualColors, setManualColors] = useStickyState(initManualColors, "manualColors")
   const [currentColors, setCurrentColors] = useState({default: 0, manual: 0})
   const [matchedColors, setMatchedColors] = useState<MatchedColor[]>([])
+  const [isColorChanging, setIsColorChanging] = useState(false)
   const [selectedColor, setSelectedColor] = useState<MatchedColor>(initMatchedColor)
   const [switched, setSwitched] = useState(false)
   
@@ -63,6 +64,7 @@ function App() {
   const [showPalettesModal, setShowPalettesModal] = useState(false)
   const [availablePalettes, setAvailablePalettes] = useStickyState<string[]>(initAvailablePalettes, "availablePalettes")
   
+  const debounced = useRef(debounce((fn: () => void) => fn(), 200, {trailing: true, leading: false}))
   
   
   const getCurrentColor = () : string => {
@@ -73,11 +75,21 @@ function App() {
     }
   }
   
-  useEffect(() => {
+  const updateSuggestions = () => {
     const filteredPalettes = palettes.filter(palette => availablePalettes.indexOf(palette.name) !== -1)
     const closestColors = findClosestColors(getCurrentColor(), filteredPalettes, 50)
     setMatchedColors(closestColors)
     setSelectedColor(closestColors[0])
+    setIsColorChanging(false)
+  }
+  
+  useEffect(() => {
+    updateSuggestions()
+  }, [])
+  
+  useEffect(() => {
+    if (!isColorChanging){setIsColorChanging(true)}
+    debounced.current(updateSuggestions)
   }, [defaultColors, manualColors, currentColors, availablePalettes])
   
   const onColorChange = (color: Color) => {
@@ -178,7 +190,9 @@ function App() {
           />
           <Suggestions matchedColors={matchedColors}
                        onSuggestionClick={onSuggestionClick}
-                       onPalettesClick={() => setShowPalettesModal(true)}/>
+                       onPalettesClick={() => setShowPalettesModal(true)}
+                       isSuggestionsUpdating={isColorChanging}
+          />
         </div>
         <SelectedColor paletteName={selectedColor.paletteName} colorPosition={selectedColor.position}/>
       </div>
