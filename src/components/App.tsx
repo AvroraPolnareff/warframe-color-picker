@@ -10,6 +10,12 @@ import {SelectedColor} from "./SelectedColor";
 import {Header} from "./Header";
 import {ImportModal} from "./ImportModal";
 import {PalettesModal} from "./shared/PalettesModal";
+import {Modal} from "./shared/Modal";
+import {Button} from "./shared/Button";
+import discordLogo from "../assets/discord-logo-DADADA 1.svg"
+import githubLogo from "../assets/github-logo-DADADA.png"
+import warframeLogo from "../assets/wf-logo-DADADA 1.png"
+import {Link} from "./shared/Link";
 
 
 function App() {
@@ -51,7 +57,9 @@ function App() {
   const [matchedColors, setMatchedColors] = useState<MatchedColor[]>([])
   const [selectedColor, setSelectedColor] = useState<MatchedColor>(initMatchedColor)
   const [switched, setSwitched] = useState(false)
+  
   const [showImportModal, setShowImportModal] = useState(false)
+  const [showOverrideModal, setShowOverrideModal] = useState(false)
   const [showPalettesModal, setShowPalettesModal] = useState(false)
   const [availablePalettes, setAvailablePalettes] = useStickyState<string[]>(initAvailablePalettes, "availablePalettes")
   
@@ -67,7 +75,7 @@ function App() {
   
   useEffect(() => {
     const filteredPalettes = palettes.filter(palette => availablePalettes.indexOf(palette.name) !== -1)
-    const closestColors = findClosestColors(getCurrentColor(), filteredPalettes, 100)
+    const closestColors = findClosestColors(getCurrentColor(), filteredPalettes, 50)
     setMatchedColors(closestColors)
     setSelectedColor(closestColors[0])
   }, [defaultColors, manualColors, currentColors, availablePalettes])
@@ -85,8 +93,11 @@ function App() {
   }
   const onSuggestionClick = (key: string) => {
     const filteredColor = matchedColors.filter(({uid}) => uid === key)[0]
-    return setSelectedColor(filteredColor);
-    
+    if (filteredColor.uid === selectedColor.uid) {
+      setShowOverrideModal(true);
+    } else {
+      setSelectedColor(filteredColor);
+    }
   }
   
   const onCellChange = (key: number) => {
@@ -125,7 +136,11 @@ function App() {
       setAvailablePalettes([...availablePalettes, paletteName])
     }
   }
-
+  
+  const onOverrideColor = () => {
+    onColorChange(Color(selectedColor.color))
+    setShowOverrideModal(false)
+  }
   
   return (
     <StyledApp>
@@ -138,10 +153,23 @@ function App() {
                        onExit={() =>setShowPalettesModal(false)}/>
                        : null
       }
-      
+      <Modal width={34} show={showOverrideModal} name={"SELECTED COLOR"} description={"OVERWRITE TARGET SCHEME"} onExit={() => setShowOverrideModal(false)}>
+        Warning: this action will overwrite your <b>Target Scheme</b> selected color. <b>The Suggestions</b> tab will be updated accordingly.
+        <div style={{textAlign: "right", marginTop: "0.2em"}}>
+          <Button round small warning onClick={() => setShowOverrideModal(false)} style={{marginRight: '0.4em'}}>clear</Button>
+          <Button round small primary onClick={() => onOverrideColor()}>accept</Button>
+        </div>
+      </Modal>
       <ImportModal show={showImportModal} onAccept={onAcceptImport} onExit={() => {setShowImportModal(false)}}/>
       <div style={{display: "flex", alignItems: "start", justifyContent: "center", marginTop: "2rem"}}>
-        <ColorPicker color={Color(getCurrentColor())} onColorChange={onColorChange}/>
+        <div style={{display: "flex", flexDirection: "column", alignItems: "flex-end"}}>
+          <ColorPicker color={Color(getCurrentColor())} onColorChange={onColorChange}/>
+          <div style={{display: "flex"}}>
+            <Link href={"#"} icon={warframeLogo} width={3} height={3}/>
+            <Link href={"https://discord.gg/WWBYuY3"} icon={discordLogo} width={3} height={3}/>
+          </div>
+          <Link href={"https://github.com/AvroraPolnareff/warframe-color-picker-ts"} icon={githubLogo} width={3} height={3}/>
+        </div>
         <div style={{display: "flex", flexDirection: "column"}}>
           <TargetScheme
             switched={switched} onSwitch={onSwitch}
