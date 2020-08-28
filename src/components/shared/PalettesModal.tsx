@@ -23,14 +23,14 @@ export const PalettesModal : FC<PalettesModalProps> = (
   
   return (
     <Modal
-      show={show} width={30} name={"Palettes"}
+      show={show} width={32} name={"Palettes"}
       description={"Customize your suggestions"} onExit={onExit}
     >
       <div style={{position: "relative"}}>
         <HoveredPalette>
           <PaletteName>{hoveredPalette}</PaletteName>
 
-            <WarframePalette size={1} paletteName={hoveredPalette} />
+            <WarframePalette size={1.5} paletteName={hoveredPalette} />
 
           
         </HoveredPalette>
@@ -59,9 +59,9 @@ export const PalettesModal : FC<PalettesModalProps> = (
 
 const HoveredPalette  = styled.div`
   position: absolute;
-  right: -8.2rem;
-  top: -1.9rem;
-  border: 4px solid ${props => props.theme.colors.tertiary};
+  right: -10.2em;
+  top: -1.9em;
+  border: 4px solid ${props => props.theme.colors.secondary};
   padding: 0.4rem 0.6rem;
   background-color: white;
   border-radius: 0.8rem;
@@ -70,20 +70,15 @@ const HoveredPalette  = styled.div`
 const PaletteName = styled.div`
   text-align: center;
   color: ${props => props.theme.colors.secondary};
-  font-size: 0.55rem;
+  font-size: 0.655em;
   text-transform: uppercase;
-  border: 2px solid ${props => props.theme.colors.tertiary};
-  border-radius: 0.5rem;
-  padding: 0.3rem 0;
+  border: 0.15em solid ${props => props.theme.colors.tertiary};
+  border-radius: 0.5em;
+  padding: 0.5em 0;
   margin-bottom: 0.5em;
+  margin-top: 0.4em;
 `
 
-const PaletteWrapper = styled.div`
-  overflow: hidden;
-  height: ${21 * 18}px;
-  border: 3px solid ${props => props.theme.colors.tertiary};
-  border-radius: 0.5rem;
-`
 
 const Grid = styled.div`
   color: ${props => props.theme.colors.secondary};
