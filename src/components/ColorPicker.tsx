@@ -152,11 +152,10 @@ const HexInput: FC<HexInputProps> = ({onChange, color}) => {
   
   useEffect(() => {
     if (!userTyping) {
-      console.log("lalk")
       setInputField(color.hex())
       setValidHex(true)
     }
-  }, [userTyping])
+  }, [userTyping, color])
   
   const changeHex = (e: React.ChangeEvent<HTMLInputElement>) => {
     clearTimeout(timer)
