@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "0a11b6c7e479bc11c7fa17c120faf00a",
+    "revision": "dbbb593bb4776dd8e252f2f5440351f9",
     "url": "/warframe-color-picker-ts/index.html"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/warframe-color-picker-ts/static/js/2.466c72df.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "0f53adc7efdc02259ca2",
-    "url": "/warframe-color-picker-ts/static/js/main.07b1df93.chunk.js"
+    "revision": "7604c432db787fb398b6",
+    "url": "/warframe-color-picker-ts/static/js/main.b1595212.chunk.js"
   },
   {
     "revision": "580e6a4703e83d21f834",
@@ -32,6 +32,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/warframe-color-picker-ts/static/media/exitButton.a543d2ff.svg"
   },
   {
+    "revision": "62705e774f473d1802ee879c080014c1",
+    "url": "/warframe-color-picker-ts/static/media/github-logo-DADADA.62705e77.svg"
+  },
+  {
     "revision": "f66748bc2666f1bf088774fd7ec42282",
     "url": "/warframe-color-picker-ts/static/media/layoutIcon.f66748bc.svg"
   },
@@ -42,5 +46,9 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "63f5f9abb4339f8b9b88cd7104af588b",
     "url": "/warframe-color-picker-ts/static/media/waves.63f5f9ab.svg"
+  },
+  {
+    "revision": "d7294e6aeefcede3f398f6073bf14f90",
+    "url": "/warframe-color-picker-ts/static/media/wf-logo-DADADA 1.d7294e6a.svg"
   }
 ]);
