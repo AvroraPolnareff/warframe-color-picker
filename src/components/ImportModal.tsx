@@ -14,7 +14,7 @@ export const ImportModal : FC<ImportModalProps> = ({show, onAccept, onExit}) => 
   
   
   return (
-    <Modal show={show} width={24.3} height={7} name={"Scheme Import"} description={"Insert the code below"} onExit={onExit}>
+    <Modal show={show} width={27}  name={"Scheme Import"} description={"Insert the code below"} onExit={onExit}>
       <TextArea onChange={e => setContent(e.target.value)} value={content}/>
       <div style={{textAlign: "right"}}>
         <Button round small warning onClick={() => setContent("")} style={{marginRight: '0.4em'}}>clear</Button>
@@ -30,7 +30,7 @@ const TextArea = styled.textarea.attrs(props => ({
   border: none;
   margin: 0;
   width: 100%;
-  height: 3.3em;
+  height: 4em;
   resize: none;
   outline: none;
   color: ${props => props.theme.colors.secondary};
