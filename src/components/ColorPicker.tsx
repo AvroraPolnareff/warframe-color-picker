@@ -135,7 +135,8 @@ const Grid2X4 = styled.div`
 `
 
 const ColorSchemeName = styled.div`
-    padding-right: 0.3em
+    padding-right: 0.3em;
+    font-weight: bold;
 `
 
 interface HexInputProps {
@@ -148,32 +149,35 @@ const HexInput: FC<HexInputProps> = ({onChange, color}) => {
   const [inputField, setInputField] = useState("#909090")
   const [userTyping, setUserTyping] = useState(false)
   const [timer, setTimer] = useState(0)
-  const [onChangeTimeout, setOnChangeTimeout] = useState(0)
   
   useEffect(() => {
     if (!userTyping) {
       setInputField(color.hex())
       setValidHex(true)
     }
-  }, [userTyping, color])
+  }, [color])
   
   const changeHex = (e: React.ChangeEvent<HTMLInputElement>) => {
     clearTimeout(timer)
-    clearTimeout(onChangeTimeout)
     setTimer(setTimeout(() => setUserTyping(false), 1000))
+    setUserTyping(true)
     try {
       if (e.target.value.length <= 7) {
+        
         Color().hex(e.target.value)
         setValidHex(true)
         e.persist()
         setInputField(e.target.value)
-        setOnChangeTimeout(setTimeout(() => onChange(e), 2000))
+        onChange(e)
+        
       }
       
     } catch (error) {
       setValidHex(false)
       if (e.target.value[0] !== "#" ) {
         setInputField("#" + e.target.value)
+        e.target.value = "#" + e.target.value
+        changeHex(e)
       } else {
         setInputField(e.target.value)
       }
