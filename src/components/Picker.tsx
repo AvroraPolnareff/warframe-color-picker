@@ -10,7 +10,7 @@ type PickerProps = {
 }
 
 export class Picker extends Component<PickerProps> {
-  throttle = throttle((fn, data, func) => fn(data, func), 20)
+  throttle = throttle((fn, data, func) => fn(data, func), 15)
   ref: HTMLCanvasElement | null = null
   picker : CanvasPicker | null = null
   
@@ -38,7 +38,6 @@ export class Picker extends Component<PickerProps> {
       e, this.props.onChange
     )
   }
-  
   
   handleMouseDown = (e: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {
     this.handleChange(e)
