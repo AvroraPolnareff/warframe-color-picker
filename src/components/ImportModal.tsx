@@ -25,7 +25,7 @@ export const ImportModal : FC<ImportModalProps> = ({show, onAccept, onExit}) => 
 }
 
 const TextArea = styled.textarea.attrs(props => ({
-  rows: 3, autofocus: "true", placeholder: "Insert your code..."
+  rows: 3, autofocus: "true", placeholder: "Insert your code...", spellCheck: "false"
 }))`
   border: none;
   margin: 0;
@@ -33,7 +33,7 @@ const TextArea = styled.textarea.attrs(props => ({
   height: 4em;
   resize: none;
   outline: none;
-  color: ${props => props.theme.colors.secondary};
+  color: ${props => props.theme.colors.darken.secondary};
   overflow: hidden;
   
   &:focus {
