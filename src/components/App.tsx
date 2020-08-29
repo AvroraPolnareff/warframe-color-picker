@@ -13,8 +13,8 @@ import {PalettesModal} from "./shared/PalettesModal";
 import {Modal} from "./shared/Modal";
 import {Button} from "./shared/Button";
 import discordLogo from "../assets/discord-logo-DADADA 1.svg"
-import githubLogo from "../assets/github-logo-DADADA.png"
-import warframeLogo from "../assets/wf-logo-DADADA 1.png"
+import githubLogo from "../assets/github-logo-DADADA.svg"
+import warframeLogo from "../assets/wf-logo-DADADA 1.svg"
 import {Link} from "./shared/Link";
 import {debounce} from "lodash"
 
