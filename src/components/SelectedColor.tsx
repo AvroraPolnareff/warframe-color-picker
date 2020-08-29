@@ -5,7 +5,6 @@ import styled, {keyframes} from "styled-components";
 import {Position} from "../common/Palette";
 import {palettes} from "../common/palettes";
 import waves from "../assets/waves.svg"
-import Color from "color";
 
 interface SelectedColorProps {
   paletteName: string,
@@ -95,7 +94,7 @@ const StyledWarframePalette = styled.div<{size: number}>`
 const PaletteCell = styled.div.attrs(props => ({style: {backgroundColor: props.color}}))<{size: number, color: string}>`
   height: ${props => props.size }em;
   width: ${props => props.size }em;
-  transition: background-color 0.5s linear;
+  transition: background-color 0.3s linear;
 `
 
 const moveGradient = keyframes`
