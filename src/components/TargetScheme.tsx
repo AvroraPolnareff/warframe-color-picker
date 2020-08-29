@@ -6,6 +6,7 @@ import {Button} from "./shared/Button";
 import {Divider} from "./shared/Divider";
 import {ColorCell} from "./shared/ColorCell";
 import {Switch} from "./shared/Switch";
+import {convertColorsToExportString} from "../common/helpers";
 
 interface TargetSchemeProps {
   defaultColors: string[];
@@ -24,7 +25,7 @@ const TargetScheme: FC<TargetSchemeProps> = (
   const [exportButton, setExportButton] = useState("export")
   
   const onExportClick = () => {
-    const exportData = JSON.stringify({default: defaultColors, manual: manualColors})
+    const exportData = convertColorsToExportString(defaultColors, manualColors)
     navigator.clipboard.writeText(exportData).then(() => {
       setExportButton("copied!")
       setTimeout(() => {

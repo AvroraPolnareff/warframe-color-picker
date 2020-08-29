@@ -3,7 +3,12 @@ import styled from "styled-components";
 import TargetScheme from "./TargetScheme";
 import {ColorPicker} from "./ColorPicker";
 import Color from "color";
-import {findClosestColors, useStickyState} from "../common/helpers";
+import {
+  convertColorsToExportString,
+  convertExportStringToColors,
+  findClosestColors,
+  useStickyState
+} from "../common/helpers";
 import {palettes} from "../common/palettes";
 import {MatchedColor, Suggestions} from "./Suggestions";
 import {SelectedColor} from "./SelectedColor";
@@ -18,37 +23,39 @@ import warframeLogo from "../assets/wf-logo-DADADA 1.svg"
 import {Link} from "./shared/Link";
 import {debounce} from "lodash"
 
+export const initManualColors = [
+  "#5BCEFA", "#A3A3DB", "#5BCEFA", "#A3A3DB", "#5BCEFA", "#A3A3DB", "#5BCEFA", "#A3A3DB",
+  "#F5A9B8", "#5BCEFA", "#F5A9B8", "#5BCEFA", "#F5A9B8", "#5BCEFA", "#F5A9B8", "#5BCEFA",
+  "#F4F4F4", "#F5A9B8", "#F4F4F4", "#F5A9B8", "#F4F4F4", "#F5A9B8", "#F4F4F4", "#F5A9B8",
+  "#F5A9B8", "#F4F4F4", "#F5A9B8", "#F4F4F4", "#F5A9B8", "#F4F4F4", "#F5A9B8", "#F4F4F4",
+  "#5BCEFA", "#F5A9B8", "#5BCEFA", "#F5A9B8", "#5BCEFA", "#F5A9B8", "#5BCEFA", "#F5A9B8",
+  "#A3A3DB", "#5BCEFA", "#A3A3DB", "#5BCEFA", "#A3A3DB", "#5BCEFA", "#A3A3DB", "#5BCEFA",
+]
+
+export const initAvailablePalettes = [
+  'Agony',             'Beach',
+  'Classic Saturated', 'Classic',
+  'Conquest',          'Corpus',
+  'Darkness',          'Daybreak',
+  'Discord',           'Dojo',
+  'Easter',            'Eminence',
+  'Eximus',            'Fear',
+  'Fire',              'Grineer',
+  'Halloween',         'Hatred',
+  'Ice',               'Infested',
+  "Ki'Teer",           'Lotus',
+  'Orokin',            'Rollers',
+  'Rot',               'Shamrock',
+  'Smoke Colors',      'Storm',
+  'Tenno II',          'Tenno',
+  'Transmission',      'Twilight',
+  'Undying',           'Valentine'
+]
+
+export const initDefaultColors = ["#f8f5ed", "#525757", '#a64731', "#c0cbcf", "#dffefb", "#53bcb1", "#dffefb", "#53bcb1"]
+
 function App() {
-  const initManualColors = [
-    "#5BCEFA", "#A3A3DB", "#5BCEFA", "#A3A3DB", "#5BCEFA", "#A3A3DB", "#5BCEFA", "#A3A3DB",
-    "#F5A9B8", "#5BCEFA", "#F5A9B8", "#5BCEFA", "#F5A9B8", "#5BCEFA", "#F5A9B8", "#5BCEFA",
-    "#F4F4F4", "#F5A9B8", "#F4F4F4", "#F5A9B8", "#F4F4F4", "#F5A9B8", "#F4F4F4", "#F5A9B8",
-    "#F5A9B8", "#F4F4F4", "#F5A9B8", "#F4F4F4", "#F5A9B8", "#F4F4F4", "#F5A9B8", "#F4F4F4",
-    "#5BCEFA", "#F5A9B8", "#5BCEFA", "#F5A9B8", "#5BCEFA", "#F5A9B8", "#5BCEFA", "#F5A9B8",
-    "#A3A3DB", "#5BCEFA", "#A3A3DB", "#5BCEFA", "#A3A3DB", "#5BCEFA", "#A3A3DB", "#5BCEFA",
-  ]
   
-  const initAvailablePalettes = [
-    'Agony',             'Beach',
-    'Classic Saturated', 'Classic',
-    'Conquest',          'Corpus',
-    'Darkness',          'Daybreak',
-    'Discord',           'Dojo',
-    'Easter',            'Eminence',
-    'Eximus',            'Fear',
-    'Fire',              'Grineer',
-    'Halloween',         'Hatred',
-    'Ice',               'Infested',
-    "Ki'Teer",           'Lotus',
-    'Orokin',            'Rollers',
-    'Rot',               'Shamrock',
-    'Smoke Colors',      'Storm',
-    'Tenno II',          'Tenno',
-    'Transmission',      'Twilight',
-    'Undying',           'Valentine'
-  ]
-  
-  const initDefaultColors = ["#f8f5ed", "#525757", '#a64731', "#c0cbcf", "#dffefb", "#53bcb1", "#dffefb", "#53bcb1"]
   const initMatchedColor = {distance: 0, color: "#000000", paletteName: "Classic", position: {x: 0, y: 0}, uid: "3274823"}
   
   const [defaultColors, setDefaultColors] = useStickyState(initDefaultColors, "defaultColors")
@@ -126,14 +133,16 @@ function App() {
   }
   
   const onAcceptImport = (data: string) => {
-    const importData = JSON.parse(data)
-    if (!importData) {
-      alert("wrong data!")
-      return
+    try {
+      const importData = convertExportStringToColors(data)
+
+      setDefaultColors(importData.defaultColors)
+      setManualColors(importData.manualColors)
+      setShowImportModal(false)
+    } catch (e) {
+      console.log(e)
     }
-    setDefaultColors(importData.default)
-    setManualColors(importData.manual)
-    setShowImportModal(false)
+    
   }
   
   const onPaletteClick = (paletteName: string) => {
