@@ -1,16 +1,15 @@
-import React, {Component, FC} from "react"
+import React, {Component, FC, RefObject} from "react"
 import {Position} from "../common/Palette";
 import {Divider} from "./shared/Divider";
 import {FlexColumnCenter} from "./shared/FlexColumnCenter";
 import {Window} from "./shared/Window";
 import header from "../assets/SUGGESTIONS.svg"
-import styled, {css, keyframes} from "styled-components";
+import styled from "styled-components";
 import {ColorCell} from "./shared/ColorCell";
 import {Badge} from "./shared/Badge";
 import {Switch} from "./shared/Switch";
 import {Button} from "./shared/Button";
-import {Scrollbars} from "react-custom-scrollbars"
-import {Transition, TransitionGroup} from "react-transition-group";
+import {positionValues, Scrollbars} from "react-custom-scrollbars"
 
 interface SuggestionsProps {
   matchedColors: MatchedColor[],
@@ -27,27 +26,58 @@ export interface MatchedColor {
   uid: string
 }
 
-export class Suggestions extends Component<SuggestionsProps, {
+interface SuggestionsState {
   throttledColors: MatchedColor[],
   switched: boolean,
   selected: string
-}> {
+}
+
+export class Suggestions extends Component<SuggestionsProps, SuggestionsState> {
+  
+  scrollbarsRef: RefObject<Scrollbars>
+  fadedRef: RefObject<HTMLDivElement>
+  
   constructor(props: Readonly<SuggestionsProps>) {
     super(props);
     this.state = {throttledColors: [], switched: false, selected: ""}
+    this.scrollbarsRef = React.createRef<Scrollbars>()
+    this.fadedRef = React.createRef<HTMLDivElement>()
   }
-  
-  //throttle = throttle((fn, data) => fn(data), 500)
   
   componentDidMount = () => {
     this.setState((state, props) => ({...state, throttledColors: props.matchedColors}))
     this.setState((state, props) => ({...state, selected: props.matchedColors[0].uid}))
   }
   
-  componentDidUpdate = (prevProps: Readonly<SuggestionsProps>, prevState: Readonly<{}>, snapshot?: any) => {
-    //this.throttle(this.setState.bind(this), {throttledColors: this.props.matchedColors})
+  componentDidUpdate = (prevProps: Readonly<SuggestionsProps>, prevState: Readonly<SuggestionsState>, snapshot?: any) => {
+    if (!this.scrollbarsRef.current) return
+    if (prevProps.matchedColors !== this.props.matchedColors)
+      this.scrollbarsRef.current.scrollTop(0)
+    
     
   }
+  
+  onScrollbarUpdate = (values: positionValues) => {
+    if (!this.fadedRef.current) return
+    const gradient = `background: linear-gradient(
+        0deg, rgba(255,255,255,1) 0%,
+        rgba(0,0,0,0) ${(1 - values.top) * 20}%,
+        rgba(0,0,0,0) ${100 - (values.top) * 20}%,
+        rgba(255,255,255,1) 100%
+        )`
+    this.fadedRef.current.setAttribute("style", this.fadesStyle + gradient)
+    
+  }
+  
+  fadesStyle: string = `
+    position: absolute;
+    height: 100%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    pointer-events: none;
+  `
   
   onSwitch = () => {
     this.setState((state, props) => ({...state, switched: !state.switched}))
@@ -84,6 +114,8 @@ export class Suggestions extends Component<SuggestionsProps, {
           <Scrollbars
             style={{height: "20em"}}
             autoHide autoHideDuration={200}
+            ref={this.scrollbarsRef}
+            onUpdate={this.onScrollbarUpdate}
           >
             {
               this.props.matchedColors.map(({color, paletteName, distance, position, uid}, index) => (
@@ -96,6 +128,7 @@ export class Suggestions extends Component<SuggestionsProps, {
               ))
             }
           </Scrollbars>
+          <div ref={this.fadedRef}/>
         </Faded>
       </Window>
     )
@@ -105,16 +138,6 @@ export class Suggestions extends Component<SuggestionsProps, {
 const Faded = styled.div`
   margin-top: 0.4em;
   position: relative;
-  
-  &:after {
-    content: "";
-    position: absolute;
-    height: 100%;
-    bottom: 0;
-    width: 100%;
-    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(0,0,0,0) 30%);
-    pointer-events: none;
-  }
 `
 
 
@@ -140,11 +163,11 @@ interface SuggestionProps {
 const Suggestion: FC<SuggestionProps> = ({color, name, value, onSuggestionClick, uid, selected, index, animationState}) => {
   return (
     <StyledSuggestion onClick={() => onSuggestionClick(uid)} selected={true} state={animationState}
-                      delay={0.07 * index}>
+                      delay={0.05 * index}>
       <FlexCentred>
         <ColorCell color={color} outline={selected}/>
         <Badge hoverable={!selected} selected={selected}>
-          {name.slice(0, 11) + (name.length > 12 ? "." : "")}
+          {name.slice(0, 12) + (name.length > 12 ? "." : "")}
         </Badge>
       </FlexCentred>
       <Badge>
@@ -155,7 +178,12 @@ const Suggestion: FC<SuggestionProps> = ({color, name, value, onSuggestionClick,
 }
 
 
-const StyledSuggestion = styled.div<{ selected: boolean, state: boolean, delay?: number }>`
+const StyledSuggestion = styled.div.attrs<{ selected: boolean, state: boolean, delay?: number }>((props) => ({
+  style: {
+    transitionDelay: `${props.state ? "0" : props.delay}s`,
+    opacity: props.state ? "0" : "1"
+  }
+  }))<{ selected: boolean, state: boolean, delay?: number }>`
     ${props => !props.selected && "cursor: pointer"};
     display: flex;
     justify-content: space-between;
@@ -164,9 +192,7 @@ const StyledSuggestion = styled.div<{ selected: boolean, state: boolean, delay?:
     padding-bottom: 0.055rem;
     user-select: none;
     -webkit-tap-highlight-color: transparent;
-    transition: opacity 0.2s linear;
-    transition-delay: ${({delay, state}) => state ? "0" : delay}s;
-    opacity: ${({state}) => state ? "0" : "1"};
+    transition: opacity 0.15s linear;
     
 }
   
