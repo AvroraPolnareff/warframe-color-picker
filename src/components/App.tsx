@@ -64,7 +64,7 @@ function App() {
   const [showPalettesModal, setShowPalettesModal] = useState(false)
   const [availablePalettes, setAvailablePalettes] = useStickyState<string[]>(initAvailablePalettes, "availablePalettes")
   
-  const debounced = useRef(debounce((fn: () => void) => fn(), 200, {trailing: true, leading: false}))
+  const debounced = useRef(debounce((fn: () => void) => fn(), 150, {trailing: true, leading: false}))
   
   
   const getCurrentColor = () : string => {
@@ -165,8 +165,8 @@ function App() {
                        onExit={() =>setShowPalettesModal(false)}/>
                        : null
       }
-      <Modal width={34} show={showOverrideModal} name={"SELECTED COLOR"} description={"OVERWRITE TARGET SCHEME"} onExit={() => setShowOverrideModal(false)}>
-        Warning: this action will overwrite your <b>Target Scheme</b> selected color. <b>The Suggestions</b> tab will be updated accordingly.
+      <Modal width={34} show={showOverrideModal} name={"suggestions"} description={"OVERWRITE TARGET SCHEME"} onExit={() => setShowOverrideModal(false)}>
+        Warning: this action will overwrite your <b>Target Scheme</b> selected color. The<b> Suggestions</b> tab will be updated accordingly.
         <div style={{textAlign: "right", marginTop: "0.2em"}}>
           <Button round small warning onClick={() => setShowOverrideModal(false)} style={{marginRight: '0.4em'}}>clear</Button>
           <Button round small primary onClick={() => onOverrideColor()}>accept</Button>
