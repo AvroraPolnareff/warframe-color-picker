@@ -53,6 +53,7 @@ const ModalContent = styled.div`
   background-color: white;
   border-radius: 0.3em;
   padding: 0.4em 0.4em;
+  color: ${props => props.theme.colors.darken.secondary}
 `
 
 const TopBar = styled.div`
