@@ -48,8 +48,26 @@ interface NumbersPickerProps {
 }
 
 const NumbersPicker: FC<NumbersPickerProps> = ({color, onColorChange}) => {
+  const [hsvValue, setHsvValue] = useState({h: 0, s: 0, v: 0})
+  const [userTyping, setUserTyping] = useState(false)
+  useEffect(() => {
+    if(!userTyping) {
+      setHsvValue({h: color.hue(), s: color.saturationv(), v: color.value()})
+    }
+  }, [color])
+  
+  const limitNumber = (number: number, min: number, max: number) => {
+    if (number < min)
+      return min
+    if (number > max)
+      return max
+    if (isNaN(number))
+      return 0
+    return number
+  }
   
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    
     const value = e.target.value === "" ? "0" : e.target.value
     switch (e.target.name) {
       case "red":
@@ -62,13 +80,22 @@ const NumbersPicker: FC<NumbersPickerProps> = ({color, onColorChange}) => {
         onColorChange(color.blue(parseInt(value)))
         break
       case "hue":
+        setTimeout(() => setUserTyping(false), 500)
+        setUserTyping(true)
+        setHsvValue({...hsvValue, h: limitNumber(parseInt(e.target.value), 0, 360)})
         onColorChange(color.hue(parseInt(value)))
         break
       case "saturation":
-        onColorChange(color.saturationl(parseInt(value)))
+        setTimeout(() => setUserTyping(false), 500)
+        setUserTyping(true)
+        setHsvValue({...hsvValue, s: limitNumber(parseInt(e.target.value), 0, 100)})
+        onColorChange(color.saturationv(parseInt(value)))
         break
-      case "lightness":
-        onColorChange(color.lightness(parseInt(value)))
+      case "value":
+        setTimeout(() => setUserTyping(false), 500)
+        setUserTyping(true)
+        setHsvValue({...hsvValue, v: limitNumber(parseInt(e.target.value), 0, 100)})
+        onColorChange(color.value(parseInt(value)))
         break
       default:
         return
@@ -82,10 +109,10 @@ const NumbersPicker: FC<NumbersPickerProps> = ({color, onColorChange}) => {
         <ColorInput name={"red"} onChange={onChange} color="#dba3a3" value={color.red().toFixed(0)}/>
         <ColorInput name={"green"} onChange={onChange} color="#a3dba3" value={color.green().toFixed(0)}/>
         <ColorInput name={"blue"} onChange={onChange} color="#a3a3db" value={color.blue().toFixed(0)}/>
-        <ColorSchemeName>HSL</ColorSchemeName>
-        <ColorInput name={"hue"} onChange={onChange} value={Math.round(color.hue())}/>
-        <ColorInput name={"saturation"} onChange={onChange} value={Math.round(color.saturationl())}/>
-        <ColorInput name={"lightness"} onChange={onChange} value={Math.round(color.lightness())}/>
+        <ColorSchemeName>HSV</ColorSchemeName>
+        <ColorInput name={"hue"} onChange={onChange} value={Math.round(hsvValue.h)}/>
+        <ColorInput name={"saturation"} onChange={onChange} value={Math.round(hsvValue.s)}/>
+        <ColorInput name={"value"} onChange={onChange} value={Math.round(hsvValue.v)}/>
       </Grid2X4>
     </StyledPicker>
   )
