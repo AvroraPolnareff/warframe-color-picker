@@ -1,8 +1,8 @@
-import React, {FC, useContext, useEffect, useRef, useState} from "react";
+import React, {FC, useEffect, useState} from "react";
 import Color from "color";
 import {Window} from "./shared/Window";
 import {FlexColumnCenter} from "./shared/FlexColumnCenter";
-import styled, {ThemeContext} from "styled-components";
+import styled from "styled-components";
 import {Divider} from "./shared/Divider";
 import {ColorPickerHeader} from "../assets/ColorPickerHeader"
 import {Picker} from "./Picker";
@@ -13,9 +13,7 @@ interface ColorPickerProps {
 }
 
 
-
 export const ColorPicker: FC<ColorPickerProps> = ({onColorChange, color}) => {
-  
   const fontSize = parseFloat(window.getComputedStyle(document.body, null).getPropertyValue('font-size'))
   
   return (
@@ -31,7 +29,7 @@ export const ColorPicker: FC<ColorPickerProps> = ({onColorChange, color}) => {
           />
         </FlexRow>
         <div style={{marginBottom: "0.4rem", marginTop: "0.4em"}}>
-          <Picker size={11 * fontSize} color={color} onChange={onColorChange} />
+          <Picker size={11 * fontSize} color={color} onChange={onColorChange}/>
         </div>
         <Divider/>
       </FlexColumnCenter>
@@ -41,61 +39,59 @@ export const ColorPicker: FC<ColorPickerProps> = ({onColorChange, color}) => {
 }
 
 
-
 interface NumbersPickerProps {
   color: Color,
   onColorChange: (color: Color) => void
+}
+
+const limitNumber = (number: number, min: number, max: number) => {
+  if (number < min)
+    return min
+  if (number > max)
+    return max
+  if (isNaN(number))
+    return 0
+  return number
 }
 
 const NumbersPicker: FC<NumbersPickerProps> = ({color, onColorChange}) => {
   const [hsvValue, setHsvValue] = useState({h: 0, s: 0, v: 0})
   const [userTyping, setUserTyping] = useState(false)
   useEffect(() => {
-    if(!userTyping) {
+    if (!userTyping) {
       setHsvValue({h: color.hue(), s: color.saturationv(), v: color.value()})
     }
   }, [color])
   
-  const limitNumber = (number: number, min: number, max: number) => {
-    if (number < min)
-      return min
-    if (number > max)
-      return max
-    if (isNaN(number))
-      return 0
-    return number
-  }
-  
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChange = (name: string, value: number) => {
     
-    const value = e.target.value === "" ? "0" : e.target.value
-    switch (e.target.name) {
+    switch (name) {
       case "red":
-        onColorChange(color.red(parseInt(value)))
+        onColorChange(color.red(value))
         break
       case "green":
-        onColorChange(color.green(parseInt(value)))
+        onColorChange(color.green(value))
         break
       case "blue":
-        onColorChange(color.blue(parseInt(value)))
+        onColorChange(color.blue(value))
         break
       case "hue":
         setTimeout(() => setUserTyping(false), 500)
         setUserTyping(true)
-        setHsvValue({...hsvValue, h: limitNumber(parseInt(e.target.value), 0, 360)})
-        onColorChange(color.hue(parseInt(value)))
+        setHsvValue({...hsvValue, h: limitNumber(value, 0, 360)})
+        onColorChange(color.hue(value))
         break
-      case "saturation":
+      case "saturationv":
         setTimeout(() => setUserTyping(false), 500)
         setUserTyping(true)
-        setHsvValue({...hsvValue, s: limitNumber(parseInt(e.target.value), 0, 100)})
-        onColorChange(color.saturationv(parseInt(value)))
+        setHsvValue({...hsvValue, s: limitNumber(value, 0, 100)})
+        onColorChange(color.saturationv(value))
         break
       case "value":
         setTimeout(() => setUserTyping(false), 500)
         setUserTyping(true)
-        setHsvValue({...hsvValue, v: limitNumber(parseInt(e.target.value), 0, 100)})
-        onColorChange(color.value(parseInt(value)))
+        setHsvValue({...hsvValue, v: limitNumber(value, 0, 100)})
+        onColorChange(color.value(value))
         break
       default:
         return
@@ -106,13 +102,19 @@ const NumbersPicker: FC<NumbersPickerProps> = ({color, onColorChange}) => {
     <StyledPicker>
       <Grid2X4>
         <ColorSchemeName>RGB</ColorSchemeName>
-        <ColorInput name={"red"} onChange={onChange} color="#dba3a3" value={color.red().toFixed(0)}/>
-        <ColorInput name={"green"} onChange={onChange} color="#a3dba3" value={color.green().toFixed(0)}/>
-        <ColorInput name={"blue"} onChange={onChange} color="#a3a3db" value={color.blue().toFixed(0)}/>
+        <ColorInput name={"red"} onChange={onChange} min={0} max={255}
+                    color="#dba3a3" value={Math.round(color.red())}/>
+        <ColorInput name={"green"} onChange={onChange} min={0} max={255}
+                    color="#a3dba3" value={Math.round(color.green())}/>
+        <ColorInput name={"blue"} onChange={onChange} min={0} max={255}
+                    color="#a3a3db" value={Math.round(color.blue())}/>
         <ColorSchemeName>HSV</ColorSchemeName>
-        <ColorInput name={"hue"} onChange={onChange} value={Math.round(hsvValue.h)}/>
-        <ColorInput name={"saturation"} onChange={onChange} value={Math.round(hsvValue.s)}/>
-        <ColorInput name={"value"} onChange={onChange} value={Math.round(hsvValue.v)}/>
+        <ColorInput name={"hue"}  min={0} max={359}
+                    onChange={onChange} value={Math.round(hsvValue.h)}/>
+        <ColorInput name={"saturationv"} min={0} max={100}
+                    onChange={onChange} value={Math.round(hsvValue.s)}/>
+        <ColorInput name={"value"} min={0} max={100}
+                    onChange={onChange} value={Math.round(hsvValue.v)}/>
       </Grid2X4>
     </StyledPicker>
   )
@@ -122,7 +124,35 @@ const StyledPicker = styled.div`
     margin-top: 0.35rem;
 `
 
-const ColorInput = styled.input`
+
+interface ColorInputProps {
+  value: number,
+  name: string,
+  min: number,
+  max: number,
+  onChange: (name: string, value: number) => void,
+  color?: string
+}
+
+const ColorInput: FC<ColorInputProps> = ({value, name, onChange, min, max, color}) => {
+  const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    onChange(name, limitNumber(parseInt(e.target.value), min, max))
+  }
+
+const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  if (e.key === "ArrowDown") {
+    e.preventDefault()
+    onChange(name, limitNumber(value - 1, min, max))
+  } else if (e.key === "ArrowUp") {
+    e.preventDefault()
+    onChange(name, limitNumber(value + 1, min, max))
+  }
+}
+
+return <StyledColorInput onChange={onInputChange} onKeyDown={onKeyDown} value={value.toString()} color={color}/>
+}
+
+const StyledColorInput = styled.input`
     display: flex;
     align-items: baseline;
     background-color: ${props => props.color || props.theme.colors.secondary};
@@ -201,7 +231,7 @@ const HexInput: FC<HexInputProps> = ({onChange, color}) => {
       
     } catch (error) {
       setValidHex(false)
-      if (e.target.value[0] !== "#" ) {
+      if (e.target.value[0] !== "#") {
         setInputField("#" + e.target.value)
         e.target.value = "#" + e.target.value
         changeHex(e)
