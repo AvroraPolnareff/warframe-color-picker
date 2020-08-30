@@ -51,10 +51,10 @@ export class Suggestions extends Component<SuggestionsProps, SuggestionsState> {
   
   componentDidUpdate = (prevProps: Readonly<SuggestionsProps>, prevState: Readonly<SuggestionsState>, snapshot?: any) => {
     if (!this.scrollbarsRef.current) return
-    if (prevProps.matchedColors !== this.props.matchedColors)
+    if (prevProps.matchedColors !== this.props.matchedColors) {
       this.scrollbarsRef.current.scrollTop(0)
-    
-    
+      this.setState((state, props) => ({...state, selected: props.matchedColors[0].uid}))
+    }
   }
   
   onScrollbarUpdate = (values: positionValues) => {
