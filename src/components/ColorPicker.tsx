@@ -57,6 +57,7 @@ const limitNumber = (number: number, min: number, max: number) => {
 const NumbersPicker: FC<NumbersPickerProps> = ({color, onColorChange}) => {
   const [hsvValue, setHsvValue] = useState({h: 0, s: 0, v: 0})
   const [userTyping, setUserTyping] = useState(false)
+  const [timer, setTimer] = useState(0)
   useEffect(() => {
     if (!userTyping) {
       setHsvValue({h: color.hue(), s: color.saturationv(), v: color.value()})
@@ -64,7 +65,7 @@ const NumbersPicker: FC<NumbersPickerProps> = ({color, onColorChange}) => {
   }, [color])
   
   const onChange = (name: string, value: number) => {
-    
+    clearTimeout(timer)
     switch (name) {
       case "red":
         onColorChange(color.red(value))
@@ -76,19 +77,19 @@ const NumbersPicker: FC<NumbersPickerProps> = ({color, onColorChange}) => {
         onColorChange(color.blue(value))
         break
       case "hue":
-        setTimeout(() => setUserTyping(false), 500)
+        setTimer(setTimeout(() => setUserTyping(false), 500))
         setUserTyping(true)
         setHsvValue({...hsvValue, h: limitNumber(value, 0, 360)})
         onColorChange(color.hue(value))
         break
       case "saturationv":
-        setTimeout(() => setUserTyping(false), 500)
+        setTimer(setTimeout(() => setUserTyping(false), 500))
         setUserTyping(true)
         setHsvValue({...hsvValue, s: limitNumber(value, 0, 100)})
         onColorChange(color.saturationv(value))
         break
       case "value":
-        setTimeout(() => setUserTyping(false), 500)
+        setTimer(setTimeout(() => setUserTyping(false), 500))
         setUserTyping(true)
         setHsvValue({...hsvValue, v: limitNumber(value, 0, 100)})
         onColorChange(color.value(value))

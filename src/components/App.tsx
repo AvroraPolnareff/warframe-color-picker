@@ -4,7 +4,6 @@ import TargetScheme from "./TargetScheme";
 import {ColorPicker} from "./ColorPicker";
 import Color from "color";
 import {
-  convertColorsToExportString,
   convertExportStringToColors,
   findClosestColors,
   useStickyState
@@ -22,6 +21,9 @@ import githubLogo from "../assets/github-logo-DADADA.svg"
 import warframeLogo from "../assets/wf-logo-DADADA 1.svg"
 import {Link} from "./shared/Link";
 import {debounce} from "lodash"
+import colorPickerToTargetScheme from "../assets/Wires (Col Pic -_ Tar Sch).svg"
+import targetSchemeToSuggestions from "../assets/Wires (Tar Sch -_ Sugg).svg"
+import suggestionsToSelectedColor from "../assets/Wires (Sugg -_ Sel Col).svg"
 
 export const initManualColors = [
   "#5BCEFA", "#A3A3DB", "#5BCEFA", "#A3A3DB", "#5BCEFA", "#A3A3DB", "#5BCEFA", "#A3A3DB",
@@ -33,30 +35,36 @@ export const initManualColors = [
 ]
 
 export const initAvailablePalettes = [
-  'Agony',             'Beach',
+  'Agony', 'Beach',
   'Classic Saturated', 'Classic',
-  'Conquest',          'Corpus',
-  'Darkness',          'Daybreak',
-  'Discord',           'Dojo',
-  'Easter',            'Eminence',
-  'Eximus',            'Fear',
-  'Fire',              'Grineer',
-  'Halloween',         'Hatred',
-  'Ice',               'Infested',
-  "Ki'Teer",           'Lotus',
-  'Orokin',            'Rollers',
-  'Rot',               'Shamrock',
-  'Smoke Colors',      'Storm',
-  'Tenno II',          'Tenno',
-  'Transmission',      'Twilight',
-  'Undying',           'Valentine'
+  'Conquest', 'Corpus',
+  'Darkness', 'Daybreak',
+  'Discord', 'Dojo',
+  'Easter', 'Eminence',
+  'Eximus', 'Fear',
+  'Fire', 'Grineer',
+  'Halloween', 'Hatred',
+  'Ice', 'Infested',
+  "Ki'Teer", 'Lotus',
+  'Orokin', 'Rollers',
+  'Rot', 'Shamrock',
+  'Smoke Colors', 'Storm',
+  'Tenno II', 'Tenno',
+  'Transmission', 'Twilight',
+  'Undying', 'Valentine'
 ]
 
 export const initDefaultColors = ["#f8f5ed", "#525757", '#a64731', "#c0cbcf", "#dffefb", "#53bcb1", "#dffefb", "#53bcb1"]
 
 function App() {
   
-  const initMatchedColor = {distance: 0, color: "#000000", paletteName: "Classic", position: {x: 0, y: 0}, uid: "3274823"}
+  const initMatchedColor = {
+    distance: 0,
+    color: "#000000",
+    paletteName: "Classic",
+    position: {x: 0, y: 0},
+    uid: "3274823"
+  }
   
   const [defaultColors, setDefaultColors] = useStickyState(initDefaultColors, "defaultColors")
   const [manualColors, setManualColors] = useStickyState(initManualColors, "manualColors")
@@ -74,7 +82,7 @@ function App() {
   const debounced = useRef(debounce((fn: () => void) => fn(), 150, {trailing: true, leading: false}))
   
   
-  const getCurrentColor = () : string => {
+  const getCurrentColor = (): string => {
     if (switched) {
       return manualColors[currentColors.manual]
     } else {
@@ -95,7 +103,9 @@ function App() {
   }, [])
   
   useEffect(() => {
-    if (!isColorChanging){setIsColorChanging(true)}
+    if (!isColorChanging) {
+      setIsColorChanging(true)
+    }
     debounced.current(updateSuggestions)
   }, [defaultColors, manualColors, currentColors, availablePalettes])
   
@@ -135,7 +145,6 @@ function App() {
   const onAcceptImport = (data: string) => {
     try {
       const importData = convertExportStringToColors(data)
-
       setDefaultColors(importData.defaultColors)
       setManualColors(importData.manualColors)
       setShowImportModal(false)
@@ -148,7 +157,7 @@ function App() {
   const onPaletteClick = (paletteName: string) => {
     const isExists = availablePalettes.indexOf(paletteName) !== -1
     if (isExists) {
-      if(availablePalettes.length === 1) {
+      if (availablePalettes.length === 1) {
         setAvailablePalettes(["Classic"])
         return
       }
@@ -167,45 +176,80 @@ function App() {
     <StyledApp>
       <Header/>
       <div/>
+      
       {showPalettesModal ?
         <PalettesModal availablePalettes={availablePalettes} show={showPalettesModal}
                        onPaletteClick={onPaletteClick} onDisableAll={() => setAvailablePalettes(["Classic"])}
                        onEnableAll={() => setAvailablePalettes(initAvailablePalettes)}
-                       onExit={() =>setShowPalettesModal(false)}/>
-                       : null
+                       onExit={() => setShowPalettesModal(false)}/>
+        : null
       }
-      <Modal width={34} show={showOverrideModal} name={"suggestions"} description={"OVERWRITE TARGET SCHEME"} onExit={() => setShowOverrideModal(false)}>
-        Warning: this action will overwrite your <b>Target Scheme</b> selected color. The<b> Suggestions</b> tab will be updated accordingly.
+      
+      <Modal width={34} show={showOverrideModal} name={"suggestions"} description={"OVERWRITE TARGET SCHEME"}
+             onExit={() => setShowOverrideModal(false)}>
+        Warning: this action will overwrite your <b>Target Scheme</b> selected color. The<b> Suggestions</b> tab will be
+        updated accordingly.
         <div style={{textAlign: "right", marginTop: "0.2em"}}>
-          <Button round small warning onClick={() => setShowOverrideModal(false)} style={{marginRight: '0.4em'}}>clear</Button>
+          <Button round small warning onClick={() => setShowOverrideModal(false)}
+                  style={{marginRight: '0.4em'}}>clear</Button>
           <Button round small primary onClick={() => onOverrideColor()}>accept</Button>
         </div>
       </Modal>
-      <ImportModal show={showImportModal} onAccept={onAcceptImport} onExit={() => {setShowImportModal(false)}}/>
-      <div style={{display: "flex", alignItems: "start", justifyContent: "center", marginTop: "2rem"}}>
-        <div style={{display: "flex", flexDirection: "column", alignItems: "flex-end"}}>
-          <ColorPicker color={Color(getCurrentColor())} onColorChange={onColorChange}/>
+      
+      <ImportModal show={showImportModal} onAccept={onAcceptImport} onExit={() => {
+        setShowImportModal(false)
+      }}/>
+      
+      <div style={{display: "flex", alignItems: "start", justifyContent: "center", marginTop: "0.5em"}}>
+        <div style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-end",
+          margin: " 2.3em 1em 0 0",
+          zIndex: 0
+        }}>
+          <div style={{position: "relative"}}>
+            <ColorPicker color={Color(getCurrentColor())} onColorChange={onColorChange}/>
+            <img src={colorPickerToTargetScheme}
+                 style={{position: "absolute", top: "2.4em", right: "-1.9em", width: "2.8em"}}
+            />
+          </div>
           <div style={{display: "flex"}}>
             <Link href={"#"} icon={warframeLogo} width={3} height={3}/>
             <Link href={"https://discord.gg/WWBYuY3"} icon={discordLogo} width={3} height={3}/>
           </div>
-          <Link href={"https://github.com/AvroraPolnareff/warframe-color-picker-ts"} icon={githubLogo} width={3} height={3}/>
+          <Link href={"https://github.com/AvroraPolnareff/warframe-color-picker-ts"} icon={githubLogo} width={3}
+                height={3}/>
         </div>
+        
         <div style={{display: "flex", flexDirection: "column"}}>
-          <TargetScheme
-            switched={switched} onSwitch={onSwitch}
-            defaultColors={defaultColors} manualColors={manualColors}
-            onCellChange={onCellChange} onImportClick={() => setShowImportModal(true)}
-          />
-          <Suggestions matchedColors={matchedColors}
-                       onSuggestionClick={onSuggestionClick}
-                       onPalettesClick={() => setShowPalettesModal(true)}
-                       isSuggestionsUpdating={isColorChanging}
-          />
+          <div style={{position: "relative"}}>
+            <TargetScheme
+              switched={switched} onSwitch={onSwitch}
+              defaultColors={defaultColors} manualColors={manualColors}
+              onCellChange={onCellChange} onImportClick={() => setShowImportModal(true)}
+            />
+            <img src={targetSchemeToSuggestions}
+                 style={{position: "absolute", bottom: "-1.9em", right: "2.3em", width: "5.4em"}}
+            />
+          </div>
+          <div style={{marginTop: "1.2em", zIndex: 2, position: "relative"}}>
+            <Suggestions matchedColors={matchedColors}
+                         onSuggestionClick={onSuggestionClick}
+                         onPalettesClick={() => setShowPalettesModal(true)}
+                         isSuggestionsUpdating={isColorChanging}
+            />
+            <img src={suggestionsToSelectedColor}
+                 style={{position: "absolute", top: "1.7em", right: "-1.7em", width: "2.6em"}}
+            />
+          </div>
         </div>
-        <SelectedColor paletteName={selectedColor.paletteName} colorPosition={selectedColor.position}/>
+        
+        <div style={{zIndex: 3, marginTop: "2.3em", marginLeft: "1em"}}>
+          <SelectedColor paletteName={selectedColor.paletteName} colorPosition={selectedColor.position}/>
+        </div>
       </div>
-      
+    
     </StyledApp>
   );
 }

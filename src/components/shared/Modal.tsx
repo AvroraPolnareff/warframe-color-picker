@@ -29,7 +29,7 @@ export const Modal : FC<ModalProps> = ({show, width, height, name, description, 
 const StyledModal = styled.div<{show: boolean}>`
   width: 100%;
   height: 100%;
-  z-index: 2;
+  z-index: 100;
   position: fixed;
   display: ${props => props.show ? "block" : "none"};
   left: 0; top: 0;

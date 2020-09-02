@@ -37,7 +37,7 @@ const TargetScheme: FC<TargetSchemeProps> = (
   
   
   return (
-    <Window width={14.321}>
+    <Window width={14.321} style={{zIndex: 1}}>
       
       <FlexColumnCenter>
         <Header>TARGET SCHEME</Header>
