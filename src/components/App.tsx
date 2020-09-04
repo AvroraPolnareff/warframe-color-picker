@@ -14,8 +14,6 @@ import {SelectedColor} from "./SelectedColor";
 import {Header} from "./Header";
 import {ImportModal} from "./ImportModal";
 import {PalettesModal} from "./shared/PalettesModal";
-import {Modal} from "./shared/Modal";
-import {Button} from "./shared/Button";
 import discordLogo from "../assets/discord-logo-DADADA 1.svg"
 import githubLogo from "../assets/github-logo-DADADA.svg"
 import warframeLogo from "../assets/wf-logo-DADADA 1.svg"
@@ -75,7 +73,6 @@ function App() {
   const [switched, setSwitched] = useState(false)
   
   const [showImportModal, setShowImportModal] = useState(false)
-  const [showOverrideModal, setShowOverrideModal] = useState(false)
   const [showPalettesModal, setShowPalettesModal] = useState(false)
   const [availablePalettes, setAvailablePalettes] = useStickyState<string[]>(initAvailablePalettes, "availablePalettes")
   
@@ -122,9 +119,7 @@ function App() {
   }
   const onSuggestionClick = (key: string) => {
     const filteredColor = matchedColors.filter(({uid}) => uid === key)[0]
-    if (filteredColor.uid === selectedColor.uid) {
-      setShowOverrideModal(true);
-    } else {
+    if (filteredColor.uid !== selectedColor.uid) {
       setSelectedColor(filteredColor);
     }
   }
@@ -169,7 +164,6 @@ function App() {
   
   const onOverrideColor = () => {
     onColorChange(Color(selectedColor.color))
-    setShowOverrideModal(false)
   }
   
   return (
@@ -184,17 +178,6 @@ function App() {
                        onExit={() => setShowPalettesModal(false)}/>
         : null
       }
-      
-      <Modal width={34} show={showOverrideModal} name={"suggestions"} description={"OVERWRITE TARGET SCHEME"}
-             onExit={() => setShowOverrideModal(false)}>
-        Warning: this action will overwrite your <b>Target Scheme</b> selected color. The<b> Suggestions</b> tab will be
-        updated accordingly.
-        <div style={{textAlign: "right", marginTop: "0.2em"}}>
-          <Button round small warning onClick={() => setShowOverrideModal(false)}
-                  style={{marginRight: '0.4em'}}>clear</Button>
-          <Button round small primary onClick={() => onOverrideColor()}>accept</Button>
-        </div>
-      </Modal>
       
       <ImportModal show={showImportModal} onAccept={onAcceptImport} onExit={() => {
         setShowImportModal(false)
@@ -238,6 +221,7 @@ function App() {
                          onSuggestionClick={onSuggestionClick}
                          onPalettesClick={() => setShowPalettesModal(true)}
                          isSuggestionsUpdating={isColorChanging}
+                         onSwapColor={onOverrideColor}
             />
             <img src={suggestionsToSelectedColor}
                  style={{position: "absolute", top: "1.7em", right: "-1.7em", width: "2.6em"}}

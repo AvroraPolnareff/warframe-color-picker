@@ -7,8 +7,13 @@ interface ColorCellProps {
   onClick?: () => void
 }
 
-export const ColorCell : React.FC<ColorCellProps> = ({outline, color, onClick}) => {
-  return (<OutlineWrapper outline={outline}><StyledColorCell onClick={onClick} color={color}/></OutlineWrapper>)
+export const ColorCell : React.FC<ColorCellProps> = ({outline, color, onClick, children}) => {
+  return (
+    <OutlineWrapper outline={outline}>
+      <StyledColorCell onClick={onClick} color={color}>
+        {children}
+      </StyledColorCell>
+    </OutlineWrapper>)
 }
 
 const gradient = keyframes`
@@ -36,7 +41,6 @@ const OutlineWrapper = styled.div<{outline?: boolean}>`
     justify-content: center;
     margin: 0 0;
     border-radius: 0.7em;
-    //height: 1.20rem;
     background: repeat ${ props => props.outline &&
         "linear-gradient(120deg, rgba(233,165,165,1) 0%, " +
         "rgba(184,193,192,1) 25%, rgba(101,192,224,1) 50%, " +
@@ -51,13 +55,8 @@ const StyledColorCell = styled.div.attrs<{color: string}>((props) => ({
   style: {background: props.color}
 }))`
     content: " ";
-    //background-color: #000000;
     height: 1.07em;
     margin: 0.15em;
     width: 1.27em;
     border-radius: 0.55em;
-    /*box-shadow:
-        0 1px 2px #fff, /*bottom external highlight*/
-
-    /*    inset 0.06rem 0.06rem 1px rgba(255,255,255,0.8); /*top internal highlight*/
 `

@@ -1,5 +1,5 @@
 import React, {FC, useState} from "react";
-import styled, {DefaultTheme, withTheme} from "styled-components";
+import styled from "styled-components";
 import {Window} from "./shared/Window";
 import {FlexColumnCenter} from "./shared/FlexColumnCenter";
 import {Button} from "./shared/Button";
@@ -142,7 +142,7 @@ interface ColorEntryProps {
 const ColorEntry: FC<ColorEntryProps> = ({text, color, selected, onClick}) => {
   return (
     <StyledColorEntry onClick={onClick}>
-      <ColorCell outline={selected} color={color}/>
+        <ColorCell outline={selected} color={color}/>
       <ColorName>{text}</ColorName>
     </StyledColorEntry>
   )
