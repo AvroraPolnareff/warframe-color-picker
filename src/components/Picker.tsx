@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, FC, useEffect, useRef} from "react";
 import {throttle} from "lodash"
 import Color from "color";
 
@@ -68,7 +68,6 @@ export class Picker extends Component<PickerProps> {
   }
 }
 
-
 interface Position {
   x: number,
   y: number
@@ -79,7 +78,6 @@ enum Drag {
   quad,
   none
 }
-
 
 class CanvasPicker {
   private wheel : Wheel
@@ -197,7 +195,6 @@ class CanvasPicker {
   
   }
   
-  
   public handleMouseUp = () => {
     this.drag = Drag.none
   }
@@ -206,8 +203,6 @@ class CanvasPicker {
     const ctx = this.canvas.getContext('2d')
     if (!ctx) return
     ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
-
-    
     
     this.wheel.draw(this.canvas)
     this.quad.draw(this.canvas, this.color.hue())

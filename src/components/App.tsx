@@ -13,7 +13,7 @@ import {MatchedColor, Suggestions} from "./Suggestions";
 import {SelectedColor} from "./SelectedColor";
 import {Header} from "./Header";
 import {ImportModal} from "./ImportModal";
-import {PalettesModal} from "./shared/PalettesModal";
+import {PalettesModal} from "./PalettesModal";
 import discordLogo from "../assets/discord-logo-DADADA 1.svg"
 import githubLogo from "../assets/github-logo-DADADA.svg"
 import warframeLogo from "../assets/wf-logo-DADADA 1.svg"

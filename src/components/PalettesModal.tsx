@@ -1,10 +1,10 @@
 import React, {FC, useState} from "react"
 import styled from "styled-components";
-import {Modal} from "./Modal";
-import {palettes} from "../../common/palettes";
-import {Button} from "./Button";
-import {Divider} from "./Divider";
-import {WarframePalette} from "../SelectedColor";
+import {Modal} from "./shared/Modal";
+import {palettes} from "../common/palettes"
+import {Button} from "./shared/Button";
+import {Divider} from "./shared/Divider";
+import {WarframePalette} from "./shared/WarframePalette";
 
 interface PalettesModalProps {
   show: boolean,

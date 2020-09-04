@@ -34,11 +34,8 @@ const TargetScheme: FC<TargetSchemeProps> = (
     }).catch(() => {alert("error!")})
   }
   
-  
-  
   return (
     <Window width={14.321} style={{zIndex: 1}}>
-      
       <FlexColumnCenter>
         <Header>TARGET SCHEME</Header>
         <div style={{marginBottom: "0.3em", }}>
@@ -59,34 +56,12 @@ const TargetScheme: FC<TargetSchemeProps> = (
   )
 }
 
-interface ManualProps {
-  colors: string[],
-  onCellChange: (colorPosition: number) => void
-}
-
-const Manual : FC<ManualProps> = ({colors, onCellChange}) => {
-  const [currentCell, setCurrentCell] = useState(0)
-  
-  const isSelected = (number: number) => currentCell === number;
-  
-  const onCellClick = (number: number) => {
-    setCurrentCell(number)
-    onCellChange(number)
-  }
-  
-  return (
-    <StyledManual style={{height: "9.2em", paddingBottom: "0.25em", marginTop: "0.2em"}}>
-      
-      {colors.map((color, key) => <ColorCell color={color} outline={isSelected(key)} onClick={() => onCellClick(key)}/>)}
-    </StyledManual>
-  )
-}
-
-const StyledManual = styled.div`
-  display: grid;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  row-gap: 0.15em;
+const Header = styled.h2`
+    font-weight: 900;
+    color: ${props => props.theme.colors.targetSchemeHeader};
+    margin-bottom: 0.15em; margin-top: 0 ;
+    pointer-events: none;
+    user-select: none;
 `
 
 interface DefaultProps {
@@ -132,6 +107,36 @@ const Default: FC<DefaultProps> = ({colors, onCellChange}) => {
   )
 }
 
+interface ManualProps {
+  colors: string[],
+  onCellChange: (colorPosition: number) => void
+}
+
+const Manual : FC<ManualProps> = ({colors, onCellChange}) => {
+  const [currentCell, setCurrentCell] = useState(0)
+  
+  const isSelected = (number: number) => currentCell === number;
+  
+  const onCellClick = (number: number) => {
+    setCurrentCell(number)
+    onCellChange(number)
+  }
+  
+  return (
+    <StyledManual style={{height: "9.2em", paddingBottom: "0.25em", marginTop: "0.2em"}}>
+      
+      {colors.map((color, key) => <ColorCell color={color} outline={isSelected(key)} onClick={() => onCellClick(key)}/>)}
+    </StyledManual>
+  )
+}
+
+const StyledManual = styled.div`
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  row-gap: 0.15em;
+`
+
 interface ColorEntryProps {
   text: string,
   color: string,
@@ -147,8 +152,6 @@ const ColorEntry: FC<ColorEntryProps> = ({text, color, selected, onClick}) => {
     </StyledColorEntry>
   )
 }
-
-
 
 const ColorName = styled.span`
     font-weight: normal;
@@ -166,16 +169,6 @@ const StyledColorEntry = styled.div`
     align-items: center;
     width: 100%;
     margin-bottom: 0.11em;
-`
-
-
-const Header = styled.h2`
-    font-weight: 900;
-    color: ${props => props.theme.colors.targetSchemeHeader};
-    margin-bottom: 0.15rem; margin-top: 0 ;
-    font-size: 1.6rem
-    pointer-events: none;
-    user-select: none;
 `
 
 export default TargetScheme
