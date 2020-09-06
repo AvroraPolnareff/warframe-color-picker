@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Warframe Color Picker",
+  "name": "Finds similar colors in warframe palettes.",
   "icons": [
     {
       "src": "favicon.ico",
