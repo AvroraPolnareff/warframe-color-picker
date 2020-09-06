@@ -8,3 +8,58 @@
     font-weight: 900;
     font-style: normal;
 }
+
+@font-face {
+    font-family: 'Gilroy';
+    src: url('%PUBLIC_URL%/fonts/Gilroy-Bold.eot');
+    src: local('Gilroy Bold'), local('Gilroy-Bold'),
+    url('%PUBLIC_URL%/fonts/Gilroy-Bold.eot?#iefix') format('embedded-opentype'),
+    url('%PUBLIC_URL%/fonts/Gilroy-Bold.woff') format('woff'),
+    url('%PUBLIC_URL%/fonts/Gilroy-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Gilroy';
+    src: url('%PUBLIC_URL%/fonts/Gilroy-RegularItalic.eot');
+    src: local('%PUBLIC_URL%/fonts/Gilroy Regular Italic'), local('Gilroy-RegularItalic'),
+    url('%PUBLIC_URL%/fonts/Gilroy-RegularItalic.eot?#iefix') format('embedded-opentype'),
+    url('%PUBLIC_URL%/fonts/Gilroy-RegularItalic.woff') format('woff'),
+    url('%PUBLIC_URL%/fonts/Gilroy-RegularItalic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Gilroy';
+    src: url('%PUBLIC_URL%/fonts/Gilroy-Regular.eot');
+    src: local('%PUBLIC_URL%/fonts/Gilroy Regular'), local('Gilroy-Regular'),
+    url('%PUBLIC_URL%/fonts/Gilroy-Regular.eot?#iefix') format('embedded-opentype'),
+    url('%PUBLIC_URL%/fonts/Gilroy-Regular.woff') format('woff'),
+    url('%PUBLIC_URL%/fonts/Gilroy-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Gilroy';
+    src: url('%PUBLIC_URL%/fonts/Gilroy-Medium.eot');
+    src: local('%PUBLIC_URL%/fonts/Gilroy Medium'), local('Gilroy-Medium'),
+    url('%PUBLIC_URL%/fonts/Gilroy-Medium.eot?#iefix') format('embedded-opentype'),
+    url('%PUBLIC_URL%/fonts/Gilroy-Medium.woff') format('woff'),
+    url('%PUBLIC_URL%/fonts/Gilroy-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Gilroy';
+    src: url('%PUBLIC_URL%/fonts/Gilroy-Light.eot');
+    src: local('%PUBLIC_URL%/fonts/Gilroy Light'), local('Gilroy-Light'),
+    url('%PUBLIC_URL%/fonts/Gilroy-Light.eot?#iefix') format('embedded-opentype'),
+    url('%PUBLIC_URL%/fonts/Gilroy-Light.woff') format('woff'),
+    url('%PUBLIC_URL%/fonts/Gilroy-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
