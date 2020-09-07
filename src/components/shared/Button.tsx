@@ -27,16 +27,16 @@ export const Button = styled.div<ButtonProps>`
   text-transform: uppercase;
   transition: border-radius 0.50s linear, box-shadow 0.2s linear, background-color 0.15s linear;
   border-radius: ${props => props.round ? "3em" : "0.25em"};
+  font-stretch: 50%;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  
   ${props => props.small && css`
   font-size: 0.8em;
   letter-spacing: 0.035em;
   padding: 0.2em 0.4em;
   margin: 0;
-  
   `};
-  font-stretch: 50%;
-  outline: none;
-  -webkit-tap-highlight-color: transparent;
   
   &:hover {
     background-color: ${props => Color(props.theme.colors.secondary).darken(0.2).toString()};

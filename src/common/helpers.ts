@@ -5,8 +5,6 @@ import Color from "color";
 import {initDefaultColors, initManualColors} from "../components/App";
 
 
-
-
 export const findClosestColors = (colorToCompare: string, palettes: Palette[], limit: number): MatchedColor[] => {
   
   const distances = palettes.map(palette => {
@@ -81,8 +79,8 @@ export const useStickyState = <T>(initState: T, sticker: string) => {
 }
 
 export const convertColorsToExportString = (defaultColors: string[], manualColors: string[]) => {
-  const trimNulls = (colorsString: string) : string => {
-    const nullIndex =  colorsString.lastIndexOf("#NULL")
+  const trimNulls = (colorsString: string): string => {
+    const nullIndex = colorsString.lastIndexOf("#NULL")
     if (colorsString.slice(0, nullIndex).length === colorsString.length - 5)
       return trimNulls(colorsString.slice(0, nullIndex))
     else
@@ -113,7 +111,7 @@ export const convertColorsToExportString = (defaultColors: string[], manualColor
   return `DEFAULT${trimNulls(defaultColorsString)}MANUAL${trimNulls(manualColorsString)}`
 }
 
-export const convertExportStringToColors = (exportString : string) => {
+export const convertExportStringToColors = (exportString: string) => {
   if (!exportString.startsWith("DEFAULT")) throw Error("'DEFAULT' string not found.")
   
   const manualColorsPosition = exportString.indexOf("MANUAL")
@@ -131,7 +129,7 @@ export const convertExportStringToColors = (exportString : string) => {
   const regexp = /^([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/i
   
   let validDefaultColors = defaultColors.map((color, index) => {
-    if(color.match(regexp)) return "#" + color
+    if (color.match(regexp)) return "#" + color
     else if (color === "NULL") return initDefaultColors[index]
     else throw Error(`color "${color} in default colors is not valid"`)
   })
@@ -141,7 +139,7 @@ export const convertExportStringToColors = (exportString : string) => {
   }
   
   let validManualColors = manualColors.map((color, index) => {
-    if(color.match(regexp)) return "#" + color
+    if (color.match(regexp)) return "#" + color
     else if (color === "NULL") return initManualColors[index]
     else throw Error(`color "${color} in manual colors is not valid"`)
   })
@@ -151,4 +149,42 @@ export const convertExportStringToColors = (exportString : string) => {
   }
   return {defaultColors: validDefaultColors, manualColors: validManualColors}
   
+}
+
+
+export const colorsFromImage = (image: CanvasImageSource) : string[] => {
+  const canvas = document.createElement("canvas")
+  canvas.width = image.width as number
+  canvas.height = image.height as number
+  const ctx = canvas.getContext("2d")
+  if (!ctx) throw new Error("canvas is not loaded")
+  
+  ctx.drawImage(image, 0, 0)
+  const width = image.width as number
+  const height = image.height as number
+  
+  const yStep = height / 6
+  const yOffset = yStep / 2
+  
+  const xStep = width / 2
+  const xOffset = xStep / 2
+  
+  let colors : string[] = []
+  
+  for (let i = 0; i < 4; i++) {
+    const y = yStep * i + yOffset
+    
+    colors.push(Color(ctx.getImageData(xStep, y, 1, 1).data, "rgb").hex())
+  }
+  
+  for (let i = 4; i < 6; i++) {
+    const y = yStep * i + yOffset
+    for (let j = 0; j < 2; j++) {
+      const x = xStep * j + xOffset
+      colors.push(Color(ctx.getImageData(x, y, 1, 1).data, "rgb").hex())
+    }
+    
+  }
+  canvas.remove()
+  return colors
 }

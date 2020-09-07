@@ -179,9 +179,12 @@ function App() {
         : null
       }
       
-      <ImportModal show={showImportModal} onAccept={onAcceptImport} onExit={() => {
-        setShowImportModal(false)
-      }}/>
+      <ImportModal
+        show={showImportModal}
+        onAccept={onAcceptImport}
+        onExit={() => {setShowImportModal(false)}}
+        onScreenshotImport={(colors => {setDefaultColors(colors); setShowImportModal(false)})}
+      />
       
       <div style={{display: "flex", alignItems: "start", justifyContent: "center", marginTop: "0.5em"}}>
         <div style={{
