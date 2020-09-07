@@ -59,12 +59,12 @@ export const PalettesModal : FC<PalettesModalProps> = (
 
 const HoveredPalette  = styled.div`
   position: absolute;
-  right: -10.2em;
+  right: -11.2em;
   top: -1.9em;
   border: 4px solid ${props => props.theme.colors.secondary};
-  padding: 0.4rem 0.6rem;
+  padding: 0.4em 0.6em;
   background-color: white;
-  border-radius: 0.8rem;
+  border-radius: 0.8em;
 `
 
 const PaletteName = styled.div`
@@ -77,6 +77,7 @@ const PaletteName = styled.div`
   padding: 0.5em 0;
   margin-bottom: 0.5em;
   margin-top: 0.4em;
+  font-weight: bold;
 `
 
 
@@ -87,13 +88,13 @@ const Grid = styled.div`
   row-gap: 0.2em;
   
   justify-items: start;
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.8em;
 `
 
 const ColumnHead = styled.div`
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.2em;
   &:before {
     content: "•";
-    margin: auto 0.2rem;
+    margin: auto 0.2em;
   }
 `
