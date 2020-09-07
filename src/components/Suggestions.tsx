@@ -1,4 +1,4 @@
-import React, {Component, FC, RefObject, useEffect, useRef, useState} from "react"
+import React, { FC, useEffect, useRef, useState} from "react"
 import {Position} from "../common/Palette";
 import {Divider} from "./shared/Divider";
 import {FlexColumnCenter} from "./shared/FlexColumnCenter";
@@ -125,7 +125,7 @@ const Faded = styled.div`
 const ItalicText = styled.div`
   margin-top: 0.2em;
   font-style: italic;
-  font-weight: 400;
+  font-weight: normal;
   pointer-events: none;
   user-select: none;
 `
