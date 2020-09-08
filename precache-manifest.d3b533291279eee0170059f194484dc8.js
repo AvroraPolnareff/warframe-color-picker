@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "c5c6e28a173a06ead2b89589fd5b1361",
+    "revision": "d20afd726cfb64955130898de5ebbc9b",
     "url": "/warframe-color-picker-ts/index.html"
   },
   {
