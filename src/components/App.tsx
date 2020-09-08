@@ -197,7 +197,13 @@ function App() {
           <div style={{position: "relative"}}>
             <ColorPicker color={Color(getCurrentColor())} onColorChange={onColorChange}/>
             <img src={colorPickerToTargetScheme}
-                 style={{position: "absolute", top: "2.4em", right: "-1.9em", width: "2.8em"}}
+                 style={{position: "absolute",
+                   top: "2.4em",
+                   right: "-1.9em",
+                   width: "2.8em",
+                   userSelect: "none",
+                   pointerEvents: "none"
+                 }}
             />
           </div>
           <div style={{display: "flex"}}>
@@ -216,7 +222,13 @@ function App() {
               onCellChange={onCellChange} onImportClick={() => setShowImportModal(true)}
             />
             <img src={targetSchemeToSuggestions}
-                 style={{position: "absolute", bottom: "-1.9em", right: "2.3em", width: "5.4em"}}
+                 style={{position: "absolute",
+                   bottom: "-1.9em",
+                   right: "2.3em",
+                   width: "5.4em",
+                   userSelect: "none",
+                   pointerEvents: "none"
+                 }}
             />
           </div>
           <div style={{marginTop: "1.2em", zIndex: 2, position: "relative"}}>
@@ -227,7 +239,14 @@ function App() {
                          onSwapColor={onOverrideColor}
             />
             <img src={suggestionsToSelectedColor}
-                 style={{position: "absolute", top: "1.7em", right: "-1.7em", width: "2.6em"}}
+                 style={{
+                   position: "absolute",
+                   top: "1.7em",
+                   right: "-1.7em",
+                   width: "2.6em",
+                   userSelect: "none",
+                   pointerEvents: "none"
+                 }}
             />
           </div>
         </div>
