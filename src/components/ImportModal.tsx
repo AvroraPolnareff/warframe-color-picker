@@ -30,12 +30,32 @@ export const ImportModal: FC<ImportModalProps> = ({show, onAccept, onExit, onScr
       inputRef.current.value = ""
     })
     reader.readAsDataURL(file)
-    
   }
+
+  
+  const onPaste = (ev: React.ClipboardEvent<HTMLTextAreaElement>) => {
+    if (!ev.clipboardData) return
+    const item = ev.clipboardData.items[0]
+    
+    if (item.type.indexOf("image") === 0) {
+      const blob = item.getAsFile()
+      if (!blob) return;
+      
+      const reader = new FileReader()
+      reader.onload = (ev => {
+        const img = new Image()
+        if (!ev.target?.result) return
+        img.onload = () => onScreenshotImport(colorsFromImage(img))
+        img.src = ev.target.result as string
+      })
+      reader.readAsDataURL(blob)
+    }
+  }
+  
   
   return (
     <Modal show={show} width={27} name={"Scheme Import"} description={"Insert the code below"} onExit={onExit}>
-      <TextArea onChange={e => setContent(e.target.value)} value={content}/>
+      <TextArea onChange={e => setContent(e.target.value)} value={content} onPaste={onPaste}/>
       <div style={{display: "flex", justifyContent: "space-between"}}>
         <div style={{textAlign: "left"}}>
           <input ref={inputRef} type="file" style={{position: "fixed", top: -100}} onChange={onScreenshotImportChange}

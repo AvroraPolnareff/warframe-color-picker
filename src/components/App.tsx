@@ -172,8 +172,10 @@ function App() {
       <div/>
       
       {showPalettesModal ?
-        <PalettesModal availablePalettes={availablePalettes} show={showPalettesModal}
-                       onPaletteClick={onPaletteClick} onDisableAll={() => setAvailablePalettes(["Classic"])}
+        <PalettesModal availablePalettes={availablePalettes}
+                       show={showPalettesModal}
+                       onPaletteClick={onPaletteClick}
+                       onDisableAll={() => setAvailablePalettes(["Classic"])}
                        onEnableAll={() => setAvailablePalettes(initAvailablePalettes)}
                        onExit={() => setShowPalettesModal(false)}/>
         : null
@@ -197,7 +199,8 @@ function App() {
           <div style={{position: "relative"}}>
             <ColorPicker color={Color(getCurrentColor())} onColorChange={onColorChange}/>
             <img src={colorPickerToTargetScheme}
-                 style={{position: "absolute",
+                 style={{
+                   position: "absolute",
                    top: "2.4em",
                    right: "-1.9em",
                    width: "2.8em",
@@ -222,7 +225,8 @@ function App() {
               onCellChange={onCellChange} onImportClick={() => setShowImportModal(true)}
             />
             <img src={targetSchemeToSuggestions}
-                 style={{position: "absolute",
+                 style={{
+                   position: "absolute",
                    bottom: "-1.9em",
                    right: "2.3em",
                    width: "5.4em",
