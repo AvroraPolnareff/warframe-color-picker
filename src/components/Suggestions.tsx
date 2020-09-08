@@ -189,21 +189,18 @@ const StyledSuggestion = styled.div.attrs<{ selected: boolean, state: boolean, d
     opacity: props.state ? "0" : "1"
   }
 }))<{ selected: boolean, state: boolean, delay?: number }>`
-            ${props => !props.selected && "cursor: pointer"};
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            text-transform: uppercase;
-            padding-bottom: 0.055rem;
-            user-select: none;
-            -webkit-tap-highlight-color: transparent;
-            transition: opacity 0.15s linear;
-            
-            }
-            
-            `
+  ${props => !props.selected && "cursor: pointer"};
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-transform: uppercase;
+  padding-bottom: 0.055rem;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: opacity 0.15s linear;
+`
 
 const FlexCentred = styled.div`
-            display:flex;
-            align-items: center;
-            `
+  display: flex;
+  align-items: center;
+`

@@ -162,7 +162,7 @@ const StyledColorInput = styled.input`
     max-height: 1.3em;
     margin: 0 0.2em;
     border-radius: 0.3em;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 1.06em;
     width: 2.35em;
     border: none;
@@ -195,6 +195,7 @@ const Grid2X4 = styled.div`
 const ColorSchemeName = styled.div`
     padding-right: 0.3em;
     font-weight: bold;
+    font-size: 1.06em;
 `
 
 interface HexInputProps {
