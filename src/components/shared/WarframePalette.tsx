@@ -6,19 +6,21 @@ import styled, {css, keyframes} from "styled-components";
 interface WarframePaletteProps {
   size: number,
   paletteName: string,
-  colorPosition?: Position
+  colorPosition?: Position,
+  onColorHover?: (colorPosition?: Position) => void
 }
 
-export const WarframePalette: FC<WarframePaletteProps> = ({size, paletteName, colorPosition}) => {
+export const WarframePalette: FC<WarframePaletteProps> = ({size, paletteName, colorPosition, onColorHover}) => {
   const palette = palettes.filter(palette => palette.name === paletteName)[0]
   
   return (
-    <StyledWarframePalette size={size}>
+    <StyledWarframePalette size={size} onMouseLeave={() => onColorHover && onColorHover()}>
       {palette.colors.map(color => (
         <PaletteCell
           selected={color.position.x === colorPosition?.x && colorPosition?.y === color.position.y}
           color={color.hex}
           size={size}
+          onHover={() => onColorHover && onColorHover(color.position)}
         />
       ))}
     </StyledWarframePalette>
@@ -36,15 +38,22 @@ const StyledWarframePalette = styled.div<{ size: number }>`
   overflow: hidden;
 `
 
-const PaletteCell: FC<{ size: number, color: string, selected: boolean }> = ({size, color, selected}) => {
+interface PaletteCellProps {
+  size: number,
+  color: string,
+  selected: boolean,
+  onHover: () => void
+}
+
+const PaletteCell: FC<PaletteCellProps> = ({size, color, selected, onHover}) => {
   return (
     <>
       {selected
-        ? <BackgroundGradient size={size}>
+        ? <BackgroundGradient size={size} onMouseOver={() => onHover()}>
           <StyledPaletteCell size={size} color={color} selected={selected}/>
         </BackgroundGradient>
         
-        : <StyledPaletteCell size={size} color={color} selected={selected}/>
+        : <StyledPaletteCell size={size} color={color} selected={selected} onMouseOver={() => onHover()}/>
       }
     
     </>

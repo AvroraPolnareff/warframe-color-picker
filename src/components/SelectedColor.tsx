@@ -1,9 +1,8 @@
-import React, {FC} from "react"
+import React, {FC, useEffect, useState} from "react"
 import {Window} from "./shared/Window";
 import {FlexColumnCenter} from "./shared/FlexColumnCenter";
-import styled, {css, keyframes} from "styled-components";
+import styled from "styled-components";
 import {Position} from "../common/Palette";
-import {palettes} from "../common/palettes";
 import waves from "../assets/waves.svg"
 import {WarframePalette} from "./shared/WarframePalette";
 
@@ -13,6 +12,20 @@ interface SelectedColorProps {
 }
 
 export const SelectedColor: FC<SelectedColorProps> = ({paletteName, colorPosition}) => {
+  const [name, setName] = useState("")
+  
+  useEffect(() => {
+    setName(paletteName)
+  }, [paletteName])
+  
+  const onColorHover = (position?: Position) => {
+    if (position) {
+      setName(`x: ${position.x + 1}, y: ${position.y + 1}`)
+    } else {
+      setName(paletteName)
+    }
+  }
+  
   return (
     <Window width={11}>
       <FlexColumnCenter>
@@ -31,10 +44,14 @@ export const SelectedColor: FC<SelectedColorProps> = ({paletteName, colorPositio
           pointerEvents: "none",
           userSelect: "none"
         }}/>
-        <PaletteName>{paletteName}</PaletteName>
+        <PaletteName>{name}</PaletteName>
         
-        <WarframePalette size={1.75} paletteName={paletteName} colorPosition={colorPosition}/>
-      
+        <WarframePalette
+          size={1.75}
+          paletteName={paletteName}
+          colorPosition={colorPosition}
+          onColorHover={onColorHover}
+        />
       </FlexColumnCenter>
     </Window>
   )
