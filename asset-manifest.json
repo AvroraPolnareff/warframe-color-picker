@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.js": "/warframe-color-picker-ts/static/js/main.68f00085.chunk.js",
-    "main.js.map": "/warframe-color-picker-ts/static/js/main.68f00085.chunk.js.map",
+    "main.js": "/warframe-color-picker-ts/static/js/main.9f46e47b.chunk.js",
+    "main.js.map": "/warframe-color-picker-ts/static/js/main.9f46e47b.chunk.js.map",
     "runtime-main.js": "/warframe-color-picker-ts/static/js/runtime-main.8d4a33d4.js",
     "runtime-main.js.map": "/warframe-color-picker-ts/static/js/runtime-main.8d4a33d4.js.map",
-    "static/js/2.e5c6e965.chunk.js": "/warframe-color-picker-ts/static/js/2.e5c6e965.chunk.js",
-    "static/js/2.e5c6e965.chunk.js.map": "/warframe-color-picker-ts/static/js/2.e5c6e965.chunk.js.map",
+    "static/js/2.fa7ad42d.chunk.js": "/warframe-color-picker-ts/static/js/2.fa7ad42d.chunk.js",
+    "static/js/2.fa7ad42d.chunk.js.map": "/warframe-color-picker-ts/static/js/2.fa7ad42d.chunk.js.map",
     "index.html": "/warframe-color-picker-ts/index.html",
-    "precache-manifest.46b48e73d438184b8b9281132f05a4f9.js": "/warframe-color-picker-ts/precache-manifest.46b48e73d438184b8b9281132f05a4f9.js",
+    "precache-manifest.fdb690ec56a09a1c198621ff57624ba2.js": "/warframe-color-picker-ts/precache-manifest.fdb690ec56a09a1c198621ff57624ba2.js",
     "service-worker.js": "/warframe-color-picker-ts/service-worker.js",
-    "static/js/2.e5c6e965.chunk.js.LICENSE.txt": "/warframe-color-picker-ts/static/js/2.e5c6e965.chunk.js.LICENSE.txt",
+    "static/js/2.fa7ad42d.chunk.js.LICENSE.txt": "/warframe-color-picker-ts/static/js/2.fa7ad42d.chunk.js.LICENSE.txt",
     "static/media/SUGGESTIONS.svg": "/warframe-color-picker-ts/static/media/SUGGESTIONS.56bbb7cb.svg",
     "static/media/Wires (Col Pic -_ Tar Sch).svg": "/warframe-color-picker-ts/static/media/Wires (Col Pic -_ Tar Sch).469c10b4.svg",
     "static/media/Wires (Sugg -_ Sel Col).svg": "/warframe-color-picker-ts/static/media/Wires (Sugg -_ Sel Col).1baab6f1.svg",
@@ -24,7 +24,7 @@
   },
   "entrypoints": [
     "static/js/runtime-main.8d4a33d4.js",
-    "static/js/2.e5c6e965.chunk.js",
-    "static/js/main.68f00085.chunk.js"
+    "static/js/2.fa7ad42d.chunk.js",
+    "static/js/main.9f46e47b.chunk.js"
   ]
 }
