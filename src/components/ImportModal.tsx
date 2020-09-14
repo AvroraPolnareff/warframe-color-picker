@@ -73,7 +73,7 @@ export const ImportModal: FC<ImportModalProps> = ({show, onAccept, onExit, onScr
   )
 }
 
-const TextArea = styled.textarea.attrs(props => ({
+const TextArea = styled.textarea.attrs(() => ({
   rows: 3, autofocus: "true", placeholder: "Paste your code or scheme screenshot here...", spellCheck: "false"
 }))`
   border: none;
