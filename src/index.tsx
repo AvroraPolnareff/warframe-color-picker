@@ -7,11 +7,11 @@ import {defaultTheme} from "./common/themes";
 
 const GlobalStyle = createGlobalStyle`
   body {
-    font-size: 14px;
+    font-size: 23.75px;
   }
   @media (min-width: 1600px) {
     body {
-      font-size: 19.88px;
+      font-size: 23.75px;
     }
   }
   
