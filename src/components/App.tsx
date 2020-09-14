@@ -64,13 +64,11 @@ function App() {
     uid: "3274823"
   }
   
-  const [defaultColors, setDefaultColors] = useStickyState(initDefaultColors, "defaultColors")
-  const [manualColors, setManualColors] = useStickyState(initManualColors, "manualColors")
-  const [currentColors, setCurrentColors] = useState({default: 0, manual: 0})
+  const [paletteColors, setPaletteColors] = useStickyState(initManualColors, "manualColors")
+  const [currentColor, setCurrentColor] = useState(0)
   const [matchedColors, setMatchedColors] = useState<MatchedColor[]>([])
   const [isColorChanging, setIsColorChanging] = useState(false)
   const [selectedColor, setSelectedColor] = useState<MatchedColor>(initMatchedColor)
-  const [switched, setSwitched] = useState(false)
   
   const [showImportModal, setShowImportModal] = useState(false)
   const [showPalettesModal, setShowPalettesModal] = useState(false)
@@ -80,11 +78,7 @@ function App() {
   
   
   const getCurrentColor = (): string => {
-    if (switched) {
-      return manualColors[currentColors.manual]
-    } else {
-      return defaultColors[currentColors.default]
-    }
+    return paletteColors[currentColor]
   }
   
   const updateSuggestions = () => {
@@ -104,19 +98,14 @@ function App() {
       setIsColorChanging(true)
     }
     debounced.current(updateSuggestions)
-  }, [defaultColors, manualColors, currentColors, availablePalettes])
+  }, [paletteColors, currentColor, availablePalettes])
   
   const onColorChange = (color: Color) => {
-    if (!switched) {
-      const newColors = defaultColors.slice()
-      newColors[currentColors.default] = color.toString()
-      setDefaultColors(newColors)
-    } else {
-      const newColors = manualColors.slice()
-      newColors[currentColors.manual] = color.toString()
-      setManualColors(newColors)
-    }
+    const newColors = [...paletteColors]
+    newColors[currentColor] = color.toString()
+    setPaletteColors(newColors)
   }
+  
   const onSuggestionClick = (key: string) => {
     const filteredColor = matchedColors.filter(({uid}) => uid === key)[0]
     if (filteredColor.uid !== selectedColor.uid) {
@@ -124,24 +113,10 @@ function App() {
     }
   }
   
-  const onCellChange = (key: number) => {
-    if (switched) {
-      setCurrentColors({...currentColors, manual: key})
-    } else {
-      setCurrentColors({...currentColors, default: key})
-    }
-  }
-  
-  const onSwitch = () => {
-    setCurrentColors({default: 0, manual: 0})
-    setSwitched(!switched)
-  }
-  
   const onAcceptImport = (data: string) => {
     try {
       const importData = convertExportStringToColors(data)
-      setDefaultColors(importData.defaultColors)
-      setManualColors(importData.manualColors)
+      setPaletteColors(importData)
       setShowImportModal(false)
     } catch (e) {
       console.log(e)
@@ -172,20 +147,31 @@ function App() {
       <div/>
       
       {showPalettesModal ?
-        <PalettesModal availablePalettes={availablePalettes}
-                       show={showPalettesModal}
-                       onPaletteClick={onPaletteClick}
-                       onDisableAll={() => setAvailablePalettes(["Classic"])}
-                       onEnableAll={() => setAvailablePalettes(initAvailablePalettes)}
-                       onExit={() => setShowPalettesModal(false)}/>
+        <PalettesModal
+          availablePalettes={availablePalettes}
+          show={showPalettesModal}
+          onPaletteClick={onPaletteClick}
+          onDisableAll={() => setAvailablePalettes(["Classic"])}
+          onEnableAll={() => setAvailablePalettes(initAvailablePalettes)}
+          onExit={() => setShowPalettesModal(false)}
+        />
         : null
       }
       
       <ImportModal
         show={showImportModal}
         onAccept={onAcceptImport}
-        onExit={() => {setShowImportModal(false)}}
-        onScreenshotImport={(colors => {setDefaultColors(colors); setShowImportModal(false)})}
+        onExit={() => {
+          setShowImportModal(false)
+        }}
+        onScreenshotImport={(colors => {
+          setPaletteColors([
+            ...paletteColors.slice(0, Math.floor(currentColor / 8) * 8),
+            ...colors,
+            ...paletteColors.slice(Math.floor(currentColor / 8 + 1) * 8)
+          ]);
+          setShowImportModal(false)
+        })}
       />
       
       <div style={{display: "flex", alignItems: "start", justifyContent: "center", marginTop: "0.5em"}}>
@@ -197,15 +183,15 @@ function App() {
           zIndex: 0
         }}>
           <div style={{position: "relative"}}>
-            <ColorPicker color={Color(getCurrentColor())} onColorChange={onColorChange}/>
-            <img src={colorPickerToTargetScheme}
+            <ColorPicker
+              color={Color(getCurrentColor())}
+              onColorChange={onColorChange}
+            />
+            <Wires src={colorPickerToTargetScheme} alt=""
                  style={{
-                   position: "absolute",
                    top: "2.4em",
                    right: "-1.9em",
                    width: "2.8em",
-                   userSelect: "none",
-                   pointerEvents: "none"
                  }}
             />
           </div>
@@ -220,18 +206,15 @@ function App() {
         <div style={{display: "flex", flexDirection: "column"}}>
           <div style={{position: "relative"}}>
             <TargetScheme
-              switched={switched} onSwitch={onSwitch}
-              defaultColors={defaultColors} manualColors={manualColors}
-              onCellChange={onCellChange} onImportClick={() => setShowImportModal(true)}
+              paletteColors={paletteColors}
+              onCellClick={setCurrentColor}
+              onImportClick={() => setShowImportModal(true)}
             />
-            <img src={targetSchemeToSuggestions}
+            <Wires src={targetSchemeToSuggestions} alt=""
                  style={{
-                   position: "absolute",
                    bottom: "-1.9em",
                    right: "2.3em",
                    width: "5.4em",
-                   userSelect: "none",
-                   pointerEvents: "none"
                  }}
             />
           </div>
@@ -242,14 +225,11 @@ function App() {
                          isSuggestionsUpdating={isColorChanging}
                          onSwapColor={onOverrideColor}
             />
-            <img src={suggestionsToSelectedColor}
+            <Wires src={suggestionsToSelectedColor} alt=""
                  style={{
-                   position: "absolute",
                    top: "1.7em",
                    right: "-1.7em",
                    width: "2.6em",
-                   userSelect: "none",
-                   pointerEvents: "none"
                  }}
             />
           </div>
@@ -264,15 +244,21 @@ function App() {
   );
 }
 
+const Wires = styled.img`
+  position: absolute;
+  user-select: none;
+  pointer-events: none
+`
+
 export const StyledApp = styled.div`
-    height: 100vh;
-    color: ${props => props.theme.colors.secondary};
-    margin: 0;
-    font-family: "Gilroy", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  height: 100vh;
+  color: ${props => props.theme.colors.secondary};
+  margin: 0;
+  font-family: "Gilroy", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 `
 
 export default App;
