@@ -33,7 +33,7 @@ const TipOfADay = styled.img.attrs((props) => ({src: tipOfADay}))`
 `
 
 const TipWrapper = styled.div`
-  font-size: 1.3em;
+  font-size: 1.3rem;
   margin: 0.35em auto auto 0.35em;
   width: 39em;
   color: ${props => props.theme.colors.secondary};

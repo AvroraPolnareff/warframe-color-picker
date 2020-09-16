@@ -70,7 +70,7 @@ const HoveredPalette  = styled.div`
 const PaletteName = styled.div`
   text-align: center;
   color: ${props => props.theme.colors.secondary};
-  font-size: 0.655em;
+  font-size: 0.655rem;
   text-transform: uppercase;
   border: 0.15em solid ${props => props.theme.colors.tertiary};
   border-radius: 0.5em;

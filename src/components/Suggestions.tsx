@@ -80,7 +80,7 @@ export const Suggestions: FC<SuggestionsProps> = (props) => {
         <ItalicText>SCROLL FOR MORE!</ItalicText>
         <div style={{
           display: "flex", justifyContent: "space-between",
-          marginTop: "0.27rem", marginBottom: "0.3rem", marginRight: "0.3rem"
+          marginTop: "0.35em", marginBottom: "0.3em", marginRight: "0.6em"
         }}>
           <Button round onClick={props.onPalettesClick}>palettes</Button>
           <Switch switched={switched} width={3.5} onClick={() => setSwitched(!switched)} leftText={"%"}
@@ -91,7 +91,7 @@ export const Suggestions: FC<SuggestionsProps> = (props) => {
       <Divider/>
       <Faded>
         <Scrollbars
-          style={{height: "20em"}}
+          style={{height: "32.55em", width: "104%"}}
           autoHide autoHideDuration={200}
           ref={scrollbarsRef}
           onUpdate={onScrollbarUpdate}
@@ -117,7 +117,7 @@ export const Suggestions: FC<SuggestionsProps> = (props) => {
 }
 
 const Faded = styled.div`
-  margin-top: 0.4em;
+  margin-top: 0.5em;
   position: relative;
 `
 
@@ -165,7 +165,7 @@ const Suggestion: FC<SuggestionProps> = ({color, name, value, onSuggestionClick,
           {name.slice(0, 12) + (name.length > 12 ? "." : "")}
         </Badge>
       </FlexCentred>
-      <Badge>
+      <Badge width={3} style={{marginRight: "0.6em"}}>
         {value}
       </Badge>
     </StyledSuggestion>
@@ -195,6 +195,7 @@ const StyledSuggestion = styled.div.attrs<{ selected: boolean, state: boolean, d
   align-items: center;
   text-transform: uppercase;
   padding-bottom: 0.055rem;
+  margin-right: 0.2em;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
   transition: opacity 0.15s linear;

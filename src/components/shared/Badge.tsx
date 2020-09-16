@@ -1,15 +1,23 @@
 import styled, {css} from "styled-components";
 
-export const Badge = styled.div<{color?: string, width?: number, hoverable?: boolean, selected?: boolean}>`
+interface BadgeProps {
+  color?: string,
+  width?: number,
+  hoverable?: boolean,
+  selected?: boolean,
+}
+
+export const Badge = styled.div<BadgeProps>`
   background-color: ${props => props.color || props.theme.colors.secondary};
   color: ${props => props.theme.colors.badgeText};
-  padding: 0.1em 0.4em;
+  padding: 0.1em 0.45em;
+  
   margin: 0 0.2em;
   text-align: center;
   border-radius: 0.6em;
   font-weight: 700;
-  font-size: 0.8em;
-  ${props => props.width && `width: ${props.width}rem`};
+  font-size: 0.8rem;
+  ${props => props.width && `min-width: ${props.width}em`};
   transition: background-color 0.15s linear;
   ${props => props.hoverable && css`
     &:hover {

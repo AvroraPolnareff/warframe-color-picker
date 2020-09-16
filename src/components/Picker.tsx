@@ -28,6 +28,10 @@ export class Picker extends Component<PickerProps> {
   componentDidUpdate(prevProps: Readonly<PickerProps>, prevState: Readonly<{}>, snapshot?: any) {
     if (!this.picker) return
     this.picker.color = this.props.color
+    if (this.props.size !== prevProps.size) {
+      if (!this.ref) return
+      this.picker = new CanvasPicker(this.props.size, this.ref, this.props.color)
+    }
     this.picker.draw()
   }
   

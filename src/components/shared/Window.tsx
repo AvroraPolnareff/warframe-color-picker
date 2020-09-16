@@ -15,7 +15,7 @@ export const Window: React.FC<{
 }
 
 const Content = styled.div`
-    padding: 0.3rem 0.4rem;
+    padding: 0.3em 0.5em;
     border-radius: 0.54em;
     background-color: ${props => props.theme.colors.windowBackground};
     color: ${props => props.theme.colors.secondary};
@@ -24,7 +24,7 @@ const Content = styled.div`
 `
 
 const WindowBorder = styled.div<{width?: number, height?: number}>`
-    padding: 0.27em 0.81em 0.81em 0.27em;
+    padding: 0.27em 0.7em 0.7em 0.27em;
     background-color: ${props => props.theme.colors.border};
     border-radius: 0.8em;
     margin: 0.5rem;

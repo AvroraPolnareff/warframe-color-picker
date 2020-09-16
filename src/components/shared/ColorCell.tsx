@@ -39,7 +39,6 @@ const OutlineWrapper = styled.div<{outline?: boolean}>`
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 0;
     border-radius: 0.7em;
     background: repeat ${ props => props.outline &&
         "linear-gradient(120deg, rgba(233,165,165,1) 0%, " +

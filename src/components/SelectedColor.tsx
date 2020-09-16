@@ -5,6 +5,7 @@ import styled from "styled-components";
 import {Position} from "../common/Palette";
 import waves from "../assets/waves.svg"
 import {WarframePalette} from "./shared/WarframePalette";
+import {Waves} from "../assets/Waves";
 
 interface SelectedColorProps {
   paletteName: string,
@@ -27,18 +28,18 @@ export const SelectedColor: FC<SelectedColorProps> = ({paletteName, colorPositio
   }
   
   return (
-    <Window width={11}>
+    <Window width={10.6}>
       <FlexColumnCenter>
-        <img src={waves} style={{
-          width: "8.7em",
+        <Waves style={{
+          width: "8.8em",
           marginTop: "0.2em",
           marginBottom: "0.1em",
           pointerEvents: "none",
           userSelect: "none"
         }}/>
         <Header>SELECTED COLOR</Header>
-        <img src={waves} style={{
-          width: "8.7em",
+        <Waves style={{
+          width: "8.8em",
           marginTop: "0",
           marginBottom: "0.5em",
           pointerEvents: "none",
@@ -47,7 +48,7 @@ export const SelectedColor: FC<SelectedColorProps> = ({paletteName, colorPositio
         <PaletteName>{name}</PaletteName>
         
         <WarframePalette
-          size={1.75}
+          size={1.735}
           paletteName={paletteName}
           colorPosition={colorPosition}
           onColorHover={onColorHover}
@@ -59,9 +60,9 @@ export const SelectedColor: FC<SelectedColorProps> = ({paletteName, colorPositio
 
 const Header = styled.div`
     font-weight: 300;
-    font-size: 1.75em;
+    font-size: 1.75rem;
     letter-spacing: 0.001em;
-    line-height: 1em;
+    line-height: 0.93em;
     margin: 0 0;
     text-align: center;
     background: rgb(233,165,165);
@@ -77,8 +78,8 @@ const PaletteName = styled.div`
     font-weight: 900;
     padding: 0.6em 0 0.4em 0;
     margin-bottom: 0.5em;
-    width: 95%;
-    font-size: 0.8em;
+    width: 100%;
+    font-size: 0.8rem;
     border: 0.15em solid ${props => props.theme.colors.tertiary};
     border-radius: 0.5em;
     text-transform: uppercase;
