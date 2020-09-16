@@ -67,7 +67,7 @@ const TopBar = styled.div`
 const Header = styled.div`
   font-weight: bold;
   margin: 0 0.3em;
-  font-size: 1em;
+  font-size: 1rem;
   color: white;
   text-transform: uppercase;
 `

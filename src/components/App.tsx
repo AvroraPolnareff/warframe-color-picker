@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {CSSProperties, FC, useEffect, useRef, useState} from 'react';
 import styled from "styled-components";
 import TargetScheme from "./TargetScheme";
 import {ColorPicker} from "./ColorPicker";
@@ -19,9 +19,10 @@ import githubLogo from "../assets/github-logo-DADADA.svg"
 import warframeLogo from "../assets/wf-logo-DADADA 1.svg"
 import {Link} from "./shared/Link";
 import {debounce} from "lodash"
-import colorPickerToTargetScheme from "../assets/Wires (Col Pic -_ Tar Sch).svg"
-import targetSchemeToSuggestions from "../assets/Wires (Tar Sch -_ Sugg).svg"
+import targetSchemeToSuggestions from "../assets/Wires (Col Pic -_ Tar Sch).svg"
+import targetSchemeToColorPicker from "../assets/Wires (Tar Sch -_ Col Pic).svg"
 import suggestionsToSelectedColor from "../assets/Wires (Sugg -_ Sel Col).svg"
+import {AppBar} from "./AppBar";
 
 export const initManualColors = [
   "#5BCEFA", "#A3A3DB", "#5BCEFA", "#A3A3DB", "#5BCEFA", "#A3A3DB", "#5BCEFA", "#A3A3DB",
@@ -143,8 +144,8 @@ function App() {
   
   return (
     <StyledApp>
-      <Header/>
-      <div/>
+      {/*<Header/>*/}
+      {/*<div/>*/}
       
       {showPalettesModal ?
         <PalettesModal
@@ -173,78 +174,64 @@ function App() {
           setShowImportModal(false)
         })}
       />
-      
-      <div style={{display: "flex", alignItems: "start", justifyContent: "center", marginTop: "0.5em"}}>
-        <div style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "flex-end",
-          margin: " 2.3em 1em 0 0",
-          zIndex: 0
-        }}>
-          <div style={{position: "relative"}}>
-            <ColorPicker
-              color={Color(getCurrentColor())}
-              onColorChange={onColorChange}
-            />
-            <Wires src={colorPickerToTargetScheme} alt=""
-                 style={{
-                   top: "2.4em",
-                   right: "-1.9em",
-                   width: "2.8em",
-                 }}
-            />
-          </div>
-          <div style={{display: "flex"}}>
-            <Link href={"#"} icon={warframeLogo} width={3} height={3}/>
-            <Link href={"https://discord.gg/WWBYuY3"} icon={discordLogo} width={3} height={3}/>
-          </div>
-          <Link href={"https://github.com/AvroraPolnareff/warframe-color-picker-ts"} icon={githubLogo} width={3}
-                height={3}/>
-        </div>
+      <AppBar/>
+      <div style={{width: 'max-content', margin: "0.5em auto"}}>
         
-        <div style={{display: "flex", flexDirection: "column"}}>
-          <div style={{position: "relative"}}>
-            <TargetScheme
-              paletteColors={paletteColors}
-              onCellClick={setCurrentColor}
-              onImportClick={() => setShowImportModal(true)}
-            />
-            <Wires src={targetSchemeToSuggestions} alt=""
-                 style={{
-                   bottom: "-1.9em",
-                   right: "2.3em",
-                   width: "5.4em",
-                 }}
+        <div style={{display: 'flex', alignItems: "flex-start"}}>
+          <div style={{display: 'flex', flexDirection: "column", alignItems: "flex-end", marginRight: "0.6em"}}>
+            <Wires src={targetSchemeToSuggestions} style={{right: "-1.2em", top: "3.2em", width: "2.1em"}}>
+              <Wires src={targetSchemeToColorPicker} style={{bottom: "-1.8em", right: "2em", width: "4.3em"}}>
+                <TargetScheme
+                  paletteColors={paletteColors}
+                  onCellClick={setCurrentColor}
+                  onImportClick={() => setShowImportModal(true)}
+                />
+              </Wires>
+            </Wires>
+            <div style={{marginTop: "0.6em", zIndex: 1}}>
+              <ColorPicker
+                color={Color(getCurrentColor())}
+                onColorChange={onColorChange}
+              />
+            </div>
+            <Link href="#" height={2.3} width={11}>HOW TO USE</Link>
+            <div style={{display: "flex"}}>
+              <Link href={"#"} icon={warframeLogo} width={2.3} height={2.3}/>
+              <Link href={"https://discord.gg/WWBYuY3"} icon={discordLogo} width={2.3} height={2.3}/>
+              <Link href={"https://github.com/AvroraPolnareff/warframe-color-picker-ts"} icon={githubLogo} width={2.3}
+                    height={2.3}/>
+            </div>
+          </div>
+          <div style={{marginRight: "0.6em", zIndex: 1}}>
+            <Wires style={{top: "8.5em", right: "-1.2em", width: "2.1em"}} src={suggestionsToSelectedColor}>
+              <Suggestions matchedColors={matchedColors}
+                           onSuggestionClick={onSuggestionClick}
+                           onPalettesClick={() => setShowPalettesModal(true)}
+                           isSuggestionsUpdating={isColorChanging}
+                           onSwapColor={onOverrideColor}
+              />
+            </Wires>
+          </div>
+          <div style={{zIndex: 2}}>
+            <SelectedColor
+              paletteName={selectedColor.paletteName}
+              colorPosition={selectedColor.position}
             />
           </div>
-          <div style={{marginTop: "1.2em", zIndex: 2, position: "relative"}}>
-            <Suggestions matchedColors={matchedColors}
-                         onSuggestionClick={onSuggestionClick}
-                         onPalettesClick={() => setShowPalettesModal(true)}
-                         isSuggestionsUpdating={isColorChanging}
-                         onSwapColor={onOverrideColor}
-            />
-            <Wires src={suggestionsToSelectedColor} alt=""
-                 style={{
-                   top: "1.7em",
-                   right: "-1.7em",
-                   width: "2.6em",
-                 }}
-            />
-          </div>
-        </div>
-        
-        <div style={{zIndex: 3, marginTop: "2.3em", marginLeft: "1em"}}>
-          <SelectedColor paletteName={selectedColor.paletteName} colorPosition={selectedColor.position}/>
         </div>
       </div>
-    
     </StyledApp>
   );
 }
 
-const Wires = styled.img`
+const Wires: FC<{ style: CSSProperties, src: string }> = ({children, style, src}) => (
+  <div style={{position: 'relative'}}>
+    {children}
+    <StyledWires style={style} src={src}/>
+  </div>
+)
+
+const StyledWires = styled.img`
   position: absolute;
   user-select: none;
   pointer-events: none
@@ -252,6 +239,7 @@ const Wires = styled.img`
 
 export const StyledApp = styled.div`
   height: 100vh;
+  width: 100vw;
   color: ${props => props.theme.colors.secondary};
   margin: 0;
   font-family: "Gilroy", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

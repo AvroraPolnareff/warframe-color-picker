@@ -38,7 +38,7 @@ const TargetScheme: FC<TargetSchemeProps> = ({paletteColors, onCellClick, onImpo
   }
   
   return (
-    <Window width={14.321} style={{zIndex: 1}}>
+    <Window width={14.321} style={{zIndex: 0}}>
       <FlexColumnCenter>
         <Header>TARGET SCHEME</Header>
         <div style={{marginBottom: "0.3em",}}>
@@ -55,8 +55,8 @@ const TargetScheme: FC<TargetSchemeProps> = ({paletteColors, onCellClick, onImpo
       {switched
         ? <Manual colors={paletteColors} onCellChange={onCellChange} selectedCell={selectedCell}/> :
         <Default
-          colors={paletteColors.slice(Math.floor(selectedCell / 8)* 8, Math.floor(selectedCell / 8 + 1) * 8)}
-          onCellChange={(index) => onCellChange(index + Math.floor(selectedCell / 8)* 8)}
+          colors={paletteColors.slice(Math.floor(selectedCell / 8) * 8, Math.floor(selectedCell / 8 + 1) * 8)}
+          onCellChange={(index) => onCellChange(index + Math.floor(selectedCell / 8) * 8)}
           selectedCell={selectedCell % 8}
         />
       }
@@ -79,7 +79,8 @@ const TargetScheme: FC<TargetSchemeProps> = ({paletteColors, onCellClick, onImpo
 const Header = styled.h2`
     font-weight: 900;
     color: ${props => props.theme.colors.targetSchemeHeader};
-    margin-bottom: 0.15em; margin-top: 0 ;
+    margin-bottom: 0.12em; margin-top: 0 ;
+    font-size: 1.6rem;
     pointer-events: none;
     user-select: none;
 `
@@ -106,19 +107,18 @@ const Default: FC<DefaultProps> = ({colors, onCellChange, selectedCell}) => {
                   onClick={() => onCellChange(2)} color={colors[2]}/>
       <ColorEntry text="QUATERNARY" selected={isSelected(3)}
                   onClick={() => onCellChange(3)} color={colors[3]}/>
-      <Divider style={{marginTop: "0.09em"}}/>
-      
-      <StyledColorEntry>
-        <ColorCell outline={isSelected(4)} color={colors[4]} onClick={() => onCellChange(4)}/>
-        <ColorCell outline={isSelected(5)} color={colors[5]} onClick={() => onCellChange(5)}/>
-        <ColorName>EMISSIVE 1, 2</ColorName>
-      </StyledColorEntry>
-      
-      <StyledColorEntry>
-        <ColorCell onClick={() => onCellChange(6)} outline={isSelected(6)} color={colors[6]}/>
-        <ColorCell onClick={() => onCellChange(7)} outline={isSelected(7)} color={colors[7]}/>
-        <ColorName>ENERGY 1, 2</ColorName>
-      </StyledColorEntry>
+      <div style={{marginTop: "0.65em"}}>
+        <StyledColorEntry>
+          <ColorCell outline={isSelected(4)} color={colors[4]} onClick={() => onCellChange(4)}/>
+          <ColorCell outline={isSelected(5)} color={colors[5]} onClick={() => onCellChange(5)}/>
+          <ColorName>EMISSIVE 1, 2</ColorName>
+        </StyledColorEntry>
+        <StyledColorEntry>
+          <ColorCell onClick={() => onCellChange(6)} outline={isSelected(6)} color={colors[6]}/>
+          <ColorCell onClick={() => onCellChange(7)} outline={isSelected(7)} color={colors[7]}/>
+          <ColorName>ENERGY 1, 2</ColorName>
+        </StyledColorEntry>
+      </div>
     </Wrapper>
   )
 }
@@ -155,9 +155,8 @@ const StyledManual = styled.div`
 `
 
 const Wrapper = styled.div`
-  height: 9.2em;
+  height: 9.35em;
   padding-bottom: 0.25em;
-  margin-top: 0.2em;
 `
 
 interface ColorEntryProps {
@@ -178,12 +177,12 @@ const ColorEntry: FC<ColorEntryProps> = ({text, color, selected, onClick}) => {
 
 const ColorName = styled.span`
     font-weight: normal;
-    font-size: 1em;
+    font-size: 1rem;
     letter-spacing: 0.05em;
     &:before {
         margin-right: 0.3em;
         content: "•";
-        margin-left: 0.4em;
+        margin-left: 0.2em;
     }
 `
 

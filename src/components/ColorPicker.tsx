@@ -17,35 +17,37 @@ export const ColorPicker: FC<ColorPickerProps> = ({onColorChange, color}) => {
   const fontSize = parseFloat(window.getComputedStyle(document.body, null).getPropertyValue('font-size'))
   
   return (
-    <Window width={16.2}>
-      <FlexRow>
-        <div style={{display: "flex", flexDirection: "column"}}>
-          <div style={{position: 'relative'}}>
-            <HeaderWrapper>
-              <ColorPickerHeader headerColor={color} width={7.5}/>
-            </HeaderWrapper>
+    <div style={{position: 'relative'}}>
+      <HeaderWrapper>
+        <ColorPickerHeader headerColor={color} width={7.5}/>
+      </HeaderWrapper>
+      <Window width={16.2}>
+        <FlexRow>
+          <div style={{display: "flex", flexDirection: "column"}}>
+            <div style={{marginTop: "1.3em"}}>
+              <Picker size={7.3 * fontSize} color={color} onChange={onColorChange}/>
+            </div>
           </div>
-          <div style={{marginTop: "1.5em"}}>
-            <Picker size={7.3 * fontSize} color={color} onChange={onColorChange}/>
-          </div>
-        </div>
-        <FlexColumnCenter style={{width: "45%"}}>
-          <HexInput
-            color={color}
-            onChange={(e) => onColorChange(Color().hex(e.target.value))}
-          />
-          <Divider/>
-          <NumbersPicker color={color} onColorChange={onColorChange}/>
-        </FlexColumnCenter>
-      </FlexRow>
-    </Window>
+          <FlexColumnCenter style={{width: "45%"}}>
+            <HexInput
+              color={color}
+              onChange={(e) => onColorChange(Color().hex(e.target.value))}
+            />
+            <Divider/>
+            <NumbersPicker color={color} onColorChange={onColorChange}/>
+          </FlexColumnCenter>
+        </FlexRow>
+      </Window>
+      
+    </div>
   )
 }
 
 const HeaderWrapper = styled.div`
     position: absolute;
-    top: -1.6em;
-    left: -1.1em;
+    top: -15%;
+    left: 0;
+    pointer-events: none;
 `
 
 const FlexRow = styled.div`
@@ -150,7 +152,7 @@ const Grid2X4 = styled.div`
     align-items: baseline;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr;
-    row-gap: 0.03em;
+    row-gap: 0.05em;
     justify-items: center;
     justify-content: start;
     width: fit-content;
@@ -159,7 +161,7 @@ const Grid2X4 = styled.div`
 const ColorSchemeName = styled.div`
     padding-left: 0.07em;
     font-weight: bold;
-    font-size: 0.9em;
+    font-size: 0.9rem;
 `
 
 
@@ -199,12 +201,12 @@ const StyledColorInput = styled.input`
     max-height: 1.3em;
     margin: 0 0.2em;
     border-radius: 0.35em;
-    font-weight: 700;
-    font-size: 0.9em;
+    font-weight: 500;
+    font-size: 0.9rem;
     width: 2.05em;
     border: none;
     transition: background-color 0.15s linear;
-    text-align: right;
+    text-align: center;
   
     &:focus, &:hover {
       background-color: ${props => Color(props.color || props.theme.colors.secondary).darken(0.2).toString()};
@@ -278,12 +280,10 @@ const StyledHexInput = styled.input.attrs(props => ({
     color: ${props => props.theme.colors.badgeText};
     padding: 0.2em 0.3em;
     max-height: 1.3em;
-    margin-right: 0.3em;
-    margin-top: 0.3em;
-    margin-bottom: 0.6em;
+    margin: 0.3em 0.3em 0.6em 0.3em;
     border-radius: 0.4em;
     font-weight: 500;
-    font-size: 1.3em;
+    font-size: 1.3rem;
     width: 5em;
     border: none;
     transition: background-color 0.15s linear;

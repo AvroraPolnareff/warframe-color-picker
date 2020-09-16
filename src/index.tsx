@@ -6,12 +6,12 @@ import {createGlobalStyle, ThemeProvider} from "styled-components";
 import {defaultTheme} from "./common/themes";
 
 const GlobalStyle = createGlobalStyle`
-  body {
-    font-size: 23.75px;
+  html {
+    font-size: 14px;
   }
   @media (min-width: 1600px) {
-    body {
-      font-size: 23.75px;
+    html {
+      font-size: 20px;
     }
   }
   

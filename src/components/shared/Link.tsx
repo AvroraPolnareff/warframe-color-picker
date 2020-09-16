@@ -5,7 +5,9 @@ export const Link: React.FC<{width?: number, height?: number, icon?: string, hre
   return (
       <WindowBorder width={width} height={height} href={href} target="_blank" rel="noopener noreferrer">
         <Content width={width} height={height}>
-          {icon ? <img  src={icon} style={{width: width && `${width}em`}}/> : children}
+          {icon ?
+              <img  src={icon} style={{width: width && `${width - 0.5}em`}}/>
+            : <span style={{fontWeight: 900, fontSize: "1.6em"}}>{children}</span>}
         </Content>
     </WindowBorder>
 
@@ -17,7 +19,7 @@ const Content = styled.div<{width?: number, height?: number}>`
   border-radius: 0.54em;
   background-color: ${props => props.theme.colors.windowBackground};
   color: ${props => props.theme.colors.secondary};
-  margin: 0.2em 0.20em 0.20em 0.2em;
+  margin: 0.25em 0.2em 0.2em 0.25em;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -37,7 +39,8 @@ const WindowBorder = styled.a<{width?: number, height?: number}>`
     background-color: ${props => props.theme.colors.border};
     border-radius: 0.8em;
     margin: 0.5em;
-    width: ${({width}) => width && width + 0.2 + 0.6}em;
-    height: ${({height}) => height && height + 0.2 + 0.6}em;
+    width: ${({width}) => width && width + 0.25 + 0.7}em;
+    height: ${({height}) => height && height + 0.25 + 0.8}em;
+    text-decoration: none;
 
 `

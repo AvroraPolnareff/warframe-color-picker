@@ -22,7 +22,7 @@ export const Button = styled.div<ButtonProps>`
   cursor: pointer;
   display: inline-block;
   line-height: 1;
-  padding: 0.25em 1.3em;
+  padding: 0.25em 1.45em;
   margin: 0 0.5em;
   text-transform: uppercase;
   transition: border-radius 0.50s linear, box-shadow 0.2s linear, background-color 0.15s linear;
@@ -32,9 +32,9 @@ export const Button = styled.div<ButtonProps>`
   -webkit-tap-highlight-color: transparent;
   
   ${props => props.small && css`
-  font-size: 0.8em;
+  font-size: 0.8rem;
   letter-spacing: 0.035em;
-  padding: 0.2em 0.4em;
+  padding: 0.15em 0.45em;
   margin: 0;
   `};
   
