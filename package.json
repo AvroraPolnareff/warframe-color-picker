@@ -1,6 +1,6 @@
 {
   "name": "warframe-color-picker-ts",
-  "homepage": "http://avrorapolnareff.github.io/warframe-color-picker-ts",
+  "homepage": "http://avrorapolnareff.github.io/warframe-color-picker",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
