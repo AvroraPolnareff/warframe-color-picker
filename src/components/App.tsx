@@ -174,7 +174,8 @@ function App() {
           setShowImportModal(false)
         })}
       />
-      <AppBar/>
+      
+      {/*<AppBar/>*/}
       <Credentials><span>Hippothoe & Morisabeau</span></Credentials>
       <div style={{width: 'max-content', margin: "0.5em auto"}}>
         
@@ -243,6 +244,7 @@ const Credentials = styled.div`
   top: 2%;
   right: 2%;
   text-align: right;
+  font-size: 1.25rem;
 `
 
 export const StyledApp = styled.div`
