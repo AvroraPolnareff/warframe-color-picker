@@ -175,6 +175,7 @@ function App() {
         })}
       />
       <AppBar/>
+      <Credentials><span>Hippothoe & Morisabeau</span></Credentials>
       <div style={{width: 'max-content', margin: "0.5em auto"}}>
         
         <div style={{display: 'flex', alignItems: "flex-start"}}>
@@ -237,7 +238,15 @@ const StyledWires = styled.img`
   pointer-events: none
 `
 
+const Credentials = styled.div`
+  position: absolute;
+  top: 2%;
+  right: 2%;
+  text-align: right;
+`
+
 export const StyledApp = styled.div`
+  position: relative;
   height: 100vh;
   width: 100vw;
   color: ${props => props.theme.colors.secondary};
