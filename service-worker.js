@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/warframe-color-picker/precache-manifest.9aa49515a738e3ac0af2c05787c6adf0.js"
+  "/warframe-color-picker/precache-manifest.96b2b1ef5503c53c576ffdf30fe661af.js"
 );
 
 self.addEventListener('message', (event) => {
