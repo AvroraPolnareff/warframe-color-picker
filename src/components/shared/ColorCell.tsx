@@ -56,6 +56,6 @@ const StyledColorCell = styled.div.attrs<{color: string}>((props) => ({
     content: " ";
     height: 1.07em;
     margin: 0.15em;
-    width: 1.27em;
+    width: 1.21em;
     border-radius: 0.55em;
 `

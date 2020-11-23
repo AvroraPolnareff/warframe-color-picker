@@ -1,5 +1,5 @@
-import React, {FC, useState} from "react";
-import styled from "styled-components";
+import React, {FC, useMemo, useState} from "react";
+import styled, {css, DefaultTheme, Keyframes, keyframes} from "styled-components";
 import {Window} from "./shared/Window";
 import {FlexColumnCenter} from "./shared/FlexColumnCenter";
 import {Button} from "./shared/Button";
@@ -7,6 +7,7 @@ import {Divider} from "./shared/Divider";
 import {ColorCell} from "./shared/ColorCell";
 import {Switch} from "./shared/Switch";
 import {convertColorsToExportString} from "../common/helpers";
+import _ from "lodash";
 
 interface TargetSchemeProps {
   paletteColors: string[]
@@ -130,33 +131,87 @@ interface ManualProps {
 }
 
 const Manual: FC<ManualProps> = ({colors, onCellChange, selectedCell}) => {
+  const cellsRows = useMemo(() => {
+    const indexed = colors.map((color, index) => ({index, color}))
+    return _.chunk(indexed, 8)
+  }, [colors])
   
+  const selectedRow = useMemo(() => Math.floor(selectedCell / 8), [selectedCell])
   
   return (
     <Wrapper>
       <StyledManual>
-        {colors.map((color, key) => (
+        {cellsRows.map((row, index) => (
+          <CellsRow selected={selectedRow === index}>
+            {row.map((cell) => (
+              <ColorCell
+                color={cell.color}
+                outline={selectedCell === cell.index}
+                onClick={() => onCellChange(cell.index)}
+              />
+            ))}
+          </CellsRow>
+        ))
+        }
+        {/*{colors.map((color, key) => (
           <ColorCell
             color={color}
             outline={selectedCell === key}
             onClick={() => onCellChange(key)}
-          />))}
+          />))}*/}
       </StyledManual>
     </Wrapper>
   )
 }
 
 const StyledManual = styled.div`
-  display: grid;
-  grid-template-rows: repeat(6, 1fr);
-  grid-template-columns: repeat(8, 1fr);
-  row-gap: 0.15em;
+  //display: grid;
+  //grid-template-rows: repeat(6, 1fr);
+  //grid-template-columns: repeat(8, 1fr);
+  //row-gap: 0.15em;
   
 `
 
 const Wrapper = styled.div`
   height: 9.35em;
   padding-bottom: 0.25em;
+`
+
+const CellsRow = styled.div<{selected?: boolean}>`
+  display: flex;
+  justify-content: space-between;
+  height: 1.55em;
+  border: 2px dashed transparent;
+  border-radius: 0.4em;
+  ${({selected}) => selected && css`
+    animation-duration: 2s;
+    animation-name: ${props => animation(props)};
+    
+  `}
+`
+
+const animation: ({theme}: { theme: DefaultTheme }) => Keyframes = ({theme}) => keyframes`
+  0% {
+    border-color: transparent;
+  }
+  17% {
+    border-color: ${theme.colors.secondary};;
+  }
+  35% {
+    border-color: transparent;
+  }
+  50% {
+     border-color: ${theme.colors.secondary};;
+  }
+  67% {
+    border-color: transparent;
+  }
+  84% {
+     border-color: ${theme.colors.secondary};;
+  }
+  100 % {
+    border-color: transparent;
+  }
 `
 
 interface ColorEntryProps {
