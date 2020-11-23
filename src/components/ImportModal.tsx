@@ -75,7 +75,7 @@ export const ImportModal: FC<ImportModalProps> = ({show, onAccept, onExit, onScr
             onChange={onScreenshotImportChange}
             name="screenshot" id="screenshot"
           />
-          <Button as="label" htmlFor="screenshot"  round small>From Screenshot</Button>
+          <Button as="label" htmlFor="screenshot" round small>MANUAL UPLOAD</Button>
         </div>
         <div style={{textAlign: "right"}}>
           
