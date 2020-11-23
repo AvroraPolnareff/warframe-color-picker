@@ -196,7 +196,10 @@ function App() {
                 onColorChange={onColorChange}
               />
             </div>
-            <Link href="#" height={2.3} width={11}>HOW TO USE</Link>
+            <Link
+              href="https://github.com/AvroraPolnareff/warframe-color-picker#what-are-the-main-features"
+              height={2.3}
+              width={11}>HOW TO USE</Link>
             <div style={{display: "flex"}}>
               <Link href={"#"} icon={warframeLogo} width={2.3} height={2.3}/>
               <Link href={"https://discord.gg/WWBYuY3"} icon={discordLogo} width={2.3} height={2.3}/>
