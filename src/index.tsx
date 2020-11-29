@@ -9,7 +9,7 @@ const GlobalStyle = createGlobalStyle`
   html {
     font-size: 14px;
   }
-  @media (min-width: 1600px) {
+  @media (min-width: 1400px) {
     html {
       font-size: 20px;
     }
