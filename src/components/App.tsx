@@ -252,8 +252,6 @@ const Credentials = styled.div`
 
 export const StyledApp = styled.div`
   position: relative;
-  height: 100vh;
-  width: 100vw;
   color: ${props => props.theme.colors.secondary};
   margin: 0;
   font-family: "Gilroy", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
