@@ -22,7 +22,6 @@ import {debounce} from "lodash"
 import targetSchemeToSuggestions from "../assets/Wires (Col Pic -_ Tar Sch).svg"
 import targetSchemeToColorPicker from "../assets/Wires (Tar Sch -_ Col Pic).svg"
 import suggestionsToSelectedColor from "../assets/Wires (Sugg -_ Sel Col).svg"
-import {AppBar} from "./AppBar";
 
 export const initManualColors = [
   "#5BCEFA", "#A3A3DB", "#5BCEFA", "#A3A3DB", "#5BCEFA", "#A3A3DB", "#5BCEFA", "#A3A3DB",
@@ -33,27 +32,7 @@ export const initManualColors = [
   "#A3A3DB", "#5BCEFA", "#A3A3DB", "#5BCEFA", "#A3A3DB", "#5BCEFA", "#A3A3DB", "#5BCEFA",
 ]
 
-export const initAvailablePalettes = [
-  'Agony', 'Beach',
-  'Classic Saturated', 'Classic',
-  'Conquest', 'Corpus',
-  'Darkness', 'Daybreak',
-  'Discord', 'Dojo',
-  'Easter', 'Eminence',
-  'Eximus', 'Fear',
-  'Fire', 'Grineer',
-  'Halloween', 'Hatred',
-  'Ice', 'Infested',
-  "Ki'Teer", 'Lotus',
-  'Orokin', 'Rollers',
-  'Rot', 'Shamrock',
-  'Smoke Colors', 'Storm',
-  'Tenno II', 'Tenno',
-  'Transmission', 'Twilight',
-  'Undying', 'Valentine'
-]
-
-export const initDefaultColors = ["#f8f5ed", "#525757", '#a64731', "#c0cbcf", "#dffefb", "#53bcb1", "#dffefb", "#53bcb1"]
+export const initAvailablePalettes = palettes.map((palette) => palette.name)
 
 function App() {
   
