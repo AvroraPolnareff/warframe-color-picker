@@ -12,9 +12,21 @@ interface ColorPickerProps {
   onColorChange: (color: Color) => void
 }
 
+const getFontSize = () => {
+  return parseFloat(window.getComputedStyle(document.body, null).getPropertyValue('font-size'))
+}
 
 export const ColorPicker: FC<ColorPickerProps> = ({onColorChange, color}) => {
-  const fontSize = parseFloat(window.getComputedStyle(document.body, null).getPropertyValue('font-size'))
+  const [fontSize, setFontSize] = useState(getFontSize())
+  useEffect(() => {
+    const onResize = () => {
+      setFontSize(getFontSize())
+    }
+    window.addEventListener('resize', onResize)
+    return () => {
+      window.removeEventListener('resize', onResize)
+    }
+  }, [fontSize])
   
   return (
     <div style={{position: 'relative'}}>
