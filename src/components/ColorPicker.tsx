@@ -14,8 +14,17 @@ interface ColorPickerProps {
 
 
 export const ColorPicker: FC<ColorPickerProps> = ({onColorChange, color}) => {
-  const fontSize = parseFloat(window.getComputedStyle(document.body, null).getPropertyValue('font-size'))
-  
+  const [fontSize, setFontSize] = useState(20)
+  useEffect(() => {
+    const handler = () => {
+      setFontSize(
+        window.innerWidth > 1400 ? 20 : 14
+      )
+    }
+    window.addEventListener('resize', handler)
+    return () => window.removeEventListener('resize', handler)
+  }, [onColorChange])
+
   return (
     <div style={{position: 'relative'}}>
       <HeaderWrapper>
@@ -38,7 +47,7 @@ export const ColorPicker: FC<ColorPickerProps> = ({onColorChange, color}) => {
           </FlexColumnCenter>
         </FlexRow>
       </Window>
-      
+
     </div>
   )
 }
@@ -80,7 +89,7 @@ const NumbersPicker: FC<NumbersPickerProps> = ({color, onColorChange}) => {
       setHsvValue({h: color.hue(), s: color.saturationv(), v: color.value()})
     }
   }, [color])
-  
+
   const onChange = (name: string, value: number) => {
     clearTimeout(timer)
     switch (name) {
@@ -115,7 +124,7 @@ const NumbersPicker: FC<NumbersPickerProps> = ({color, onColorChange}) => {
         return
     }
   }
-  
+
   return (
     <StyledPicker>
       <Grid2X4>
@@ -178,7 +187,7 @@ const ColorInput: FC<ColorInputProps> = ({value, name, onChange, min, max, color
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange(name, limitNumber(parseInt(e.target.value), min, max))
   }
-  
+
   const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "ArrowDown") {
       e.preventDefault()
@@ -188,7 +197,7 @@ const ColorInput: FC<ColorInputProps> = ({value, name, onChange, min, max, color
       onChange(name, limitNumber(value + 1, min, max))
     }
   }
-  
+
   return <StyledColorInput onChange={onInputChange} onKeyDown={onKeyDown} value={value.toString()} color={color}/>
 }
 
@@ -228,29 +237,29 @@ const HexInput: FC<HexInputProps> = ({onChange, color}) => {
   const [inputField, setInputField] = useState("#909090")
   const [userTyping, setUserTyping] = useState(false)
   const [timer, setTimer] = useState(0)
-  
+
   useEffect(() => {
     if (!userTyping) {
       setInputField(color.hex())
       setValidHex(true)
     }
   }, [color])
-  
+
   const changeHex = (e: React.ChangeEvent<HTMLInputElement>) => {
     clearTimeout(timer)
     setTimer(setTimeout(() => setUserTyping(false), 1000))
     setUserTyping(true)
     try {
       if (e.target.value.length <= 7) {
-        
+
         Color().hex(e.target.value)
         setValidHex(true)
         e.persist()
         setInputField(e.target.value)
         onChange(e)
-        
+
       }
-      
+
     } catch (error) {
       setValidHex(false)
       if (e.target.value[0] !== "#") {
@@ -262,7 +271,7 @@ const HexInput: FC<HexInputProps> = ({onChange, color}) => {
       }
     }
   }
-  
+
   return (
     <StyledHexInput
       value={inputField}
