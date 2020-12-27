@@ -14,8 +14,8 @@ import {SelectedColor} from "./SelectedColor";
 import {Header} from "./Header";
 import {ImportModal} from "./ImportModal";
 import {PalettesModal} from "./PalettesModal";
-import discordLogo from "../assets/discord-logo-DADADA 1.svg"
-import githubLogo from "../assets/github-logo-DADADA.svg"
+import discordLogo from "../assets/discord-logo.svg"
+import githubLogo from "../assets/github-logo.svg"
 import warframeLogo from "../assets/wf-logo-DADADA 1.svg"
 import {Link} from "./shared/Link";
 import {debounce} from "lodash"
@@ -35,7 +35,7 @@ export const initManualColors = [
 export const initAvailablePalettes = palettes.map((palette) => palette.name)
 
 function App() {
-  
+
   const initMatchedColor = {
     distance: 0,
     color: "#000000",
@@ -43,24 +43,24 @@ function App() {
     position: {x: 0, y: 0},
     uid: "3274823"
   }
-  
+
   const [paletteColors, setPaletteColors] = useStickyState(initManualColors, "manualColors")
   const [currentColor, setCurrentColor] = useState(0)
   const [matchedColors, setMatchedColors] = useState<MatchedColor[]>([])
   const [isColorChanging, setIsColorChanging] = useState(false)
   const [selectedColor, setSelectedColor] = useState<MatchedColor>(initMatchedColor)
-  
+
   const [showImportModal, setShowImportModal] = useState(false)
   const [showPalettesModal, setShowPalettesModal] = useState(false)
   const [availablePalettes, setAvailablePalettes] = useStickyState<string[]>(initAvailablePalettes, "availablePalettes")
-  
+
   const debounced = useRef(debounce((fn: () => void) => fn(), 150, {trailing: true, leading: false}))
-  
-  
+
+
   const getCurrentColor = (): string => {
     return paletteColors[currentColor]
   }
-  
+
   const updateSuggestions = () => {
     const filteredPalettes = palettes.filter(palette => availablePalettes.indexOf(palette.name) !== -1)
     const closestColors = findClosestColors(getCurrentColor(), filteredPalettes, 50)
@@ -68,31 +68,31 @@ function App() {
     setSelectedColor(closestColors[0])
     setIsColorChanging(false)
   }
-  
+
   useEffect(() => {
     updateSuggestions()
   }, [])
-  
+
   useEffect(() => {
     if (!isColorChanging) {
       setIsColorChanging(true)
     }
     debounced.current(updateSuggestions)
   }, [paletteColors, currentColor, availablePalettes])
-  
+
   const onColorChange = (color: Color) => {
     const newColors = [...paletteColors]
     newColors[currentColor] = color.toString()
     setPaletteColors(newColors)
   }
-  
+
   const onSuggestionClick = (key: string) => {
     const filteredColor = matchedColors.filter(({uid}) => uid === key)[0]
     if (filteredColor.uid !== selectedColor.uid) {
       setSelectedColor(filteredColor);
     }
   }
-  
+
   const onAcceptImport = (data: string) => {
     try {
       const importData = convertExportStringToColors(data)
@@ -101,9 +101,8 @@ function App() {
     } catch (e) {
       console.log(e)
     }
-    
   }
-  
+
   const onPaletteClick = (paletteName: string) => {
     const isExists = availablePalettes.indexOf(paletteName) !== -1
     if (isExists) {
@@ -116,16 +115,16 @@ function App() {
       setAvailablePalettes([...availablePalettes, paletteName])
     }
   }
-  
+
   const onOverrideColor = () => {
     onColorChange(Color(selectedColor.color))
   }
-  
+
   return (
     <StyledApp>
       {/*<Header/>*/}
       {/*<div/>*/}
-      
+
       {showPalettesModal ?
         <PalettesModal
           availablePalettes={availablePalettes}
@@ -137,7 +136,7 @@ function App() {
         />
         : null
       }
-      
+
       <ImportModal
         show={showImportModal}
         onAccept={onAcceptImport}
@@ -153,11 +152,11 @@ function App() {
           setShowImportModal(false)
         })}
       />
-      
+
       {/*<AppBar/>*/}
       <Credentials><span>Hippothoe & Morisabeau</span></Credentials>
       <div style={{width: 'max-content', margin: "0.5em auto"}}>
-        
+
         <div style={{display: 'flex', alignItems: "flex-start"}}>
           <div style={{display: 'flex', flexDirection: "column", alignItems: "flex-end", marginRight: "0.6em"}}>
             <Wires src={targetSchemeToSuggestions} style={{right: "-1.2em", top: "3.2em", width: "2.1em"}}>

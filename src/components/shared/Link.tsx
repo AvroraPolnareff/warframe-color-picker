@@ -1,18 +1,30 @@
 import React from 'react'
 import styled from "styled-components"
 
-export const Link: React.FC<{width?: number, height?: number, icon?: string, href: string}> = ({children, width, height, icon, href}) => {
+export interface LinkProps {
+  width?: number,
+  height?: number,
+  icon?: string,
+  href: string
+}
+
+export const Link: React.FC<LinkProps> = ({children, width, height, icon, href}) => {
   return (
-      <WindowBorder width={width} height={height} href={href} target="_blank" rel="noopener noreferrer">
-        <Content width={width} height={height}>
-          {icon ?
-              <img  src={icon} style={{width: width && `${width - 0.5}em`}}/>
-            : <span style={{fontWeight: 900, fontSize: "1.6em"}}>{children}</span>}
-        </Content>
+    <WindowBorder width={width} height={height} href={href} target="_blank" rel="noopener noreferrer">
+      <Content width={width} height={height}>
+        {icon ?
+            <Icon src={icon}/>
+          : <span style={{fontWeight: 900, fontSize: "1.6em"}}>{children}</span>}
+      </Content>
     </WindowBorder>
 
   )
 }
+
+const Icon = styled.img`
+  max-width: 100%;
+  max-height: 100%;
+`
 
 const Content = styled.div<{width?: number, height?: number}>`
   padding: 0.3rem 0.4rem;
@@ -35,12 +47,12 @@ const Content = styled.div<{width?: number, height?: number}>`
 `
 
 const WindowBorder = styled.a<{width?: number, height?: number}>`
-    display: block;
-    background-color: ${props => props.theme.colors.border};
-    border-radius: 0.8em;
-    margin: 0.5em;
-    width: ${({width}) => width && width + 0.25 + 0.7}em;
-    height: ${({height}) => height && height + 0.25 + 0.8}em;
-    text-decoration: none;
+  display: block;
+  background-color: ${props => props.theme.colors.border};
+  border-radius: 0.8em;
+  margin: 0.5em;
+  width: ${({width}) => width && width + 0.25 + 0.7}em;
+  height: ${({height}) => height && height + 0.25 + 0.8}em;
+  text-decoration: none;
 
 `
