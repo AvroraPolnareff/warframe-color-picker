@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "9cf27c6360299772b7f039816b86dd4f",
+    "revision": "c983b90868dcfd0ee14e97746f9d7418",
     "url": "/warframe-color-picker/index.html"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/warframe-color-picker/static/js/2.c2e1e464.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "30fd9bebf260f067dcaf",
-    "url": "/warframe-color-picker/static/js/main.3cff5298.chunk.js"
+    "revision": "916f3caab35fe8518207",
+    "url": "/warframe-color-picker/static/js/main.27ac37e0.chunk.js"
   },
   {
     "revision": "9efc1268ec0b1cd3c644",
@@ -36,19 +36,19 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/warframe-color-picker/static/media/Wires (Tar Sch -_ Col Pic).027acd4b.svg"
   },
   {
-    "revision": "909c5854c725d7b8218a3110f3b40793",
-    "url": "/warframe-color-picker/static/media/discord-logo-DADADA 1.909c5854.svg"
+    "revision": "5071029b4a0a1ea0474e2887b3374065",
+    "url": "/warframe-color-picker/static/media/discord-logo.5071029b.svg"
   },
   {
     "revision": "a543d2ffde145cefa948e17f4855d48a",
     "url": "/warframe-color-picker/static/media/exitButton.a543d2ff.svg"
   },
   {
-    "revision": "62705e774f473d1802ee879c080014c1",
-    "url": "/warframe-color-picker/static/media/github-logo-DADADA.62705e77.svg"
+    "revision": "1f85329d4030ba683f351251ae347d66",
+    "url": "/warframe-color-picker/static/media/github-logo.1f85329d.svg"
   },
   {
-    "revision": "d7294e6aeefcede3f398f6073bf14f90",
-    "url": "/warframe-color-picker/static/media/wf-logo-DADADA 1.d7294e6a.svg"
+    "revision": "4bdfa19bcd32a2f6bb91800fe58441e9",
+    "url": "/warframe-color-picker/static/media/wf-logo-DADADA 1.4bdfa19b.svg"
   }
 ]);
