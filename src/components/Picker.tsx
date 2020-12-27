@@ -44,18 +44,24 @@ export class Picker extends Component<PickerProps> {
     )
   }
 
-  handleMouseDown = (e: React.MouseEvent<HTMLCanvasElement> | React.TouchEvent<HTMLCanvasElement>) => {
+  handleMouseDown = (e: React.MouseEvent<HTMLCanvasElement>) => {
     e.preventDefault()
     this.handleChange(e)
     // @ts-ignore
     window.addEventListener('mousemove', this.handleChange)
-    // @ts-ignore
-    window.addEventListener('touchmove', this.handleChange)
-    window.addEventListener('mouseup', this.handleMouseUp)
-    window.addEventListener('touchend', this.handleMouseUp)
+    window.addEventListener('mouseup', this.handleMoveEnd)
+
   }
 
-  handleMouseUp = () => {
+  handleTouchStart = (e: React.TouchEvent<HTMLCanvasElement>) => {
+    e.preventDefault()
+    this.handleChange(e)
+    // @ts-ignore
+    window.addEventListener('touchmove', this.handleChange)
+    window.addEventListener('touchend', this.handleMoveEnd)
+  }
+
+  handleMoveEnd = () => {
     this.unbindEventListeners()
     if (!this.picker) return
     this.picker.handleMouseUp()
@@ -64,10 +70,10 @@ export class Picker extends Component<PickerProps> {
   unbindEventListeners() {
     // @ts-ignore
     window.removeEventListener('mousemove', this.handleChange)
-    window.removeEventListener('mouseup', this.handleMouseUp)
+    window.removeEventListener('mouseup', this.handleMoveEnd)
     // @ts-ignore
     window.addEventListener('touchmove', this.handleChange)
-    window.removeEventListener('touchend', this.handleMouseUp)
+    window.removeEventListener('touchend', this.handleMoveEnd)
   }
 
   render() {
@@ -76,7 +82,7 @@ export class Picker extends Component<PickerProps> {
         height={this.props.size}
         width={this.props.size}
         onMouseDown={this.handleMouseDown}
-        onTouchStart={this.handleMouseDown}
+        onTouchStart={this.handleTouchStart}
         ref={ref => this.ref = ref}
       />
     )
