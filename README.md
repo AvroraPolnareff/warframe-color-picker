@@ -1,4 +1,7 @@
 # What is Warframe Color Picker?
+
+
+
 This tool is designed to help you with finding specific colors across the in-game palettes. Not only it lets you see the closest colors, it also gives you an option to adjust the chosen color on the fly, changing its brightness, hue, or saturation.
 
 Once upon a time, when this tool had not been a thing, in order to create an accurate in-game cosplay that is not hard on the eyes, we had to manually compare more than 3000 colors scattered across more than 35 palettes, being limited to using completely unrelated third-party software (such as ColorPic or Photoshop) to work with the colors. Yes, [the challenge was real](https://www.youtube.com/watch?v=KxRZX9eDpCs&feature=youtu.be&t=45). Despite all the pain though, having an absolute copy of Nightwatch scheme, or, say, default Earth Grineer on your Graxx skin was rewarding enough to keep getting back to it again and again, enduring the same obnoxious procedure over and over... Roleplay is how we envision the true endgame, after all!
@@ -8,7 +11,7 @@ Now, lucky for all of us, there is an app that does this entire tiresome routine
 We present this irreplaceable tool to all of you, fellow fashionframe enthusiasts:
 
 https://avrorapolnareff.github.io/warframe-color-picker/
-
+![App](img/app.png)
 # What are the main features?
 Here is the list of currently available most important features divided into sections, named accordingly.
 
