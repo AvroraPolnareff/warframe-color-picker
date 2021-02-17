@@ -54,7 +54,7 @@ Here is the list of currently available most important features divided into sec
 * Palettes Menu
   * Customize the list of palettes that are being displayed as suggestions (green = enabled; gray = disabled);
   * See the palette preview on the right to make sure it's... the right one!;
-  * Disable all palettes to manually enable only the ones that you currently have;
+  * Disable all palettes (except Classic) to manually enable only the ones that you currently have one by one;
   * Enable all palettes if you want to see them all
 
 ### **SELECTED COLOR**:
