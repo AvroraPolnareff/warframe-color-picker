@@ -2,11 +2,13 @@
 
 
 
-This tool is designed to help you with finding specific colors across the in-game palettes. Not only it lets you see the closest colors, it also gives you an option to adjust the chosen color on the fly, changing its brightness, hue, or saturation.
+This tool is designed to help you with searching for specific colors across the in-game palettes. Not only it lets you find the closest colors, it also gives you an option to adjust the chosen color on the fly, changing its brightness, hue, or saturation!
 
-Once upon a time, when this tool had not been a thing, in order to create an accurate in-game cosplay that is not hard on the eyes, we had to manually compare more than 3000 colors scattered across more than 35 palettes, being limited to using completely unrelated third-party software (such as ColorPic or Photoshop) to work with the colors. Yes, [the challenge was real](https://www.youtube.com/watch?v=KxRZX9eDpCs&feature=youtu.be&t=45). Despite all the pain though, having an absolute copy of Nightwatch scheme, or, say, default Earth Grineer on your Graxx skin was rewarding enough to keep getting back to it again and again, enduring the same obnoxious procedure over and over... Roleplay is how we envision the true endgame, after all!
+Back in the day when this tool was not a thing, in order to create an accurate in-game cosplay that is not hard on the eyes we had to manually compare more than 3000 colors scattered across more than 35 palettes, being limited to completely unrelated third-party software, to get a slightly brighter and less saturated version of the chosen color to match the scheme on a skin of choice. And oh my, texture / model entropy in this game is so high it is sometimes straight up impossible to predict how the same scheme would look on another object (no matter if it's a Warframe, a Weapon, or anything else). Yes, [the challenge was real](https://www.youtube.com/watch?v=KxRZX9eDpCs&feature=youtu.be&t=45). 
 
-Now, lucky for all of us, there is an app that does this entire tiresome routine for you automatically, without the need to grind through thousands of colors, needlessly memorising them all. Since Digital Extremes are not the keenest on introducing QoL to social aspects of the game, all hail the community!
+Even though despite all the pain, having an absolute copy of Nightwatch, or, say, Wolf of Saturn Six scheme on your Graxx skin was rewarding enough to keep getting back to it again and again, enduring the same obnoxious procedure over and over... After all, roleplay, fashion, and—as a result—immersion form the foundation of our envision of the true endgame!
+
+Lucky for all of us, we've made an app that does this entire tiresome routine for you in a flash and automatically, without the need to manually grind your eyes through thousands of colors, needlessly memorising them all. Yay!! All hail the community!
 
 We present this irreplaceable tool to all of you, fellow fashionframe enthusiasts:
 
@@ -30,6 +32,7 @@ Here is the list of currently available most important features divided into sec
 ### **TARGET SCHEME**:
 
 * Select a color from your collection for editing in Color Picker submenu;
+* Click right mouse button on a color to empty the slot;
 * Switch between Default and Manual color schemes
 * Default Scheme
   * Manage your colors as they're arranged in the original order, with the tips on the right (Primary, Secondary, Tertiary, etc.);
