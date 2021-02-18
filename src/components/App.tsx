@@ -23,14 +23,7 @@ import targetSchemeToSuggestions from "../assets/Wires (Col Pic -_ Tar Sch).svg"
 import targetSchemeToColorPicker from "../assets/Wires (Tar Sch -_ Col Pic).svg"
 import suggestionsToSelectedColor from "../assets/Wires (Sugg -_ Sel Col).svg"
 
-export const initManualColors = [
-  "#5BCEFA", "#A3A3DB", "#5BCEFA", "#A3A3DB", "#5BCEFA", "#A3A3DB", "#5BCEFA", "#A3A3DB",
-  "#F5A9B8", "#5BCEFA", "#F5A9B8", "#5BCEFA", "#F5A9B8", "#5BCEFA", "#F5A9B8", "#5BCEFA",
-  "#F4F4F4", "#F5A9B8", "#F4F4F4", "#F5A9B8", "#F4F4F4", "#F5A9B8", "#F4F4F4", "#F5A9B8",
-  "#F5A9B8", "#F4F4F4", "#F5A9B8", "#F4F4F4", "#F5A9B8", "#F4F4F4", "#F5A9B8", "#F4F4F4",
-  "#5BCEFA", "#F5A9B8", "#5BCEFA", "#F5A9B8", "#5BCEFA", "#F5A9B8", "#5BCEFA", "#F5A9B8",
-  "#A3A3DB", "#5BCEFA", "#A3A3DB", "#5BCEFA", "#A3A3DB", "#5BCEFA", "#A3A3DB", "#5BCEFA",
-]
+export const initManualColors = Array(48).fill("empty")
 
 export const initAvailablePalettes = palettes.map((palette) => palette.name)
 
@@ -58,7 +51,9 @@ function App() {
 
 
   const getCurrentColor = (): string => {
-    return paletteColors[currentColor]
+    const color = paletteColors[currentColor]
+    if (color === "empty") return "#000000"
+    return color
   }
 
   const updateSuggestions = () => {
@@ -79,6 +74,15 @@ function App() {
     }
     debounced.current(updateSuggestions)
   }, [paletteColors, currentColor, availablePalettes])
+const onCellClick = (index: number, e: React.MouseEvent) => {
+    if (e.type === "contextmenu") {
+      e.preventDefault();
+      const newPaletteColors = [...paletteColors];
+      newPaletteColors[index] = "empty";
+      setPaletteColors(newPaletteColors);
+    }
+    setCurrentColor(index);
+  }
 
   const onColorChange = (color: Color) => {
     const newColors = [...paletteColors]
@@ -163,7 +167,7 @@ function App() {
               <Wires src={targetSchemeToColorPicker} style={{bottom: "-1.8em", right: "2em", width: "4.3em"}}>
                 <TargetScheme
                   paletteColors={paletteColors}
-                  onCellClick={setCurrentColor}
+                  onCellClick={onCellClick}
                   onImportClick={() => setShowImportModal(true)}
                 />
               </Wires>

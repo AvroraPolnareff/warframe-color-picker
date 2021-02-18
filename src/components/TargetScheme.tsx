@@ -11,7 +11,7 @@ import _ from "lodash";
 
 interface TargetSchemeProps {
   paletteColors: string[]
-  onCellClick: (colorPosition: number) => void;
+  onCellClick: (colorPosition: number, e: React.MouseEvent) => void;
   onImportClick: () => void;
 }
 
@@ -33,9 +33,14 @@ const TargetScheme: FC<TargetSchemeProps> = ({paletteColors, onCellClick, onImpo
     })
   }
   
-  const onCellChange = (index: number) => {
-    setSelectedCell(index)
-    onCellClick(index)
+  const onCellChange = (index: number, e: React.MouseEvent) => {
+    e.preventDefault()
+    if (e.nativeEvent.button === 2) {
+      onCellClick(index, e)
+    } else {
+      setSelectedCell(index)
+      onCellClick(index, e)
+    }
   }
   
   return (
@@ -57,7 +62,7 @@ const TargetScheme: FC<TargetSchemeProps> = ({paletteColors, onCellClick, onImpo
         ? <Manual colors={paletteColors} onCellChange={onCellChange} selectedCell={selectedCell}/> :
         <Default
           colors={paletteColors.slice(Math.floor(selectedCell / 8) * 8, Math.floor(selectedCell / 8 + 1) * 8)}
-          onCellChange={(index) => onCellChange(index + Math.floor(selectedCell / 8) * 8)}
+          onCellChange={(index, e) => onCellChange(index + Math.floor(selectedCell / 8) * 8, e)}
           selectedCell={selectedCell % 8}
         />
       }
@@ -88,7 +93,7 @@ const Header = styled.h2`
 
 interface DefaultProps {
   colors: string[],
-  onCellChange: (colorIndex: number) => void,
+  onCellChange: (colorIndex: number, e: React.MouseEvent) => void,
   selectedCell: number
 }
 
@@ -97,26 +102,29 @@ const Default: FC<DefaultProps> = ({colors, onCellChange, selectedCell}) => {
   
   const isSelected = (number: number) => selectedCell === number;
   
+  const onCellClick = (index: number, e: React.MouseEvent) => {
+    onCellChange(index, e);
+  }
   
   return (
     <Wrapper>
       <ColorEntry text="PRIMARY" selected={isSelected(0)}
-                  onClick={() => onCellChange(0)} color={colors[0]}/>
+                  onClick={(e) => onCellClick(0, e)} color={colors[0]}/>
       <ColorEntry text="SECONDARY" selected={isSelected(1)}
-                  onClick={() => onCellChange(1)} color={colors[1]}/>
+                  onClick={(e) => onCellClick(1, e)} color={colors[1]}/>
       <ColorEntry text="TERTIARY" selected={isSelected(2)}
-                  onClick={() => onCellChange(2)} color={colors[2]}/>
+                  onClick={(e) => onCellClick(2, e)} color={colors[2]}/>
       <ColorEntry text="QUATERNARY" selected={isSelected(3)}
-                  onClick={() => onCellChange(3)} color={colors[3]}/>
+                  onClick={(e) => onCellClick(3, e)} color={colors[3]}/>
       <div style={{marginTop: "0.65em"}}>
         <StyledColorEntry>
-          <ColorCell outline={isSelected(4)} color={colors[4]} onClick={() => onCellChange(4)}/>
-          <ColorCell outline={isSelected(5)} color={colors[5]} onClick={() => onCellChange(5)}/>
+          <ColorCell outline={isSelected(4)} color={colors[4]} onClick={(e) => onCellClick(4, e)}/>
+          <ColorCell outline={isSelected(5)} color={colors[5]} onClick={(e) => onCellClick(5, e)}/>
           <ColorName>EMISSIVE 1, 2</ColorName>
         </StyledColorEntry>
         <StyledColorEntry>
-          <ColorCell onClick={() => onCellChange(6)} outline={isSelected(6)} color={colors[6]}/>
-          <ColorCell onClick={() => onCellChange(7)} outline={isSelected(7)} color={colors[7]}/>
+          <ColorCell outline={isSelected(6)} color={colors[6]} onClick={(e) => onCellClick(6, e)}/>
+          <ColorCell outline={isSelected(7)} color={colors[7]} onClick={(e) => onCellClick(7, e)}/>
           <ColorName>ENERGY 1, 2</ColorName>
         </StyledColorEntry>
       </div>
@@ -126,7 +134,7 @@ const Default: FC<DefaultProps> = ({colors, onCellChange, selectedCell}) => {
 
 interface ManualProps {
   colors: string[],
-  onCellChange: (colorIndex: number) => void,
+  onCellChange: (colorIndex: number, e: React.MouseEvent) => void,
   selectedCell: number
 }
 
@@ -147,7 +155,7 @@ const Manual: FC<ManualProps> = ({colors, onCellChange, selectedCell}) => {
               <ColorCell
                 color={cell.color}
                 outline={selectedCell === cell.index}
-                onClick={() => onCellChange(cell.index)}
+                onClick={(e) => onCellChange(cell.index, e)}
               />
             ))}
           </CellsRow>
@@ -218,13 +226,13 @@ interface ColorEntryProps {
   text: string,
   color: string,
   selected: boolean,
-  onClick: () => void
+  onClick: (e: React.MouseEvent) => void
 }
 
 const ColorEntry: FC<ColorEntryProps> = ({text, color, selected, onClick}) => {
   return (
     <StyledColorEntry onClick={onClick}>
-      <ColorCell outline={selected} color={color}/>
+      <ColorCell outline={selected} color={color} onClick={onClick}/>
       <ColorName>{text}</ColorName>
     </StyledColorEntry>
   )
