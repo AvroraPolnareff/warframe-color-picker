@@ -446,14 +446,14 @@ class Quad {
     const ctx = canvas.getContext('2d')
     if (!ctx) return
 
-    if (!this.renderedQuad)
-      this.renderedQuad = ctx.createImageData(this.size, this.size)
+
 
     const quadX = this.path[0].x
     const quadY = this.path[0].y
 
-    if(this.previosHue !== hue) {
-
+    if(this.previosHue !== hue || !this.renderedQuad) {
+      if (!this.renderedQuad)
+        this.renderedQuad = ctx.createImageData(this.size, this.size)
 
       let i = 0
 
