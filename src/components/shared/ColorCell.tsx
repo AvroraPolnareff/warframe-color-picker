@@ -1,16 +1,17 @@
 import React from 'react'
 import styled, {keyframes} from "styled-components"
+import grid from "../../assets/no-color-grid-small.png"
 
 interface ColorCellProps {
   outline?: boolean;
   color: string;
-  onClick?: () => void
+  onClick?: (e: React.MouseEvent) => void
 }
 
 export const ColorCell : React.FC<ColorCellProps> = ({outline, color, onClick, children}) => {
   return (
     <OutlineWrapper outline={outline}>
-      <StyledColorCell onClick={onClick} color={color}>
+      <StyledColorCell onClick={onClick} color={color} onContextMenu={onClick}>
         {children}
       </StyledColorCell>
     </OutlineWrapper>)
@@ -50,8 +51,8 @@ const OutlineWrapper = styled.div<{outline?: boolean}>`
     -webkit-tap-highlight-color: transparent;
 `
 
-const StyledColorCell = styled.div.attrs<{color: string}>((props) => ({
-  style: {background: props.color}
+const StyledColorCell = styled.div.attrs<{color: string}>(({color}) => ({
+  style: {background: color !== "empty" ? color : `repeat center/150% url(${grid})`}
 }))`
     content: " ";
     height: 1.07em;
