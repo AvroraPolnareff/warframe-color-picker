@@ -23,7 +23,7 @@ import targetSchemeToSuggestions from "../assets/Wires (Col Pic -_ Tar Sch).svg"
 import targetSchemeToColorPicker from "../assets/Wires (Tar Sch -_ Col Pic).svg"
 import suggestionsToSelectedColor from "../assets/Wires (Sugg -_ Sel Col).svg"
 
-export const initManualColors = Array(48).fill("empty")
+export const initManualColors = Array(48).fill("")
 
 export const initAvailablePalettes = palettes.map((palette) => palette.name)
 
@@ -52,7 +52,7 @@ function App() {
 
   const getCurrentColor = (): string => {
     const color = paletteColors[currentColor]
-    if (color === "empty") return "#000000"
+    if (color === "") return "#000000"
     return color
   }
 
@@ -78,7 +78,7 @@ const onCellClick = (index: number, e: React.MouseEvent) => {
     if (e.type === "contextmenu") {
       e.preventDefault();
       const newPaletteColors = [...paletteColors];
-      newPaletteColors[index] = "empty";
+      newPaletteColors[index] = "";
       setPaletteColors(newPaletteColors);
     }
     setCurrentColor(index);

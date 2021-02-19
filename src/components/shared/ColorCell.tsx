@@ -52,7 +52,7 @@ const OutlineWrapper = styled.div<{outline?: boolean}>`
 `
 
 const StyledColorCell = styled.div.attrs<{color: string}>(({color}) => ({
-  style: {background: color !== "empty" ? color : `repeat center/150% url(${grid})`}
+  style: {background: color !== "" ? color : `repeat center/150% url(${grid})`}
 }))`
     content: " ";
     height: 1.07em;
