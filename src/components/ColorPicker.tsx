@@ -86,7 +86,7 @@ const limitNumber = (number: number, min: number, max: number) => {
 const NumbersPicker: FC<NumbersPickerProps> = ({color, onColorChange}) => {
   const [hsvValue, setHsvValue] = useState({h: 0, s: 0, v: 0})
   const [userTyping, setUserTyping] = useState(false)
-  const [timer, setTimer] = useState(0)
+  const [timer, setTimer] = useState<NodeJS.Timeout | null>(null)
   useEffect(() => {
     if (!userTyping) {
       setHsvValue({h: color.hue(), s: color.saturationv(), v: color.value()})
@@ -94,7 +94,9 @@ const NumbersPicker: FC<NumbersPickerProps> = ({color, onColorChange}) => {
   }, [color])
 
   const onChange = (name: string, value: number) => {
-    clearTimeout(timer)
+    if (timer) {
+      clearTimeout(timer)
+    }
     switch (name) {
       case "red":
         onColorChange(color.red(value))
@@ -239,7 +241,7 @@ const HexInput: FC<HexInputProps> = ({onChange, color}) => {
   const [validHex, setValidHex] = useState(true)
   const [inputField, setInputField] = useState("#909090")
   const [userTyping, setUserTyping] = useState(false)
-  const [timer, setTimer] = useState(0)
+  const [timer, setTimer] = useState<NodeJS.Timeout | null>(null)
 
   useEffect(() => {
     if (!userTyping) {
@@ -249,7 +251,9 @@ const HexInput: FC<HexInputProps> = ({onChange, color}) => {
   }, [color])
 
   const changeHex = (e: React.ChangeEvent<HTMLInputElement>) => {
-    clearTimeout(timer)
+    if (timer) {
+      clearTimeout(timer)
+    }
     setTimer(setTimeout(() => setUserTyping(false), 1000))
     setUserTyping(true)
     try {
