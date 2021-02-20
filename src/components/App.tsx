@@ -38,7 +38,7 @@ function App() {
   }
 
   const [paletteColors, setPaletteColors] = useStickyState(initManualColors, "manualColors")
-  const [currentColor, setCurrentColor] = useState(0)
+  const [currentColorIndex, setCurrentColorIndex] = useState(0)
   const [matchedColors, setMatchedColors] = useState<MatchedColor[]>([])
   const [isColorChanging, setIsColorChanging] = useState(false)
   const [selectedColor, setSelectedColor] = useState<MatchedColor>(initMatchedColor)
@@ -51,7 +51,7 @@ function App() {
 
 
   const getCurrentColor = (): string => {
-    const color = paletteColors[currentColor]
+    const color = paletteColors[currentColorIndex]
     if (color === "") return "#000000"
     return color
   }
@@ -73,7 +73,7 @@ function App() {
       setIsColorChanging(true)
     }
     debounced.current(updateSuggestions)
-  }, [paletteColors, currentColor, availablePalettes])
+  }, [paletteColors, currentColorIndex, availablePalettes])
 const onCellClick = (index: number, e: React.MouseEvent) => {
     if (e.type === "contextmenu") {
       e.preventDefault();
@@ -81,12 +81,12 @@ const onCellClick = (index: number, e: React.MouseEvent) => {
       newPaletteColors[index] = "";
       setPaletteColors(newPaletteColors);
     }
-    setCurrentColor(index);
+    setCurrentColorIndex(index);
   }
 
   const onColorChange = (color: Color) => {
     const newColors = [...paletteColors]
-    newColors[currentColor] = color.toString()
+    newColors[currentColorIndex] = color.toString()
     setPaletteColors(newColors)
   }
 
@@ -149,9 +149,9 @@ const onCellClick = (index: number, e: React.MouseEvent) => {
         }}
         onScreenshotImport={(colors => {
           setPaletteColors([
-            ...paletteColors.slice(0, Math.floor(currentColor / 8) * 8),
+            ...paletteColors.slice(0, Math.floor(currentColorIndex / 8) * 8),
             ...colors,
-            ...paletteColors.slice(Math.floor(currentColor / 8 + 1) * 8)
+            ...paletteColors.slice(Math.floor(currentColorIndex / 8 + 1) * 8)
           ]);
           setShowImportModal(false)
         })}
