@@ -22,6 +22,7 @@ import {debounce} from "lodash"
 import targetSchemeToSuggestions from "../assets/Wires (Col Pic -_ Tar Sch).svg"
 import targetSchemeToColorPicker from "../assets/Wires (Tar Sch -_ Col Pic).svg"
 import suggestionsToSelectedColor from "../assets/Wires (Sugg -_ Sel Col).svg"
+import { AppBar } from './AppBar';
 
 export const initManualColors = Array(48).fill("")
 
@@ -157,7 +158,7 @@ const onCellClick = (index: number, e: React.MouseEvent) => {
         })}
       />
 
-      {/*<AppBar/>*/}
+      <AppBar/>
       <Credentials><span>Hippothoe & Morisabeau</span></Credentials>
       <div style={{width: 'max-content', margin: "0.5em auto"}}>
 

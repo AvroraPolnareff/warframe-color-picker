@@ -4,32 +4,42 @@ import styled from "styled-components";
 export const AppBar : FC = () => {
   return (
     <StyledAppBar>
-      <Entry></Entry>
-      <Entry></Entry>
-      <Entry></Entry>
-      <Entry></Entry>
-      <Entry></Entry>
-      <Entry></Entry>
+      <CenterContainer>
+        <Entry>Hide MOTD</Entry>
+        <Entry>Layout Switch</Entry>
+        <Entry>Language</Entry>
+        <Entry>Help</Entry>
+      </CenterContainer>
     </StyledAppBar>
   )
 }
 
 const StyledAppBar = styled.div`
-  height: 4.21em;
-  width: max-content;
-  margin: 0 auto;
-  background: ${props => props.theme.colors.tertiary};
   display: flex;
-  padding: 0 1em;
-  border-bottom-left-radius: 1.34em;
-  border-bottom-right-radius: 1.34em;
+  justify-content: center;
+  
+`
+
+const CenterContainer = styled.div`
+  display: flex;
+  width: max-content;
 `
 
 const Entry = styled.div`
-  content: ' ';
-  width: 3.2em;
-  height: 3.2em;
-  margin: 0.42em 0.7em;
-  background-color: white;
-  border-radius: 0.85em;
+  padding: 0.05em 0.3em;
+  color: ${({theme}) => theme.colors.windowBackground};
+  background-color: ${({theme}) => theme.colors.secondary};
+  border-bottom-left-radius: 0.7em;
+  border-bottom-right-radius: 0.7em;
+  cursor: pointer;
+  transition: background-color 0.15s linear;
+  font-weight: 500;
+  
+  & + & {
+    margin-left: 0.5em;
+  }
+  
+  :hover {
+    background-color: ${({theme}) => theme.colors.primary};
+  }
 `
