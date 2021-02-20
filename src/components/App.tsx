@@ -226,7 +226,7 @@ const StyledWires = styled.img`
 
 const Credentials = styled.div`
   position: absolute;
-  top: 2%;
+  bottom: 2%;
   right: 2%;
   text-align: right;
   font-size: 1.25rem;
