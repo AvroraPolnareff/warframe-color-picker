@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/warframe-color-picker/static/js/main.45a68260.chunk.js",
-    "main.js.map": "/warframe-color-picker/static/js/main.45a68260.chunk.js.map",
+    "main.js": "/warframe-color-picker/static/js/main.30ecb3e5.chunk.js",
+    "main.js.map": "/warframe-color-picker/static/js/main.30ecb3e5.chunk.js.map",
     "runtime-main.js": "/warframe-color-picker/static/js/runtime-main.16f09d88.js",
     "runtime-main.js.map": "/warframe-color-picker/static/js/runtime-main.16f09d88.js.map",
     "static/js/2.057444d2.chunk.js": "/warframe-color-picker/static/js/2.057444d2.chunk.js",
@@ -14,7 +14,6 @@
     "static/media/discord-logo.781b631d.svg": "/warframe-color-picker/static/media/discord-logo.781b631d.svg",
     "static/media/exitButton.37a78487.svg": "/warframe-color-picker/static/media/exitButton.37a78487.svg",
     "static/media/github-logo.25f76b64.svg": "/warframe-color-picker/static/media/github-logo.25f76b64.svg",
-    "static/media/layoutIcon.1b8abc80.svg": "/warframe-color-picker/static/media/layoutIcon.1b8abc80.svg",
     "static/media/suggestions.42a18835.svg": "/warframe-color-picker/static/media/suggestions.42a18835.svg",
     "static/media/tipOfADay.ddb2b946.svg": "/warframe-color-picker/static/media/tipOfADay.ddb2b946.svg",
     "static/media/wf-logo-DADADA 1.cc8a7d99.svg": "/warframe-color-picker/static/media/wf-logo-DADADA 1.cc8a7d99.svg"
@@ -22,6 +21,6 @@
   "entrypoints": [
     "static/js/runtime-main.16f09d88.js",
     "static/js/2.057444d2.chunk.js",
-    "static/js/main.45a68260.chunk.js"
+    "static/js/main.30ecb3e5.chunk.js"
   ]
 }
