@@ -1,27 +1,14 @@
 import React, {FC} from 'react';
 import styled from "styled-components";
 
-export const AppBar : FC = () => {
 
-  return (
-    <StyledAppBar>
-      <CenterContainer>
-        <Entry>Hide MOTD</Entry>
-        <Entry>Layout Switch</Entry>
-        <Entry>Language</Entry>
-        <Entry>Help</Entry>
-      </CenterContainer>
-    </StyledAppBar>
-  )
-}
-
-const StyledAppBar = styled.div`
+export const AppBar = styled.div`
   display: flex;
   justify-content: center;
   height: 2em;
 `
 
-const CenterContainer = styled.div`
+export const CenterContainer = styled.div`
   display: flex;
   width: max-content;
   height: max-content;
@@ -34,7 +21,7 @@ const CenterContainer = styled.div`
   }
 `
 
-const Entry = styled.div`
+export const Entry = styled.div`
   padding: 0.05em 0.3em;
   background-color: ${({theme}) => theme.colors.secondary};
   border-bottom-left-radius: 0.7em;

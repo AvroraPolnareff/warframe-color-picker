@@ -22,14 +22,21 @@ import {debounce} from "lodash"
 import targetSchemeToSuggestions from "../assets/Wires (Col Pic -_ Tar Sch).svg"
 import targetSchemeToColorPicker from "../assets/Wires (Tar Sch -_ Col Pic).svg"
 import suggestionsToSelectedColor from "../assets/Wires (Sugg -_ Sel Col).svg"
-import { AppBar } from './AppBar';
+import {AppBar, CenterContainer, Entry} from './AppBar';
 import {useColorPickerLogic} from "../hooks/color-picker-logic";
 import {Classic} from "./layouts/Classic";
 
 function App() {
   return (
     <StyledApp>
-      <AppBar/>
+      <AppBar>
+        <CenterContainer>
+          <Entry>Hide MOTD</Entry>
+          <Entry>Layout Switch</Entry>
+          <Entry>Language</Entry>
+          <Entry>Help</Entry>
+        </CenterContainer>
+      </AppBar>
       {<Header/>}
       <Classic/>
       <Credentials><span>Hippothoe & Morisabeau</span></Credentials>
