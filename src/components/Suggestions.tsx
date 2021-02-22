@@ -3,7 +3,7 @@ import {Position} from "../common/Palette";
 import {Divider} from "./shared/Divider";
 import {FlexColumnCenter} from "./shared/FlexColumnCenter";
 import {Window} from "./shared/Window";
-import header from "../assets/SUGGESTIONS.svg"
+import header from "../assets/suggestions.svg"
 import styled from "styled-components";
 import {ColorCell} from "./shared/ColorCell";
 import {Badge} from "./shared/Badge";
