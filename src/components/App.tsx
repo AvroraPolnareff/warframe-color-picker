@@ -27,17 +27,18 @@ import {useColorPickerLogic} from "../hooks/color-picker-logic";
 import {Classic} from "./layouts/Classic";
 
 function App() {
+  const [showMOTD, setShowMOTD] = useState(true);
   return (
     <StyledApp>
       <AppBar>
         <CenterContainer>
-          <Entry>Hide MOTD</Entry>
+          <Entry onClick={() => setShowMOTD(!showMOTD)}>{showMOTD ? "Show" : "Hide"} MOTD</Entry>
           <Entry>Layout Switch</Entry>
           <Entry>Language</Entry>
           <Entry>Help</Entry>
         </CenterContainer>
       </AppBar>
-      {<Header/>}
+      {showMOTD && <Header/>}
       <Classic/>
       <Credentials><span>Hippothoe & Morisabeau</span></Credentials>
     </StyledApp>
