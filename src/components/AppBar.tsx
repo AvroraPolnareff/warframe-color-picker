@@ -2,6 +2,7 @@ import React, {FC} from 'react';
 import styled from "styled-components";
 
 export const AppBar : FC = () => {
+
   return (
     <StyledAppBar>
       <CenterContainer>
