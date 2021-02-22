@@ -14,10 +14,9 @@ import githubLogo from "../../assets/github-logo.svg";
 import suggestionsToSelectedColor from "../../assets/Wires (Sugg -_ Sel Col).svg";
 import {Suggestions} from "../Suggestions";
 import {SelectedColor} from "../SelectedColor";
-import styled from "styled-components";
 import { Wires } from "../Wires";
 
-export const Classic = () => {
+export const Expanded = () => {
   const {
     availablePalettes,
     showPalettesModal,

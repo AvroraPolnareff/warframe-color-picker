@@ -20,6 +20,7 @@ interface SuggestionsProps {
   onPalettesClick: () => void
   isSuggestionsUpdating: boolean
   onSwapColor: (key: string) => void,
+  height?: string
 }
 
 export interface MatchedColor {
@@ -91,7 +92,7 @@ export const Suggestions: FC<SuggestionsProps> = (props) => {
       <Divider/>
       <Faded>
         <Scrollbars
-          style={{height: "32.55em", width: "104%"}}
+          style={{height: props.height ?? "32.55em", width: "104%"}}
           autoHide autoHideDuration={200}
           ref={scrollbarsRef}
           onUpdate={onScrollbarUpdate}
