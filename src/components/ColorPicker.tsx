@@ -6,27 +6,15 @@ import styled from "styled-components";
 import {Divider} from "./shared/Divider";
 import {ColorPickerHeader} from "../assets/ColorPickerHeader"
 import {Picker} from "./Picker";
+import {useFontSize} from "../hooks/useFontSize";
 
 interface ColorPickerProps {
   color: Color,
   onColorChange: (color: Color) => void
 }
 
-const getFontSize = () => {
-  return parseFloat(window.getComputedStyle(document.body, null).getPropertyValue('font-size'))
-}
-
 export const ColorPicker: FC<ColorPickerProps> = ({onColorChange, color}) => {
-  const [fontSize, setFontSize] = useState(getFontSize())
-  useEffect(() => {
-    const onResize = () => {
-      setFontSize(getFontSize())
-    }
-    window.addEventListener('resize', onResize)
-    return () => {
-      window.removeEventListener('resize', onResize)
-    }
-  }, [fontSize])
+  const fontSize = useFontSize();
 
   return (
     <div style={{position: 'relative'}}>
@@ -50,7 +38,6 @@ export const ColorPicker: FC<ColorPickerProps> = ({onColorChange, color}) => {
           </FlexColumnCenter>
         </FlexRow>
       </Window>
-
     </div>
   )
 }
