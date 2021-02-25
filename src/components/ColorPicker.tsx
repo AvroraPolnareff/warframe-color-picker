@@ -2,7 +2,7 @@ import React, {FC, useEffect, useState} from "react";
 import Color from "color";
 import {Window} from "./shared/Window";
 import {FlexColumnCenter} from "./shared/FlexColumnCenter";
-import styled from "styled-components";
+import styled, {css} from "styled-components";
 import {Divider} from "./shared/Divider";
 import {ColorPickerHeader} from "../assets/ColorPickerHeader"
 import {Picker} from "./Picker";
@@ -11,9 +11,10 @@ import {useFontSize} from "../hooks/useFontSize";
 interface ColorPickerProps {
   color: Color,
   onColorChange: (color: Color) => void
+  compact?: boolean
 }
 
-export const ColorPicker: FC<ColorPickerProps> = ({onColorChange, color}) => {
+export const ColorPicker: FC<ColorPickerProps> = ({onColorChange, color, compact}) => {
   const fontSize = useFontSize();
 
   return (
@@ -21,30 +22,53 @@ export const ColorPicker: FC<ColorPickerProps> = ({onColorChange, color}) => {
       <HeaderWrapper>
         <ColorPickerHeader headerColor={color} width={7.5}/>
       </HeaderWrapper>
-      <Window width={16.2}>
-        <FlexRow>
-          <div style={{display: "flex", flexDirection: "column"}}>
-            <div style={{marginTop: "1.3em"}}>
-              <Picker size={7.3 * fontSize} color={color} onChange={onColorChange}/>
-            </div>
-          </div>
-          <FlexColumnCenter style={{width: "45%"}}>
-            <HexInput
-              color={color}
-              onChange={(e) => onColorChange(Color().hex(e.target.value))}
-            />
-            <Divider/>
-            <NumbersPicker color={color} onColorChange={onColorChange}/>
-          </FlexColumnCenter>
-        </FlexRow>
+      <Window width={compact ? 16.2 : 14.2}>
+        {compact ? (
+            <FlexRow>
+              <div style={{display: "flex", flexDirection: "column"}}>
+                <div style={{marginTop: "1.3em"}}>
+                  <Picker size={7.3 * fontSize} color={color} onChange={onColorChange}/>
+                </div>
+              </div>
+              <FlexColumnCenter style={{width: "45%"}}>
+                <HexInput
+                  compact={compact}
+                  color={color}
+                  onChange={(e) => onColorChange(Color().hex(e.target.value))}
+                />
+                <Divider/>
+                <NumbersPicker color={color} onColorChange={onColorChange} compact={compact}/>
+              </FlexColumnCenter>
+            </FlexRow>
+          ) : (
+            <>
+              <div style={{display: "flex", flexDirection: "row-reverse"}}>
+                <HexInput
+                  compact={compact}
+                  color={color}
+                  onChange={(e) => onColorChange(Color().hex(e.target.value))}
+                />
+              </div>
+              <div style={{display: "flex", flexDirection: "column", alignItems: "center", marginBottom: "0.3em"}}>
+                <Picker size={10.3 * fontSize} color={color} onChange={onColorChange}/>
+                <Divider style={{marginTop: "0.5em"}}/>
+                <div style={{alignSelf: "flex-start"}}>
+                  <NumbersPicker color={color} onColorChange={onColorChange} compact={compact}/>
+                </div>
+
+              </div>
+            </>
+          )
+        }
       </Window>
     </div>
   )
 }
 
-const HeaderWrapper = styled.div`
+const HeaderWrapper = styled.div<{compact?: boolean}>`
     position: absolute;
-    top: -15%;
+    
+    top: -1.5em;
     left: 0;
     pointer-events: none;
 `
@@ -58,6 +82,7 @@ const FlexRow = styled.div`
 interface NumbersPickerProps {
   color: Color,
   onColorChange: (color: Color) => void
+  compact?: boolean
 }
 
 const limitNumber = (number: number, min: number, max: number) => {
@@ -70,7 +95,7 @@ const limitNumber = (number: number, min: number, max: number) => {
   return number
 }
 
-const NumbersPicker: FC<NumbersPickerProps> = ({color, onColorChange}) => {
+const NumbersPicker: FC<NumbersPickerProps> = ({color, onColorChange, compact}) => {
   const [hsvValue, setHsvValue] = useState({h: 0, s: 0, v: 0})
   const [userTyping, setUserTyping] = useState(false)
   const [timer, setTimer] = useState<NodeJS.Timeout | null>(null)
@@ -119,26 +144,48 @@ const NumbersPicker: FC<NumbersPickerProps> = ({color, onColorChange}) => {
 
   return (
     <StyledPicker>
-      <Grid2X4>
-        <ColorInput name={"red"} onChange={onChange} min={0} max={255}
-                    color="#dba3a3" value={Math.round(color.red())}/>
-        <ColorInput name={"green"} onChange={onChange} min={0} max={255}
-                    color="#a3dba3" value={Math.round(color.green())}/>
-        <ColorInput name={"blue"} onChange={onChange} min={0} max={255}
-                    color="#a3a3db" value={Math.round(color.blue())}/>
-        <ColorSchemeName>R</ColorSchemeName>
-        <ColorSchemeName>G</ColorSchemeName>
-        <ColorSchemeName>B</ColorSchemeName>
-        <ColorInput name={"hue"} min={0} max={359}
-                    onChange={onChange} value={Math.round(hsvValue.h)}/>
-        <ColorInput name={"saturationv"} min={0} max={100}
-                    onChange={onChange} value={Math.round(hsvValue.s)}/>
-        <ColorInput name={"value"} min={0} max={100}
-                    onChange={onChange} value={Math.round(hsvValue.v)}/>
-        <ColorSchemeName>H</ColorSchemeName>
-        <ColorSchemeName>S</ColorSchemeName>
-        <ColorSchemeName>V</ColorSchemeName>
-      </Grid2X4>
+      {compact ? (
+        <Grid2X4 compact={compact}>
+          <ColorInput name={"red"} onChange={onChange} min={0} max={255}
+                      color="#dba3a3" value={Math.round(color.red())}/>
+          <ColorInput name={"green"} onChange={onChange} min={0} max={255}
+                      color="#a3dba3" value={Math.round(color.green())}/>
+          <ColorInput name={"blue"} onChange={onChange} min={0} max={255}
+                      color="#a3a3db" value={Math.round(color.blue())}/>
+          <ColorSchemeName>R</ColorSchemeName>
+          <ColorSchemeName>G</ColorSchemeName>
+          <ColorSchemeName>B</ColorSchemeName>
+          <ColorInput name={"hue"} min={0} max={359}
+                      onChange={onChange} value={Math.round(hsvValue.h)}/>
+          <ColorInput name={"saturationv"} min={0} max={100}
+                      onChange={onChange} value={Math.round(hsvValue.s)}/>
+          <ColorInput name={"value"} min={0} max={100}
+                      onChange={onChange} value={Math.round(hsvValue.v)}/>
+          <ColorSchemeName>H</ColorSchemeName>
+          <ColorSchemeName>S</ColorSchemeName>
+          <ColorSchemeName>V</ColorSchemeName>
+        </Grid2X4>
+      ) : (
+        <Grid2X4 compact={compact}>
+          <ColorSchemeName>RGB&nbsp;&nbsp;&nbsp;</ColorSchemeName>
+          <ColorInput name={"red"} onChange={onChange} min={0} max={255}
+                      color="#dba3a3" value={Math.round(color.red())}/>
+          <ColorInput name={"green"} onChange={onChange} min={0} max={255}
+                      color="#a3dba3" value={Math.round(color.green())}/>
+          <ColorInput name={"blue"} onChange={onChange} min={0} max={255}
+                      color="#a3a3db" value={Math.round(color.blue())}/>
+          <ColorSchemeName>HSV&nbsp;&nbsp;&nbsp;</ColorSchemeName>
+          <ColorInput name={"hue"} min={0} max={359}
+                      onChange={onChange} value={Math.round(hsvValue.h)}/>
+          <ColorInput name={"saturationv"} min={0} max={100}
+                      onChange={onChange} value={Math.round(hsvValue.s)}/>
+          <ColorInput name={"value"} min={0} max={100}
+                      onChange={onChange} value={Math.round(hsvValue.v)}/>
+        </Grid2X4>
+      )
+
+      }
+
     </StyledPicker>
   )
 }
@@ -148,12 +195,11 @@ const StyledPicker = styled.div`
     margin-right: 0.3em;
 `
 
-const Grid2X4 = styled.div`
+const Grid2X4 = styled.div<{compact?: boolean}>`
     display: grid;
     align-items: baseline;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
-    row-gap: 0.05em;
+    grid-template-columns: ${({compact}) => compact ? "repeat(3, 1fr)" : "repeat(4, 1fr)" };
+    row-gap: ${({compact}) => compact ? "0.05em" : "0.5em" };
     justify-items: center;
     justify-content: start;
     width: fit-content;
@@ -220,11 +266,12 @@ const StyledColorInput = styled.input`
 
 
 interface HexInputProps {
-  color: Color;
+  color: Color
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  compact?: boolean
 }
 
-const HexInput: FC<HexInputProps> = ({onChange, color}) => {
+const HexInput: FC<HexInputProps> = ({onChange, color, compact}) => {
   const [validHex, setValidHex] = useState(true)
   const [inputField, setInputField] = useState("#909090")
   const [userTyping, setUserTyping] = useState(false)
@@ -268,6 +315,7 @@ const HexInput: FC<HexInputProps> = ({onChange, color}) => {
 
   return (
     <StyledHexInput
+      compact={compact}
       value={inputField}
       onChange={changeHex} valid={validHex}
     />
@@ -276,28 +324,33 @@ const HexInput: FC<HexInputProps> = ({onChange, color}) => {
 
 const StyledHexInput = styled.input.attrs(props => ({
   spellCheck: "false", type: "text"
-}))<{ valid: boolean }>`
-    display: flex;
-    align-items: center;
-    background-color: ${props => props.valid ? props.theme.colors.secondary : props.theme.colors.danger};
-    color: ${props => props.theme.colors.badgeText};
-    padding: 0.2em 0.3em;
-    max-height: 1.3em;
-    margin: 0.3em 0.3em 0.6em 0.3em;
-    border-radius: 0.4em;
-    font-weight: 500;
-    font-size: 1.3rem;
-    width: 5em;
-    border: none;
-    transition: background-color 0.15s linear;
+}))<{ valid: boolean, compact?: boolean }>`
+  display: flex;
+  align-items: center;
+  background-color: ${props => props.valid ? props.theme.colors.secondary : props.theme.colors.danger};
+  color: ${props => props.theme.colors.badgeText};
+  padding: 0.2em 0.3em;
+  max-height: 1.3em;
+  margin: 0.3em 0.3em 0.6em 0.3em;
+  border-radius: 0.4em;
+  font-weight: 500;
+  font-size: 1.3rem;
+  width: 5em;
+  border: none;
+  transition: background-color 0.15s linear;
+
+  ${({compact}) => !compact && css`
+    margin-right: 0;
+    font-size: 1em;
+  `}
   
-    &:hover {
-      background-color: ${props => props.valid ? props.theme.colors.darken.secondary : props.theme.colors.darken.danger};
-    }
-    
-    &:focus {
-        outline: none;
-    }
+  &:hover {
+    background-color: ${props => props.valid ? props.theme.colors.darken.secondary : props.theme.colors.darken.danger};
+  }
+  
+  &:focus {
+      outline: none;
+  }
 `
 
 
