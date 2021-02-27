@@ -1,45 +1,25 @@
-import React, {CSSProperties, FC, useEffect, useRef, useState} from 'react';
+import React, {useState} from 'react';
 import styled from "styled-components";
-import TargetScheme from "./TargetScheme";
-import {ColorPicker} from "./ColorPicker";
-import Color from "color";
-import {
-  convertExportStringToColors,
-  findClosestColors,
-  useStickyState
-} from "../common/helpers";
-import {palettes} from "../common/palettes";
-import {MatchedColor, Suggestions} from "./Suggestions";
-import {SelectedColor} from "./SelectedColor";
 import {Header} from "./Header";
-import {ImportModal} from "./ImportModal";
-import {PalettesModal} from "./PalettesModal";
-import discordLogo from "../assets/discord-logo.svg"
-import githubLogo from "../assets/github-logo.svg"
-import warframeLogo from "../assets/wf-logo-DADADA 1.svg"
-import {Link} from "./shared/Link";
-import {debounce} from "lodash"
-import targetSchemeToSuggestions from "../assets/Wires (Col Pic -_ Tar Sch).svg"
-import targetSchemeToColorPicker from "../assets/Wires (Tar Sch -_ Col Pic).svg"
-import suggestionsToSelectedColor from "../assets/Wires (Sugg -_ Sel Col).svg"
 import {AppBar, CenterContainer, Entry} from './AppBar';
-import {useColorPickerLogic} from "../hooks/color-picker-logic";
 import {Classic} from "./layouts/Classic";
+import {Expanded} from "./layouts/Expanded";
 
 function App() {
   const [showMOTD, setShowMOTD] = useState(true);
+  const [layout, setLayout] = useState(false);
   return (
     <StyledApp>
       <AppBar>
         <CenterContainer>
           <Entry onClick={() => setShowMOTD(!showMOTD)}>{showMOTD ? "Show" : "Hide"} MOTD</Entry>
-          <Entry>Layout Switch</Entry>
+          <Entry onClick={() => setLayout(!layout)}>Layout Switch</Entry>
           <Entry>Language</Entry>
           <Entry>Help</Entry>
         </CenterContainer>
       </AppBar>
       {showMOTD && <Header/>}
-      <Classic/>
+      {layout ? <Classic/> : <Expanded/>}
       <Credentials><span>Hippothoe & Morisabeau</span></Credentials>
     </StyledApp>
   );
