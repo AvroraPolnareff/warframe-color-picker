@@ -1,7 +1,7 @@
 import React, {FC, useEffect, useState} from "react"
 import {Window} from "./shared/Window";
 import {FlexColumnCenter} from "./shared/FlexColumnCenter";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import {Position} from "../common/Palette";
 import waves from "../assets/waves.svg"
 import {WarframePalette} from "./shared/WarframePalette";

@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import {Header} from "./Header";
 import {AppBar, CenterContainer, Entry} from './AppBar';
 import {Classic} from "./layouts/Classic";
 import {Expanded} from "./layouts/Expanded";
+import {LayoutsScreen} from "./layouts/LayoutsScreen";
 
 function App() {
   const [showMOTD, setShowMOTD] = useState(true);
@@ -18,9 +19,10 @@ function App() {
           <Entry>Help</Entry>
         </CenterContainer>
       </AppBar>
-      {showMOTD && <Header/>}
-      {layout ? <Classic/> : <Expanded/>}
-      <Credentials><span>Hippothoe & Morisabeau</span></Credentials>
+      {<LayoutsScreen/>}
+      {/*{showMOTD && <Header/>}*/}
+      {/*{layout ? <Classic/> : <Expanded/>}*/}
+      {/*<Credentials><span>Hippothoe & Morisabeau</span></Credentials>*/}
     </StyledApp>
   );
 }

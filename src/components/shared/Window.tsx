@@ -1,5 +1,5 @@
 import React, {CSSProperties} from 'react'
-import styled from "styled-components"
+import styled from "styled-components/macro"
 
 export const Window: React.FC<{
   width?: number, height?: number, style?: CSSProperties

@@ -1,5 +1,5 @@
 import React, {FC, useMemo, useState} from "react";
-import styled, {css, DefaultTheme, Keyframes, keyframes} from "styled-components";
+import styled, {css, DefaultTheme, Keyframes, keyframes} from "styled-components/macro";
 import {Window} from "./shared/Window";
 import {FlexColumnCenter} from "./shared/FlexColumnCenter";
 import {Button} from "./shared/Button";

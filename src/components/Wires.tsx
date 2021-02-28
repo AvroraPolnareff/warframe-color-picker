@@ -1,5 +1,5 @@
 import React, {CSSProperties, FC} from "react";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
 export const Wires: FC<{ style: CSSProperties, src: string }> = ({children, style, src}) => (
   <div style={{position: 'relative'}}>

@@ -1,5 +1,5 @@
 import React, {FC, useState} from "react"
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import {Modal} from "./shared/Modal";
 import {palettes} from "../common/palettes"
 import {Button} from "./shared/Button";

@@ -4,7 +4,7 @@ import {Divider} from "./shared/Divider";
 import {FlexColumnCenter} from "./shared/FlexColumnCenter";
 import {Window} from "./shared/Window";
 import header from "../assets/suggestions.svg"
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import {ColorCell} from "./shared/ColorCell";
 import {Badge} from "./shared/Badge";
 import {Switch} from "./shared/Switch";

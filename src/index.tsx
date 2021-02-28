@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from "./components/App"
 import * as serviceWorker from './serviceWorker';
-import {createGlobalStyle, ThemeProvider} from "styled-components";
+import {createGlobalStyle, ThemeProvider} from "styled-components/macro";
 import {defaultTheme} from "./common/themes";
 
 const GlobalStyle = createGlobalStyle`
