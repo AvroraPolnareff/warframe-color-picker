@@ -1,17 +1,18 @@
 import React, {FC, useContext, useState} from "react";
 import styled, {ThemeContext} from "styled-components/macro";
-import headerImage from "../../assets/choose-your-fighter.svg"
 import {ClassicLayoutIcon} from "../../assets/ClassicLayoutIcon"
 import {ExpandedLayoutIcon} from "../../assets/ExpandedLayoutIcon"
 import acceptIcon from "../../assets/accept.svg"
 import {Divider} from "../shared/Divider";
 import {Layout, SettingsContext} from "../../providers/SettingsProvider";
 import {CurrentScreenContext, Screen} from "../../providers/CurrentScreenProvider";
+import {useTranslation} from "react-i18next";
 
 export const Layouts : FC<{}> = () => {
   const settings = useContext(SettingsContext);
   const [layout, setLayout] = useState(settings.layout);
   const { setScreen } = useContext(CurrentScreenContext);
+  const {t} = useTranslation()
 
   const handleAccept = () => {
     settings.setLayout(layout)
@@ -19,10 +20,10 @@ export const Layouts : FC<{}> = () => {
   }
   return (
     <StyledLayoutsScreen>
-      <HeaderImage src={headerImage}/>
+      <HeaderImage src={t("layoutSelection.headerImage")}/>
       <DescriptionBlock>
         <Divider/>
-        <Text><span>Select whether you want to use an expanded layout, or the original, classic one.</span></Text>
+        <Text><span>{t("layoutSelection.headerText")}</span></Text>
         <Divider/>
       </DescriptionBlock>
       <LayoutsChooser>
@@ -39,7 +40,7 @@ export const Layouts : FC<{}> = () => {
       <BottomBlock>
         <DescriptionBlock>
           <Divider/>
-          <Text><span>Select whether you want to use an expanded layout, or the original, classic one.</span></Text>
+          <Text><span>{t("layoutSelection.bottomText")}</span></Text>
           <Divider/>
         </DescriptionBlock>
       </BottomBlock>
