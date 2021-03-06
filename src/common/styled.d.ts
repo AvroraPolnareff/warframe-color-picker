@@ -10,6 +10,7 @@ declare module 'styled-components' {
       quaternary: string;
       danger: string;
       success: string;
+      link: string;
       warning: string;
       
       darken: {
@@ -19,6 +20,7 @@ declare module 'styled-components' {
         quaternary: string;
         danger: string;
         success: string;
+        link: string;
         warning: string;
       }
       

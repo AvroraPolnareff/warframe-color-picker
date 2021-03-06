@@ -3,7 +3,7 @@ import {useStickyState} from "../hooks/useStickyState";
 
 export enum Screen {
   COLOR_PICKER = "COLOR_PICKER",
-  //LANGUAGE_SELECTION = "LANGUAGE_SELECTION",
+  LANGUAGE_SELECTION = "LANGUAGE_SELECTION",
   LAYOUT_SELECTION = "LAYOUT_SELECTION"
 }
 

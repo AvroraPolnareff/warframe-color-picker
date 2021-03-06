@@ -15,7 +15,7 @@ function App() {
         <CenterContainer>
           <Entry onClick={() => setShowMOTD(!showMOTD)}>{showMOTD ? "Show" : "Hide"} MOTD</Entry>
           <Entry onClick={() => setScreen(Screen.LAYOUT_SELECTION)}>Layout Switch</Entry>
-          <Entry>Language</Entry>
+          <Entry onClick={() => setScreen(Screen.LANGUAGE_SELECTION)}>Language</Entry>
           <Entry>Help</Entry>
         </CenterContainer>
       </AppBar>

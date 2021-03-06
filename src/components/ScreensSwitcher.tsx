@@ -5,6 +5,7 @@ import {Classic} from "./layouts/Classic";
 import {Expanded} from "./layouts/Expanded";
 import {Layouts} from "./screens/Layouts";
 import {Screen} from "../providers/CurrentScreenProvider";
+import {Languages} from "./screens/Languages";
 
 
 export const ScreensSwitcher = () => {
@@ -13,6 +14,7 @@ export const ScreensSwitcher = () => {
   switch (screen) {
     case Screen.COLOR_PICKER: return <CurrentLayout layout={layout}/>
     case Screen.LAYOUT_SELECTION: return <Layouts/>
+    case Screen.LANGUAGE_SELECTION: return <Languages/>
   }
 }
 

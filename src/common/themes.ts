@@ -8,6 +8,7 @@ export const defaultTheme : DefaultTheme = {
     quaternary: "",
     danger: "#dba3a3",
     success: "#A3DBA3",
+    link: "#A0A2EB",
     warning: "#e8dba5",
     darken: {
       primary: Color("#A5E8E8").darken(0.2).toString(),
@@ -16,6 +17,7 @@ export const defaultTheme : DefaultTheme = {
       quaternary: "",
       danger: Color("#dba3a3").darken(0.2).toString(),
       success: Color("#A3DBA3").darken(0.2).toString(),
+      link: Color("#A0A2EB").darken(0.2).toString(),
       warning: Color("#e8dba5").darken(0.2).toString(),
     },
     
