@@ -6,6 +6,7 @@ import {createGlobalStyle, ThemeProvider} from "styled-components/macro";
 import {defaultTheme} from "./common/themes";
 import {SettingsProvider} from "./providers/SettingsProvider";
 import {CurrentScreenProvider} from "./providers/CurrentScreenProvider";
+import "./i18n";
 
 const GlobalStyle = createGlobalStyle`
   html {
