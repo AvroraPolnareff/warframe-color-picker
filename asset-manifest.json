@@ -1,16 +1,18 @@
 {
   "files": {
-    "main.js": "/warframe-color-picker/static/js/main.35b597ab.chunk.js",
-    "main.js.map": "/warframe-color-picker/static/js/main.35b597ab.chunk.js.map",
+    "main.js": "/warframe-color-picker/static/js/main.4599df80.chunk.js",
+    "main.js.map": "/warframe-color-picker/static/js/main.4599df80.chunk.js.map",
     "runtime-main.js": "/warframe-color-picker/static/js/runtime-main.16f09d88.js",
     "runtime-main.js.map": "/warframe-color-picker/static/js/runtime-main.16f09d88.js.map",
-    "static/js/2.057444d2.chunk.js": "/warframe-color-picker/static/js/2.057444d2.chunk.js",
-    "static/js/2.057444d2.chunk.js.map": "/warframe-color-picker/static/js/2.057444d2.chunk.js.map",
+    "static/js/2.f905eb3a.chunk.js": "/warframe-color-picker/static/js/2.f905eb3a.chunk.js",
+    "static/js/2.f905eb3a.chunk.js.map": "/warframe-color-picker/static/js/2.f905eb3a.chunk.js.map",
     "index.html": "/warframe-color-picker/index.html",
-    "static/js/2.057444d2.chunk.js.LICENSE.txt": "/warframe-color-picker/static/js/2.057444d2.chunk.js.LICENSE.txt",
+    "static/js/2.f905eb3a.chunk.js.LICENSE.txt": "/warframe-color-picker/static/js/2.f905eb3a.chunk.js.LICENSE.txt",
     "static/media/Wires (Col Pic -_ Tar Sch).6eb8a568.svg": "/warframe-color-picker/static/media/Wires (Col Pic -_ Tar Sch).6eb8a568.svg",
     "static/media/Wires (Sugg -_ Sel Col).b59f090a.svg": "/warframe-color-picker/static/media/Wires (Sugg -_ Sel Col).b59f090a.svg",
     "static/media/Wires (Tar Sch -_ Col Pic).2ebe1e7f.svg": "/warframe-color-picker/static/media/Wires (Tar Sch -_ Col Pic).2ebe1e7f.svg",
+    "static/media/accept.431308e6.svg": "/warframe-color-picker/static/media/accept.431308e6.svg",
+    "static/media/choose-your-fighter.f2ad1563.svg": "/warframe-color-picker/static/media/choose-your-fighter.f2ad1563.svg",
     "static/media/discord-logo.781b631d.svg": "/warframe-color-picker/static/media/discord-logo.781b631d.svg",
     "static/media/exitButton.37a78487.svg": "/warframe-color-picker/static/media/exitButton.37a78487.svg",
     "static/media/github-logo.25f76b64.svg": "/warframe-color-picker/static/media/github-logo.25f76b64.svg",
@@ -20,7 +22,7 @@
   },
   "entrypoints": [
     "static/js/runtime-main.16f09d88.js",
-    "static/js/2.057444d2.chunk.js",
-    "static/js/main.35b597ab.chunk.js"
+    "static/js/2.f905eb3a.chunk.js",
+    "static/js/main.4599df80.chunk.js"
   ]
 }
