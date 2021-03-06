@@ -83,10 +83,6 @@ const LayoutChooserEntry = styled.div`
   }
 `
 
-const LayoutIcon = styled.svg.attrs(() => ({width: 272, height: 272, viewBox: "0 0 272 272"}))`
-  width: 16em;
-`
-
 const Checkbox: FC<{enabled: boolean}> = ({enabled}) => {
   const theme = useContext(ThemeContext)
   const color = enabled ? theme.colors.primary : theme.colors.tertiary
@@ -119,9 +115,9 @@ const CheckboxBackground = styled.svg`
 
 const RoundButton: FC<{onClick?: (e: React.MouseEvent) => void, src?: string}> = ({onClick, src}) => {
   return (
-    <StyledButton>
+    <StyledButton onClick={onClick}>
       <ImageContainer>
-        <ButtonImage src={src} onClick={onClick}/>
+        <ButtonImage src={src}/>
       </ImageContainer>
     </StyledButton>
   );
