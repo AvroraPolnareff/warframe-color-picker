@@ -36,6 +36,13 @@ export const Layouts : FC<{}> = () => {
         </LayoutChooserEntry>
       </LayoutsChooser>
       <RoundButton src={acceptIcon} onClick={handleAccept}/>
+      <BottomBlock>
+        <DescriptionBlock>
+          <Divider/>
+          <Text><span>Select whether you want to use an expanded layout, or the original, classic one.</span></Text>
+          <Divider/>
+        </DescriptionBlock>
+      </BottomBlock>
     </StyledLayoutsScreen>
   )
 }
@@ -83,9 +90,10 @@ const LayoutChooserEntry = styled.div`
   }
 `
 
-const LayoutIcon = styled.svg.attrs(() => ({width: 272, height: 272, viewBox: "0 0 272 272"}))`
-  width: 16em;
+const BottomBlock = styled.div`
+  margin-top: 12em;
 `
+
 
 const Checkbox: FC<{enabled: boolean}> = ({enabled}) => {
   const theme = useContext(ThemeContext)
@@ -119,9 +127,9 @@ const CheckboxBackground = styled.svg`
 
 const RoundButton: FC<{onClick?: (e: React.MouseEvent) => void, src?: string}> = ({onClick, src}) => {
   return (
-    <StyledButton>
+    <StyledButton onClick={onClick}>
       <ImageContainer>
-        <ButtonImage src={src} onClick={onClick}/>
+        <ButtonImage src={src}/>
       </ImageContainer>
     </StyledButton>
   );
