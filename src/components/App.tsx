@@ -1,28 +1,27 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import styled from "styled-components/macro";
-import {Header} from "./Header";
 import {AppBar, CenterContainer, Entry} from './AppBar';
-import {Classic} from "./layouts/Classic";
-import {Expanded} from "./layouts/Expanded";
-import {LayoutsScreen} from "./layouts/LayoutsScreen";
+import {Header} from "./Header";
+import {ScreensSwitcher} from "./ScreensSwitcher";
+import {useStickyState} from "../hooks/useStickyState";
+import {CurrentScreenContext, Screen} from "../providers/CurrentScreenProvider";
 
 function App() {
-  const [showMOTD, setShowMOTD] = useState(true);
-  const [layout, setLayout] = useState(false);
+  const [showMOTD, setShowMOTD] = useStickyState(true, "motd");
+  const {setScreen} = useContext(CurrentScreenContext);
   return (
     <StyledApp>
       <AppBar>
         <CenterContainer>
           <Entry onClick={() => setShowMOTD(!showMOTD)}>{showMOTD ? "Show" : "Hide"} MOTD</Entry>
-          <Entry onClick={() => setLayout(!layout)}>Layout Switch</Entry>
+          <Entry onClick={() => setScreen(Screen.LAYOUT_SELECTION)}>Layout Switch</Entry>
           <Entry>Language</Entry>
           <Entry>Help</Entry>
         </CenterContainer>
       </AppBar>
-      {<LayoutsScreen/>}
-      {/*{showMOTD && <Header/>}*/}
-      {/*{layout ? <Classic/> : <Expanded/>}*/}
-      {/*<Credentials><span>Hippothoe & Morisabeau</span></Credentials>*/}
+      {showMOTD && <Header/>}
+      <ScreensSwitcher/>
+      <Credentials><span>Hippothoe & Morisabeau</span></Credentials>
     </StyledApp>
   );
 }
