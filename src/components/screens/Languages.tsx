@@ -2,8 +2,10 @@ import React, {FC, useContext} from "react";
 import styled, {ThemeContext} from "styled-components/macro";
 import {Divider} from "../shared/Divider";
 import headerImage from "../../assets/languages-header.png"
+import {useTranslation} from "react-i18next";
 
 export const Languages: FC = ({}) => {
+  const {t} = useTranslation()
   return (
     <StyledLanguages>
       <HeaderImage src={headerImage}/>
@@ -11,7 +13,8 @@ export const Languages: FC = ({}) => {
         <Divider/>
         <Text>
           <span>
-            <Danger>Attention!</Danger> Color Palette names will be changed according to the chosen language.
+            <Danger>{t("languageSelection.headerText", {returnObjects: true})[0]}</Danger>
+            {t("languageSelection.headerText", {returnObjects: true})[1]}
           </span>
         </Text>
         <Divider/>
@@ -24,9 +27,11 @@ export const Languages: FC = ({}) => {
           <Divider/>
           <Text>
           <span>
-            Your language is missing? No worries, you can support us by helping to add it! Head over to our
-            <Link target="_blank" href="https://discord.gg/WWBYuY3">&nbsp;Discord&nbsp;</Link>
-            so we can cooperate.
+            {t("languageSelection.bottomText", {returnObjects: true})[0]}
+            <Link target="_blank" href="https://discord.gg/WWBYuY3">
+              {t("languageSelection.bottomText", {returnObjects: true})[1]}
+            </Link>
+            {t("languageSelection.bottomText", {returnObjects: true})[2]}
           </span>
           </Text>
           <Divider/>
