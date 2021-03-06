@@ -3,9 +3,11 @@ import styled, {ThemeContext} from "styled-components/macro";
 import {Divider} from "../shared/Divider";
 import headerImage from "../../assets/languages-header.png"
 import {useTranslation} from "react-i18next";
+import {Language, SettingsContext} from "../../providers/SettingsProvider";
 
 export const Languages: FC = ({}) => {
   const {t} = useTranslation()
+  const {language, setLanguage} = useContext(SettingsContext)
   return (
     <StyledLanguages>
       <HeaderImage src={headerImage}/>
@@ -20,8 +22,8 @@ export const Languages: FC = ({}) => {
         <Divider/>
       </DescriptionBlock>
 
-      <ListCheckbox>English</ListCheckbox>
-      <ListCheckbox>Русский</ListCheckbox>
+      <ListCheckbox onClick={() => setLanguage(Language.ENGLISH)} enabled={language === Language.ENGLISH}>English</ListCheckbox>
+      <ListCheckbox onClick={() => setLanguage(Language.RUSSIAN)} enabled={language === Language.RUSSIAN}>Русский</ListCheckbox>
       <BottomBlock>
         <DescriptionBlock>
           <Divider/>
@@ -79,11 +81,11 @@ const BottomBlock = styled.div`
   margin-top: 15em;
 `
 
-const ListCheckbox: FC<{enabled?: boolean}> = ({enabled, children}) => {
+const ListCheckbox: FC<{enabled?: boolean, onClick?: (e: React.MouseEvent) => void}> = ({enabled, onClick, children}) => {
   const theme = useContext(ThemeContext)
   const currentColor = enabled ? theme.colors.primary : theme.colors.tertiary
   return (
-    <StyledListCheckbox>
+    <StyledListCheckbox onClick={onClick}>
       <TextContainer>
         <CheckboxText>
           <span>{children}</span>
