@@ -1,9 +1,10 @@
 import {palettes} from "../common/palettes";
-import {convertExportStringToColors, findClosestColors, useStickyState} from "../common/helpers";
+import {convertExportStringToColors, findClosestColors} from "../common/helpers";
 import React, {useEffect, useRef, useState} from "react";
 import {MatchedColor} from "../components/Suggestions";
 import {debounce} from "lodash";
 import Color from "color";
+import {useStickyState} from "./useStickyState";
 
 export const initManualColors : string[] = Array(48).fill("")
 

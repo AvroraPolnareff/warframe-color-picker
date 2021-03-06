@@ -1,5 +1,6 @@
-import { useState } from "react";
-import {createContext, FC, useContext} from "react";
+import {useEffect, useState} from "react";
+import {createContext, FC} from "react";
+import {useStickyState} from "../hooks/useStickyState";
 
 export enum Layout {
   EXPANDED = "EXPANDED",
@@ -29,8 +30,9 @@ export const SettingsContext = createContext<Settings>(initSettings);
 
 
 export const SettingsProvider: FC = ({children}) => {
-  const [layout, setLayout] = useState(initSettings.layout);
-  const [language, setLanguage] = useState(initSettings.language);
+  const [layout, setLayout] = useStickyState(initSettings.layout, "layout");
+  const [language, setLanguage] = useStickyState(initSettings.language, "language");
+
   return (
     <SettingsContext.Provider value={{
       layout,
