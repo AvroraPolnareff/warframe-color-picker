@@ -26,13 +26,13 @@ export const Languages: FC = ({}) => {
         <DescriptionBlock>
           <Divider/>
           <Text>
-          <span>
-            {t("languageSelection.bottomText", {returnObjects: true})[0]}
-            <Link target="_blank" href="https://discord.gg/WWBYuY3">
-              {t("languageSelection.bottomText", {returnObjects: true})[1]}
-            </Link>
-            {t("languageSelection.bottomText", {returnObjects: true})[2]}
-          </span>
+            <span>
+              {t("languageSelection.bottomText", {returnObjects: true})[0]}
+              <Link target="_blank" href="https://discord.gg/WWBYuY3">
+                {t("languageSelection.bottomText", {returnObjects: true})[1]}
+              </Link>
+              {t("languageSelection.bottomText", {returnObjects: true})[2]}
+            </span>
           </Text>
           <Divider/>
         </DescriptionBlock>

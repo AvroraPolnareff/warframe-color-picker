@@ -40,7 +40,15 @@ export const Layouts : FC<{}> = () => {
       <BottomBlock>
         <DescriptionBlock>
           <Divider/>
-          <Text><span>{t("layoutSelection.bottomText")}</span></Text>
+          <Text>
+            <span>
+              {t("layoutSelection.bottomText", {returnObjects: true})[0]}
+              <Link target="_blank" href="https://discord.gg/WWBYuY3">
+                {t("layoutSelection.bottomText", {returnObjects: true})[1]}
+              </Link>
+              {t("layoutSelection.bottomText", {returnObjects: true})[2]}
+            </span>
+          </Text>
           <Divider/>
         </DescriptionBlock>
       </BottomBlock>
@@ -90,6 +98,12 @@ const LayoutChooserEntry = styled.div`
     }
   }
 `
+
+const Link = styled.a`
+  text-decoration: none;
+  color: ${({theme}) => theme.colors.link};
+`
+
 
 const BottomBlock = styled.div`
   margin-top: 3em;
