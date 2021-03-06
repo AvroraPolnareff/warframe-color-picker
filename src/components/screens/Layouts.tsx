@@ -6,11 +6,17 @@ import {ExpandedLayoutIcon} from "../../assets/ExpandedLayoutIcon"
 import acceptIcon from "../../assets/accept.svg"
 import {Divider} from "../shared/Divider";
 import {Layout, SettingsContext} from "../../providers/SettingsProvider";
+import {CurrentScreenContext, Screen} from "../../providers/CurrentScreenProvider";
 
-export const LayoutsScreen : FC<{}> = () => {
+export const Layouts : FC<{}> = () => {
   const settings = useContext(SettingsContext);
   const [layout, setLayout] = useState(settings.layout);
+  const { setScreen } = useContext(CurrentScreenContext);
 
+  const handleAccept = () => {
+    settings.setLayout(layout)
+    setScreen(Screen.COLOR_PICKER);
+  }
   return (
     <StyledLayoutsScreen>
       <HeaderImage src={headerImage}/>
@@ -29,7 +35,7 @@ export const LayoutsScreen : FC<{}> = () => {
           <Checkbox enabled={layout === Layout.CLASSIC}/>
         </LayoutChooserEntry>
       </LayoutsChooser>
-      <RoundButton src={acceptIcon}/>
+      <RoundButton src={acceptIcon} onClick={handleAccept}/>
     </StyledLayoutsScreen>
   )
 }
