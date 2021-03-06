@@ -4,14 +4,12 @@ import {initReactI18next} from "react-i18next";
 
 
 const resources = {
-  en
+  en: {translation: en}
 }
 
 i18n.use(initReactI18next)
   .init({
     resources,
-    lng: "en",
-    keySeparator: false,
     interpolation: {
       escapeValue: false,
     }

@@ -116,7 +116,7 @@ const Relative = styled.div`
 `
 
 const StyledTextArea = styled.textarea.attrs(() => ({
-  rows: 3, autofocus: "true",
+  rows: 3, autoFocus: "true",
   spellCheck: "false"
 }))`
   border: none;
