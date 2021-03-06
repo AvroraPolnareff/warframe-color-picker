@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/warframe-color-picker/static/js/main.3a5fe9bc.chunk.js",
-    "main.js.map": "/warframe-color-picker/static/js/main.3a5fe9bc.chunk.js.map",
+    "main.js": "/warframe-color-picker/static/js/main.9eb7c428.chunk.js",
+    "main.js.map": "/warframe-color-picker/static/js/main.9eb7c428.chunk.js.map",
     "runtime-main.js": "/warframe-color-picker/static/js/runtime-main.16f09d88.js",
     "runtime-main.js.map": "/warframe-color-picker/static/js/runtime-main.16f09d88.js.map",
     "static/js/2.0b4209e6.chunk.js": "/warframe-color-picker/static/js/2.0b4209e6.chunk.js",
@@ -25,6 +25,6 @@
   "entrypoints": [
     "static/js/runtime-main.16f09d88.js",
     "static/js/2.0b4209e6.chunk.js",
-    "static/js/main.3a5fe9bc.chunk.js"
+    "static/js/main.9eb7c428.chunk.js"
   ]
 }
