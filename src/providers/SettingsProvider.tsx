@@ -1,4 +1,3 @@
-import {useEffect, useState} from "react";
 import {createContext, FC} from "react";
 import {useStickyState} from "../hooks/useStickyState";
 

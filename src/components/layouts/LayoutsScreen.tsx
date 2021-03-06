@@ -1,12 +1,16 @@
-import React, {FC, useContext} from "react";
+import React, {FC, useContext, useState} from "react";
 import styled, {ThemeContext} from "styled-components/macro";
 import headerImage from "../../assets/choose-your-fighter.svg"
 import {ClassicLayoutIcon} from "../../assets/ClassicLayoutIcon"
 import {ExpandedLayoutIcon} from "../../assets/ExpandedLayoutIcon"
 import acceptIcon from "../../assets/accept.svg"
 import {Divider} from "../shared/Divider";
+import {Layout, SettingsContext} from "../../providers/SettingsProvider";
 
 export const LayoutsScreen : FC<{}> = () => {
+  const settings = useContext(SettingsContext);
+  const [layout, setLayout] = useState(settings.layout);
+
   return (
     <StyledLayoutsScreen>
       <HeaderImage src={headerImage}/>
@@ -16,13 +20,13 @@ export const LayoutsScreen : FC<{}> = () => {
         <Divider/>
       </DescriptionBlock>
       <LayoutsChooser>
-        <LayoutChooserEntry>
+        <LayoutChooserEntry onClick={() => setLayout(Layout.EXPANDED)}>
           <ExpandedLayoutIcon/>
-          <Checkbox enabled={true}/>
+          <Checkbox enabled={layout === Layout.EXPANDED}/>
         </LayoutChooserEntry>
-        <LayoutChooserEntry>
+        <LayoutChooserEntry onClick={() => setLayout(Layout.CLASSIC)}>
           <ClassicLayoutIcon/>
-          <Checkbox enabled={false}/>
+          <Checkbox enabled={layout === Layout.CLASSIC}/>
         </LayoutChooserEntry>
       </LayoutsChooser>
       <RoundButton src={acceptIcon}/>
