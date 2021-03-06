@@ -5,17 +5,19 @@ import * as serviceWorker from './serviceWorker';
 import {createGlobalStyle, ThemeProvider} from "styled-components/macro";
 import {defaultTheme} from "./common/themes";
 import {SettingsProvider} from "./providers/SettingsProvider";
+import {CurrentScreenProvider} from "./providers/CurrentScreenProvider";
 
 const GlobalStyle = createGlobalStyle`
   html {
     font-size: 14px;
   }
+
   @media (min-width: 1400px) {
     html {
       font-size: 20px;
     }
   }
-  
+
   * {
     box-sizing: border-box;
   }
@@ -24,10 +26,12 @@ const GlobalStyle = createGlobalStyle`
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={defaultTheme}>
-      <SettingsProvider>
-        <GlobalStyle/>
-        <App/>
-      </SettingsProvider>
+      <CurrentScreenProvider>
+        <SettingsProvider>
+          <GlobalStyle/>
+          <App/>
+        </SettingsProvider>
+      </CurrentScreenProvider>
     </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')
