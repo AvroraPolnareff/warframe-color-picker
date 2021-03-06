@@ -1,22 +1,30 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import styled from "styled-components/macro";
 import {AppBar, CenterContainer, Entry} from './AppBar';
 import {Header} from "./Header";
 import {ScreensSwitcher} from "./ScreensSwitcher";
 import {useStickyState} from "../hooks/useStickyState";
 import {CurrentScreenContext, Screen} from "../providers/CurrentScreenProvider";
+import {SettingsContext} from "../providers/SettingsProvider";
+import {useTranslation} from "react-i18next";
 
 function App() {
   const [showMOTD, setShowMOTD] = useStickyState(true, "motd");
   const {setScreen} = useContext(CurrentScreenContext);
+  const {language} = useContext(SettingsContext);
+  const {t, i18n} = useTranslation();
+  useEffect(() => {
+    i18n.changeLanguage(language)
+  }, [language])
   return (
     <StyledApp>
       <AppBar>
         <CenterContainer>
           <Entry onClick={() => setShowMOTD(!showMOTD)}>{showMOTD ? "Show" : "Hide"} MOTD</Entry>
-          <Entry onClick={() => setScreen(Screen.LAYOUT_SELECTION)}>Layout Switch</Entry>
-          <Entry onClick={() => setScreen(Screen.LANGUAGE_SELECTION)}>Language</Entry>
-          <Entry>Help</Entry>
+          <Entry onClick={() => setScreen(Screen.COLOR_PICKER)}>{t("menu.colorPicker")}</Entry>
+          <Entry onClick={() => setScreen(Screen.LAYOUT_SELECTION)}>{t("menu.layoutSwitch")}</Entry>
+          <Entry onClick={() => setScreen(Screen.LANGUAGE_SELECTION)}>{t("menu.languageSwitch")}</Entry>
+          <Entry>{t("menu.help")}</Entry>
         </CenterContainer>
       </AppBar>
       {showMOTD && <Header/>}
