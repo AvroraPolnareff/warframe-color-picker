@@ -36,6 +36,13 @@ export const Layouts : FC<{}> = () => {
         </LayoutChooserEntry>
       </LayoutsChooser>
       <RoundButton src={acceptIcon} onClick={handleAccept}/>
+      <BottomBlock>
+        <DescriptionBlock>
+          <Divider/>
+          <Text><span>Select whether you want to use an expanded layout, or the original, classic one.</span></Text>
+          <Divider/>
+        </DescriptionBlock>
+      </BottomBlock>
     </StyledLayoutsScreen>
   )
 }
@@ -82,6 +89,11 @@ const LayoutChooserEntry = styled.div`
     }
   }
 `
+
+const BottomBlock = styled.div`
+  margin-top: 12em;
+`
+
 
 const Checkbox: FC<{enabled: boolean}> = ({enabled}) => {
   const theme = useContext(ThemeContext)
