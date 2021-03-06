@@ -4,6 +4,7 @@ import App from "./components/App"
 import * as serviceWorker from './serviceWorker';
 import {createGlobalStyle, ThemeProvider} from "styled-components/macro";
 import {defaultTheme} from "./common/themes";
+import {SettingsProvider} from "./providers/SettingsProvider";
 
 const GlobalStyle = createGlobalStyle`
   html {
@@ -23,8 +24,10 @@ const GlobalStyle = createGlobalStyle`
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={defaultTheme}>
-      <GlobalStyle/>
-      <App/>
+      <SettingsProvider>
+        <GlobalStyle/>
+        <App/>
+      </SettingsProvider>
     </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')
