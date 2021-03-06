@@ -92,7 +92,7 @@ const LayoutChooserEntry = styled.div`
 `
 
 const BottomBlock = styled.div`
-  margin-top: 12em;
+  margin-top: 3em;
 `
 
 
