@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.js": "/warframe-color-picker/static/js/main.1ecae91d.chunk.js",
-    "main.js.map": "/warframe-color-picker/static/js/main.1ecae91d.chunk.js.map",
+    "main.js": "/warframe-color-picker/static/js/main.3b4fc024.chunk.js",
+    "main.js.map": "/warframe-color-picker/static/js/main.3b4fc024.chunk.js.map",
     "runtime-main.js": "/warframe-color-picker/static/js/runtime-main.16f09d88.js",
     "runtime-main.js.map": "/warframe-color-picker/static/js/runtime-main.16f09d88.js.map",
-    "static/js/2.b8d4e0fe.chunk.js": "/warframe-color-picker/static/js/2.b8d4e0fe.chunk.js",
-    "static/js/2.b8d4e0fe.chunk.js.map": "/warframe-color-picker/static/js/2.b8d4e0fe.chunk.js.map",
+    "static/js/2.f7fcc441.chunk.js": "/warframe-color-picker/static/js/2.f7fcc441.chunk.js",
+    "static/js/2.f7fcc441.chunk.js.map": "/warframe-color-picker/static/js/2.f7fcc441.chunk.js.map",
     "index.html": "/warframe-color-picker/index.html",
-    "static/js/2.b8d4e0fe.chunk.js.LICENSE.txt": "/warframe-color-picker/static/js/2.b8d4e0fe.chunk.js.LICENSE.txt",
+    "static/js/2.f7fcc441.chunk.js.LICENSE.txt": "/warframe-color-picker/static/js/2.f7fcc441.chunk.js.LICENSE.txt",
     "static/media/Wires (Col Pic -_ Tar Sch).6eb8a568.svg": "/warframe-color-picker/static/media/Wires (Col Pic -_ Tar Sch).6eb8a568.svg",
     "static/media/Wires (Sugg -_ Sel Col).b59f090a.svg": "/warframe-color-picker/static/media/Wires (Sugg -_ Sel Col).b59f090a.svg",
     "static/media/Wires (Tar Sch -_ Col Pic).2ebe1e7f.svg": "/warframe-color-picker/static/media/Wires (Tar Sch -_ Col Pic).2ebe1e7f.svg",
@@ -23,7 +23,7 @@
   },
   "entrypoints": [
     "static/js/runtime-main.16f09d88.js",
-    "static/js/2.b8d4e0fe.chunk.js",
-    "static/js/main.1ecae91d.chunk.js"
+    "static/js/2.f7fcc441.chunk.js",
+    "static/js/main.3b4fc024.chunk.js"
   ]
 }
