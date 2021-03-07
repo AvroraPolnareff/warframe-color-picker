@@ -23,5 +23,9 @@ export default {
     languageSwitch: "Language",
     help: "Help & Info",
     colorPicker: "Color Picker",
+    motd: " MOTD",
+    hide: "Hide",
+    show: "Show",
   },
+
 }

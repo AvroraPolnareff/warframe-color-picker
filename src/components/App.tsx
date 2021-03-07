@@ -20,7 +20,9 @@ function App() {
     <StyledApp>
       <AppBar>
         <CenterContainer>
-          <Entry onClick={() => setShowMOTD(!showMOTD)}>{showMOTD ? "Show" : "Hide"} MOTD</Entry>
+          <Entry onClick={() => setShowMOTD(!showMOTD)}>
+            {showMOTD ? t("menu.show") : t("menu.hide")} MOTD
+          </Entry>
           <Entry onClick={() => setScreen(Screen.COLOR_PICKER)}>{t("menu.colorPicker")}</Entry>
           <Entry onClick={() => setScreen(Screen.LAYOUT_SELECTION)}>{t("menu.layoutSwitch")}</Entry>
           <Entry onClick={() => setScreen(Screen.LANGUAGE_SELECTION)}>{t("menu.languageSwitch")}</Entry>

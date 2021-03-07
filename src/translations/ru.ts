@@ -23,6 +23,9 @@ export default {
     languageSwitch: "Языки",
     help: "Справка",
     colorPicker: "ПИПЕТКА",
+    motd: " MOTD",
+    hide: "Скрыть",
+    show: "Показать",
   },
 }
 
