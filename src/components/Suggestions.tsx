@@ -12,6 +12,7 @@ import {Button} from "./shared/Button";
 import {positionValues, Scrollbars} from "react-custom-scrollbars"
 import {SwapIcon} from "../assets/SwapIcon"
 import Color from "color";
+import {useTranslation} from "react-i18next";
 
 
 interface SuggestionsProps {
@@ -36,7 +37,8 @@ export const Suggestions: FC<SuggestionsProps> = (props) => {
   const fadesRef = useRef<HTMLDivElement>(null)
   const [switched, setSwitched] = useState(false)
   const [selected, setSelected] = useState("")
-  
+  const {t} = useTranslation()
+
   useEffect(() => {
     if (props.matchedColors.length)
       setSelected(props.matchedColors[0].uid)
@@ -77,13 +79,13 @@ export const Suggestions: FC<SuggestionsProps> = (props) => {
   return (
     <Window width={14.321}>
       <FlexColumnCenter>
-        <img src={header} style={{width: "12em", marginTop: "0.25em", pointerEvents: "none", userSelect: "none"}}/>
-        <ItalicText>SCROLL FOR MORE!</ItalicText>
+        <img src={t("colorPicker.suggestions.suggestions")} style={{width: "12em", marginTop: "0.25em", pointerEvents: "none", userSelect: "none"}}/>
+        <ItalicText>{t("colorPicker.suggestions.scroll")}</ItalicText>
         <div style={{
           display: "flex", justifyContent: "space-between",
           marginTop: "0.35em", marginBottom: "0.3em", marginRight: "0.6em"
         }}>
-          <Button round onClick={props.onPalettesClick}>palettes</Button>
+          <Button round onClick={props.onPalettesClick}>{t("colorPicker.suggestions.palettes")}</Button>
           <Switch switched={switched} width={3.5} onClick={() => setSwitched(!switched)} leftText={"%"}
                   rightText={"D"}/>
         </div>
@@ -144,6 +146,7 @@ interface SuggestionProps {
 }
 
 const Suggestion: FC<SuggestionProps> = ({color, name, value, onSuggestionClick, uid, selected, index, animationState, onSwapColor}) => {
+  const {t} = useTranslation()
   return (
     <StyledSuggestion onClick={() => onSuggestionClick(uid)} selected={selected} state={animationState}
                       delay={0.05 * index}>
@@ -163,7 +166,7 @@ const Suggestion: FC<SuggestionProps> = ({color, name, value, onSuggestionClick,
           }
         </ColorCell>
         <Badge hoverable={!selected} selected={selected}>
-          {name.slice(0, 12) + (name.length > 12 ? "." : "")}
+          {(t`palettes.${name}` as string).slice(0, 12) + ((t`palettes.${name}` as string).length > 12 ? "." : "")}
         </Badge>
       </FlexCentred>
       <Badge width={3} style={{marginRight: "0.6em"}}>
