@@ -9,15 +9,9 @@ import {CurrentScreenContext, Screen} from "../../providers/CurrentScreenProvide
 import {useTranslation} from "react-i18next";
 
 export const Layouts : FC<{}> = () => {
-  const settings = useContext(SettingsContext);
-  const [layout, setLayout] = useState(settings.layout);
-  const { setScreen } = useContext(CurrentScreenContext);
+  const {layout, setLayout} = useContext(SettingsContext);
   const {t} = useTranslation()
 
-  const handleAccept = () => {
-    settings.setLayout(layout)
-    setScreen(Screen.COLOR_PICKER);
-  }
   return (
     <StyledLayoutsScreen>
       <HeaderImage src={t("layoutSelection.headerImage")}/>
@@ -36,7 +30,6 @@ export const Layouts : FC<{}> = () => {
           <Checkbox enabled={layout === Layout.CLASSIC}/>
         </LayoutChooserEntry>
       </LayoutsChooser>
-      <RoundButton src={acceptIcon} onClick={handleAccept}/>
       <BottomBlock>
         <DescriptionBlock>
           <Divider/>
@@ -83,6 +76,7 @@ const Text = styled.div`
 
 const LayoutsChooser = styled.div`
   display: flex;
+  margin-top: 3em;
 `
 
 const LayoutChooserEntry = styled.div`
