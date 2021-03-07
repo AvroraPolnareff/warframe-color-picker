@@ -6,6 +6,7 @@ import {Position} from "../common/Palette";
 import waves from "../assets/waves.svg"
 import {WarframePalette} from "./shared/WarframePalette";
 import {Waves} from "../assets/Waves";
+import {useTranslation} from "react-i18next";
 
 interface SelectedColorProps {
   paletteName: string,
@@ -14,7 +15,7 @@ interface SelectedColorProps {
 
 export const SelectedColor: FC<SelectedColorProps> = ({paletteName, colorPosition}) => {
   const [name, setName] = useState("")
-  
+  const {t} = useTranslation()
   useEffect(() => {
     setName(paletteName)
   }, [paletteName])
@@ -37,7 +38,7 @@ export const SelectedColor: FC<SelectedColorProps> = ({paletteName, colorPositio
           pointerEvents: "none",
           userSelect: "none"
         }}/>
-        <Header>SELECTED COLOR</Header>
+        <Header>{t("colorPicker.selectedColor.selectedColor")}</Header>
         <Waves style={{
           width: "8.8em",
           marginTop: "0",
@@ -45,7 +46,7 @@ export const SelectedColor: FC<SelectedColorProps> = ({paletteName, colorPositio
           pointerEvents: "none",
           userSelect: "none"
         }}/>
-        <PaletteName>{name}</PaletteName>
+        <PaletteName>{t`palette.${name}`}</PaletteName>
         
         <WarframePalette
           size={1.735}
