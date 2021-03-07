@@ -83,6 +83,7 @@ export const Expanded = () => {
               <ColorPicker
                 color={Color(getCurrentColor())}
                 onColorChange={onColorChange}
+                compact
               />
             </div>
             <Link
