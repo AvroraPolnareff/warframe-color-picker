@@ -4,6 +4,7 @@ import {Divider} from "../shared/Divider";
 import headerImage from "../../assets/languages-header.png"
 import {useTranslation} from "react-i18next";
 import {Language, SettingsContext} from "../../providers/SettingsProvider";
+import {css} from "styled-components";
 
 export const Languages: FC = ({}) => {
   const {t} = useTranslation()
@@ -22,8 +23,12 @@ export const Languages: FC = ({}) => {
         <Divider/>
       </DescriptionBlock>
 
-      <ListCheckbox onClick={() => setLanguage(Language.ENGLISH)} enabled={language === Language.ENGLISH}>English</ListCheckbox>
-      <ListCheckbox onClick={() => setLanguage(Language.RUSSIAN)} enabled={language === Language.RUSSIAN}>Русский</ListCheckbox>
+      <ListCheckbox onClick={() => setLanguage(Language.ENGLISH)} enabled={language === Language.ENGLISH}>
+        English
+      </ListCheckbox>
+      <ListCheckbox onClick={() => setLanguage(Language.RUSSIAN)} enabled={language === Language.RUSSIAN}>
+        Русский
+      </ListCheckbox>
       <BottomBlock>
         <DescriptionBlock>
           <Divider/>
@@ -84,9 +89,8 @@ const BottomBlock = styled.div`
 
 const ListCheckbox: FC<{enabled?: boolean, onClick?: (e: React.MouseEvent) => void}> = ({enabled, onClick, children}) => {
   const theme = useContext(ThemeContext)
-  const currentColor = enabled ? theme.colors.primary : theme.colors.tertiary
   return (
-    <StyledListCheckbox onClick={onClick}>
+    <StyledListCheckbox onClick={onClick} enabled={enabled}>
       <TextContainer>
         <CheckboxText>
           <span>{children}</span>
@@ -94,13 +98,13 @@ const ListCheckbox: FC<{enabled?: boolean, onClick?: (e: React.MouseEvent) => vo
       </TextContainer>
 
       <CheckboxSvg width="343" height="35" viewBox="0 0 343 35" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect className="border" x="308" y="-3.8147e-06" width="35" height="35" rx="17.2987" fill="#E3E3E3"/>
-        <rect className="border" x="5" y="15" width="333" height="5" rx="2.5" fill="#E3E3E3"/>
-        <rect className="border" x="35" y="35" width="35" height="35" rx="17.2987" transform="rotate(-180 35 35)" fill="#E3E3E3"/>
+        <rect className="border" x="308" y="-3.8147e-06" width="35" height="35" rx="17.2987"/>
+        <rect className="border" x="5" y="15" width="333" height="5" rx="2.5"/>
+        <rect className="border" x="35" y="35" width="35" height="35" rx="17.2987" transform="rotate(-180 35 35)"/>
         <rect x="30" y="30" width="25" height="25" rx="12.5" transform="rotate(-180 30 30)" fill="white"/>
-        <rect className="checkbox" x="27" y="27" width="19" height="19" rx="9.5" transform="rotate(-180 27 27)" fill={currentColor}/>
+        <rect className="checkbox" x="27" y="27" width="19" height="19" rx="9.5" transform="rotate(-180 27 27)"/>
         <rect  x="338" y="30" width="25" height="25" rx="12.5" transform="rotate(-180 338 30)" fill="white"/>
-        <rect className="checkbox" x="335" y="27" width="19" height="19" rx="9.5" transform="rotate(-180 335 27)" fill={currentColor}/>
+        <rect className="checkbox" x="335" y="27" width="19" height="19" rx="9.5" transform="rotate(-180 335 27)"/>
       </CheckboxSvg>
     </StyledListCheckbox>
   )
@@ -117,18 +121,30 @@ const CheckboxText = styled.div`
   margin-bottom: 0.15em;
 `
 
-const StyledListCheckbox = styled.div`
+const StyledListCheckbox = styled.div<{enabled?: boolean}>`
   position: relative;
   cursor: pointer;
   width: fit-content;
   height: fit-content;
   margin-bottom: 1em;
+  .border {
+    fill: ${({theme}) => theme.colors.tertiary}
+  }
+  .checkbox {
+    fill: ${({theme}) => theme.colors.tertiary};
+  }
+  ${({enabled}) => enabled && css`
+      .checkbox { fill: ${({theme}) => theme.colors.primary}}`
+  }
   :hover {
     .border {
       fill: ${({theme}) => theme.colors.darken.tertiary}
     }
     ${CheckboxText} {
       background: ${({theme}) => theme.colors.darken.tertiary};
+    }
+    ${({enabled}) => !enabled && css`
+      .checkbox { fill: ${({theme}) => theme.colors.darken.tertiary}}`
     }
   }
 `
