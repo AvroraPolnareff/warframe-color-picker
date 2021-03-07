@@ -4,31 +4,48 @@ import styled from "styled-components/macro";
 
 export const AppBar = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   height: 2em;
 `
 
-export const CenterContainer = styled.div`
+export const Container = styled.div`
   display: flex;
   width: max-content;
   height: max-content;
   color: transparent;
-  transform: translate(0, -70%);
-  transition: all 0.3s ease;
+  
+`
+
+export const Entry: FC<{onClick?: (e: React.MouseEvent) => void}> = ({children, onClick}) => {
+  return (
+    <EntryWrapper onClick={onClick}>
+      <StyledEntry>{children}</StyledEntry>
+    </EntryWrapper>
+  )
+}
+
+const EntryWrapper = styled.div`
+  transform: translate(0, -40%);
+  padding-bottom: 1em;
   :hover {
     color: ${({theme}) => theme.colors.windowBackground};
     transform: translate(0, 0);
   }
+  transition: transform 0.3s ease;
 `
 
-export const Entry = styled.div`
+export const StyledEntry = styled.div`
   padding: 0.05em 0.3em;
   background-color: ${({theme}) => theme.colors.secondary};
   border-bottom-left-radius: 0.7em;
   border-bottom-right-radius: 0.7em;
+  user-select: none;
   cursor: pointer;
-  transition: background-color 0.15s linear;
   font-weight: 500;
+  text-align: center;
+  width: 9em;
+  
+  transition: background-color 0.3s ease;
   
   & + & {
     margin-left: 0.5em;

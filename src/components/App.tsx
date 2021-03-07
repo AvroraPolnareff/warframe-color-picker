@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react';
 import styled from "styled-components/macro";
-import {AppBar, CenterContainer, Entry} from './AppBar';
+import {AppBar, Container, Entry} from './AppBar';
 import {Header} from "./Header";
 import {ScreensSwitcher} from "./ScreensSwitcher";
 import {useStickyState} from "../hooks/useStickyState";
@@ -19,15 +19,18 @@ function App() {
   return (
     <StyledApp>
       <AppBar>
-        <CenterContainer>
+        <Container>
           <Entry onClick={() => setShowMOTD(!showMOTD)}>
-            {showMOTD ? t("menu.show") : t("menu.hide")} MOTD
+            {showMOTD ? t("menu.hide") : t("menu.show")} MOTD
           </Entry>
+        </Container>
+        <Container>
           <Entry onClick={() => setScreen(Screen.COLOR_PICKER)}>{t("menu.colorPicker")}</Entry>
           <Entry onClick={() => setScreen(Screen.LAYOUT_SELECTION)}>{t("menu.layoutSwitch")}</Entry>
           <Entry onClick={() => setScreen(Screen.LANGUAGE_SELECTION)}>{t("menu.languageSwitch")}</Entry>
           <Entry>{t("menu.help")}</Entry>
-        </CenterContainer>
+        </Container>
+        <Container/>
       </AppBar>
       {showMOTD && <Header/>}
       <ScreensSwitcher/>
