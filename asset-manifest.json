@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/warframe-color-picker/static/js/main.9eb7c428.chunk.js",
-    "main.js.map": "/warframe-color-picker/static/js/main.9eb7c428.chunk.js.map",
+    "main.js": "/warframe-color-picker/static/js/main.40f5f3ad.chunk.js",
+    "main.js.map": "/warframe-color-picker/static/js/main.40f5f3ad.chunk.js.map",
     "runtime-main.js": "/warframe-color-picker/static/js/runtime-main.16f09d88.js",
     "runtime-main.js.map": "/warframe-color-picker/static/js/runtime-main.16f09d88.js.map",
     "static/js/2.0b4209e6.chunk.js": "/warframe-color-picker/static/js/2.0b4209e6.chunk.js",
@@ -12,7 +12,7 @@
     "static/media/Wires (Sugg -_ Sel Col).b59f090a.svg": "/warframe-color-picker/static/media/Wires (Sugg -_ Sel Col).b59f090a.svg",
     "static/media/Wires (Tar Sch -_ Col Pic).2ebe1e7f.svg": "/warframe-color-picker/static/media/Wires (Tar Sch -_ Col Pic).2ebe1e7f.svg",
     "static/media/accept.431308e6.svg": "/warframe-color-picker/static/media/accept.431308e6.svg",
-    "static/media/choose-your-fighter-ru.fb083ab9.svg": "/warframe-color-picker/static/media/choose-your-fighter-ru.fb083ab9.svg",
+    "static/media/choose-your-fighter-ru.43c0ac9c.svg": "/warframe-color-picker/static/media/choose-your-fighter-ru.43c0ac9c.svg",
     "static/media/choose-your-fighter.f2ad1563.svg": "/warframe-color-picker/static/media/choose-your-fighter.f2ad1563.svg",
     "static/media/discord-logo.781b631d.svg": "/warframe-color-picker/static/media/discord-logo.781b631d.svg",
     "static/media/exitButton.37a78487.svg": "/warframe-color-picker/static/media/exitButton.37a78487.svg",
@@ -25,6 +25,6 @@
   "entrypoints": [
     "static/js/runtime-main.16f09d88.js",
     "static/js/2.0b4209e6.chunk.js",
-    "static/js/main.9eb7c428.chunk.js"
+    "static/js/main.40f5f3ad.chunk.js"
   ]
 }
