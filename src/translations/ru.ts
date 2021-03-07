@@ -1,4 +1,5 @@
 import headerImage from "../assets/choose-your-fighter-ru.svg"
+import suggestions from "../assets/suggestions.svg";
 
 export default {
   layoutSelection: {
@@ -45,6 +46,30 @@ export default {
     ],
     manualUpload: "MANUAL UPLOAD",
     accept: "accept"
+  },
+  colorPicker: {
+    targetScheme: {
+      targetScheme: "TARGET SCHEME",
+      default: "DEFAULT",
+      manual: "MANUAL",
+      primary: "PRIMARY",
+      secondary: "SECONDARY",
+      tertiary: "TERTIARY",
+      quaternary: "QUATERNARY",
+      emissive: "EMISSIVE 1, 2",
+      energy: "ENERGY 1, 2",
+      import: "import",
+      export: "export",
+      copied: "copied!"
+    },
+    suggestions: {
+      suggestions,
+      scroll: "SCROLL FOR MORE!",
+      palettes: "PALETTES",
+    },
+    selectedColor: {
+      selectedColor: "SELECTED COLOR",
+    },
   },
   palettes: {
     "Agony": "Agony",
