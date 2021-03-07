@@ -25,16 +25,6 @@ export const Entry: FC<{onClick?: (e: React.MouseEvent) => void}> = ({children, 
   )
 }
 
-const EntryWrapper = styled.div`
-  transform: translate(0, -40%);
-  padding-bottom: 1em;
-  :hover {
-    color: ${({theme}) => theme.colors.windowBackground};
-    transform: translate(0, 0);
-  }
-  transition: transform 0.3s ease;
-`
-
 export const StyledEntry = styled.div`
   padding: 0.05em 0.3em;
   background-color: ${({theme}) => theme.colors.secondary};
@@ -52,7 +42,21 @@ export const StyledEntry = styled.div`
     margin-left: 0.5em;
   }
   
+  
+`
+
+const EntryWrapper = styled.div`
+  transform: translate(0, -35%);
+  padding-bottom: 1.5em;
   :hover {
+    color: ${({theme}) => theme.colors.windowBackground};
+    transform: translate(0, 0);
+  }
+  transition: transform 0.3s ease;
+
+  :hover ${StyledEntry} {
     background-color: ${({theme}) => theme.colors.primary};
   }
 `
+
+
