@@ -64,6 +64,7 @@ const StyledLayoutsScreen = styled.div`
 
 const HeaderImage = styled.img`
   width: 35em;
+  height: 9em;
 `;
 
 const DescriptionBlock = styled.div`

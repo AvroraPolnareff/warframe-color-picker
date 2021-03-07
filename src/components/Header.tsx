@@ -23,6 +23,7 @@ const StyledHeader = styled.header`
 
 const TipOfADay = styled.img.attrs((props) => ({src: tipOfADay}))`
   width: 14.7em;
+  height: 4.83em;
 `
 
 const TipWrapper = styled.div`
