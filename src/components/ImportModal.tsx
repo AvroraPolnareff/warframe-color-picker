@@ -3,6 +3,7 @@ import styled from "styled-components/macro";
 import {Modal} from "./shared/Modal";
 import {Button} from "./shared/Button";
 import {colorsFromImage} from "../common/helpers";
+import {useTranslation} from "react-i18next";
 
 interface ImportModalProps {
   show: boolean,
@@ -51,20 +52,24 @@ export const ImportModal: FC<ImportModalProps> = ({show, onAccept, onExit, onScr
       reader.readAsDataURL(blob)
     }
   }
-  
-  
+
+  const {t} = useTranslation()
 
   return (
     <Modal
       show={show}
       width={27}
-      name={"Scheme Import"}
-      description={"Insert the code below"}
+      name={t("importModal.modalName")}
+      description={t("importModal.description")}
       onExit={onExit}
     >
       {/*@ts-ignore*/}
       <TextArea onChange={e => setContent(e.target.value)} value={content} onPaste={onPaste}>
-        Paste your <span style={{color: "#A3A3DB"}}>code</span> or <span style={{color: "#A3A3DB"}}>scheme screenshot</span> here...
+        {t("importModal.textArea", {returnObjects: true})[0]}
+        <span style={{color: "#A3A3DB"}}>{t("importModal.textArea", {returnObjects: true})[1]}</span>
+        {t("importModal.textArea", {returnObjects: true})[2]}
+        <span style={{color: "#A3A3DB"}}>{t("importModal.textArea", {returnObjects: true})[3]}</span>
+        {t("importModal.textArea", {returnObjects: true})[4]}
       </TextArea>
       <div style={{display: "flex", justifyContent: "space-between"}}>
         <div style={{textAlign: "left"}}>
@@ -75,7 +80,7 @@ export const ImportModal: FC<ImportModalProps> = ({show, onAccept, onExit, onScr
             onChange={onScreenshotImportChange}
             name="screenshot" id="screenshot"
           />
-          <Button as="label" htmlFor="screenshot" round small>MANUAL UPLOAD</Button>
+          <Button as="label" htmlFor="screenshot" round small>{t("importModal.manualUpload")}</Button>
         </div>
         <div style={{textAlign: "right"}}>
           
@@ -86,7 +91,7 @@ export const ImportModal: FC<ImportModalProps> = ({show, onAccept, onExit, onScr
           >
             clear
           </Button>
-          <Button round small primary onClick={() => onAccept(content)}>accept</Button>
+          <Button round small primary onClick={() => onAccept(content)}>{t("importModal.accept")}</Button>
         </div>
       </div>
     </Modal>

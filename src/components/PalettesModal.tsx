@@ -5,6 +5,7 @@ import {palettes} from "../common/palettes"
 import {Button} from "./shared/Button";
 import {Divider} from "./shared/Divider";
 import {WarframePalette} from "./shared/WarframePalette";
+import {useTranslation} from "react-i18next";
 
 interface PalettesModalProps {
   show: boolean,
@@ -19,36 +20,37 @@ export const PalettesModal : FC<PalettesModalProps> = (
   {show, availablePalettes, onPaletteClick, onDisableAll, onEnableAll, onExit}
   ) => {
   const [hoveredPalette, setHoveredPalette] = useState("Classic")
-  
+  const {t} = useTranslation()
   
   return (
     <Modal
-      show={show} width={32} name={"Palettes"}
-      description={"Customize your suggestions"} onExit={onExit}
+      show={show} width={32} name={t("palettesModal.modalName")}
+      description={t("palettesModal.description")} onExit={onExit}
     >
       <div style={{position: "relative"}}>
         <HoveredPalette>
-          <PaletteName>{hoveredPalette}</PaletteName>
-
+          <PaletteName>{t`palettes.${hoveredPalette}`}</PaletteName>
             <WarframePalette size={1.5} paletteName={hoveredPalette} />
-
-          
         </HoveredPalette>
       
       <Grid>
-        <ColumnHead>STANDARD</ColumnHead><ColumnHead>EXCLUSIVE</ColumnHead>
-        <ColumnHead>EVENT</ColumnHead><ColumnHead>LEGACY</ColumnHead>
+        {/*<ColumnHead>STANDARD</ColumnHead><ColumnHead>EXCLUSIVE</ColumnHead>*/}
+        {/*<ColumnHead>EVENT</ColumnHead><ColumnHead>LEGACY</ColumnHead>*/}
         {palettes.map(({name}) => <Button round small
           onClick={() => onPaletteClick(name)} onMouseOver={() => setHoveredPalette(name)}
           success={availablePalettes.indexOf(name) !== -1}
         >
-          {name.slice(0, 12) + (name.length > 13 ? "." : "")}
+          {(t`palettes.${name}` as string).slice(0, 12) + ((t`palettes.${name}` as string).length > 13 ? "." : "")}
         </Button>)}
       </Grid>
       <Divider/>
       <div style={{textAlign: "right", marginTop: "0.5rem"}}>
-        <Button round small warning onClick={onDisableAll} style={{marginRight: '0.4em'}}>disable all</Button>
-        <Button round small warning onClick={onEnableAll}>enable all</Button>
+        <Button round small warning onClick={onDisableAll} style={{marginRight: '0.4em'}}>
+          {t("palettesModal.disableAll")}
+        </Button>
+        <Button round small warning onClick={onEnableAll}>
+          {t("palettesModal.enableAll")}
+        </Button>
       </div>
       </div>
       
