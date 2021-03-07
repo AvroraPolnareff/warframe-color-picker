@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useEffect} from 'react';
 import styled from "styled-components/macro";
 import {AppBar, Container, Entry} from './AppBar';
 import {Header} from "./Header";
@@ -9,10 +9,11 @@ import {SettingsContext} from "../providers/SettingsProvider";
 import {useTranslation} from "react-i18next";
 
 function App() {
-  const [showMOTD, setShowMOTD] = useStickyState(true, "motd");
-  const {setScreen} = useContext(CurrentScreenContext);
+  const [enableMOTD, setEnableMOTD] = useStickyState(true, "motd");
+  const {setScreen, screen} = useContext(CurrentScreenContext);
   const {language} = useContext(SettingsContext);
   const {t, i18n} = useTranslation();
+  const showMOTD = screen === Screen.COLOR_PICKER
   useEffect(() => {
     i18n.changeLanguage(language)
   }, [language])
@@ -20,9 +21,11 @@ function App() {
     <StyledApp>
       <AppBar>
         <Container>
-          <Entry onClick={() => setShowMOTD(!showMOTD)}>
-            {showMOTD ? t("menu.hide") : t("menu.show")} MOTD
-          </Entry>
+          {showMOTD && (
+            <Entry onClick={() => setEnableMOTD(!enableMOTD)}>
+              {enableMOTD ? t("menu.hide") : t("menu.show")} MOTD
+            </Entry>
+          )}
         </Container>
         <Container>
           <Entry onClick={() => setScreen(Screen.COLOR_PICKER)}>{t("menu.colorPicker")}</Entry>
@@ -32,7 +35,7 @@ function App() {
         </Container>
         <Container/>
       </AppBar>
-      {showMOTD && <Header/>}
+      {showMOTD && enableMOTD && <Header/>}
       <ScreensSwitcher/>
       <Credentials><span>Hippothoe & Morisabeau</span></Credentials>
     </StyledApp>

@@ -3,8 +3,9 @@ import styled from "styled-components/macro";
 
 
 export const AppBar = styled.div`
-  display: flex;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  justify-items: center;
   height: 2em;
 `
 
