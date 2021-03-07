@@ -13,7 +13,7 @@ export const defaultTheme : DefaultTheme = {
     darken: {
       primary: Color("#A5E8E8").darken(0.2).toString(),
       secondary: Color("#DADADA").darken(0.2).toString(),
-      tertiary: Color("#ebebeb").darken(0.2).toString(),
+      tertiary: Color("#ebebeb").darken(0.07).toString(),
       quaternary: "",
       danger: Color("#dba3a3").darken(0.2).toString(),
       success: Color("#A3DBA3").darken(0.2).toString(),

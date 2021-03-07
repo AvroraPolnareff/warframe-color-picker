@@ -7,6 +7,7 @@ import {Divider} from "../shared/Divider";
 import {Layout, SettingsContext} from "../../providers/SettingsProvider";
 import {CurrentScreenContext, Screen} from "../../providers/CurrentScreenProvider";
 import {useTranslation} from "react-i18next";
+import {css} from "styled-components";
 
 export const Layouts : FC<{}> = () => {
   const {layout, setLayout} = useContext(SettingsContext);
@@ -21,13 +22,13 @@ export const Layouts : FC<{}> = () => {
         <Divider/>
       </DescriptionBlock>
       <LayoutsChooser>
-        <LayoutChooserEntry onClick={() => setLayout(Layout.EXPANDED)}>
+        <LayoutChooserEntry onClick={() => setLayout(Layout.EXPANDED)} enabled={layout === Layout.EXPANDED}>
           <ExpandedLayoutIcon/>
-          <Checkbox enabled={layout === Layout.EXPANDED}/>
+          <Checkbox />
         </LayoutChooserEntry>
-        <LayoutChooserEntry onClick={() => setLayout(Layout.CLASSIC)}>
+        <LayoutChooserEntry onClick={() => setLayout(Layout.CLASSIC)} enabled={layout === Layout.CLASSIC}>
           <ClassicLayoutIcon/>
-          <Checkbox enabled={layout === Layout.CLASSIC}/>
+          <Checkbox/>
         </LayoutChooserEntry>
       </LayoutsChooser>
       <BottomBlock>
@@ -79,11 +80,19 @@ const LayoutsChooser = styled.div`
   margin-top: 3em;
 `
 
-const LayoutChooserEntry = styled.div`
+const LayoutChooserEntry = styled.div<{enabled?: boolean}>`
   display: flex;
   flex-direction: column;
   align-items: center;
   color: ${({theme}) => theme.colors.tertiary};
+  #choose-circle {
+    fill: ${({theme}) => theme.colors.darken.tertiary};
+  }
+  ${({enabled}) => enabled && css`
+      #choose-circle {
+        fill: ${({theme}) => theme.colors.primary};
+      }
+    `}
   :hover {
     .svg-background {
       fill: ${({theme}) => theme.colors.darken.tertiary};
@@ -91,6 +100,11 @@ const LayoutChooserEntry = styled.div`
     #border {
       fill: ${({theme}) => theme.colors.darken.tertiary};
     }
+    ${({enabled}) => !enabled && css`
+      #choose-circle {
+        fill: ${({theme}) => theme.colors.darken.tertiary};
+      }
+    `}
   }
 `
 
@@ -105,9 +119,8 @@ const BottomBlock = styled.div`
 `
 
 
-const Checkbox: FC<{enabled: boolean}> = ({enabled}) => {
+const Checkbox: FC = () => {
   const theme = useContext(ThemeContext)
-  const color = enabled ? theme.colors.primary : theme.colors.tertiary
 
   return (
     <StyledCheckbox>
@@ -115,7 +128,7 @@ const Checkbox: FC<{enabled: boolean}> = ({enabled}) => {
         <rect id="border" x="40" width="48" height="48" rx="24" fill="currentColor"/>
         <rect id="border" y="21" width="128" height="6" rx="3" fill="currentColor"/>
         <rect x="48" y="8" width="32" height="32" rx="16" fill="white"/>
-        <rect id="choose-circle" x="51" y="11" width="26" height="26" rx="16" fill={color}/>
+        <rect id="choose-circle" x="51" y="11" width="26" height="26" rx="16"/>
       </CheckboxBackground>
     </StyledCheckbox>
   )
