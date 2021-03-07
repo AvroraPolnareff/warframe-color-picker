@@ -8,6 +8,7 @@ import {ColorCell} from "./shared/ColorCell";
 import {Switch} from "./shared/Switch";
 import {convertColorsToExportString} from "../common/helpers";
 import _ from "lodash";
+import {useTranslation} from "react-i18next";
 
 interface TargetSchemeProps {
   paletteColors: string[]
@@ -16,17 +17,17 @@ interface TargetSchemeProps {
 }
 
 const TargetScheme: FC<TargetSchemeProps> = ({paletteColors, onCellClick, onImportClick}) => {
-  
-  const [exportButton, setExportButton] = useState("export")
+  const {t} = useTranslation()
+  const [exportButton, setExportButton] = useState(t("colorPicker.targetScheme.export"))
   const [switched, setSwitched] = useState(false)
   const [selectedCell, setSelectedCell] = useState(0)
   
   const onExportClick = () => {
     const exportData = convertColorsToExportString(paletteColors)
     navigator.clipboard.writeText(exportData).then(() => {
-      setExportButton("copied!")
+      setExportButton(t("colorPicker.targetScheme.copied"))
       setTimeout(() => {
-        setExportButton("export")
+        setExportButton(t("colorPicker.targetScheme.export"))
       }, 2000)
     }).catch(() => {
       alert("error!")
@@ -46,14 +47,14 @@ const TargetScheme: FC<TargetSchemeProps> = ({paletteColors, onCellClick, onImpo
   return (
     <Window width={14.321} style={{zIndex: 0}}>
       <FlexColumnCenter>
-        <Header>TARGET SCHEME</Header>
+        <Header>{t("colorPicker.targetScheme.targetScheme")}</Header>
         <div style={{marginBottom: "0.3em",}}>
           <Switch
             switched={switched}
             width={11.13}
             onClick={() => setSwitched(!switched)}
-            leftText={"default"}
-            rightText={"manual"}
+            leftText={t("colorPicker.targetScheme.default")}
+            rightText={t("colorPicker.targetScheme.manual")}
           />
         </div>
         <Divider/>
@@ -98,7 +99,7 @@ interface DefaultProps {
 }
 
 const Default: FC<DefaultProps> = ({colors, onCellChange, selectedCell}) => {
-  
+  const {t} = useTranslation()
   
   const isSelected = (number: number) => selectedCell === number;
   
@@ -108,24 +109,24 @@ const Default: FC<DefaultProps> = ({colors, onCellChange, selectedCell}) => {
   
   return (
     <Wrapper>
-      <ColorEntry text="PRIMARY" selected={isSelected(0)}
+      <ColorEntry text={t("colorPicker.targetScheme.primary")} selected={isSelected(0)}
                   onClick={(e) => onCellClick(0, e)} color={colors[0]}/>
-      <ColorEntry text="SECONDARY" selected={isSelected(1)}
+      <ColorEntry text={t("colorPicker.targetScheme.secondary")} selected={isSelected(1)}
                   onClick={(e) => onCellClick(1, e)} color={colors[1]}/>
-      <ColorEntry text="TERTIARY" selected={isSelected(2)}
+      <ColorEntry text={t("colorPicker.targetScheme.tertiary")} selected={isSelected(2)}
                   onClick={(e) => onCellClick(2, e)} color={colors[2]}/>
-      <ColorEntry text="QUATERNARY" selected={isSelected(3)}
+      <ColorEntry text={t("colorPicker.targetScheme.quaternary")} selected={isSelected(3)}
                   onClick={(e) => onCellClick(3, e)} color={colors[3]}/>
       <div style={{marginTop: "0.65em"}}>
         <StyledColorEntry>
           <ColorCell outline={isSelected(4)} color={colors[4]} onClick={(e) => onCellClick(4, e)}/>
           <ColorCell outline={isSelected(5)} color={colors[5]} onClick={(e) => onCellClick(5, e)}/>
-          <ColorName>EMISSIVE 1, 2</ColorName>
+          <ColorName>{t("colorPicker.targetScheme.emissive")}</ColorName>
         </StyledColorEntry>
         <StyledColorEntry>
           <ColorCell outline={isSelected(6)} color={colors[6]} onClick={(e) => onCellClick(6, e)}/>
           <ColorCell outline={isSelected(7)} color={colors[7]} onClick={(e) => onCellClick(7, e)}/>
-          <ColorName>ENERGY 1, 2</ColorName>
+          <ColorName>{t("colorPicker.targetScheme.energy")}</ColorName>
         </StyledColorEntry>
       </div>
     </Wrapper>
