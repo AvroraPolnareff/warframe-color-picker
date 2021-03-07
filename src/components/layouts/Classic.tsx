@@ -1,4 +1,4 @@
-import React, {CSSProperties, FC} from "react";
+import React, {CSSProperties, FC, useContext} from "react";
 import {useColorPickerLogic} from "../../hooks/color-picker-logic";
 import {PalettesModal} from "../PalettesModal";
 import {ImportModal} from "../ImportModal";
@@ -16,6 +16,9 @@ import githubLogo from "../../assets/github-logo.svg";
 import {Suggestions} from "../Suggestions";
 import {SelectedColor} from "../SelectedColor";
 import {Wires} from "../Wires";
+import {Header} from "../Header";
+import styled from "styled-components/macro";
+import {SettingsContext} from "../../providers/SettingsProvider";
 
 export const Classic = () => {
   const {
@@ -45,9 +48,12 @@ export const Classic = () => {
     selectedColor,
   } = useColorPickerLogic();
 
+  const {enableMOTD} = useContext(SettingsContext)
+
   return (
     <>
-      {showPalettesModal ?
+      <Header/>
+      {showPalettesModal &&
         <PalettesModal
           availablePalettes={availablePalettes}
           show={showPalettesModal}
@@ -56,7 +62,6 @@ export const Classic = () => {
           onEnableAll={showAllAvailablePalettes}
           onExit={() => setShowPalettesModal(false)}
         />
-        : null
       }
 
       <ImportModal
@@ -67,7 +72,7 @@ export const Classic = () => {
         }}
         onScreenshotImport={onScreenshotImport}
       />
-      <div style={{width: 'max-content', margin: "0.5em auto"}}>
+      <StyledLayout slide={enableMOTD}>
 
         <div style={{display: 'flex', alignItems: "flex-start"}}>
           <div style={{
@@ -128,9 +133,16 @@ export const Classic = () => {
             />
           </div>
         </div>
-      </div>
+      </StyledLayout>
     </>
   );
 }
+
+export const StyledLayout = styled.div<{slide: boolean}>`
+  transform: translateY(${({slide}) => slide ? "0%" : "-13%"});
+  transition: transform 0.5s ease;
+  width: max-content; 
+  margin: 0.5em auto;
+`
 
 

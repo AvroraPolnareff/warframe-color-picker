@@ -1,4 +1,4 @@
-import React, {CSSProperties, FC} from "react";
+import React, {CSSProperties, FC, useContext} from "react";
 import {useColorPickerLogic} from "../../hooks/color-picker-logic";
 import {PalettesModal} from "../PalettesModal";
 import {ImportModal} from "../ImportModal";
@@ -15,6 +15,9 @@ import suggestionsToSelectedColor from "../../assets/Wires (Sugg -_ Sel Col).svg
 import {Suggestions} from "../Suggestions";
 import {SelectedColor} from "../SelectedColor";
 import { Wires } from "../Wires";
+import {Header} from "../Header";
+import {SettingsContext} from "../../providers/SettingsProvider";
+import {StyledLayout} from "./Classic";
 
 export const Expanded = () => {
   const {
@@ -44,8 +47,11 @@ export const Expanded = () => {
     selectedColor,
   } = useColorPickerLogic();
 
+  const {enableMOTD} = useContext(SettingsContext)
+
   return (
     <>
+      <Header/>
       {showPalettesModal ?
         <PalettesModal
           availablePalettes={availablePalettes}
@@ -66,7 +72,7 @@ export const Expanded = () => {
         }}
         onScreenshotImport={onScreenshotImport}
       />
-      <div style={{width: 'max-content', margin: "0.5em auto"}}>
+      <StyledLayout slide={enableMOTD}>
 
         <div style={{display: 'flex', alignItems: "flex-start"}}>
           <div style={{display: 'flex', flexDirection: "column", alignItems: "flex-end", marginRight: "0.6em"}}>
@@ -114,7 +120,7 @@ export const Expanded = () => {
             />
           </div>
         </div>
-      </div>
+      </StyledLayout>
     </>
   );
 }

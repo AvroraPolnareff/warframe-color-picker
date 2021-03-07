@@ -14,6 +14,8 @@ export enum Language {
 export interface Settings {
   layout: Layout,
   language: Language,
+  enableMOTD: boolean,
+  setEnableMOTD: (enable: boolean) => void,
   setLanguage: (lang: Language) => void,
   setLayout: (layout: Layout) => void,
 }
@@ -21,8 +23,10 @@ export interface Settings {
 const initSettings: Settings = {
   layout: Layout.EXPANDED,
   language: Language.ENGLISH,
+  enableMOTD: true,
   setLanguage: () => {},
   setLayout: () => {},
+  setEnableMOTD: () => {},
 }
 
 export const SettingsContext = createContext<Settings>(initSettings);
@@ -31,13 +35,16 @@ export const SettingsContext = createContext<Settings>(initSettings);
 export const SettingsProvider: FC = ({children}) => {
   const [layout, setLayout] = useStickyState(initSettings.layout, "layout");
   const [language, setLanguage] = useStickyState(initSettings.language, "language");
+  const [enableMOTD, setEnableMOTD] = useStickyState(initSettings.enableMOTD, "motd");
 
   return (
     <SettingsContext.Provider value={{
       layout,
       language,
+      enableMOTD,
       setLayout,
       setLanguage,
+      setEnableMOTD,
     }}>
       {children}
     </SettingsContext.Provider>

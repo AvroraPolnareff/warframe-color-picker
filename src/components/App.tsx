@@ -1,17 +1,14 @@
 import React, {useContext, useEffect} from 'react';
 import styled from "styled-components/macro";
 import {AppBar, Container, Entry} from './AppBar';
-import {Header} from "./Header";
 import {ScreensSwitcher} from "./ScreensSwitcher";
-import {useStickyState} from "../hooks/useStickyState";
 import {CurrentScreenContext, Screen} from "../providers/CurrentScreenProvider";
 import {SettingsContext} from "../providers/SettingsProvider";
 import {useTranslation} from "react-i18next";
 
 function App() {
-  const [enableMOTD, setEnableMOTD] = useStickyState(true, "motd");
   const {setScreen, screen} = useContext(CurrentScreenContext);
-  const {language} = useContext(SettingsContext);
+  const {language, enableMOTD, setEnableMOTD} = useContext(SettingsContext);
   const {t, i18n} = useTranslation();
   const showMOTD = screen === Screen.COLOR_PICKER
   useEffect(() => {
@@ -35,7 +32,6 @@ function App() {
         </Container>
         <Container/>
       </AppBar>
-      {showMOTD && enableMOTD && <Header/>}
       <ScreensSwitcher/>
       <Credentials><span>Hippothoe & Morisabeau</span></Credentials>
     </StyledApp>

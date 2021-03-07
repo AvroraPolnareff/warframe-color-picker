@@ -1,17 +1,46 @@
-import React, {FC} from "react";
+import React, {FC, useContext} from "react";
 import styled from "styled-components/macro";
 import tipOfADay from "../assets/tipOfADay.svg"
+import {CurrentScreenContext, Screen} from "../providers/CurrentScreenProvider";
+import {SettingsContext} from "../providers/SettingsProvider";
+import {useTranslation} from "react-i18next";
+import {TransitionProps} from "react-transition-group/Transition";
+import {Transition} from "react-transition-group";
 
 export const Header : FC = () => {
+  const {screen} = useContext(CurrentScreenContext);
+  const {enableMOTD} = useContext(SettingsContext);
+  const {t} = useTranslation();
+  const showMOTD = screen === Screen.COLOR_PICKER
   return (
-    <StyledHeader>
-      <TipOfADay/>
-      <TipWrapper>
-        Join our Discord at: discord.gg/WWBYuY3! This place is not only limited to Warframe, so feel free to hop in even if you’re on a break. Our community is still growing, and we’re actively looking for new people. Hope to see you around!
-      </TipWrapper>
-    </StyledHeader>
+    <FadeTransition
+      in={enableMOTD && showMOTD}
+      timeout={250}
+    >
+      <StyledHeader>
+        <TipOfADay/>
+        <TipWrapper>
+          Join our Discord at: discord.gg/WWBYuY3! This place is not only limited to Warframe, so feel free to hop in
+          even if you’re on a break. Our community is still growing, and we’re actively looking for new people. Hope
+          to see you around!
+        </TipWrapper>
+      </StyledHeader>
+    </FadeTransition>
   )
 }
+
+const FadeDiv = styled.div<{state: string}>`
+  transition: 0.3s ease;
+  opacity: ${({ state }) => (state === "entered" ? 1 : "exiting" ? 0 : "exited" ? 0 : "entering" && 0)};
+`;
+
+const FadeTransition: FC<TransitionProps> = ({ children, ...rest }) => (
+  <Transition {...rest}>
+    {state => <FadeDiv state={state}>{children}</FadeDiv>}
+  </Transition>
+);
+
+
 
 const StyledHeader = styled.header`
   margin: 0 auto;
