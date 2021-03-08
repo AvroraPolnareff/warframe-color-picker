@@ -14,9 +14,9 @@ export default {
   languageSelection: {
     headerText: ["Внимание!", " Названия палитр будут переведены в соответствии с выбранным языком."],
     bottomText: [
-      "I'm a savage ",
-      "Classy, bougie, ratchet ",
-      "Sassy, moody, nasty "
+      "Your language is missing? No worries, you can support us by helping to add it! Head over to our ",
+      "Discord",
+      " so we can cooperate."
     ],
   },
   menu: {
