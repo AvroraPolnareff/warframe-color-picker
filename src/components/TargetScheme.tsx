@@ -18,16 +18,16 @@ interface TargetSchemeProps {
 
 const TargetScheme: FC<TargetSchemeProps> = ({paletteColors, onCellClick, onImportClick}) => {
   const {t} = useTranslation()
-  const [exportButton, setExportButton] = useState(t("colorPicker.targetScheme.export"))
+  const [copied, setCopied] = useState(false)
   const [switched, setSwitched] = useState(false)
   const [selectedCell, setSelectedCell] = useState(0)
   
   const onExportClick = () => {
     const exportData = convertColorsToExportString(paletteColors)
     navigator.clipboard.writeText(exportData).then(() => {
-      setExportButton(t("colorPicker.targetScheme.copied"))
+      setCopied(true)
       setTimeout(() => {
-        setExportButton(t("colorPicker.targetScheme.export"))
+        setCopied(false)
       }, 2000)
     }).catch(() => {
       alert("error!")
@@ -74,9 +74,9 @@ const TargetScheme: FC<TargetSchemeProps> = ({paletteColors, onCellClick, onImpo
           round small
           onClick={onExportClick}
           style={{width: "4.7em", marginLeft: "0.5em"}}
-          success={"copied!" === exportButton}
+          success={copied}
         >
-          {exportButton}
+          {copied ? t("colorPicker.targetScheme.copied") : t("colorPicker.targetScheme.export")}
         </Button>
       </div>
     </Window>
