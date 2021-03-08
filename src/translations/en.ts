@@ -14,9 +14,9 @@ export default {
   languageSelection: {
     headerText: ["Attention!", " Color Palette names will be changed according to the chosen language."],
     bottomText: [
-      "More customization options are on the way! Hop onto our ",
+      "Your language is missing? No worries, you can support us by helping to add it! Head over to our ",
       "Discord",
-      " if you have any suggestions, or if you just want to get a sneak peek on the upcoming changes!"
+      " so we can cooperate."
     ],
   },
   menu: {
