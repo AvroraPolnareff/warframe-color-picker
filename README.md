@@ -6,7 +6,7 @@ This tool is designed to help you with searching for specific colors across the 
 
 Back in the day when this tool was not a thing, in order to create an accurate in-game cosplay that is not hard on the eyes we had to manually compare more than 3000 colors scattered across more than 35 palettes, being limited to completely unrelated third-party software, to get a slightly brighter and less saturated version of the chosen color to match the scheme on a skin of choice. And oh my, texture / model entropy in this game is so high it is sometimes straight up impossible to predict how the same scheme would look on another object (no matter if it's a Warframe, a Weapon, or anything else). Yes, [the challenge was real](https://www.youtube.com/watch?v=KxRZX9eDpCs&feature=youtu.be&t=45). 
 
-Even though despite all the pain, having an absolute copy of Nightwatch, or, say, Wolf of Saturn Six scheme on your Graxx skin was rewarding enough to keep getting back to it again and again, enduring the same obnoxious procedure over and over... After all, roleplay, fashion, and—as a result—immersion form the foundation of our envision of the true endgame!
+Despite all the pain, having an absolute copy of Nightwatch, or, say, Wolf of Saturn Six scheme on your Graxx skin was rewarding enough to keep getting back to it again and again, enduring the same obnoxious procedure over and over... After all, roleplay, fashion, and—as a result—immersion form the foundation of our envision of the true endgame!
 
 Lucky for all of us, we've made an app that does this entire tiresome routine for you in a flash and automatically, without the need to manually grind your eyes through thousands of colors, needlessly memorising them all. Yay!! All hail the community!
 
