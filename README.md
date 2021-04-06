@@ -44,7 +44,7 @@ Here is the list of currently available most important features divided into sec
   * Manually upload your entire scheme from a screenshot;
   * Insert the code generated with Export button
 * Export
-  * Export a unique code that contains all your colors from both Default and Manual sections. Sharing is caring!
+  * Copying the URL will contain all colors from both Default and Manual palettes. Sharing is caring!
   
 ### **SUGGESTIONS**:
 
