@@ -2,6 +2,7 @@ import * as functions from "firebase-functions"
 import * as express from "express"
 import * as admin from 'firebase-admin'
 import * as bodyParser from "body-parser"
+import * as cors from "cors"
 import shortid = require("shortid")
 
 admin.initializeApp(functions.config().firebase)
@@ -12,6 +13,7 @@ const app = express()
 
 api.use("/api/v1", app)
 api.use(bodyParser.json())
+api.use(cors({origin: true}))
 api.use(bodyParser.urlencoded({ extended: false }))
 
 app.post("/palettes", async (req, res) => {
