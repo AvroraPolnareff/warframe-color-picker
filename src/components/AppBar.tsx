@@ -7,6 +7,7 @@ export const AppBar = styled.div`
   grid-template-columns: 1fr 3fr 1fr;
   justify-items: center;
   height: 2em;
+  z-index: 100;
 `
 
 export const Container = styled.div`
@@ -19,7 +20,7 @@ export const Container = styled.div`
 
 export const Entry: FC<{onClick?: (e: React.MouseEvent) => void}> = ({children, onClick}) => {
   return (
-    <EntryWrapper onClick={onClick}>
+    <EntryWrapper role="button" onClick={onClick}>
       <StyledEntry>{children}</StyledEntry>
     </EntryWrapper>
   )

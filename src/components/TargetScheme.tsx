@@ -160,14 +160,7 @@ const Manual: FC<ManualProps> = ({colors, onCellChange, selectedCell}) => {
               />
             ))}
           </CellsRow>
-        ))
-        }
-        {/*{colors.map((color, key) => (
-          <ColorCell
-            color={color}
-            outline={selectedCell === key}
-            onClick={() => onCellChange(key)}
-          />))}*/}
+        ))}
       </StyledManual>
     </Wrapper>
   )

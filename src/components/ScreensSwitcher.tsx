@@ -21,15 +21,20 @@ export const ScreensSwitcher = () => {
         unmountOnExit
         mountOnEnter
       >
+        <StyledScreenSwitcher>
         {
           screen === Screen.COLOR_PICKER ? <CurrentLayout layout={layout}/> :
           screen === Screen.LAYOUT_SELECTION ? <Layouts/> :
           screen === Screen.LANGUAGE_SELECTION && <Languages/>
         }
+        </StyledScreenSwitcher>
       </FadeTransition>
     </SwitchTransition>
   )
 }
+
+const StyledScreenSwitcher = styled.div`
+`
 
 const FadeDiv = styled.div<{state: string}>`
   transition: 0.3s ease;
