@@ -6,9 +6,10 @@ import {Button} from "./shared/Button";
 import {Divider} from "./shared/Divider";
 import {ColorCell} from "./shared/ColorCell";
 import {Switch} from "./shared/Switch";
-import {convertColorsToExportString} from "../common/helpers";
 import _ from "lodash";
 import {useTranslation} from "react-i18next";
+import {exportPalette} from "../common/inner-api";
+import Color from "color";
 
 interface TargetSchemeProps {
   paletteColors: string[]
@@ -21,19 +22,22 @@ const TargetScheme: FC<TargetSchemeProps> = ({paletteColors, onCellClick, onImpo
   const [copied, setCopied] = useState(false)
   const [switched, setSwitched] = useState(false)
   const [selectedCell, setSelectedCell] = useState(0)
-  
-  const onExportClick = () => {
-    const exportData = convertColorsToExportString(paletteColors)
-    navigator.clipboard.writeText(exportData).then(() => {
+
+  const onExportClick = async () => {
+    try {
+      const exportUrl = await exportPalette("defname", paletteColors.map(color => color ? Color(color).hex() : ""));
+      await navigator.clipboard.writeText(exportUrl)
       setCopied(true)
       setTimeout(() => {
         setCopied(false)
       }, 2000)
-    }).catch(() => {
+    } catch (e) {
+      console.log(e)
       alert("error!")
-    })
+    }
+
   }
-  
+
   const onCellChange = (index: number, e: React.MouseEvent) => {
     e.preventDefault()
     if (e.nativeEvent.button === 2) {
@@ -43,7 +47,7 @@ const TargetScheme: FC<TargetSchemeProps> = ({paletteColors, onCellClick, onImpo
       onCellClick(index, e)
     }
   }
-  
+
   return (
     <Window width={14.321} style={{zIndex: 0}}>
       <FlexColumnCenter>
@@ -100,13 +104,13 @@ interface DefaultProps {
 
 const Default: FC<DefaultProps> = ({colors, onCellChange, selectedCell}) => {
   const {t} = useTranslation()
-  
+
   const isSelected = (number: number) => selectedCell === number;
-  
+
   const onCellClick = (index: number, e: React.MouseEvent) => {
     onCellChange(index, e);
   }
-  
+
   return (
     <Wrapper>
       <ColorEntry text={t("colorPicker.targetScheme.primary")} selected={isSelected(0)}
@@ -144,9 +148,9 @@ const Manual: FC<ManualProps> = ({colors, onCellChange, selectedCell}) => {
     const indexed = colors.map((color, index) => ({index, color}))
     return _.chunk(indexed, 8)
   }, [colors])
-  
+
   const selectedRow = useMemo(() => Math.floor(selectedCell / 8), [selectedCell])
-  
+
   return (
     <Wrapper>
       <StyledManual>
