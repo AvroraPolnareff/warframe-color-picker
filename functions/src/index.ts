@@ -10,15 +10,15 @@ const db = admin.firestore()
 
 const api = express()
 const app = express()
+app.use(cors({origin: true}))
 
 api.use("/api/v1", app)
 api.use(bodyParser.json())
-api.use(cors({origin: true}))
 api.use(bodyParser.urlencoded({ extended: false }))
 
 app.post("/palettes", async (req, res) => {
   try {
-    const { name, colors } = req.body as Palette
+    const { name, colors } = JSON.parse(req.body) as Palette
     if (name.length > 55 || colors.length > 49 || colors.some(color => color.length > 7)) {
       res.status(400).send("one of the fields is invalid");
     }
@@ -27,6 +27,7 @@ app.post("/palettes", async (req, res) => {
 
     res.status(201).send(shortId)
   } catch (e) {
+    functions.logger.log(e)
     res.status(400).send(e.message)
   }
 })
