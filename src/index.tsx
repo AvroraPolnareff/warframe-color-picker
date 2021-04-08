@@ -9,6 +9,7 @@ import {CurrentScreenProvider} from "./providers/CurrentScreenProvider";
 import i18n from "./i18n";
 
 import {I18nextProvider} from "react-i18next";
+import {UrlColorsContextProvider} from "./providers/UrlColorsProvider";
 
 const GlobalStyle = createGlobalStyle`
   html {
@@ -31,10 +32,12 @@ ReactDOM.render(
     <ThemeProvider theme={defaultTheme}>
       <CurrentScreenProvider>
         <SettingsProvider>
-          <I18nextProvider i18n={i18n}>
-          <GlobalStyle/>
-          <App/>
-          </I18nextProvider>
+          <UrlColorsContextProvider>
+            <I18nextProvider i18n={i18n}>
+              <GlobalStyle/>
+              <App/>
+            </I18nextProvider>
+          </UrlColorsContextProvider>
         </SettingsProvider>
       </CurrentScreenProvider>
     </ThemeProvider>
