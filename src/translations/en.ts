@@ -1,5 +1,5 @@
 import headerImage from "../assets/choose-your-fighter.svg"
-import suggestions from "../assets/suggestions.svg"
+import suggestions from "../assets/SUGGESTIONS.svg"
 
 export default {
   layoutSelection: {
