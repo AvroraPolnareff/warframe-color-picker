@@ -24,7 +24,7 @@ export const CurrentScreenProvider: FC = ({children}) => {
 
   return (
     <CurrentScreenContext.Provider value={{
-      screen, setScreen
+      screen, setScreen,
     }}>
       {children}
     </CurrentScreenContext.Provider>
