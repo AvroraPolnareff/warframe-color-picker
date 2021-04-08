@@ -1,12 +1,14 @@
 import {palettes} from "../common/palettes";
 import {convertExportStringToColors, findClosestColors} from "../common/helpers";
-import React, {useEffect, useRef, useState} from "react";
+import React, {useContext, useEffect, useRef, useState} from "react";
 import {MatchedColor} from "../components/Suggestions";
 import {debounce} from "lodash";
 import Color from "color";
 import {useStickyState} from "./useStickyState";
+import {fetchPaletteById} from "../common/inner-api";
+import {UrlColorsContext} from "../providers/UrlColorsProvider";
 
-export const initManualColors : string[] = Array(48).fill("")
+export const initColors : string[] = Array(48).fill("")
 
 export const initAvailablePalettes = palettes.map((palette) => palette.name)
 
@@ -18,16 +20,26 @@ const initMatchedColor = {
   uid: "3274823"
 }
 
+
+
 export const useColorPickerLogic = () => {
-  const [paletteColors, setPaletteColors] = useStickyState(initManualColors, "manualColors")
+  const [paletteColors, setPaletteColors] = useStickyState(initColors, "manualColors")
   const [currentColorIndex, setCurrentColorIndex] = useState(0)
   const [matchedColors, setMatchedColors] = useState<MatchedColor[]>([])
   const [isColorChanging, setIsColorChanging] = useState(false)
   const [selectedColor, setSelectedColor] = useState<MatchedColor>(initMatchedColor)
-
   const [showImportModal, setShowImportModal] = useState(false)
   const [showPalettesModal, setShowPalettesModal] = useState(false)
   const [availablePalettes, setAvailablePalettes] = useStickyState<string[]>(initAvailablePalettes, "availablePalettes")
+  const urlColors = useContext(UrlColorsContext)
+
+  useEffect(() => {
+    if (!urlColors.imported && urlColors.loaded) {
+      setPaletteColors(urlColors.colors)
+      urlColors.setImported(true)
+    }
+  }, [urlColors])
+
 
   const debounced = useRef(debounce((fn: () => void) => fn(), 150, {trailing: true, leading: false}))
 
