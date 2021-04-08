@@ -8,3 +8,8 @@ export const exportPalette = async (name: string, colors: string[]) => {
   const shortId = await res.text() as string
   return `${window.location.href}?palette=${shortId}`
 }
+
+export const fetchPaletteById = async (id: string) => {
+  const res = await fetch(`${API_URL}/palettes/${id}`)
+  return await res.json() as { name: string, colors: string[] }
+}
