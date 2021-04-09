@@ -3,7 +3,7 @@ import * as express from "express"
 import * as admin from 'firebase-admin'
 import * as bodyParser from "body-parser"
 import * as cors from "cors"
-import shortid = require("shortid")
+import { nanoid } from "nanoid"
 
 admin.initializeApp(functions.config().firebase)
 const db = admin.firestore()
@@ -22,7 +22,7 @@ app.post("/palettes", async (req, res) => {
     if (name.length > 55 || colors.length > 49 || colors.some(color => color.length > 7)) {
       res.status(400).send("one of the fields is invalid");
     }
-    const shortId = shortid.generate()
+    const shortId = nanoid(10)
     await db.collection(Collection.Palettes).doc(shortId).set({name, colors})
 
     res.status(201).send(shortId)
