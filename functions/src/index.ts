@@ -4,7 +4,7 @@ import * as admin from 'firebase-admin'
 import * as bodyParser from "body-parser"
 import * as cors from "cors"
 import { nanoid } from "nanoid"
-
+import {paletteSchema} from "./schemas";
 admin.initializeApp(functions.config().firebase)
 const db = admin.firestore()
 
@@ -18,12 +18,12 @@ api.use(bodyParser.urlencoded({ extended: false }))
 
 app.post("/palettes", async (req, res) => {
   try {
-    const { name, colors } = JSON.parse(req.body) as Palette
-    if (name.length > 55 || colors.length > 49 || colors.some(color => color.length > 7)) {
+    const palette = JSON.parse(req.body) as Palette
+    if (paletteSchema.validate(palette).error) {
       res.status(400).send("one of the fields is invalid");
     }
     const shortId = nanoid(10)
-    await db.collection(Collection.Palettes).doc(shortId).set({name, colors})
+    await db.collection(Collection.Palettes).doc(shortId).set(palette)
 
     res.status(201).send(shortId)
   } catch (e) {
