@@ -40,8 +40,9 @@ export const UrlColorsContextProvider: FC = ({children}) => {
       }
 
     }
+    if (loaded) return;
     getPalette()
-  }, [])
+  }, [loaded])
   return (
     <UrlColorsContext.Provider value={{
       imported,
