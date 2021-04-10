@@ -1,4 +1,4 @@
-import React, {FC, useMemo, useState} from "react";
+import React, {FC, useContext, useMemo, useState} from "react";
 import styled, {css, DefaultTheme, Keyframes, keyframes} from "styled-components/macro";
 import {Window} from "./shared/Window";
 import {FlexColumnCenter} from "./shared/FlexColumnCenter";
@@ -8,8 +8,8 @@ import {ColorCell} from "./shared/ColorCell";
 import {Switch} from "./shared/Switch";
 import _ from "lodash";
 import {useTranslation} from "react-i18next";
-import {exportPalette} from "../common/inner-api";
 import Color from "color";
+import {UrlColorsContext} from "../providers/UrlColorsProvider";
 
 interface TargetSchemeProps {
   paletteColors: string[]
@@ -22,10 +22,12 @@ const TargetScheme: FC<TargetSchemeProps> = ({paletteColors, onCellClick, onImpo
   const [copied, setCopied] = useState(false)
   const [switched, setSwitched] = useState(false)
   const [selectedCell, setSelectedCell] = useState(0)
+  const urlColors = useContext(UrlColorsContext)
 
   const onExportClick = async () => {
     try {
-      const exportUrl = await exportPalette("defname", paletteColors.map(color => color ? Color(color).hex() : ""));
+      const hexColors = paletteColors.map(color => color ? Color(color).hex() : "")
+      const exportUrl = await urlColors.savePalette({name: "defname", colors: hexColors})
       await navigator.clipboard.writeText(exportUrl)
       setCopied(true)
       setTimeout(() => {
