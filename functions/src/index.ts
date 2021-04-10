@@ -19,8 +19,9 @@ api.use(bodyParser.urlencoded({ extended: false }))
 app.post("/palettes", async (req, res) => {
   try {
     const palette = JSON.parse(req.body) as Palette
-    if (paletteSchema.validate(palette).error) {
-      res.status(400).send("one of the fields is invalid");
+    const validationResult = paletteSchema.validate(palette)
+    if (validationResult.error) {
+      res.status(400).send(validationResult.error);
     }
     const shortId = nanoid(10)
     await db.collection(Collection.Palettes).doc(shortId).set(palette)
