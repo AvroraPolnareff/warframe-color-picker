@@ -5,8 +5,9 @@ export const exportPalette = async (name: string, colors: string[]) => {
     method: "POST",
     body: JSON.stringify({name, colors})
   })
+  if (res.status === 400) throw new Error(await res.text())
   const shortId = await res.text() as string
-  return `${window.location.href}?palette=${shortId}`
+  return `${window.location.href.split("?")[0]}?palette=${shortId}`
 }
 
 export const fetchPaletteById = async (id: string) => {
