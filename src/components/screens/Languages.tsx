@@ -1,4 +1,4 @@
-import React, {FC, useContext} from "react";
+import React, {FC, ReactNode, useContext} from "react";
 import styled, {ThemeContext} from "styled-components/macro";
 import {Divider} from "../shared/Divider";
 import headerImage from "../../assets/languages-header.png"
@@ -6,7 +6,7 @@ import {useTranslation} from "react-i18next";
 import {Language, SettingsContext} from "../../providers/SettingsProvider";
 import {css} from "styled-components";
 
-export const Languages: FC = ({}) => {
+export const Languages = ({}) => {
   const {t} = useTranslation()
   const {language, setLanguage} = useContext(SettingsContext)
   return (
@@ -87,8 +87,17 @@ const BottomBlock = styled.div`
   margin-top: 15em;
 `
 
-const ListCheckbox: FC<{enabled?: boolean, onClick?: (e: React.MouseEvent) => void}> = ({enabled, onClick, children}) => {
-  const theme = useContext(ThemeContext)
+const ListCheckbox = (
+  {
+    enabled,
+    onClick,
+    children
+  }: {
+    enabled?: boolean,
+    onClick?: (e: React.MouseEvent) => void,
+    children: ReactNode
+  }
+) => {
   return (
     <StyledListCheckbox onClick={onClick} enabled={enabled}>
       <TextContainer>

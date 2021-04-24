@@ -1,7 +1,15 @@
 import React, {FC} from "react"
 import Color from "color";
 
-export const ColorPickerHeader: FC<{ headerColor: Color, width: number }> = ({headerColor, width}) => {
+export const ColorPickerHeader = (
+  {
+    headerColor,
+    width
+  }: {
+    headerColor: Color,
+    width: number
+  }
+) => {
   return (
       <svg width="180" height="63" viewBox="0 0 180 63" fill="none" xmlns="http://www.w3.org/2000/svg" style={{transition: "stroke 1s linear", width: `${width}em`}}>
         <path style={{transition: "fill 1s linear"}}

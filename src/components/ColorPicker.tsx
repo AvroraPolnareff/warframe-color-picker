@@ -14,7 +14,13 @@ interface ColorPickerProps {
   compact?: boolean
 }
 
-export const ColorPicker: FC<ColorPickerProps> = ({onColorChange, color, compact}) => {
+export const ColorPicker = (
+  {
+    onColorChange,
+    color,
+    compact
+  }: ColorPickerProps
+) => {
   const fontSize = useFontSize();
 
   return (
@@ -95,7 +101,13 @@ const limitNumber = (number: number, min: number, max: number) => {
   return number
 }
 
-const NumbersPicker: FC<NumbersPickerProps> = ({color, onColorChange, compact}) => {
+const NumbersPicker = (
+  {
+    color,
+    onColorChange,
+    compact
+  }: NumbersPickerProps
+) => {
   const [hsvValue, setHsvValue] = useState({h: 0, s: 0, v: 0})
   const [userTyping, setUserTyping] = useState(false)
   const [timer, setTimer] = useState<NodeJS.Timeout | null>(null)
@@ -221,7 +233,16 @@ interface ColorInputProps {
   color?: string
 }
 
-const ColorInput: FC<ColorInputProps> = ({value, name, onChange, min, max, color}) => {
+const ColorInput = (
+  {
+    value,
+    name,
+    onChange,
+    min,
+    max,
+    color
+  }: ColorInputProps
+) => {
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange(name, limitNumber(parseInt(e.target.value), min, max))
   }
@@ -271,7 +292,13 @@ interface HexInputProps {
   compact?: boolean
 }
 
-const HexInput: FC<HexInputProps> = ({onChange, color, compact}) => {
+const HexInput = (
+  {
+    onChange,
+    color,
+    compact
+  }: HexInputProps
+) => {
   const [validHex, setValidHex] = useState(true)
   const [inputField, setInputField] = useState("#909090")
   const [userTyping, setUserTyping] = useState(false)

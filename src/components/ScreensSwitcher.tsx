@@ -42,14 +42,23 @@ const FadeDiv = styled.div<{state: string}>`
   display: ${({ state }) => (state === "exited" ? "none" : "block")};
 `;
 
-const FadeTransition: FC<TransitionProps> = ({ children, ...rest }) => (
-  <Transition {...rest}>
-    {state => <FadeDiv state={state}>{children}</FadeDiv>}
-  </Transition>
-);
+const FadeTransition = (
+  {
+    children,
+    ...rest
+  }: TransitionProps
+) => <Transition {...rest}>
+  {state => <FadeDiv state={state}>{children}</FadeDiv>}
+</Transition>;
 
 
-const CurrentLayout: FC<{layout: Layout}> = ({layout}) => {
+const CurrentLayout = (
+  {
+    layout
+  }: {
+    layout: Layout
+  }
+) => {
   switch (layout) {
     case Layout.CLASSIC: return <Classic/>
     case Layout.EXPANDED: return <Expanded/>

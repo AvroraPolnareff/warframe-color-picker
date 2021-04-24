@@ -1,4 +1,4 @@
-import {createContext, FC, useEffect, useRef, useState} from "react";
+import {createContext, FC, ReactNode, useEffect, useRef, useState} from "react";
 import {exportPalette, fetchPaletteById} from "../common/inner-api";
 
 interface UrlColors {
@@ -21,7 +21,7 @@ const initUrlColors: UrlColors = {
 
 export const UrlColorsContext = createContext<UrlColors>(initUrlColors);
 
-export const UrlColorsContextProvider: FC = ({children}) => {
+export const UrlColorsContextProvider = ({children}: {children: ReactNode}) => {
   const [imported, setImported] = useState(initUrlColors.imported)
   const [loaded, setLoaded] = useState(initUrlColors.loaded)
   const [colors, setColors] = useState(initUrlColors.colors)

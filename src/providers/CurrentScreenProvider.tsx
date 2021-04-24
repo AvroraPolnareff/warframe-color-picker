@@ -1,4 +1,4 @@
-import {createContext, FC, useState} from "react";
+import {createContext, FC, ReactNode, useState} from "react";
 import {useStickyState} from "../hooks/useStickyState";
 
 export enum Screen {
@@ -19,7 +19,7 @@ const initSettings: Settings = {
 
 export const CurrentScreenContext = createContext<Settings>(initSettings);
 
-export const CurrentScreenProvider: FC = ({children}) => {
+export const CurrentScreenProvider = ({children}: { children: ReactNode }) => {
   const [screen, setScreen] = useState(initSettings.screen);
 
   return (

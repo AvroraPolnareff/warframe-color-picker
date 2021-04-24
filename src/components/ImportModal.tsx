@@ -1,4 +1,4 @@
-import React, {FC, HTMLProps, useRef, useState} from "react";
+import React, {FC, HTMLProps, ReactNode, useRef, useState} from "react";
 import styled from "styled-components/macro";
 import {Modal} from "./shared/Modal";
 import {Button} from "./shared/Button";
@@ -12,10 +12,17 @@ interface ImportModalProps {
   onScreenshotImport: (colors: string[]) => void
 }
 
-export const ImportModal: FC<ImportModalProps> = ({show, onAccept, onExit, onScreenshotImport}) => {
+export const ImportModal = (
+  {
+    show,
+    onAccept,
+    onExit,
+    onScreenshotImport
+  }: ImportModalProps
+) => {
   const [content, setContent] = useState("")
   const inputRef = useRef<HTMLInputElement>(null);
-  
+
   const onScreenshotImportChange = () => {
     if (!inputRef.current || !inputRef.current.files) return
     const file = inputRef.current?.files[0]
@@ -26,22 +33,22 @@ export const ImportModal: FC<ImportModalProps> = ({show, onAccept, onExit, onScr
       if (!ev.target?.result) return
       img.onload = () => onScreenshotImport(colorsFromImage(img))
       img.src = ev.target.result as string
-      
+
       if (!inputRef.current) return;
       inputRef.current.value = ""
     })
     reader.readAsDataURL(file)
   }
 
-  
+
   const onPaste = (ev: React.ClipboardEvent<HTMLTextAreaElement>) => {
     if (!ev.clipboardData) return
     const item = ev.clipboardData.items[0]
-    
+
     if (item.type.indexOf("image") === 0) {
       const blob = item.getAsFile()
       if (!blob) return;
-      
+
       const reader = new FileReader()
       reader.onload = (ev => {
         const img = new Image()
@@ -83,7 +90,7 @@ export const ImportModal: FC<ImportModalProps> = ({show, onAccept, onExit, onScr
           <Button as="label" htmlFor="screenshot" round small>{t("importModal.manualUpload")}</Button>
         </div>
         <div style={{textAlign: "right"}}>
-          
+
           <Button
             round small warning
             onClick={() => setContent("")}
@@ -98,9 +105,13 @@ export const ImportModal: FC<ImportModalProps> = ({show, onAccept, onExit, onScr
   )
 }
 
-const TextArea: FC<HTMLProps<HTMLTextAreaElement>> = ({children, ...props}) => {
+interface TextAreaProps extends HTMLProps<HTMLTextAreaElement> {
+  children: ReactNode
+}
+
+const TextArea = ({children, ...props}: TextAreaProps) => {
   const [placeholder, setPlaceholder] = useState(true)
-  
+
   return (
     <Relative>
       <StyledTextArea

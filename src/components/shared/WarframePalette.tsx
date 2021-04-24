@@ -10,7 +10,14 @@ interface WarframePaletteProps {
   onColorHover?: (colorPosition?: Position) => void
 }
 
-export const WarframePalette: FC<WarframePaletteProps> = ({size, paletteName, colorPosition, onColorHover}) => {
+export const WarframePalette = (
+  {
+    size,
+    paletteName,
+    colorPosition,
+    onColorHover
+  }: WarframePaletteProps
+) => {
   const palette = palettes.filter(palette => palette.name === paletteName)[0]
   
   return (
@@ -45,7 +52,14 @@ interface PaletteCellProps {
   onHover: () => void
 }
 
-const PaletteCell: FC<PaletteCellProps> = ({size, color, selected, onHover}) => {
+const PaletteCell = (
+  {
+    size,
+    color,
+    selected,
+    onHover
+  }: PaletteCellProps
+) => {
   return (
     <>
       {selected

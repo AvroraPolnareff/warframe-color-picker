@@ -1,14 +1,22 @@
-import React from 'react'
+import React, {ReactNode} from 'react'
 import styled, {keyframes} from "styled-components/macro"
 import grid from "../../assets/no-color-grid-small.png"
 
 interface ColorCellProps {
-  outline?: boolean;
-  color: string;
+  outline?: boolean
+  color: string
   onClick?: (e: React.MouseEvent) => void
+  children?: ReactNode
 }
 
-export const ColorCell : React.FC<ColorCellProps> = ({outline, color, onClick, children}) => {
+export const ColorCell = (
+  {
+    outline,
+    color,
+    onClick,
+    children
+  }: ColorCellProps
+) => {
   return (
     <OutlineWrapper outline={outline}>
       <StyledColorCell onClick={onClick} color={color} onContextMenu={onClick}>

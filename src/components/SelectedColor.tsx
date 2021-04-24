@@ -13,7 +13,12 @@ interface SelectedColorProps {
   colorPosition: Position
 }
 
-export const SelectedColor: FC<SelectedColorProps> = ({paletteName, colorPosition}) => {
+export const SelectedColor = (
+  {
+    paletteName,
+    colorPosition
+  }: SelectedColorProps
+) => {
   const [name, setName] = useState("")
   const {t} = useTranslation()
   useEffect(() => {

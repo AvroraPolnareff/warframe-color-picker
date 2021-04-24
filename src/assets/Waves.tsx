@@ -1,7 +1,13 @@
 import React, {CSSProperties, FC} from 'react';
 import {useTheme} from "styled-components/macro";
 
-export const Waves : FC<{style: CSSProperties}> = ({style}) => {
+export const Waves = (
+  {
+    style
+  }: {
+    style: CSSProperties
+  }
+) => {
   const theme = useTheme()
   
   return (

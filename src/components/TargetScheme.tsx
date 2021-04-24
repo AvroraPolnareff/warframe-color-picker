@@ -17,7 +17,13 @@ interface TargetSchemeProps {
   onImportClick: () => void;
 }
 
-const TargetScheme: FC<TargetSchemeProps> = ({paletteColors, onCellClick, onImportClick}) => {
+const TargetScheme = (
+  {
+    paletteColors,
+    onCellClick,
+    onImportClick
+  }: TargetSchemeProps
+) => {
   const {t} = useTranslation()
   const [copied, setCopied] = useState(false)
   const [switched, setSwitched] = useState(false)
@@ -104,7 +110,13 @@ interface DefaultProps {
   selectedCell: number
 }
 
-const Default: FC<DefaultProps> = ({colors, onCellChange, selectedCell}) => {
+const Default = (
+  {
+    colors,
+    onCellChange,
+    selectedCell
+  }: DefaultProps
+) => {
   const {t} = useTranslation()
 
   const isSelected = (number: number) => selectedCell === number;
@@ -145,7 +157,13 @@ interface ManualProps {
   selectedCell: number
 }
 
-const Manual: FC<ManualProps> = ({colors, onCellChange, selectedCell}) => {
+const Manual = (
+  {
+    colors,
+    onCellChange,
+    selectedCell
+  }: ManualProps
+) => {
   const cellsRows = useMemo(() => {
     const indexed = colors.map((color, index) => ({index, color}))
     return _.chunk(indexed, 8)
@@ -229,7 +247,14 @@ interface ColorEntryProps {
   onClick: (e: React.MouseEvent) => void
 }
 
-const ColorEntry: FC<ColorEntryProps> = ({text, color, selected, onClick}) => {
+const ColorEntry = (
+  {
+    text,
+    color,
+    selected,
+    onClick
+  }: ColorEntryProps
+) => {
   return (
     <StyledColorEntry onClick={onClick}>
       <ColorCell outline={selected} color={color} onClick={onClick}/>

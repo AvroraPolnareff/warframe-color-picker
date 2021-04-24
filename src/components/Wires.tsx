@@ -1,12 +1,20 @@
-import React, {CSSProperties, FC} from "react";
+import React, {CSSProperties, FC, ReactNode} from "react";
 import styled from "styled-components/macro";
 
-export const Wires: FC<{ style: CSSProperties, src: string }> = ({children, style, src}) => (
-  <div style={{position: 'relative'}}>
-    {children}
-    <StyledWires style={style} src={src}/>
-  </div>
-)
+export const Wires = (
+  {
+    children,
+    style,
+    src
+  }: {
+    style: CSSProperties,
+    src: string,
+    children: ReactNode
+  }
+) => <div style={{position: 'relative'}}>
+  {children}
+  <StyledWires style={style} src={src}/>
+</div>
 
 const StyledWires = styled.img`
   position: absolute;

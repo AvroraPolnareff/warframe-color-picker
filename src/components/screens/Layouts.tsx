@@ -9,7 +9,7 @@ import {CurrentScreenContext, Screen} from "../../providers/CurrentScreenProvide
 import {useTranslation} from "react-i18next";
 import {css} from "styled-components";
 
-export const Layouts : FC<{}> = () => {
+export const Layouts = () => {
   const {layout, setLayout} = useContext(SettingsContext);
   const {t} = useTranslation()
 
@@ -119,7 +119,7 @@ const BottomBlock = styled.div`
 `
 
 
-const Checkbox: FC = () => {
+const Checkbox = () => {
   const theme = useContext(ThemeContext)
 
   return (
@@ -148,7 +148,15 @@ const CheckboxBackground = styled.svg`
   }
 `
 
-const RoundButton: FC<{onClick?: (e: React.MouseEvent) => void, src?: string}> = ({onClick, src}) => {
+const RoundButton = (
+  {
+    onClick,
+    src
+  }: {
+    onClick?: (e: React.MouseEvent) => void,
+    src?: string
+  }
+) => {
   return (
     <StyledButton onClick={onClick}>
       <ImageContainer>

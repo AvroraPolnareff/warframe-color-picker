@@ -1,9 +1,19 @@
-import React, {CSSProperties} from 'react'
+import React, {CSSProperties, ReactNode} from 'react'
 import styled from "styled-components/macro"
 
-export const Window: React.FC<{
-  width?: number, height?: number, style?: CSSProperties
-}> = ({children, width, height, style}) => {
+export const Window = (
+  {
+    children,
+    width,
+    height,
+    style
+  }: {
+    width?: number,
+    height?: number,
+    style?: CSSProperties,
+    children: ReactNode
+  }
+) => {
   return (
       <WindowBorder width={width} height={height} style={style}>
         <Content >

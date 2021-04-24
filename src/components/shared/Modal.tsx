@@ -1,12 +1,28 @@
-import React, {FC} from "react";
+import React, {FC, ReactNode} from "react";
 import styled from "styled-components/macro";
 import exitButton from "../../assets/exitButton.svg"
 
 interface ModalProps {
-  width?: number, height?: number, show: boolean, name: string, description: string, onExit: () => void
+  width?: number
+  height?: number
+  show: boolean
+  name: string
+  description: string
+  onExit: () => void
+  children: ReactNode
 }
 
-export const Modal : FC<ModalProps> = ({show, width, height, name, description, onExit, children}) => {
+export const Modal = (
+  {
+    show,
+    width,
+    height,
+    name,
+    description,
+    onExit,
+    children
+  }: ModalProps
+) => {
   return (
     <StyledModal show={show}>
       <WindowWrapper width={width} height={height}>
@@ -79,8 +95,4 @@ const ExitButton = styled.img.attrs((props) => ({src: exitButton}))`
 
   height: 1em;
   
-`
-
-const Buttons = styled.div`
-
 `

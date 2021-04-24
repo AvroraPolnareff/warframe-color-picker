@@ -11,7 +11,15 @@ interface SwitchProps {
   rightText: string
 }
 
-export const Switch : FC<SwitchProps> = ({switched, width, onClick, leftText, rightText}) => {
+export const Switch = (
+  {
+    switched,
+    width,
+    onClick,
+    leftText,
+    rightText
+  }: SwitchProps
+) => {
   
   return (
     <Wrapper width={width} onClick={onClick}>

@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, ReactNode} from 'react';
 import styled from "styled-components/macro";
 
 
@@ -18,7 +18,15 @@ export const Container = styled.div`
   
 `
 
-export const Entry: FC<{onClick?: (e: React.MouseEvent) => void}> = ({children, onClick}) => {
+export const Entry = (
+  {
+    children,
+    onClick
+  }: {
+    onClick?: (e: React.MouseEvent) => void,
+    children: ReactNode
+  }
+) => {
   return (
     <EntryWrapper role="button" onClick={onClick}>
       <StyledEntry>{children}</StyledEntry>
@@ -42,8 +50,6 @@ export const StyledEntry = styled.div`
   & + & {
     margin-left: 0.5em;
   }
-  
-  
 `
 
 const EntryWrapper = styled.div`
@@ -56,7 +62,7 @@ const EntryWrapper = styled.div`
   transition: transform 0.3s ease;
 
   :hover ${StyledEntry} {
-    background-color: ${({theme}) => theme.colors.primary};
+    background-color: ${({theme}) => theme.colors.darken.secondary};
   }
 `
 

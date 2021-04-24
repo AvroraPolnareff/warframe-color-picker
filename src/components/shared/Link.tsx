@@ -1,14 +1,23 @@
-import React from 'react'
+import React, {ReactNode} from 'react'
 import styled from "styled-components/macro"
 
 export interface LinkProps {
-  width?: number,
-  height?: number,
-  icon?: string,
+  width?: number
+  height?: number
+  icon?: string
   href: string
+  children: ReactNode
 }
 
-export const Link: React.FC<LinkProps> = ({children, width, height, icon, href}) => {
+export const Link = (
+  {
+    children,
+    width,
+    height,
+    icon,
+    href
+  }: LinkProps
+) => {
   return (
     <WindowBorder width={width} height={height} href={href} target="_blank" rel="noopener noreferrer">
       <Content width={width} height={height}>

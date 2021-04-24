@@ -16,9 +16,16 @@ interface PalettesModalProps {
   onExit: () => void
 }
 
-export const PalettesModal : FC<PalettesModalProps> = (
-  {show, availablePalettes, onPaletteClick, onDisableAll, onEnableAll, onExit}
-  ) => {
+export const PalettesModal = (
+  {
+    show,
+    availablePalettes,
+    onPaletteClick,
+    onDisableAll,
+    onEnableAll,
+    onExit
+  }: PalettesModalProps
+) => {
   const [hoveredPalette, setHoveredPalette] = useState("Classic")
   const {t} = useTranslation()
   

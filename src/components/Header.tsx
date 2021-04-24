@@ -7,7 +7,7 @@ import {useTranslation} from "react-i18next";
 import {TransitionProps} from "react-transition-group/Transition";
 import {Transition} from "react-transition-group";
 
-export const Header : FC = () => {
+export const Header = () => {
   const {screen} = useContext(CurrentScreenContext);
   const {enableMOTD} = useContext(SettingsContext);
   const {t} = useTranslation();
@@ -34,11 +34,14 @@ const FadeDiv = styled.div<{state: string}>`
   opacity: ${({ state }) => (state === "entered" ? 1 : "exiting" ? 0 : "exited" ? 0 : "entering" && 0)};
 `;
 
-const FadeTransition: FC<TransitionProps> = ({ children, ...rest }) => (
-  <Transition {...rest}>
-    {state => <FadeDiv state={state}>{children}</FadeDiv>}
-  </Transition>
-);
+const FadeTransition = (
+  {
+    children,
+    ...rest
+  }: TransitionProps
+) => <Transition {...rest}>
+  {state => <FadeDiv state={state}>{children}</FadeDiv>}
+</Transition>;
 
 
 

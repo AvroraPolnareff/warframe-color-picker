@@ -32,7 +32,7 @@ export interface MatchedColor {
   uid: string
 }
 
-export const Suggestions: FC<SuggestionsProps> = (props) => {
+export const Suggestions = (props: SuggestionsProps) => {
   const scrollbarsRef = useRef<Scrollbars>(null)
   const fadesRef = useRef<HTMLDivElement>(null)
   const [switched, setSwitched] = useState(false)
@@ -145,7 +145,19 @@ interface SuggestionProps {
   animationState: boolean
 }
 
-const Suggestion: FC<SuggestionProps> = ({color, name, value, onSuggestionClick, uid, selected, index, animationState, onSwapColor}) => {
+const Suggestion = (
+  {
+    color,
+    name,
+    value,
+    onSuggestionClick,
+    uid,
+    selected,
+    index,
+    animationState,
+    onSwapColor
+  }: SuggestionProps
+) => {
   const {t} = useTranslation()
   return (
     <StyledSuggestion onClick={() => onSuggestionClick(uid)} selected={selected} state={animationState}
