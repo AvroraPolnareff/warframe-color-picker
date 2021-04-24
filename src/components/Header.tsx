@@ -1,5 +1,5 @@
 import React, {useContext} from "react";
-import styled from "styled-components/macro";
+import styled, { css } from "styled-components/macro";
 import tipOfADay from "../assets/tipOfADay.svg"
 import {CurrentScreenContext, Screen} from "../providers/CurrentScreenProvider";
 import {SettingsContext} from "../providers/SettingsProvider";
@@ -17,7 +17,7 @@ export const Header = () => {
     >
       <StyledHeader>
         <TipOfADay/>
-        <TipWrapper>
+        <TipWrapper hidden={!enableMOTD}>
           Join our Discord at: discord.gg/WWBYuY3! This place is not only limited to Warframe, so feel free to hop in
           even if you’re on a break. Our community is still growing, and we’re actively looking for new people. Hope
           to see you around!
@@ -56,7 +56,12 @@ const TipOfADay = styled.img.attrs(() => ({src: tipOfADay}))`
   height: 4.83em;
 `
 
-const TipWrapper = styled.div`
+const TipWrapper = styled.div<{hidden?: boolean}>`
+  ${({hidden}) => hidden && css`
+    user-select: none;
+    cursor: default;
+  `}
+  
   font-size: 1.3rem;
   margin: 0.35em auto auto 0.35em;
   width: 39em;
