@@ -6,7 +6,7 @@ export interface LinkProps {
   height?: number
   icon?: string
   href: string
-  children: ReactNode
+  children?: ReactNode
 }
 
 export const Link = (
