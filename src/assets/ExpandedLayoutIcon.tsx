@@ -1,7 +1,4 @@
-
-import {FC} from "react";
-
-export const ExpandedLayoutIcon = ({}: {}) => {
+export const ExpandedLayoutIcon = () => {
   return (
     <svg id="svg" width="272" height="272" viewBox="0 0 272 272" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect className="svg-background" x="21.1805" width="232.986" height="232.986" rx="20" fill="#EBEBEB" style={{transition: "fill 0.5s ease"}}/>

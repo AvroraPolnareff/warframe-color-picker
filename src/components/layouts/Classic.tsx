@@ -1,4 +1,4 @@
-import React, {CSSProperties, FC, useContext} from "react";
+import React, {useContext} from "react";
 import {useColorPickerLogic} from "../../hooks/color-picker-logic";
 import {PalettesModal} from "../PalettesModal";
 import {ImportModal} from "../ImportModal";

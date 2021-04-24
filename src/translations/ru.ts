@@ -1,7 +1,7 @@
 import headerImage from "../assets/choose-your-fighter-ru.svg"
 import suggestions from "../assets/SUGGESTIONS.svg";
 
-export default {
+const ru = {
   layoutSelection: {
     headerImage,
     headerText: "Выберите одну из двух планировок расположения окон: расширенную или классическую.",
@@ -111,3 +111,4 @@ export default {
   }
 }
 
+export default ru

@@ -1,5 +1,5 @@
 import {Position} from "../../common/Palette";
-import React, {FC} from "react";
+import React from "react";
 import {palettes} from "../../common/palettes";
 import styled, {css, keyframes} from "styled-components/macro";
 
@@ -19,11 +19,12 @@ export const WarframePalette = (
   }: WarframePaletteProps
 ) => {
   const palette = palettes.filter(palette => palette.name === paletteName)[0]
-  
+
   return (
     <StyledWarframePalette size={size} onMouseLeave={() => onColorHover && onColorHover()}>
-      {palette.colors.map(color => (
+      {palette.colors.map((color, index) => (
         <PaletteCell
+          key={index}
           selected={color.position.x === colorPosition?.x && colorPosition?.y === color.position.y}
           color={color.hex}
           size={size}
@@ -66,10 +67,10 @@ const PaletteCell = (
         ? <BackgroundGradient size={size} onMouseOver={() => onHover()}>
           <StyledPaletteCell size={size} color={color} selected={selected}/>
         </BackgroundGradient>
-        
+
         : <StyledPaletteCell size={size} color={color} selected={selected} onMouseOver={() => onHover()}/>
       }
-    
+
     </>
   )
 }

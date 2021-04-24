@@ -1,5 +1,4 @@
-import {createContext, FC, ReactNode, useState} from "react";
-import {useStickyState} from "../hooks/useStickyState";
+import {createContext, ReactNode, useState} from "react";
 
 export enum Screen {
   COLOR_PICKER = "COLOR_PICKER",

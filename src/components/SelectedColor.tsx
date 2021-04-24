@@ -1,9 +1,8 @@
-import React, {FC, useEffect, useState} from "react"
+import React, {useEffect, useState} from "react"
 import {Window} from "./shared/Window";
 import {FlexColumnCenter} from "./shared/FlexColumnCenter";
 import styled from "styled-components/macro";
 import {Position} from "../common/Palette";
-import waves from "../assets/waves.svg"
 import {WarframePalette} from "./shared/WarframePalette";
 import {Waves} from "../assets/Waves";
 import {useTranslation} from "react-i18next";
@@ -24,7 +23,7 @@ export const SelectedColor = (
   useEffect(() => {
     setName(paletteName)
   }, [paletteName])
-  
+
   const onColorHover = (position?: Position) => {
     if (position) {
       setName(`x: ${position.x + 1}, y: ${position.y + 1}`)
@@ -32,7 +31,7 @@ export const SelectedColor = (
       setName(paletteName)
     }
   }
-  
+
   return (
     <Window width={10.6}>
       <FlexColumnCenter>
@@ -52,7 +51,7 @@ export const SelectedColor = (
           userSelect: "none"
         }}/>
         <PaletteName>{t`palette.${name}`}</PaletteName>
-        
+
         <WarframePalette
           size={1.735}
           paletteName={paletteName}

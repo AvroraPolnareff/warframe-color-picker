@@ -1,4 +1,4 @@
-import React, {FC, ReactNode} from "react";
+import React, {ReactNode} from "react";
 import styled from "styled-components/macro";
 import exitButton from "../../assets/exitButton.svg"
 
@@ -88,11 +88,10 @@ const Header = styled.div`
   text-transform: uppercase;
 `
 
-const ExitButton = styled.img.attrs((props) => ({src: exitButton}))`
+const ExitButton = styled.img.attrs(() => ({src: exitButton}))`
   cursor: pointer;
   font-weight: bold;
   border: none;
-
   height: 1em;
   
 `

@@ -5,7 +5,6 @@ import {MatchedColor} from "../components/Suggestions";
 import {debounce} from "lodash";
 import Color from "color";
 import {useStickyState} from "./useStickyState";
-import {fetchPaletteById} from "../common/inner-api";
 import {UrlColorsContext} from "../providers/UrlColorsProvider";
 
 export const initColors : string[] = Array(48).fill("")
@@ -38,7 +37,7 @@ export const useColorPickerLogic = () => {
       setPaletteColors(urlColors.colors)
       urlColors.setImported(true)
     }
-  }, [urlColors])
+  }, [urlColors, setPaletteColors])
 
 
   const debounced = useRef(debounce((fn: () => void) => fn(), 150, {trailing: true, leading: false}))
@@ -66,7 +65,7 @@ export const useColorPickerLogic = () => {
       setIsColorChanging(true)
     }
     debounced.current(updateSuggestions)
-  }, [paletteColors, currentColorIndex, availablePalettes])
+  }, [paletteColors, currentColorIndex, availablePalettes, setIsColorChanging])
 
   const onCellClick = (index: number, e: React.MouseEvent) => {
     if (e.type === "contextmenu") {

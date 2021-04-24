@@ -1,4 +1,4 @@
-import {createContext, FC, ReactNode, useEffect, useRef, useState} from "react";
+import {createContext, ReactNode, useEffect, useRef, useState} from "react";
 import {exportPalette, fetchPaletteById} from "../common/inner-api";
 
 interface UrlColors {

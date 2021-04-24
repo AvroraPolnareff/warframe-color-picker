@@ -12,8 +12,8 @@ function App() {
   const {t, i18n} = useTranslation();
   const showMOTD = screen === Screen.COLOR_PICKER
   useEffect(() => {
-    i18n.changeLanguage(language)
-  }, [language])
+    i18n.changeLanguage(language).catch(e => console.log(e))
+  }, [language, i18n])
   return (
     <StyledApp>
       <AppBar>

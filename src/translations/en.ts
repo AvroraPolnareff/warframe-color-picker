@@ -1,7 +1,7 @@
 import headerImage from "../assets/choose-your-fighter.svg"
 import suggestions from "../assets/SUGGESTIONS.svg"
 
-export default {
+const en = {
   layoutSelection: {
     headerImage,
     headerText: "Select whether you want to use an expanded layout, or the original, classic one.",
@@ -110,3 +110,5 @@ export default {
     "Valentine": "Valentine",
   }
 }
+
+export default en

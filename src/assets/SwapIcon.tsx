@@ -1,4 +1,4 @@
-import React, {CSSProperties, FC} from "react";
+import React, {CSSProperties} from "react";
 
 export const SwapIcon = (
   {

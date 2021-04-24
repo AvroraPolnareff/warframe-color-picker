@@ -1,4 +1,4 @@
-import {createContext, FC, ReactNode} from "react";
+import {createContext, ReactNode} from "react";
 import {useStickyState} from "../hooks/useStickyState";
 
 export enum Layout {

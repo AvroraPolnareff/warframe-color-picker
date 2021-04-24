@@ -1,11 +1,9 @@
-import React, {FC, useContext, useState} from "react";
-import styled, {ThemeContext} from "styled-components/macro";
+import React, {useContext} from "react";
+import styled from "styled-components/macro";
 import {ClassicLayoutIcon} from "../../assets/ClassicLayoutIcon"
 import {ExpandedLayoutIcon} from "../../assets/ExpandedLayoutIcon"
-import acceptIcon from "../../assets/accept.svg"
 import {Divider} from "../shared/Divider";
 import {Layout, SettingsContext} from "../../providers/SettingsProvider";
-import {CurrentScreenContext, Screen} from "../../providers/CurrentScreenProvider";
 import {useTranslation} from "react-i18next";
 import {css} from "styled-components";
 
@@ -120,8 +118,6 @@ const BottomBlock = styled.div`
 
 
 const Checkbox = () => {
-  const theme = useContext(ThemeContext)
-
   return (
     <StyledCheckbox>
       <CheckboxBackground viewBox="0 0 128 48">
@@ -146,56 +142,4 @@ const CheckboxBackground = styled.svg`
   & > #border {
     transition: fill 0.5s ease;
   }
-`
-
-const RoundButton = (
-  {
-    onClick,
-    src
-  }: {
-    onClick?: (e: React.MouseEvent) => void,
-    src?: string
-  }
-) => {
-  return (
-    <StyledButton onClick={onClick}>
-      <ImageContainer>
-        <ButtonImage src={src}/>
-      </ImageContainer>
-    </StyledButton>
-  );
-}
-
-const StyledButton = styled.button`
-  background: ${({theme}) => theme.colors.windowBackground};
-  border-radius: 50%;
-  width: 2.6em;
-  height: 2.6em;
-  padding: 0;
-  border: solid 0.3em ${({theme}) => theme.colors.tertiary};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  outline: none;
-  cursor: pointer;
-  transition: border-color 0.4s ease;
-  
-  &:hover {
-    border-color: ${({theme}) => theme.colors.darken.tertiary};
-  }
-`
-
-const ImageContainer = styled.div`
-  background: ${({theme}) => theme.colors.primary};
-  width: 1.7em;
-  height: 1.7em;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: transform 0.5s ease;
-`
-
-const ButtonImage = styled.img`
-  width: 1.2em;
 `

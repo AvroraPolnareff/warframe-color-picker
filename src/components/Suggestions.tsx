@@ -1,9 +1,8 @@
-import React, { FC, useEffect, useRef, useState} from "react"
+import React, {useEffect, useRef, useState} from "react"
 import {Position} from "../common/Palette";
 import {Divider} from "./shared/Divider";
 import {FlexColumnCenter} from "./shared/FlexColumnCenter";
 import {Window} from "./shared/Window";
-import header from "../assets/suggestions.svg"
 import styled from "styled-components/macro";
 import {ColorCell} from "./shared/ColorCell";
 import {Badge} from "./shared/Badge";
@@ -42,18 +41,18 @@ export const Suggestions = (props: SuggestionsProps) => {
   useEffect(() => {
     if (props.matchedColors.length)
       setSelected(props.matchedColors[0].uid)
-  }, [])
-  
+  }, [setSelected, props.matchedColors])
+
   useEffect(() => {
     if (!scrollbarsRef.current) return
     scrollbarsRef.current.scrollTop(0)
     if (props.matchedColors.length)
       setSelected(props.matchedColors[0].uid)
   }, [props.matchedColors])
-  
+
   const onScrollbarUpdate = (values: positionValues) => {
     if (!fadesRef.current) return
-    
+
     const fadesStyle = `
       position: absolute;
       height: 100%;
@@ -67,19 +66,23 @@ export const Suggestions = (props: SuggestionsProps) => {
       0deg, rgba(255,255,255,1) 0%, rgba(0,0,0,0) ${(1 - values.top) * 20}%,
       rgba(0,0,0,0) ${100 - (values.top) * 20}%, rgba(255,255,255,1) 100%
     )`
-    
+
     fadesRef.current.setAttribute("style", fadesStyle + gradient)
   }
-  
+
   const onSuggestionClick = (uid: string) => {
     props.onSuggestionClick(uid)
     setSelected(uid)
   }
-  
+
   return (
     <Window width={14.321}>
       <FlexColumnCenter>
-        <img src={t("colorPicker.suggestions.suggestions")} style={{width: "12em", marginTop: "0.25em", pointerEvents: "none", userSelect: "none"}}/>
+        <img
+          src={t("colorPicker.suggestions.suggestions")}
+          style={{width: "12em", marginTop: "0.25em", pointerEvents: "none", userSelect: "none"}}
+          alt=""
+        />
         <ItalicText>{t("colorPicker.suggestions.scroll")}</ItalicText>
         <div style={{
           display: "flex", justifyContent: "space-between",
@@ -89,7 +92,7 @@ export const Suggestions = (props: SuggestionsProps) => {
           <Switch switched={switched} width={3.5} onClick={() => setSwitched(!switched)} leftText={"%"}
                   rightText={"D"}/>
         </div>
-      
+
       </FlexColumnCenter>
       <Divider/>
       <Faded>
@@ -101,14 +104,16 @@ export const Suggestions = (props: SuggestionsProps) => {
         >
           {
             props.matchedColors.map(({color, paletteName, distance, position, uid}, index) => (
-              <Suggestion onSuggestionClick={onSuggestionClick}
-                          color={color} name={paletteName}
-                          value={(!switched ? Math.round(100 - distance) + "%" : distance.toFixed(2)).toString()}
-                          uid={uid}
-                          selected={selected === uid}
-                          index={index}
-                          animationState={props.isSuggestionsUpdating}
-                          onSwapColor={props.onSwapColor}
+              <Suggestion
+                onSuggestionClick={onSuggestionClick}
+                color={color} name={paletteName}
+                value={(!switched ? Math.round(100 - distance) + "%" : distance.toFixed(2)).toString()}
+                uid={uid}
+                selected={selected === uid}
+                key={index}
+                index={index}
+                animationState={props.isSuggestionsUpdating}
+                onSwapColor={props.onSwapColor}
               />
             ))
           }
@@ -163,7 +168,7 @@ const Suggestion = (
     <StyledSuggestion onClick={() => onSuggestionClick(uid)} selected={selected} state={animationState}
                       delay={0.05 * index}>
       <FlexCentred>
-        
+
         <ColorCell color={color} outline={selected}>
           {selected &&
             <HoverableSwap onClick={() => onSwapColor(uid)}>
@@ -172,7 +177,7 @@ const Suggestion = (
                   position: "absolute",
                   margin: "0 auto 0 0.1em",
                   fill: Color(color).isLight() ? "#000" : "#FFF"
-                  
+
                 }}/>
             </HoverableSwap>
           }

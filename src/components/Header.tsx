@@ -1,16 +1,14 @@
-import React, {FC, useContext} from "react";
+import React, {useContext} from "react";
 import styled from "styled-components/macro";
 import tipOfADay from "../assets/tipOfADay.svg"
 import {CurrentScreenContext, Screen} from "../providers/CurrentScreenProvider";
 import {SettingsContext} from "../providers/SettingsProvider";
-import {useTranslation} from "react-i18next";
 import {TransitionProps} from "react-transition-group/Transition";
 import {Transition} from "react-transition-group";
 
 export const Header = () => {
   const {screen} = useContext(CurrentScreenContext);
   const {enableMOTD} = useContext(SettingsContext);
-  const {t} = useTranslation();
   const showMOTD = screen === Screen.COLOR_PICKER
   return (
     <FadeTransition
@@ -53,7 +51,7 @@ const StyledHeader = styled.header`
   width: fit-content;
 `
 
-const TipOfADay = styled.img.attrs((props) => ({src: tipOfADay}))`
+const TipOfADay = styled.img.attrs(() => ({src: tipOfADay}))`
   width: 14.7em;
   height: 4.83em;
 `

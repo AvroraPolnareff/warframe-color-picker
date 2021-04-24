@@ -1,4 +1,4 @@
-import React, {FC, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import Color from "color";
 import {Window} from "./shared/Window";
 import {FlexColumnCenter} from "./shared/FlexColumnCenter";
@@ -115,7 +115,7 @@ const NumbersPicker = (
     if (!userTyping) {
       setHsvValue({h: color.hue(), s: color.saturationv(), v: color.value()})
     }
-  }, [color])
+  }, [color, userTyping])
 
   const onChange = (name: string, value: number) => {
     if (timer) {
@@ -309,7 +309,7 @@ const HexInput = (
       setInputField(color.hex())
       setValidHex(true)
     }
-  }, [color])
+  }, [color, userTyping])
 
   const changeHex = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (timer) {
@@ -349,7 +349,7 @@ const HexInput = (
   )
 }
 
-const StyledHexInput = styled.input.attrs(props => ({
+const StyledHexInput = styled.input.attrs(() => ({
   spellCheck: "false", type: "text"
 }))<{ valid: boolean, compact?: boolean }>`
   display: flex;

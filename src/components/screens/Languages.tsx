@@ -1,12 +1,12 @@
-import React, {FC, ReactNode, useContext} from "react";
-import styled, {ThemeContext} from "styled-components/macro";
+import React, {ReactNode, useContext} from "react";
+import styled from "styled-components/macro";
 import {Divider} from "../shared/Divider";
 import headerImage from "../../assets/languages-header.png"
 import {useTranslation} from "react-i18next";
 import {Language, SettingsContext} from "../../providers/SettingsProvider";
 import {css} from "styled-components";
 
-export const Languages = ({}) => {
+export const Languages = () => {
   const {t} = useTranslation()
   const {language, setLanguage} = useContext(SettingsContext)
   return (

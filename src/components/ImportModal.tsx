@@ -1,4 +1,4 @@
-import React, {FC, HTMLProps, ReactNode, useRef, useState} from "react";
+import React, {HTMLProps, ReactNode, useRef, useState} from "react";
 import styled from "styled-components/macro";
 import {Modal} from "./shared/Modal";
 import {Button} from "./shared/Button";
@@ -132,7 +132,7 @@ const Relative = styled.div`
 `
 
 const StyledTextArea = styled.textarea.attrs(() => ({
-  rows: 3, autoFocus: "true",
+  rows: 3, autoFocus: true,
   spellCheck: "false"
 }))`
   border: none;

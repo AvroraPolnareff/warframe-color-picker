@@ -1,4 +1,4 @@
-import React, {FC} from "react"
+import React from "react"
 import Color from "color";
 
 export const ColorPickerHeader = (

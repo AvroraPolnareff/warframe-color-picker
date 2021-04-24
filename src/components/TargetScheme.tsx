@@ -1,4 +1,4 @@
-import React, {FC, useContext, useMemo, useState} from "react";
+import React, {useContext, useMemo, useState} from "react";
 import styled, {css, DefaultTheme, Keyframes, keyframes} from "styled-components/macro";
 import {Window} from "./shared/Window";
 import {FlexColumnCenter} from "./shared/FlexColumnCenter";

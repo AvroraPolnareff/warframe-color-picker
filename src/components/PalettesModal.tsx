@@ -1,4 +1,4 @@
-import React, {FC, useState} from "react"
+import React, {useState} from "react"
 import styled from "styled-components/macro";
 import {Modal} from "./shared/Modal";
 import {palettes} from "../common/palettes"
@@ -28,7 +28,7 @@ export const PalettesModal = (
 ) => {
   const [hoveredPalette, setHoveredPalette] = useState("Classic")
   const {t} = useTranslation()
-  
+
   return (
     <Modal
       show={show} width={32} name={t("palettesModal.modalName")}
@@ -39,10 +39,8 @@ export const PalettesModal = (
           <PaletteName>{t`palettes.${hoveredPalette}`}</PaletteName>
             <WarframePalette size={1.5} paletteName={hoveredPalette} />
         </HoveredPalette>
-      
+
       <Grid>
-        {/*<ColumnHead>STANDARD</ColumnHead><ColumnHead>EXCLUSIVE</ColumnHead>*/}
-        {/*<ColumnHead>EVENT</ColumnHead><ColumnHead>LEGACY</ColumnHead>*/}
         {palettes.map(({name}) => <Button round small
           onClick={() => onPaletteClick(name)} onMouseOver={() => setHoveredPalette(name)}
           success={availablePalettes.indexOf(name) !== -1}
@@ -60,9 +58,9 @@ export const PalettesModal = (
         </Button>
       </div>
       </div>
-      
+
     </Modal>
-    
+
   )
 }
 
@@ -98,12 +96,4 @@ const Grid = styled.div`
   
   justify-items: start;
   margin-bottom: 0.8em;
-`
-
-const ColumnHead = styled.div`
-  margin-bottom: 0.2em;
-  &:before {
-    content: "•";
-    margin: auto 0.2em;
-  }
 `

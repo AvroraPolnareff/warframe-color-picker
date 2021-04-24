@@ -1,4 +1,4 @@
-import React, {Component, FC, useEffect, useRef} from "react";
+import React, {Component} from "react";
 import {throttle} from "lodash"
 import Color from "color";
 
@@ -461,7 +461,7 @@ class Quad {
         for (let x = 0; x < this.size; x++) {
           const dot = {x: x + quadX, y: y + quadY}
           const color = hsvToRgb(hue, this.dotToSaturation(dot) * 100, this.dotToValue(dot) * 100)
-          this.renderedQuad.data[i + 0] = color[0]
+          this.renderedQuad.data[i] = color[0]
           this.renderedQuad.data[i + 1] = color[1]
           this.renderedQuad.data[i + 2] = color[2]
           this.renderedQuad.data[i + 3] = 255
@@ -482,9 +482,9 @@ class Quad {
 const toRadians = (i: number) => i * (Math.PI / 180)
 
 function hsvToRgb(h : number, s: number, v: number) {
-  var r, g, b;
-  var i;
-  var f, p, q, t;
+  let r, g, b;
+  let i;
+  let f, p, q, t;
 
   // Make sure our arguments stay in-range
   h = Math.max(0, Math.min(360, h));
@@ -498,7 +498,7 @@ function hsvToRgb(h : number, s: number, v: number) {
   s /= 100;
   v /= 100;
 
-  if(s == 0) {
+  if(s === 0) {
     // Achromatic (grey)
     r = g = b = v;
     return [

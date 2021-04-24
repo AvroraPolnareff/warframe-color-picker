@@ -1,7 +1,5 @@
-import React, {FC} from "react";
+import React from "react";
 import styled from "styled-components/macro";
-import Color from "color";
-
 
 interface SwitchProps {
   switched: boolean,
@@ -20,26 +18,26 @@ export const Switch = (
     rightText
   }: SwitchProps
 ) => {
-  
+
   return (
     <Wrapper width={width} onClick={onClick}>
-      
+
       <Selection switched={switched} width={width}/>
       <FlexWrapper>
         <LeftText >{leftText}</LeftText>
         <RightText >{rightText}</RightText>
-        
+
       </FlexWrapper>
-      
+
     </Wrapper>
-      
+
   )
 }
 
 const offset = 0.133
 const height = 1.266
 
-const Wrapper = styled.div.attrs(props => ({tabIndex: 0}))<{ width: number}>`
+const Wrapper = styled.div.attrs(() => ({tabIndex: 0}))<{ width: number}>`
   font-weight: bold;
   position: relative;
   padding: ${offset}em;
@@ -55,10 +53,6 @@ const Wrapper = styled.div.attrs(props => ({tabIndex: 0}))<{ width: number}>`
   &:hover  {
     background-color: ${props => props.theme.colors.darken.secondary};
   }
-  //&:focus {
-  //  box-shadow: 0 0 2pt 1pt #A5E8E8;
-  //}
-
 `
 
 const Selection = styled.div<{switched: boolean, width: number}>`

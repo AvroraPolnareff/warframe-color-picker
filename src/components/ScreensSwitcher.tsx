@@ -1,4 +1,4 @@
-import React, {FC, useContext} from "react";
+import React, {useContext} from "react";
 import {CurrentScreenContext} from "../providers/CurrentScreenProvider";
 import {Layout, SettingsContext} from "../providers/SettingsProvider";
 import {Classic} from "./layouts/Classic";
