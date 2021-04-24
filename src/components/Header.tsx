@@ -44,7 +44,7 @@ const FadeTransition = (
 
 
 const StyledHeader = styled.header`
-  margin: 0 auto;
+  margin: -0.5em auto 0 auto;
   display: flex;
   justify-content: center;
   align-items: start;
