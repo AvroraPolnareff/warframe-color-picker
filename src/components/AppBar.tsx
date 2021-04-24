@@ -21,22 +21,24 @@ export const Container = styled.div`
 export const Entry = (
   {
     children,
-    onClick
+    onClick,
+    active,
   }: {
     onClick?: (e: React.MouseEvent) => void,
-    children: ReactNode
+    children: ReactNode,
+    active?: boolean,
   }
 ) => {
   return (
     <EntryWrapper role="button" onClick={onClick}>
-      <StyledEntry>{children}</StyledEntry>
+      <StyledEntry active={active}>{children}</StyledEntry>
     </EntryWrapper>
   )
 }
 
-export const StyledEntry = styled.div`
+export const StyledEntry = styled.div<{active?: boolean}>`
   padding: 0.05em 0.3em;
-  background-color: ${({theme}) => theme.colors.secondary};
+  background-color: ${({theme, active}) => active ? theme.colors.primary : theme.colors.secondary};
   border-bottom-left-radius: 0.7em;
   border-bottom-right-radius: 0.7em;
   user-select: none;
@@ -44,25 +46,20 @@ export const StyledEntry = styled.div`
   font-weight: 500;
   text-align: center;
   width: 9em;
+
+  :hover {
+    background-color: ${({theme, active}) => active ? theme.colors.darken.primary : theme.colors.darken.secondary};
+  }
   
   transition: background-color 0.3s ease;
-  
-  & + & {
-    margin-left: 0.5em;
-  }
 `
 
 const EntryWrapper = styled.div`
-  transform: translate(0, -35%);
-  padding-bottom: 1.5em;
-  :hover {
-    color: ${({theme}) => theme.colors.windowBackground};
-    transform: translate(0, 0);
-  }
+  color: ${({theme}) => theme.colors.windowBackground};
   transition: transform 0.3s ease;
 
-  :hover ${StyledEntry} {
-    background-color: ${({theme}) => theme.colors.darken.secondary};
+  & + & {
+    margin-left: 0.5em;
   }
 `
 

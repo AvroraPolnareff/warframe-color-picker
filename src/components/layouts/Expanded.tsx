@@ -1,5 +1,5 @@
 import React, {useContext} from "react";
-import {useColorPickerLogic} from "../../hooks/color-picker-logic";
+import {useColorPickerLogic} from "../../hooks/useColorPickerLogic";
 import {PalettesModal} from "../PalettesModal";
 import {ImportModal} from "../ImportModal";
 import targetSchemeToSuggestions from "../../assets/Wires (Col Pic -_ Tar Sch).svg";

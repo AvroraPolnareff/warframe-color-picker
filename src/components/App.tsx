@@ -18,16 +18,31 @@ function App() {
     <StyledApp>
       <AppBar>
         <Container>
-          {showMOTD && (
+          {showMOTD && enableMOTD && (
             <Entry onClick={() => setEnableMOTD(!enableMOTD)}>
               {enableMOTD ? t("menu.hide") : t("menu.show")} MOTD
             </Entry>
           )}
         </Container>
         <Container>
-          <Entry onClick={() => setScreen(Screen.COLOR_PICKER)}>{t("menu.colorPicker")}</Entry>
-          <Entry onClick={() => setScreen(Screen.LAYOUT_SELECTION)}>{t("menu.layoutSwitch")}</Entry>
-          <Entry onClick={() => setScreen(Screen.LANGUAGE_SELECTION)}>{t("menu.languageSwitch")}</Entry>
+          <Entry
+            onClick={() => setScreen(Screen.COLOR_PICKER)}
+            active={screen === Screen.COLOR_PICKER}
+          >
+            {t("menu.colorPicker")}
+          </Entry>
+          <Entry
+            onClick={() => setScreen(Screen.LAYOUT_SELECTION)}
+            active={screen === Screen.LAYOUT_SELECTION}
+          >
+            {t("menu.layoutSwitch")}
+          </Entry>
+          <Entry
+            onClick={() => setScreen(Screen.LANGUAGE_SELECTION)}
+            active={screen === Screen.LANGUAGE_SELECTION}
+          >
+            {t("menu.languageSwitch")}
+          </Entry>
           <Entry>{t("menu.help")}</Entry>
         </Container>
         <Container/>

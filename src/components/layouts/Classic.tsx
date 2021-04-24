@@ -1,5 +1,5 @@
 import React, {useContext} from "react";
-import {useColorPickerLogic} from "../../hooks/color-picker-logic";
+import {useColorPickerLogic} from "../../hooks/useColorPickerLogic";
 import {PalettesModal} from "../PalettesModal";
 import {ImportModal} from "../ImportModal";
 import wires1 from "../../assets/Wires (Col Pic -_ Tar Sch).svg";
@@ -139,7 +139,7 @@ export const Classic = () => {
 }
 
 export const StyledLayout = styled.div<{slide: boolean}>`
-  transform: translateY(${({slide}) => slide ? "0%" : "-13%"});
+  transform: translateY(${({slide}) => slide ? "0%" : "-5.5em"});
   transition: transform 0.5s ease;
   width: max-content; 
   margin: 0.5em auto;
