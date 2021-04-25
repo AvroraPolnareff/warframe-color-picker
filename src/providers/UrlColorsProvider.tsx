@@ -38,6 +38,7 @@ export const UrlColorsContextProvider = ({children}: {children: ReactNode}) => {
         setColors(palette.colors)
         setName(palette.name)
         setLoaded(true)
+        window.history.replaceState("", document.title, "")
       } catch (e) {}
     }
 
@@ -49,6 +50,8 @@ export const UrlColorsContextProvider = ({children}: {children: ReactNode}) => {
         setName(name)
         setColors(colors)
         setLoaded(true)
+        url.searchParams.delete("paletteEncoded")
+        window.history.replaceState("", document.title, url.href)
       } catch (e) {}
     } else {
       const id = url.searchParams.get("palette")
