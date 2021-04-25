@@ -31,6 +31,7 @@ export const UrlColorsContextProvider = ({children}: {children: ReactNode}) => {
 
   useEffect(() => {
     if (loaded) return;
+    const url = new URL(window.location.href)
     const getPalette = async (id: string) => {
       if (!id) return
       try {
@@ -38,12 +39,11 @@ export const UrlColorsContextProvider = ({children}: {children: ReactNode}) => {
         setColors(palette.colors)
         setName(palette.name)
         setLoaded(true)
-        url.searchParams.delete("paletteEncoded")
+        url.searchParams.delete("palette")
         window.history.replaceState("", document.title, url.href)
       } catch (e) {}
     }
 
-    const url = new URL(window.location.href)
     const encodedPalette = url.searchParams.get("paletteEncoded")
     if (encodedPalette) {
       try {
