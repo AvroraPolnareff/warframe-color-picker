@@ -20,10 +20,10 @@ const ru = {
     ],
   },
   menu: {
-    layoutSwitch: "Лэйауты",
-    languageSwitch: "Языки",
+    layoutSwitch: "Интерфейс",
+    languageSwitch: "Язык",
     help: "Справка",
-    colorPicker: "ПИПЕТКА",
+    colorPicker: "Пипетка",
     motd: " MOTD",
     hide: "Скрыть",
     show: "Показать",
