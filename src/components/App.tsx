@@ -56,7 +56,7 @@ function App() {
 const Credentials = styled.div`
   position: fixed;
   bottom: 2%;
-  right: 2%;
+  left: 2%;
   text-align: right;
   font-size: 1.25rem;
 `
