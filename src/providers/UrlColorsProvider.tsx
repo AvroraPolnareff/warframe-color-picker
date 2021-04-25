@@ -38,7 +38,8 @@ export const UrlColorsContextProvider = ({children}: {children: ReactNode}) => {
         setColors(palette.colors)
         setName(palette.name)
         setLoaded(true)
-        window.history.replaceState("", document.title, "")
+        url.searchParams.delete("paletteEncoded")
+        window.history.replaceState("", document.title, url.href)
       } catch (e) {}
     }
 
