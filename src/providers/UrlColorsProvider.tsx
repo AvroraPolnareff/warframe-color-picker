@@ -1,5 +1,6 @@
 import {createContext, ReactNode, useEffect, useRef, useState} from "react";
 import {exportPalette, fetchPaletteById} from "../common/inner-api";
+import {decodePalette, encodePalette} from "../services/palette-encoder";
 
 interface UrlColors {
   loaded: boolean
@@ -29,28 +30,37 @@ export const UrlColorsContextProvider = ({children}: {children: ReactNode}) => {
   const url = useRef("")
 
   useEffect(() => {
-    const getPalette = async () => {
-      const url = new URL(window.location.href)
-      const id = url.searchParams.get("palette")
+    if (loaded) return;
+    const getPalette = async (id: string) => {
       if (!id) return
       try {
         const palette = await fetchPaletteById(id)
         setColors(palette.colors)
         setName(palette.name)
         setLoaded(true)
-      } catch (e) {
-
-      }
-
+      } catch (e) {}
     }
-    if (loaded) return;
-    getPalette()
+
+    const url = new URL(window.location.href)
+    const encodedPalette = url.searchParams.get("paletteEncoded")
+    if (encodedPalette) {
+      try {
+        const {name, colors} = decodePalette(encodedPalette) as {name: string, colors: string[]}
+        setName(name)
+        setColors(colors)
+        setLoaded(true)
+      } catch (e) {}
+    } else {
+      const id = url.searchParams.get("palette")
+      if (id) getPalette(id)
+    }
   }, [loaded])
 
   const savePalette = async (palette: {name: string, colors: string[]}) => {
     if (palette.name === name && palette.colors.join() === colors.join()) return url.current
     try {
-      url.current = await exportPalette(palette.name, palette.colors)
+      const encodedPalette = encodePalette(palette.name, palette.colors)
+      url.current = `${window.location.href.split("?")[0]}?paletteEncoded=${encodedPalette}`
       setColors(palette.colors)
       setName(palette.name)
     } catch (e) {
