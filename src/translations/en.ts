@@ -1,9 +1,10 @@
-import headerImage from "../assets/choose-your-fighter.svg"
+import headerLayoutsImage from "../assets/choose-your-fighter.svg"
 import suggestions from "../assets/SUGGESTIONS.svg"
+import headerSchemeImportImage from "../assets/scheme-import-en.svg";
 
 const en = {
   layoutSelection: {
-    headerImage,
+    headerImage: headerLayoutsImage,
     headerText: "Select whether you want to use an expanded layout, or the original, classic one.",
     bottomText: [
       "More customization options are on the way! Hop onto our ",
@@ -46,6 +47,14 @@ const en = {
     ],
     manualUpload: "MANUAL UPLOAD",
     accept: "accept"
+  },
+  schemeImport: {
+    headerImage: headerSchemeImportImage,
+    headerText: "Warning: this will override your current scheme. Choose whether you want to keep the current scheme, or import a new one from the link.",
+    currentScheme: "Current scheme",
+    newScheme: "New scheme",
+    confirm: "Confirm",
+    bottomText: "Don’t worry: leaving this screen will keep your current scheme."
   },
   colorPicker: {
     targetScheme: {

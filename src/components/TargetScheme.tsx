@@ -9,7 +9,7 @@ import {Switch} from "./shared/Switch";
 import _ from "lodash";
 import {useTranslation} from "react-i18next";
 import Color from "color";
-import {UrlColorsContext} from "../providers/UrlColorsProvider";
+import {UrlPaletteContext} from "../providers/UrlColorsProvider";
 
 interface TargetSchemeProps {
   paletteColors: string[]
@@ -28,7 +28,7 @@ const TargetScheme = (
   const [copied, setCopied] = useState(false)
   const [switched, setSwitched] = useState(false)
   const [selectedCell, setSelectedCell] = useState(0)
-  const urlColors = useContext(UrlColorsContext)
+  const urlColors = useContext(UrlPaletteContext)
 
   const onExportClick = async () => {
     try {

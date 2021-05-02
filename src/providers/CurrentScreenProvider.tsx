@@ -3,7 +3,8 @@ import {createContext, ReactNode, useState} from "react";
 export enum Screen {
   COLOR_PICKER = "COLOR_PICKER",
   LANGUAGE_SELECTION = "LANGUAGE_SELECTION",
-  LAYOUT_SELECTION = "LAYOUT_SELECTION"
+  LAYOUT_SELECTION = "LAYOUT_SELECTION",
+  SCHEME_IMPORT = "SCHEME_IMPORT"
 }
 
 export interface Settings {

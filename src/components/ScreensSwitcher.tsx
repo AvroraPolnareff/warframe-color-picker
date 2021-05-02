@@ -1,14 +1,14 @@
 import React, {useContext} from "react";
-import {CurrentScreenContext} from "../providers/CurrentScreenProvider";
+import {CurrentScreenContext, Screen} from "../providers/CurrentScreenProvider";
 import {Layout, SettingsContext} from "../providers/SettingsProvider";
 import {Classic} from "./layouts/Classic";
 import {Expanded} from "./layouts/Expanded";
 import {Layouts} from "./screens/Layouts";
-import {Screen} from "../providers/CurrentScreenProvider";
 import {Languages} from "./screens/Languages";
 import {SwitchTransition, Transition} from "react-transition-group";
 import styled from "styled-components/macro";
 import {TransitionProps} from "react-transition-group/Transition";
+import {SchemeImport} from "./screens/SchemeImport";
 
 export const ScreensSwitcher = () => {
   const {screen} = useContext(CurrentScreenContext);
@@ -25,7 +25,8 @@ export const ScreensSwitcher = () => {
         {
           screen === Screen.COLOR_PICKER ? <CurrentLayout layout={layout}/> :
           screen === Screen.LAYOUT_SELECTION ? <Layouts/> :
-          screen === Screen.LANGUAGE_SELECTION && <Languages/>
+          screen === Screen.LANGUAGE_SELECTION ? <Languages/> :
+          screen === Screen.SCHEME_IMPORT && <SchemeImport/>
         }
         </StyledScreenSwitcher>
       </FadeTransition>

@@ -2,45 +2,52 @@ import {createContext, ReactNode, useEffect, useRef, useState} from "react";
 import {exportPalette, fetchPaletteById} from "../common/inner-api";
 import {decodePalette, encodePalette} from "../services/palette-encoder";
 
-interface UrlColors {
-  loaded: boolean
-  imported: boolean
-  setImported: (imported: boolean) => void
+export enum UrlColorsState {
+  INIT,
+  LOADED,
+  CONFIRMED,
+  IMPORTED,
+  REJECTED,
+}
+
+interface UrlPalette {
   colors: string[]
   name: string
   savePalette: (palette: {name: string, colors: string[]}) => Promise<string>
+  confirmPalette: (confirmed: boolean) => void
+  hookState: UrlColorsState
+  paletteImported: () => void
 }
 
-const initUrlColors: UrlColors = {
-  loaded: false,
-  imported: false,
-  setImported: () => {},
+const initUrlPalette: UrlPalette = {
   colors: [],
   name: "",
-  savePalette: async () => ""
+  savePalette: async () => "",
+  confirmPalette: (confirmed) => {},
+  hookState: UrlColorsState.INIT,
+  paletteImported: () => {}
 }
 
-export const UrlColorsContext = createContext<UrlColors>(initUrlColors);
+export const UrlPaletteContext = createContext<UrlPalette>(initUrlPalette);
 
-export const UrlColorsContextProvider = ({children}: {children: ReactNode}) => {
-  const [imported, setImported] = useState(initUrlColors.imported)
-  const [loaded, setLoaded] = useState(initUrlColors.loaded)
-  const [colors, setColors] = useState(initUrlColors.colors)
-  const [name, setName] = useState(initUrlColors.name)
+export const UrlPaletteContextProvider = ({children}: {children: ReactNode}) => {
+  const [hookState, setHookState] = useState(UrlColorsState.INIT)
+  const [colors, setColors] = useState(initUrlPalette.colors)
+  const [name, setName] = useState(initUrlPalette.name)
   const url = useRef("")
 
   useEffect(() => {
-    if (loaded) return;
+    if (hookState !== UrlColorsState.INIT) return;
     const url = new URL(window.location.href)
     const getPalette = async (id: string) => {
-      if (!id) return
+      if (!id) return setHookState(UrlColorsState.REJECTED)
       try {
         const palette = await fetchPaletteById(id)
         setColors(palette.colors)
         setName(palette.name)
-        setLoaded(true)
         url.searchParams.delete("palette")
         window.history.replaceState("", document.title, url.href)
+        setHookState(UrlColorsState.LOADED)
       } catch (e) {}
     }
 
@@ -50,15 +57,15 @@ export const UrlColorsContextProvider = ({children}: {children: ReactNode}) => {
         const {name, colors} = decodePalette(encodedPalette) as {name: string, colors: string[]}
         setName(name)
         setColors(colors)
-        setLoaded(true)
         url.searchParams.delete("paletteEncoded")
         window.history.replaceState("", document.title, url.href)
+        setHookState(UrlColorsState.LOADED)
       } catch (e) {}
     } else {
       const id = url.searchParams.get("palette")
       if (id) getPalette(id)
     }
-  }, [loaded])
+  }, [hookState])
 
   const savePalette = async (palette: {name: string, colors: string[]}) => {
     if (palette.name === name && palette.colors.join() === colors.join()) return url.current
@@ -72,17 +79,26 @@ export const UrlColorsContextProvider = ({children}: {children: ReactNode}) => {
     }
     return url.current
   }
+
+  const confirmPalette = (confirmed: boolean) => {
+    setHookState(confirmed ? UrlColorsState.CONFIRMED : UrlColorsState.REJECTED)
+  }
+
+  const paletteImported = () => {
+    setHookState(UrlColorsState.IMPORTED)
+  }
+
   return (
-    <UrlColorsContext.Provider value={{
-      imported,
-      setImported,
-      loaded,
+    <UrlPaletteContext.Provider value={{
       colors,
       name,
       savePalette,
+      hookState,
+      confirmPalette,
+      paletteImported,
     }}>
       {children}
-    </UrlColorsContext.Provider>
+    </UrlPaletteContext.Provider>
   )
 }
 

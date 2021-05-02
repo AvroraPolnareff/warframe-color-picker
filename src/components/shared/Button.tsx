@@ -5,6 +5,7 @@ interface ButtonProps {
   backgroundColor?: string,
   round?: boolean,
   small?: boolean,
+  big?: boolean,
   primary?: boolean,
   success?: boolean,
   warning?: boolean,
@@ -36,6 +37,11 @@ export const Button = styled.div<ButtonProps>`
   letter-spacing: 0.035em;
   padding: 0.15em 0.45em;
   margin: 0;
+  `};
+
+  ${props => props.big && css`
+  font-size: 1.2rem;
+  padding: 0.25em 1.45em;
   `};
   
   &:hover {

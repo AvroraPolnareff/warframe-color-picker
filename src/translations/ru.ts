@@ -1,9 +1,11 @@
-import headerImage from "../assets/choose-your-fighter-ru.svg"
+import headerLayoutsImage from "../assets/choose-your-fighter-ru.svg"
+import headerSchemeImportImage from "../assets/scheme-import-ru.svg"
+
 import suggestions from "../assets/SUGGESTIONS.svg";
 
 const ru = {
   layoutSelection: {
-    headerImage,
+    headerImage: headerLayoutsImage,
     headerText: "Выберите одну из двух планировок расположения окон: расширенную или классическую.",
     bottomText: [
       "Более широкие инструменты настройки уже находятся в разработке! Заглядывай к нам на огонёк в ",
@@ -46,6 +48,14 @@ const ru = {
     ],
     manualUpload: "MANUAL UPLOAD",
     accept: "accept"
+  },
+  schemeImport: {
+    headerImage: headerSchemeImportImage,
+    headerText: "Warning: this will override your current scheme. Choose whether you want to keep the current scheme, or import a new one from the link.",
+    currentScheme: "Current scheme",
+    newScheme: "New scheme",
+    confirm: "Подтвердить",
+    bottomText: "Don’t worry: leaving this screen will keep your current scheme."
   },
   colorPicker: {
     targetScheme: {

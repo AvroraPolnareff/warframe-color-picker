@@ -54,31 +54,35 @@ const StyledLayoutsScreen = styled.div`
   align-items: center;
 `
 
-const HeaderImage = styled.img`
+export const HeaderImage = styled.img`
   width: 35em;
   height: 9em;
 `;
 
-const DescriptionBlock = styled.div`
+export const DescriptionBlock = styled.div`
   margin: 1em 0;
   width: 32em;
   font-size: 1.3rem;
   font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `
 
-const Text = styled.div`
+export const Text = styled.div`
   text-align: center;
   display: inline-flex;
   align-items: center;
   justify-content: center;
 `
 
-const LayoutsChooser = styled.div`
+export const LayoutsChooser = styled.div`
   display: flex;
   margin-top: 3em;
 `
 
-const LayoutChooserEntry = styled.div<{enabled?: boolean}>`
+export const LayoutChooserEntry = styled.div<{enabled?: boolean}>`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -104,6 +108,10 @@ const LayoutChooserEntry = styled.div<{enabled?: boolean}>`
       }
     `}
   }
+  
+  & + & {
+    margin-left: 2em;
+  }
 `
 
 const Link = styled.a`
@@ -117,7 +125,7 @@ const BottomBlock = styled.div`
 `
 
 
-const Checkbox = () => {
+export const Checkbox = () => {
   return (
     <StyledCheckbox>
       <CheckboxBackground viewBox="0 0 128 48">

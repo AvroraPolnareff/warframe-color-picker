@@ -5,7 +5,8 @@ import {MatchedColor} from "../components/Suggestions";
 import {debounce} from "lodash";
 import Color from "color";
 import {useStickyState} from "./useStickyState";
-import {UrlColorsContext} from "../providers/UrlColorsProvider";
+import {UrlColorsState, UrlPaletteContext} from "../providers/UrlColorsProvider";
+import {CurrentScreenContext, Screen} from "../providers/CurrentScreenProvider";
 
 export const initColors : string[] = Array(48).fill("")
 
@@ -30,14 +31,18 @@ export const useColorPickerLogic = () => {
   const [showImportModal, setShowImportModal] = useState(false)
   const [showPalettesModal, setShowPalettesModal] = useState(false)
   const [availablePalettes, setAvailablePalettes] = useStickyState<string[]>(initAvailablePalettes, "availablePalettes")
-  const urlColors = useContext(UrlColorsContext)
+  const {hookState, colors: importedColors, paletteImported} = useContext(UrlPaletteContext)
+  const {screen, setScreen} = useContext(CurrentScreenContext)
 
   useEffect(() => {
-    if (!urlColors.imported && urlColors.loaded) {
-      setPaletteColors(urlColors.colors)
-      urlColors.setImported(true)
+    if (hookState === UrlColorsState.LOADED && screen !== Screen.SCHEME_IMPORT) {
+      setScreen(Screen.SCHEME_IMPORT);
     }
-  }, [urlColors, setPaletteColors])
+    if (hookState === UrlColorsState.CONFIRMED) {
+      setPaletteColors(importedColors)
+      paletteImported();
+    }
+  }, [hookState, setPaletteColors, screen, setScreen])
 
 
   const debounced = useRef(debounce((fn: () => void) => fn(), 150, {trailing: true, leading: false}))
