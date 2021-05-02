@@ -83,6 +83,7 @@ const en = {
   palettes: {
     "Agony": "Agony",
     "Beach": "Beach",
+    "Cherub": "Cherub",
     "Classic Saturated": "Classic Saturated",
     "Classic": "Classic",
     "Conquest": "Conquest",
