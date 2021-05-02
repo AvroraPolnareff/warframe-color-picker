@@ -51,11 +51,11 @@ const ru = {
   },
   schemeImport: {
     headerImage: headerSchemeImportImage,
-    headerText: "Warning: this will override your current scheme. Choose whether you want to keep the current scheme, or import a new one from the link.",
-    currentScheme: "Current scheme",
-    newScheme: "New scheme",
+    headerText: "Внимание: выбор перезапишет текущую цветовую схему. Выберите одну из схем ниже.",
+    currentScheme: "Старая палитра",
+    newScheme: "Новая палитра",
     confirm: "Подтвердить",
-    bottomText: "Don’t worry: leaving this screen will keep your current scheme."
+    bottomText: "Если покинуть эту страницу, то будет выбрана старая схема."
   },
   colorPicker: {
     targetScheme: {
