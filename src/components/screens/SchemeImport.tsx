@@ -17,7 +17,7 @@ enum SelectedPalette {
 
 export const SchemeImport = () => {
   const {t} = useTranslation()
-  const [selectedPalette, setSelectedPalette] = useState(SelectedPalette.NEW)
+  const [selectedPalette, setSelectedPalette] = useState(SelectedPalette.CURRENT)
   const [currentColors, setCurrentColors] = useState<string[]>([])
   const {colors: importedColors, confirmPalette} = useContext(UrlPaletteContext)
   const {setScreen} = useContext(CurrentScreenContext)
