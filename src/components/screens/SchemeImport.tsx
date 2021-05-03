@@ -65,7 +65,7 @@ export const SchemeImport = () => {
       </ButtonContainer>
       <DescriptionBlock>
         <Divider/>
-        <Text style={{textAlign: "justify"}}><span>{t("schemeImport.bottomText")}</span></Text>
+        <Text><span>{t("schemeImport.bottomText")}</span></Text>
         <Divider/>
       </DescriptionBlock>
     </StyledSchemeImport>
