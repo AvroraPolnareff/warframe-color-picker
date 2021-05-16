@@ -36,7 +36,8 @@ export const PalettesModal = (
     >
       <div style={{position: "relative"}}>
         <HoveredPalette>
-          <PaletteName>{t`palettes.${hoveredPalette}`}</PaletteName>
+          {/*@ts-ignore*/}
+          <PaletteName>{t(`palettes.${hoveredPalette}`)}</PaletteName>
             <WarframePalette size={1.5} paletteName={hoveredPalette} />
         </HoveredPalette>
 
@@ -45,7 +46,8 @@ export const PalettesModal = (
           onClick={() => onPaletteClick(name)} onMouseOver={() => setHoveredPalette(name)}
           success={availablePalettes.indexOf(name) !== -1}
         >
-          {(t`palettes.${name}` as string).slice(0, 12) + ((t`palettes.${name}` as string).length > 13 ? "." : "")}
+          {/*@ts-ignore*/}
+          {(t(`palettes.${name}`) as string).slice(0, 12) + ((t(`palettes.${name}`) as string).length > 13 ? "." : "")}
         </Button>)}
       </Grid>
       <Divider/>
@@ -79,6 +81,7 @@ const PaletteName = styled.div`
   color: ${props => props.theme.colors.secondary};
   font-size: 0.655rem;
   text-transform: uppercase;
+  width: 11.8em;
   border: 0.15em solid ${props => props.theme.colors.tertiary};
   border-radius: 0.5em;
   padding: 0.5em 0;

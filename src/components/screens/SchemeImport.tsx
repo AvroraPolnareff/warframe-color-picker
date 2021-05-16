@@ -7,7 +7,6 @@ import {ColorCell} from "../shared/ColorCell";
 import {UrlPaletteContext} from "../../providers/UrlColorsProvider";
 import {Button} from "../shared/Button";
 import {css} from "styled-components";
-import {SettingsContext} from "../../providers/SettingsProvider";
 import {CurrentScreenContext, Screen} from "../../providers/CurrentScreenProvider";
 
 enum SelectedPalette {

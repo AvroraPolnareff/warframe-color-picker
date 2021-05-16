@@ -50,7 +50,8 @@ export const SelectedColor = (
           pointerEvents: "none",
           userSelect: "none"
         }}/>
-        <PaletteName>{t`palette.${name}`}</PaletteName>
+        {/* @ts-ignore */}
+        <PaletteName>{t(`palettes.${name}`)}</PaletteName>
 
         <WarframePalette
           size={1.735}

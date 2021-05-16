@@ -183,7 +183,8 @@ const Suggestion = (
           }
         </ColorCell>
         <Badge hoverable={!selected} selected={selected}>
-          {(t`palettes.${name}` as string).slice(0, 12) + ((t`palettes.${name}` as string).length > 12 ? "." : "")}
+          {/*@ts-ignore*/}
+          {(t(`palettes.${name}`) as string).slice(0, 12) + ((t(`palettes.${name}`) as string).length > 12 ? "." : "")}
         </Badge>
       </FlexCentred>
       <Badge width={3} style={{marginRight: "0.6em"}}>
