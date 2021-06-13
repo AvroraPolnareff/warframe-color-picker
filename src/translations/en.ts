@@ -108,6 +108,7 @@ const en = {
     "Lotus": "Lotus",
     "Matisse": "Matisse",
     "Orokin": "Orokin",
+    "Pride": "Pride",
     "Red White Blue": "Red/White/Blue",
     "Rollers": "Rollers",
     "Rot": "Rot",

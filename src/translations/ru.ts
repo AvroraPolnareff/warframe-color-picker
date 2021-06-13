@@ -109,6 +109,7 @@ const ru = {
     "Lotus": "Лотос",
     "Matisse": "Матисс",
     "Orokin": "Орокин",
+    "Pride": "Pride",
     "Red White Blue": "Красный, Белый и Синий",
     "Rollers": "Роллеры",
     "Rot": "Гниль",
