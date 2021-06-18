@@ -132,6 +132,7 @@ export const Classic = () => {
             <SelectedColor
               paletteName={selectedColor.paletteName}
               colorPosition={selectedColor.position}
+              onColorChange={onColorChange}
             />
           </div>
         </div>
