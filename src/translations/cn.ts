@@ -46,7 +46,8 @@ const cn = {
       "..."
     ],
     manualUpload: "手动上传",
-    accept: "确定"
+    accept: "确定",
+    clear: "清空"
   },
   schemeImport: {
     headerImage: headerSchemeImportImage,
@@ -72,13 +73,17 @@ const cn = {
       copied: "已复制分享链接！"
     },
     suggestions: {
-      suggestions,
+      suggestions: suggestions,
       scroll: "滚动查看更多！",
       palettes: "色板",
     },
     selectedColor: {
       selectedColor: "选中的颜色",
-    }
+    },
+    howToUse: "使用方法",
+    motd: `Join our Discord at: discord.gg/WWBYuY3! This place is not only limited to Warframe, so feel free to hop in
+          even if you’re on a break. Our community is still growing, and we’re actively looking for new people. Hope
+          to see you around!`,
   },
   palettes: {
     "Agony": "Agony",
