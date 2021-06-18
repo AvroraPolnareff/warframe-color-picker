@@ -5,11 +5,13 @@ import {CurrentScreenContext, Screen} from "../providers/CurrentScreenProvider";
 import {SettingsContext} from "../providers/SettingsProvider";
 import {TransitionProps} from "react-transition-group/Transition";
 import {Transition} from "react-transition-group";
+import {useTranslation} from "react-i18next";
 
 export const Header = () => {
-  const {screen} = useContext(CurrentScreenContext);
-  const {enableMOTD} = useContext(SettingsContext);
+  const {screen} = useContext(CurrentScreenContext)
+  const {enableMOTD} = useContext(SettingsContext)
   const showMOTD = screen === Screen.COLOR_PICKER
+  const {t} = useTranslation()
   return (
     <FadeTransition
       in={enableMOTD && showMOTD}
@@ -18,9 +20,7 @@ export const Header = () => {
       <StyledHeader>
         <TipOfADay/>
         <TipWrapper hidden={!enableMOTD}>
-          Join our Discord at: discord.gg/WWBYuY3! This place is not only limited to Warframe, so feel free to hop in
-          even if you’re on a break. Our community is still growing, and we’re actively looking for new people. Hope
-          to see you around!
+          {t("colorPicker.motd")}
         </TipWrapper>
       </StyledHeader>
     </FadeTransition>

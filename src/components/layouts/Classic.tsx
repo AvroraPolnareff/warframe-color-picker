@@ -19,6 +19,7 @@ import {Wires} from "../Wires";
 import {Header} from "../Header";
 import styled from "styled-components/macro";
 import {SettingsContext} from "../../providers/SettingsProvider";
+import {useTranslation} from "react-i18next";
 
 export const Classic = () => {
   const {
@@ -49,6 +50,7 @@ export const Classic = () => {
   } = useColorPickerLogic();
 
   const {enableMOTD} = useContext(SettingsContext)
+  const {t} = useTranslation()
 
   return (
     <>
@@ -93,7 +95,7 @@ export const Classic = () => {
             <Link
               href="https://github.com/AvroraPolnareff/warframe-color-picker#what-are-the-main-features"
               height={2.3}
-              width={11}>HOW TO USE</Link>
+              width={11}>{t("colorPicker.howToUse")}</Link>
             <div style={{display: "flex"}}>
               <Link href={"#"} icon={warframeLogo} width={2.3} height={2.3}/>
               <div style={{display: "flex", flexDirection: "column"}}>
