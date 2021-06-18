@@ -59,8 +59,8 @@ const cn = {
   colorPicker: {
     targetScheme: {
       targetScheme: "目标配色方案",
-      default: "DEFAULT",
-      manual: "MANUAL",
+      default: "标准模式",
+      manual: "多色板模式",
       primary: "主要颜色",
       secondary: "次要颜色",
       tertiary: "军械库第三色彩",
@@ -69,11 +69,11 @@ const cn = {
       energy: "能量颜色 1, 2",
       import: "导入",
       export: "导出",
-      copied: "已复制分享链接!"
+      copied: "已复制分享链接！"
     },
     suggestions: {
       suggestions,
-      scroll: "滚动查看更多!",
+      scroll: "滚动查看更多！",
       palettes: "色板",
     },
     selectedColor: {
