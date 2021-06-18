@@ -29,6 +29,9 @@ export const Languages = () => {
       <ListCheckbox onClick={() => setLanguage(Language.RUSSIAN)} enabled={language === Language.RUSSIAN}>
         Русский
       </ListCheckbox>
+      <ListCheckbox onClick={() => setLanguage(Language.CHINESE)} enabled={language === Language.CHINESE}>
+        中文(简体)
+      </ListCheckbox>
       <BottomBlock>
         <DescriptionBlock>
           <Divider/>
