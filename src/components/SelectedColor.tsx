@@ -6,16 +6,19 @@ import {Position} from "../common/Palette";
 import {WarframePalette} from "./shared/WarframePalette";
 import {Waves} from "../assets/Waves";
 import {useTranslation} from "react-i18next";
+import Color from "color";
 
 interface SelectedColorProps {
   paletteName: string,
-  colorPosition: Position
+  colorPosition: Position,
+  onColorChange: (color: Color) => void
 }
 
 export const SelectedColor = (
   {
     paletteName,
-    colorPosition
+    colorPosition,
+    onColorChange
   }: SelectedColorProps
 ) => {
   const [name, setName] = useState("")
@@ -29,6 +32,12 @@ export const SelectedColor = (
       setName(`x: ${position.x + 1}, y: ${position.y + 1}`)
     } else {
       setName(paletteName)
+    }
+  }
+
+  const onColorClick = (colorHex?: string) => {
+    if(colorHex){
+      onColorChange(Color().hex(colorHex));
     }
   }
 
@@ -58,6 +67,7 @@ export const SelectedColor = (
           paletteName={paletteName}
           colorPosition={colorPosition}
           onColorHover={onColorHover}
+          onColorClick={onColorClick}
         />
       </FlexColumnCenter>
     </Window>
