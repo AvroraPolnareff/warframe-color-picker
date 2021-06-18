@@ -37,7 +37,6 @@ export const SelectedColor = (
 
   const onColorClick = (colorHex?: string) => {
     if(colorHex){
-      console.log('DBG: COLOR CLICKED',colorHex,Color().hex(colorHex))
       onColorChange(Color().hex(colorHex));
     }
   }
