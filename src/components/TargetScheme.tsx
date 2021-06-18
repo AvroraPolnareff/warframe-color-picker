@@ -81,7 +81,7 @@ const TargetScheme = (
       }
       <Divider/>
       <div style={{textAlign: "right", marginTop: "0.5em", marginBottom: "0.2em"}}>
-        <Button round small onClick={onImportClick} primary>import</Button>
+        <Button round small onClick={onImportClick} primary>{t("colorPicker.targetScheme.import")}</Button>
         <Button
           round small
           onClick={onExportClick}

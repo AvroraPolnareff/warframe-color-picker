@@ -46,7 +46,8 @@ const en = {
       " here..."
     ],
     manualUpload: "MANUAL UPLOAD",
-    accept: "accept"
+    accept: "accept",
+    clear: "clear"
   },
   schemeImport: {
     headerImage: headerSchemeImportImage,
@@ -72,13 +73,17 @@ const en = {
       copied: "copied!"
     },
     suggestions: {
-      suggestions,
+      suggestions: suggestions,
       scroll: "SCROLL FOR MORE!",
       palettes: "PALETTES",
     },
     selectedColor: {
       selectedColor: "SELECTED COLOR",
-    }
+    },
+    howToUse: "HOW TO USE",
+    motd: `Join our Discord at: discord.gg/WWBYuY3! This place is not only limited to Warframe, so feel free to hop in
+          even if you’re on a break. Our community is still growing, and we’re actively looking for new people. Hope
+          to see you around!`,
   },
   palettes: {
     "Agony": "Agony",
