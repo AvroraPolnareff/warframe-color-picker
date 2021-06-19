@@ -38,7 +38,7 @@ const Icon = styled.img`
 const Content = styled.div<{width?: number, height?: number}>`
   padding: 0.3rem 0.4rem;
   border-radius: 0.54em;
-  background-color: ${props => props.theme.colors.windowBackground};
+  background-color: ${props => props.theme.colors.background};
   color: ${props => props.theme.colors.secondary};
   margin: 0.25em 0.2em 0.2em 0.25em;
   display: flex;
@@ -57,7 +57,7 @@ const Content = styled.div<{width?: number, height?: number}>`
 
 const WindowBorder = styled.a<{width?: number, height?: number}>`
   display: block;
-  background-color: ${props => props.theme.colors.border};
+  background-color: ${props => props.theme.colors.tertiary};
   border-radius: 0.8em;
   margin: 0.5em;
   width: ${({width}) => width && width + 0.25 + 0.7}em;

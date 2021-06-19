@@ -3,13 +3,15 @@ import Color from "color";
 export const defaultTheme : DefaultTheme = {
   colors: {
     primary: "#A5E8E8",
-    secondary: "#D0D0D0",
+    secondary: "#DADADA",
     tertiary: "#ebebeb",
     quaternary: "",
     danger: "#dba3a3",
     success: "#A3DBA3",
     link: "#A0A2EB",
     warning: "#e8dba5",
+    targetSchemeHeader: "#e8a5a5",
+    background: "#ffffff",
     darken: {
       primary: Color("#A5E8E8").darken(0.2).toString(),
       secondary: Color("#DADADA").darken(0.2).toString(),
@@ -19,25 +21,9 @@ export const defaultTheme : DefaultTheme = {
       success: Color("#A3DBA3").darken(0.2).toString(),
       link: Color("#A0A2EB").darken(0.2).toString(),
       warning: Color("#e8dba5").darken(0.2).toString(),
+      targetSchemeHeader: "#e8a5a5",
+      background: "#ffffff",
     },
-    
-    badge: "#dadada",
-    badgeText: "#ffffff",
-    border: "#ebebeb",
-    defaultButton: "#a5e8e8",
-    manualButton: "#e8dfa5",
-    buttonText: "#ffffff",
-    divider: "#ebebeb",
-    primaryText: "#d1d1d1",
-    targetSchemeHeader: "#e8a5a5",
-    windowBackground: "#ffffff",
-    
-    switch: {
-      background: "#E4E4E4",
-      front: "#A5E8E8",
-      leftText: "#ffffff",
-      rightText: "#ffffff",
-    }
   }
-  
+
 }
