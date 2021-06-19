@@ -85,7 +85,7 @@ const TargetScheme = (
         <Button
           round small
           onClick={onExportClick}
-          style={{width: "4.7em", marginLeft: "0.5em"}}
+          style={{marginLeft: "0.5em"}}
           success={copied}
         >
           {copied ? t("colorPicker.targetScheme.copied") : t("colorPicker.targetScheme.export")}
