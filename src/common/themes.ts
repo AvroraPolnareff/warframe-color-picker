@@ -12,6 +12,7 @@ export const defaultTheme : DefaultTheme = {
     warning: "#e8dba5",
     targetSchemeHeader: "#e8a5a5",
     background: "#ffffff",
+
     darken: {
       primary: Color("#A5E8E8").darken(0.2).toString(),
       secondary: Color("#DADADA").darken(0.2).toString(),
