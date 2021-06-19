@@ -45,7 +45,7 @@ const zh_CN = {
       "游戏内配色截图",
       "..."
     ],
-    manualUpload: "手动上传",
+    manualUpload: "手动上传截图",// upload screenshot manually
     accept: "确定",
     clear: "清空"
   },
@@ -60,14 +60,14 @@ const zh_CN = {
   colorPicker: {
     targetScheme: {
       targetScheme: "当前配色方案",// current scheme
-      default: "标准模式",
-      manual: "多色板模式",
+      default: "标准", // standard
+      manual: "多色板", // multiple palettes
       primary: "主要颜色",
       secondary: "次要颜色",
       tertiary: "军械库第三色彩",
       quaternary: "军械库高亮颜色",
-      emissive: "放射颜色 1, 2",
-      energy: "能量颜色 1, 2",
+      emissive: "放射颜色",
+      energy: "能量颜色",
       import: "导入",
       export: "导出",
       copied: "已复制"
@@ -78,12 +78,10 @@ const zh_CN = {
       palettes: "色板",
     },
     selectedColor: {
-      selectedColor: "当前选中颜色",//current selected color
+      selectedColor: "当前选中颜色",// current selected color
     },
     howToUse: "使用方法",
-    motd: `Join our Discord at: discord.gg/WWBYuY3! This place is not only limited to Warframe, so feel free to hop in
-          even if you’re on a break. Our community is still growing, and we’re actively looking for new people. Hope
-          to see you around!`,
+    motd: `加入我们的Discord：discord.gg/WWBYuY3！这里不光聊Warframe，所以请随意加入！我们的社区仍在扩大，并且正在寻找新成员，希望可以在这里见到你！`,
   },
   palettes: {
     "Agony": "Agony",
