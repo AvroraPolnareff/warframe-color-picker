@@ -2,7 +2,7 @@ import headerLayoutsImage from "../assets/choose-your-fighter.svg"
 import suggestions from "../assets/SUGGESTIONS.svg"
 import headerSchemeImportImage from "../assets/scheme-import-en.svg";
 
-const cn = {
+const zh_CN = {
   layoutSelection: {
     headerImage: headerLayoutsImage,
     headerText: "选择是要使用扩展布局还是原始的经典布局。",
@@ -131,4 +131,4 @@ const cn = {
   }
 }
 
-export default cn
+export default zh_CN

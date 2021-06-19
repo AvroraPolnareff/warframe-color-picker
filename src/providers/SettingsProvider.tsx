@@ -9,7 +9,7 @@ export enum Layout {
 export enum Language {
   ENGLISH = "en",
   RUSSIAN = "ru",
-  CHINESE = "cn",
+  CHINESE = "zh_CN",
 }
 
 export interface Settings {
