@@ -17,6 +17,8 @@ declare module 'styled-components' {
     background: string;
     targetSchemeHeader: string;
 
-    darken: Omit<ThemeColors, "darken">;
+    darken: Colors;
   }
+
+  export type Colors = Omit<ThemeColors, "darken">
 }

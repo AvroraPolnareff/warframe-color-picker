@@ -121,7 +121,7 @@ const ListCheckbox = (
 
 const CheckboxText = styled.div`
   color: ${({theme}) => theme.colors.background};
-  background: ${({theme}) => theme.colors.secondary};
+  background: ${({theme}) => theme.colors.tertiary};
   transition: background-color 0.5s ease;
   font-size: 1.5em;
   font-weight: 600;
@@ -152,9 +152,6 @@ const StyledListCheckbox = styled.div<{enabled?: boolean}>`
     ${CheckboxText} {
       background: ${({theme}) => theme.colors.darken.tertiary};
     }
-    ${({enabled}) => !enabled && css`
-      .checkbox { fill: ${({theme}) => theme.colors.darken.tertiary}}`
-    }
   }
 `
 
@@ -178,6 +175,6 @@ const CheckboxSvg = styled.svg`
   }
 
   .border {
-    fill: ${({theme}) => theme.colors.secondary};
+    fill: ${({theme}) => theme.colors.tertiary};
   }
 `
