@@ -9,7 +9,7 @@ interface BadgeProps {
 
 export const Badge = styled.div<BadgeProps>`
   background-color: ${props => props.color || props.theme.colors.secondary};
-  color: ${props => props.theme.colors.badgeText};
+  color: ${props => props.theme.colors.background};
   padding: 0.1em 0.45em;
   
   margin: 0 0.2em;

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import App from "./components/App"
 import * as serviceWorker from './serviceWorker';
 import {createGlobalStyle, ThemeProvider} from "styled-components/macro";
-import {defaultTheme} from "./common/themes";
+import {colors, createTheme} from "./common/themes";
 import {SettingsProvider} from "./providers/SettingsProvider";
 import {CurrentScreenProvider} from "./providers/CurrentScreenProvider";
 import i18n from "./i18n";
@@ -29,7 +29,7 @@ const GlobalStyle = createGlobalStyle`
 
 ReactDOM.render(
   <React.StrictMode>
-    <ThemeProvider theme={defaultTheme}>
+    <ThemeProvider theme={createTheme(colors)}>
       <CurrentScreenProvider>
         <SettingsProvider>
           <UrlPaletteContextProvider>

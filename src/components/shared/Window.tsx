@@ -27,7 +27,7 @@ export const Window = (
 const Content = styled.div`
     padding: 0.3em 0.5em;
     border-radius: 0.54em;
-    background-color: ${props => props.theme.colors.windowBackground};
+    background-color: ${props => props.theme.colors.background};
     color: ${props => props.theme.colors.secondary};
 
     
@@ -35,7 +35,7 @@ const Content = styled.div`
 
 const WindowBorder = styled.div<{width?: number, height?: number}>`
     padding: 0.27em 0.7em 0.7em 0.27em;
-    background-color: ${props => props.theme.colors.border};
+    background-color: ${props => props.theme.colors.tertiary};
     border-radius: 0.8em;
     margin: 0.5rem;
     ${props => props.width ? `width: ${props.width}em;`: ""}
