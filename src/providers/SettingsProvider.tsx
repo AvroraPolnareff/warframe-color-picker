@@ -36,7 +36,7 @@ export const SettingsContext = createContext<Settings>(initSettings);
 export const SettingsProvider = ({children}: {children: ReactNode}) => {
   const [layout, setLayout] = useStickyState(initSettings.layout, "layout");
   const [language, setLanguage] = useStickyState(initSettings.language, "language");
-  const [enableMOTD, setEnableMOTD] = useStickyState(initSettings.enableMOTD, "motd");
+  const [enableMOTD, setEnableMOTD] = [false, (a: boolean) => {}];
 
   return (
     <SettingsContext.Provider value={{

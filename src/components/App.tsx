@@ -18,11 +18,6 @@ function App() {
     <StyledApp>
       <AppBar>
         <Container>
-          {showMOTD && enableMOTD && (
-            <Entry onClick={() => setEnableMOTD(!enableMOTD)}>
-              {enableMOTD ? t("menu.hide") : t("menu.show")} MOTD
-            </Entry>
-          )}
         </Container>
         <Container>
           <Entry
