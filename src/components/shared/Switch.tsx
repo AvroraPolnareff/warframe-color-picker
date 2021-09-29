@@ -60,7 +60,7 @@ const Selection = styled.div<{switched: boolean, width: number}>`
   transition: transform 0.3s cubic-bezier(0,1,0.5,1);
   width: ${props => props.width / 2 - offset }em;
   height: ${height}em;
-  border: ${offset }em solid ${props => props.theme.colors.switch.leftText};
+  border: ${offset }em solid ${props => props.theme.colors.background};
   border-radius: 0.633em;
   background: ${props => props.theme.colors.primary};
   
@@ -72,7 +72,7 @@ const Selection = styled.div<{switched: boolean, width: number}>`
 `
 
 const LeftText = styled.div`
-  color: ${props => props.theme.colors.switch.leftText};
+  color: ${props => props.theme.colors.background};
   z-index: 1;
   text-transform: uppercase;
   user-select: none;
@@ -80,7 +80,7 @@ const LeftText = styled.div`
   
 `
 const RightText = styled.div`
-  color: ${props => props.theme.colors.switch.rightText};
+  color: ${props => props.theme.colors.background};
   z-index: 1;
   text-transform: uppercase;
   user-select: none;

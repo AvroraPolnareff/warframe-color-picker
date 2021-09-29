@@ -5,6 +5,7 @@ import headerImage from "../../assets/languages-header.png"
 import {useTranslation} from "react-i18next";
 import {Language, SettingsContext} from "../../providers/SettingsProvider";
 import {css} from "styled-components";
+import Color from "color";
 
 export const Languages = () => {
   const {t} = useTranslation()
@@ -123,8 +124,8 @@ const ListCheckbox = (
 }
 
 const CheckboxText = styled.div`
-  color: ${({theme}) => theme.colors.buttonText};
-  background: ${({theme}) => theme.colors.switch.background};
+  color: ${({theme}) => theme.colors.background};
+  background: ${({theme}) => theme.colors.tertiary};
   transition: background-color 0.5s ease;
   font-size: 1.5em;
   font-weight: 600;
@@ -150,13 +151,10 @@ const StyledListCheckbox = styled.div<{enabled?: boolean}>`
   }
   :hover {
     .border {
-      fill: ${({theme}) => theme.colors.darken.tertiary}
+      fill: ${({theme}) => Color(theme.colors.tertiary).darken(0.05).toString()}
     }
     ${CheckboxText} {
-      background: ${({theme}) => theme.colors.darken.tertiary};
-    }
-    ${({enabled}) => !enabled && css`
-      .checkbox { fill: ${({theme}) => theme.colors.darken.tertiary}}`
+      background: ${({theme}) => Color(theme.colors.tertiary).darken(0.05).toString()};
     }
   }
 `
@@ -181,6 +179,6 @@ const CheckboxSvg = styled.svg`
   }
 
   .border {
-    fill: ${({theme}) => theme.colors.switch.background}
+    fill: ${({theme}) => theme.colors.tertiary};
   }
 `
