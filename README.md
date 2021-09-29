@@ -64,7 +64,7 @@ Here's a sum up of all available tips & guides for the app!
 
 ### HOW TO IMPORT FROM SCREENSHOT:
 
-![HowToImport](https://cdn.discordapp.com/attachments/752169119331385444/892770119237902376/HowToImport.jpg)
+![HowToImport](https://cdn.discordapp.com/attachments/752169119331385444/892780487532232824/HowToImport2.jpg)
 
 1. In order to do that, you first need to make a screenshot of your in-game scheme (using **Snip & Sketch** on Windows is pretty much enough), cropping it in the same way as shown in the picture.
 
