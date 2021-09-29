@@ -6,8 +6,9 @@ All models in Warframe tend to have different textures, bump maps, and other stu
 
 Lucky for all of us, we’ve made an app that lets you adjust your entire color scheme on the fly! Once you’ve adjusted a color, it’ll show a list of the closest colors to the one you want to achieve from all in-game palettes.
 
-https://avrorapolnareff.github.io/warframe-color-picker/
-![App](img/app.png)
+Here's the link! https://avrorapolnareff.github.io/warframe-color-picker/
+
+![App](https://cdn.discordapp.com/attachments/752169119331385444/892765258681315378/unknown.png)
 
 # What are the main features?
 Here is the list of currently available most important features divided into sections, named accordingly.
@@ -57,6 +58,16 @@ Here is the list of currently available most important features divided into sec
 * Find out where exactly the selected color from Suggestions is located
 * (Palette Name)
   * Hover your mouse over a color to get its coordinates displayed in the palette name field (X, Y)
+
+# **HOW TO IMPORT FROM SCREENSHOT**
+
+![HowToImport](https://cdn.discordapp.com/attachments/752169119331385444/892770119237902376/HowToImport.jpg)
+
+1. In order to do that, you first need to make a screenshot of your in-game scheme (using **Snip & Sketch** on Windows is pretty much enough), cropping it in the same way as shown in the picture.
+
+2. Once you've made the screenshot, please insert it in this field via CTRL+V. If it doesn't work, please save it on your PC and use **MANUAL UPLOAD** button.
+
+3. BOOM, you're done!! If you did everything right, of course.
 
 # Known issues
 
