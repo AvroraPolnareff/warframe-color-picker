@@ -59,7 +59,10 @@ Here is the list of currently available most important features divided into sec
 * (Palette Name)
   * Hover your mouse over a color to get its coordinates displayed in the palette name field (X, Y)
 
-# **HOW TO IMPORT FROM SCREENSHOT**
+# **How to use**
+Here's a sum up of all available tips & guides for the app!
+
+### HOW TO IMPORT FROM SCREENSHOT:
 
 ![HowToImport](https://cdn.discordapp.com/attachments/752169119331385444/892770119237902376/HowToImport.jpg)
 
