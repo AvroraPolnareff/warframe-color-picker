@@ -5,6 +5,7 @@ import {ScreensSwitcher} from "./ScreensSwitcher";
 import {CurrentScreenContext, Screen} from "../providers/CurrentScreenProvider";
 import {SettingsContext} from "../providers/SettingsProvider";
 import {useTranslation} from "react-i18next";
+import {Link} from "./shared/Link" 
 
 function App() {
   const {setScreen, screen} = useContext(CurrentScreenContext);
@@ -38,7 +39,7 @@ function App() {
           >
             {t("menu.languageSwitch")}
           </Entry>
-          <Entry>{t("menu.help")}</Entry>
+          <Entry><a href="https://github.com/AvroraPolnareff/warframe-color-picker/blob/master/README.md" style={{textDecoration: "none"}}>{t("menu.help")}</a></Entry>
         </Container>
         <Container/>
       </AppBar>
