@@ -5,6 +5,7 @@ import {ScreensSwitcher} from "./ScreensSwitcher";
 import {CurrentScreenContext, Screen} from "../providers/CurrentScreenProvider";
 import {SettingsContext} from "../providers/SettingsProvider";
 import {useTranslation} from "react-i18next";
+import {Link} from "./shared/Link" 
 
 function App() {
   const {setScreen, screen} = useContext(CurrentScreenContext);
@@ -18,11 +19,6 @@ function App() {
     <StyledApp>
       <AppBar>
         <Container>
-          {showMOTD && enableMOTD && (
-            <Entry onClick={() => setEnableMOTD(!enableMOTD)}>
-              {enableMOTD ? t("menu.hide") : t("menu.show")} MOTD
-            </Entry>
-          )}
         </Container>
         <Container>
           <Entry
@@ -43,7 +39,7 @@ function App() {
           >
             {t("menu.languageSwitch")}
           </Entry>
-          <Entry>{t("menu.help")}</Entry>
+          <Entry><a href="https://github.com/AvroraPolnareff/warframe-color-picker/blob/master/README.md" style={{textDecoration: "none", color: "inherit"}}>{t("menu.help")}</a></Entry>
         </Container>
         <Container/>
       </AppBar>
