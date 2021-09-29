@@ -21,17 +21,14 @@ export const SelectedColor = (
     onColorChange
   }: SelectedColorProps
 ) => {
-  const [name, setName] = useState("")
+  const [hoverPosition, setHoverPosition] = useState("")
   const {t} = useTranslation()
-  useEffect(() => {
-    setName(paletteName)
-  }, [paletteName])
 
   const onColorHover = (position?: Position) => {
     if (position) {
-      setName(`x: ${position.x + 1}, y: ${position.y + 1}`)
+      setHoverPosition(`x: ${position.x + 1}, y: ${position.y + 1}`)
     } else {
-      setName(paletteName)
+      setHoverPosition("")
     }
   }
 
@@ -60,7 +57,7 @@ export const SelectedColor = (
           userSelect: "none"
         }}/>
         {/* @ts-ignore */}
-        <PaletteName>{t(`palettes.${name}`)}</PaletteName>
+        <PaletteName>{hoverPosition || t(`palettes.${paletteName}`)}</PaletteName>
 
         <WarframePalette
           size={1.735}
