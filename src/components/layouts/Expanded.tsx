@@ -2,16 +2,10 @@ import React, {useContext} from "react";
 import {useColorPickerLogic} from "../../hooks/useColorPickerLogic";
 import {PalettesModal} from "../PalettesModal";
 import {ImportModal} from "../ImportModal";
-import targetSchemeToSuggestions from "../../assets/Wires (Col Pic -_ Tar Sch).svg";
-import targetSchemeToColorPicker from "../../assets/Wires (Tar Sch -_ Col Pic).svg";
 import TargetScheme from "../TargetScheme";
 import {ColorPicker} from "../ColorPicker";
 import Color from "color";
 import {Link} from "../shared/Link";
-import warframeLogo from "../../assets/wf-logo-DADADA 1.svg";
-import discordLogo from "../../assets/discord-logo.svg";
-import githubLogo from "../../assets/github-logo.svg";
-import suggestionsToSelectedColor from "../../assets/Wires (Sugg -_ Sel Col).svg";
 import {Suggestions} from "../Suggestions";
 import {SelectedColor} from "../SelectedColor";
 import { Wires } from "../Wires";
@@ -78,8 +72,8 @@ export const Expanded = () => {
 
         <div style={{display: 'flex', alignItems: "flex-start"}}>
           <div style={{display: 'flex', flexDirection: "column", alignItems: "flex-end", marginRight: "0.6em"}}>
-            <Wires src={targetSchemeToSuggestions} style={{right: "-1.2em", top: "3.2em", width: "2.1em"}}>
-              <Wires src={targetSchemeToColorPicker} style={{bottom: "-1.8em", right: "2em", width: "4.3em"}}>
+            <Wires src="/images/Wires (Col Pic -_ Tar Sch).svg" style={{right: "-1.2em", top: "3.2em", width: "2.1em"}}>
+              <Wires src="/images/Wires (Tar Sch -_ Col Pic).svg" style={{bottom: "-1.8em", right: "2em", width: "4.3em"}}>
                 <TargetScheme
                   paletteColors={paletteColors}
                   onCellClick={onCellClick}
@@ -99,14 +93,14 @@ export const Expanded = () => {
               height={2.3}
               width={11}>{t("colorPicker.howToUse")}</Link>
             <div style={{display: "flex"}}>
-              <Link href={"#"} icon={warframeLogo} width={2.3} height={2.3}/>
-              <Link href={"https://discord.gg/WWBYuY3"} icon={discordLogo} width={2.3} height={2.3}/>
-              <Link href={"https://github.com/AvroraPolnareff/warframe-color-picker-ts"} icon={githubLogo} width={2.3}
+              <Link href={"#"} icon="/images/wf-logo.svg" width={2.3} height={2.3}/>
+              <Link href={"https://discord.gg/WWBYuY3"} icon="/images/discord-logo.svg" width={2.3} height={2.3}/>
+              <Link href={"https://github.com/AvroraPolnareff/warframe-color-picker-ts"} icon="/images/github-logo.svg" width={2.3}
                     height={2.3}/>
             </div>
           </div>
           <div style={{marginRight: "0.6em", zIndex: 1}}>
-            <Wires style={{top: "8.5em", right: "-1.2em", width: "2.1em"}} src={suggestionsToSelectedColor}>
+            <Wires style={{top: "8.5em", right: "-1.2em", width: "2.1em"}} src="/images/Wires (Sugg -_ Sel Col).svg">
               <Suggestions matchedColors={matchedColors}
                            onSuggestionClick={onSuggestionClick}
                            onPalettesClick={() => setShowPalettesModal(true)}

@@ -1,7 +1,8 @@
-import en from "../translations/en";
+import en from "locales/en/translation.json";
+import ru from "locales/ru/translation.json";
+import zh_CN from "locales/zh_CN/translation.json";
 import 'react-i18next';
-import ru from "../translations/ru";
-import zh_CN from "../translations/zh_CN";
+
 
 declare module 'react-i18next' {
   interface Resources {

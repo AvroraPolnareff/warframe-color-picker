@@ -1,6 +1,5 @@
 import React, {ReactNode} from "react";
-import styled from "styled-components/macro";
-import exitButton from "../../assets/exitButton.svg"
+import styled from "styled-components";
 
 interface ModalProps {
   width?: number
@@ -88,7 +87,7 @@ const Header = styled.div`
   text-transform: uppercase;
 `
 
-const ExitButton = styled.img.attrs(() => ({src: exitButton}))`
+const ExitButton = styled.img.attrs(() => ({src: "/images/exitButton.svg"}))`
   cursor: pointer;
   font-weight: bold;
   border: none;

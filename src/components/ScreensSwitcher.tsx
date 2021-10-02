@@ -6,7 +6,7 @@ import {Expanded} from "./layouts/Expanded";
 import {Layouts} from "./screens/Layouts";
 import {Languages} from "./screens/Languages";
 import {SwitchTransition, Transition} from "react-transition-group";
-import styled from "styled-components/macro";
+import styled from "styled-components";
 import {TransitionProps} from "react-transition-group/Transition";
 import {SchemeImport} from "./screens/SchemeImport";
 

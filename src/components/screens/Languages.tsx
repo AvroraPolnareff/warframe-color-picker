@@ -1,7 +1,6 @@
 import React, {ReactNode, useContext} from "react";
-import styled from "styled-components/macro";
+import styled from "styled-components";
 import {Divider} from "../shared/Divider";
-import headerImage from "../../assets/languages-header.png"
 import {useTranslation} from "react-i18next";
 import {Language, SettingsContext} from "../../providers/SettingsProvider";
 import {css} from "styled-components";
@@ -12,7 +11,7 @@ export const Languages = () => {
   const {language, setLanguage} = useContext(SettingsContext)
   return (
     <StyledLanguages>
-      <HeaderImage src={headerImage}/>
+      <HeaderImage src="/images/languages-header.png"/>
       <DescriptionBlock>
         <Divider/>
         <Text>
