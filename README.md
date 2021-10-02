@@ -6,7 +6,7 @@ All models in Warframe tend to have different textures, bump maps, and other stu
 
 Lucky for all of us, we’ve made an app that lets you adjust your entire color scheme on the fly! Once you’ve adjusted a color, it’ll show a list of the closest colors to the one you want to achieve from all in-game palettes.
 
-Here's the link! https://avrorapolnareff.github.io/warframe-color-picker/
+Here's the link! https://warframecolorpicker.app/
 
 ![App](https://cdn.discordapp.com/attachments/752169119331385444/892765258681315378/unknown.png)
 
