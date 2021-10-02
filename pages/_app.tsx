@@ -8,6 +8,7 @@ import {SettingsProvider} from "../src/providers/SettingsProvider";
 import {UrlPaletteContextProvider} from "../src/providers/UrlColorsProvider";
 import {I18nextProvider, Resources, useSSR} from "react-i18next";
 import i18n from "../src/i18n";
+import "public/fonts/stylesheet.css"
 
 
 const GlobalStyle = createGlobalStyle`
