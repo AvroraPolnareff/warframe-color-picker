@@ -1,5 +1,5 @@
 import React, {ReactNode} from 'react'
-import styled, {keyframes} from "styled-components/macro"
+import styled, {keyframes} from "styled-components"
 import grid from "../../assets/no-color-grid-small.png"
 
 interface ColorCellProps {

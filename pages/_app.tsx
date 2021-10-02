@@ -1,6 +1,6 @@
 // import App from "next/app";
 import type { AppProps /*, AppContext */ } from "next/app"
-import {createGlobalStyle, ThemeProvider} from "styled-components/macro";
+import {createGlobalStyle, ThemeProvider} from "styled-components";
 import React from "react";
 import {colors, createTheme} from "../src/common/themes";
 import {CurrentScreenProvider} from "../src/providers/CurrentScreenProvider";

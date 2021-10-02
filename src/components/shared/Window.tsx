@@ -1,5 +1,5 @@
 import React, {CSSProperties, ReactNode} from 'react'
-import styled from "styled-components/macro"
+import styled from "styled-components"
 
 export const Window = (
   {

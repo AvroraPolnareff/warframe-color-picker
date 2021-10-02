@@ -1,4 +1,4 @@
-import styled from "styled-components/macro"
+import styled from "styled-components"
 
 export const Divider = styled.div`
     margin: 0.2em 0 0.2em 0.02em;

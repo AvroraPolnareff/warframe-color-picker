@@ -1,5 +1,5 @@
 import React, {useContext} from "react";
-import styled from "styled-components/macro";
+import styled from "styled-components";
 import {ClassicLayoutIcon} from "../../assets/ClassicLayoutIcon"
 import {ExpandedLayoutIcon} from "../../assets/ExpandedLayoutIcon"
 import {Divider} from "../shared/Divider";

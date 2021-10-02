@@ -1,4 +1,4 @@
-import styled from "styled-components/macro";
+import styled from "styled-components";
 import React, {useContext, useEffect, useState} from "react";
 import {useTranslation} from "react-i18next";
 import {Divider} from "../shared/Divider";

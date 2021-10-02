@@ -3,7 +3,7 @@ import {Position} from "../common/Palette";
 import {Divider} from "./shared/Divider";
 import {FlexColumnCenter} from "./shared/FlexColumnCenter";
 import {Window} from "./shared/Window";
-import styled from "styled-components/macro";
+import styled from "styled-components";
 import {ColorCell} from "./shared/ColorCell";
 import {Badge} from "./shared/Badge";
 import {Switch} from "./shared/Switch";

@@ -1,5 +1,5 @@
 import React, {CSSProperties} from 'react';
-import {useTheme} from "styled-components/macro";
+import {useTheme} from "styled-components";
 
 export const Waves = (
   {

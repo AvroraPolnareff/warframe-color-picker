@@ -17,7 +17,7 @@ import {Suggestions} from "../Suggestions";
 import {SelectedColor} from "../SelectedColor";
 import {Wires} from "../Wires";
 import {Header} from "../Header";
-import styled from "styled-components/macro";
+import styled from "styled-components";
 import {SettingsContext} from "../../providers/SettingsProvider";
 import {useTranslation} from "react-i18next";
 
