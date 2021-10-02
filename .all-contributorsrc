@@ -1,0 +1,57 @@
+{
+  "projectName": "Warframe Color Picker",
+  "projectOwner": "Avrora Polnareff",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "commitConvention": "none",
+  "contributors": [
+    {
+      "login": "Morisabeau",
+      "name": "Asta Ness",
+      "avatar_url": "https://avatars.githubusercontent.com/u/74872505?v=4",
+      "profile": "https://github.com/Morisabeau",
+      "contributions": [
+        "design",
+        "content",
+        "question",
+        "ideas"
+      ]
+    },
+    {
+      "login": "AvroraPolnareff",
+      "name": "AvroraPolnareff",
+      "avatar_url": "https://avatars.githubusercontent.com/u/46288303?v=4",
+      "profile": "https://github.com/AvroraPolnareff",
+      "contributions": [
+        "code",
+        "infra",
+        "ideas"
+      ]
+    },
+    {
+      "login": "CKylinMC",
+      "name": "CKylinMC",
+      "avatar_url": "https://avatars.githubusercontent.com/u/11648014?v=4",
+      "profile": "https://www.ckylin.site/",
+      "contributions": [
+        "translation",
+        "code"
+      ]
+    },
+    {
+      "login": "rokettu",
+      "name": "rokettu",
+      "avatar_url": "https://avatars.githubusercontent.com/u/84252990?v=4",
+      "profile": "https://github.com/rokettu",
+      "contributions": [
+        "translation", "content"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7
+}
