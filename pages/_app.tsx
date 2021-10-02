@@ -6,7 +6,7 @@ import {colors, createTheme} from "../src/common/themes";
 import {CurrentScreenProvider} from "../src/providers/CurrentScreenProvider";
 import {SettingsProvider} from "../src/providers/SettingsProvider";
 import {UrlPaletteContextProvider} from "../src/providers/UrlColorsProvider";
-import {I18nextProvider} from "react-i18next";
+import {I18nextProvider, Resources, useSSR} from "react-i18next";
 import i18n from "../src/i18n";
 
 
@@ -26,7 +26,9 @@ const GlobalStyle = createGlobalStyle`
   }
 `
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps }: AppProps<{langResources: Resources}>) {
+  // TODO: change to dynamic ssr translations
+  useSSR(pageProps.langResources, "en")
   return (
     <ThemeProvider theme={createTheme(colors)}>
       <CurrentScreenProvider>

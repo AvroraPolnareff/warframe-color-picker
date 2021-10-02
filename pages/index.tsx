@@ -1,8 +1,10 @@
 import App from "../src/components/App";
 
 
-export default () => {
+const Index = () => {
   return (
     <App/>
   )
 }
+
+export default Index

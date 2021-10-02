@@ -13,6 +13,8 @@ const resources = {
 
 i18n.use(initReactI18next)
   .init({
+    defaultNS: "translation",
+    ns: "translation",
     resources,
     interpolation: {
       escapeValue: false,
