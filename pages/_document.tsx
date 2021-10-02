@@ -1,8 +1,8 @@
 import Document, {DocumentContext} from 'next/document'
 import { ServerStyleSheet } from 'styled-components'
-import en from "../src/translations/en";
-import ru from "../src/translations/ru";
-import zh_CN from "../src/translations/zh_CN";
+import en from "locales/en/translation.json";
+import ru from "locales/ru/translation.json";
+import zh_CN from "locales/zh_CN/translation.json";
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
