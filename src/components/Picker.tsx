@@ -28,7 +28,6 @@ export class Picker extends Component<PickerProps> {
   componentDidUpdate(prevProps: Readonly<PickerProps>, prevState: Readonly<{}>, snapshot?: any) {
     if (!this.picker) return
     this.picker.color = this.props.color
-    console.log({prev: prevProps.size, curr: this.props.size, psize: this.ref?.width})
     // fix update after ssr
     if (this.ref && this.ref.width !== this.props.size) {
       this.ref.width = this.props.size
