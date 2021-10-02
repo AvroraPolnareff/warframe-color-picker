@@ -7,6 +7,7 @@ const Index = () => {
       <NextSeo
         title="Warframe Color Picker"
         description="I'm your very own Cephalon Cosmetologist from now on, Operator! 😎"
+        canonical="https://www.warframecolorpicker.app/"
         // additionalMetaTags={[
         //   {name: "theme-color", content: "#ffffff"}
         // ]}
