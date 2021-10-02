@@ -13,6 +13,9 @@ const Index = () => {
         additionalLinkTags={[
           {rel: "manifest", href: "/manifest.json"}
         ]}
+        additionalMetaTags={[
+          {name: "yandex-verification", content: "b316278f5276b429"}
+        ]}
       />
       <App/>
     </>
