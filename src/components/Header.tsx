@@ -1,6 +1,6 @@
 import React, {useContext} from "react";
 import styled, { css } from "styled-components";
-import tipOfADay from "../assets/tipOfADay.svg"
+import tipOfADay from "../../public/images/tipOfADay.svg"
 import {CurrentScreenContext, Screen} from "../providers/CurrentScreenProvider";
 import {SettingsContext} from "../providers/SettingsProvider";
 import {TransitionProps} from "react-transition-group/Transition";

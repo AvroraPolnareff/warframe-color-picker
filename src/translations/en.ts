@@ -1,6 +1,6 @@
-import headerLayoutsImage from "../assets/choose-your-fighter.svg"
-import suggestions from "../assets/SUGGESTIONS.svg"
-import headerSchemeImportImage from "../assets/scheme-import-en.svg";
+import headerLayoutsImage from "../../public/images/choose-your-fighter.svg"
+import suggestions from "../../public/images/SUGGESTIONS.svg"
+import headerSchemeImportImage from "../../public/images/scheme-import-en.svg";
 
 const en = {
   layoutSelection: {

@@ -1,6 +1,6 @@
 import React, {ReactNode} from "react";
 import styled from "styled-components";
-import exitButton from "../../assets/exitButton.svg"
+import exitButton from "../../../public/images/exitButton.svg"
 
 interface ModalProps {
   width?: number

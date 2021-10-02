@@ -6,7 +6,12 @@ import zh_CN from "../translations/zh_CN";
 declare module 'react-i18next' {
   interface Resources {
     en: typeof en
-    ru: typeof ru
-    zh_CN: typeof zh_CN
+    ru: typeof en
+    zh_CN: typeof en
   }
+  // interface Resources {
+  //   en: Any
+  //   ru: Any
+  //   zh_CN: Any
+  // }
 }

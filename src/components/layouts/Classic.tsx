@@ -2,16 +2,16 @@ import React, {useContext} from "react";
 import {useColorPickerLogic} from "../../hooks/useColorPickerLogic";
 import {PalettesModal} from "../PalettesModal";
 import {ImportModal} from "../ImportModal";
-import wires1 from "../../assets/Wires (Col Pic -_ Tar Sch).svg";
-import wires2 from "../../assets/Wires (Tar Sch -_ Col Pic).svg";
-import wires3 from "../../assets/Wires (Sugg -_ Sel Col).svg";
+import wires1 from "public/images/Wires (Col Pic -_ Tar Sch).svg";
+import wires2 from "public/images/Wires (Tar Sch -_ Col Pic).svg";
+import wires3 from "public/images/Wires (Sugg -_ Sel Col).svg";
 import TargetScheme from "../TargetScheme";
 import {ColorPicker} from "../ColorPicker";
 import Color from "color";
 import {Link} from "../shared/Link";
-import warframeLogo from "../../assets/wf-logo-DADADA 1.svg";
-import discordLogo from "../../assets/discord-logo.svg";
-import githubLogo from "../../assets/github-logo.svg";
+import warframeLogo from "public/images/wf-logo.svg";
+import discordLogo from "public/images/discord-logo.svg";
+import githubLogo from "public/images/github-logo.svg";
 
 import {Suggestions} from "../Suggestions";
 import {SelectedColor} from "../SelectedColor";
@@ -84,7 +84,7 @@ export const Classic = () => {
             marginRight: "0.6em",
             marginTop: "2.5em"
           }}>
-            <Wires src={wires1} style={{right: "-1.2em", top: "3.2em", width: "2.1em", transform: "scaleY(-1)"}}>
+            <Wires src="/public/images/Wires (Col Pic -_ Tar Sch).svg" style={{right: "-1.2em", top: "3.2em", width: "2.1em", transform: "scaleY(-1)"}}>
               <div style={{marginTop: "0.6em", zIndex: 1}}>
                 <ColorPicker
                   color={Color(getCurrentColor())}

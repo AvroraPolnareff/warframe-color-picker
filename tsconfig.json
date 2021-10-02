@@ -21,6 +21,6 @@
     "jsx": "preserve",
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["next-env.d.ts", "index.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "index.d.ts", "./src/common/i18n.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
 }

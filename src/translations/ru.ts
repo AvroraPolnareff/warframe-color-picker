@@ -1,7 +1,7 @@
-import headerLayoutsImage from "../assets/choose-your-fighter-ru.svg"
-import headerSchemeImportImage from "../assets/scheme-import-ru.svg"
+import headerLayoutsImage from "../../public/images/choose-your-fighter-ru.svg"
+import headerSchemeImportImage from "../../public/images/scheme-import-ru.svg"
 
-import suggestions from "../assets/SUGGESTIONS.svg";
+import suggestions from "../../public/images/SUGGESTIONS.svg";
 
 const ru = {
   layoutSelection: {
