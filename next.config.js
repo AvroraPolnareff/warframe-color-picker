@@ -4,6 +4,6 @@
  */
 module.exports = {
   env: {
-    ssrFontSize: 14
+    ssrFontSize: 20
   }
 }

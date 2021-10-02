@@ -78,7 +78,7 @@ export const Suggestions = (props: SuggestionsProps) => {
     <Window width={14.321}>
       <FlexColumnCenter>
         <img
-          src={t("colorPicker.suggestions.suggestions")}
+          src={t("colorPicker.suggestions.suggestions", {defaultValue: "/images/suggestions.svg"})}
           style={{width: "12em", marginTop: "0.25em", pointerEvents: "none", userSelect: "none"}}
           alt=""
         />
