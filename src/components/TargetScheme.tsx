@@ -208,37 +208,12 @@ const CellsRow = styled.div<{selected?: boolean}>`
   display: flex;
   justify-content: space-between;
   height: 1.55em;
-  border: 2px dashed transparent;
-  border-radius: 0.4em;
-  ${({selected}) => selected && css`
-    animation-duration: 2s;
-    animation-name: ${props => animation(props)};
-    
+  border: 3px dashed transparent;
+  border-radius: 0.6em;
+  transition: border-color linear 0.2s;
+  ${({selected, theme}) => selected && css`
+    border-color: ${theme.colors.secondary};
   `}
-`
-
-const animation: ({theme}: { theme: DefaultTheme }) => Keyframes = ({theme}) => keyframes`
-  0% {
-    border-color: transparent;
-  }
-  17% {
-    border-color: ${theme.colors.secondary};;
-  }
-  35% {
-    border-color: transparent;
-  }
-  50% {
-     border-color: ${theme.colors.secondary};;
-  }
-  67% {
-    border-color: transparent;
-  }
-  84% {
-     border-color: ${theme.colors.secondary};;
-  }
-  100 % {
-    border-color: transparent;
-  }
 `
 
 interface ColorEntryProps {
