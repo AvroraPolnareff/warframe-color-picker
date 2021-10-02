@@ -34,7 +34,7 @@ export const SchemeImport = () => {
 
   return (
     <StyledSchemeImport>
-      <HeaderImage src={t("schemeImport.headerImage")}/>
+      <HeaderImage src={t("schemeImport.headerImage")} alt=""/>
       <DescriptionBlock>
         <Divider/>
         <Text><span>{t("schemeImport.headerText")}</span></Text>

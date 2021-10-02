@@ -22,7 +22,7 @@ export const Link = (
     <WindowBorder width={width} height={height} href={href} target="_blank" rel="noopener noreferrer">
       <Content width={width} height={height}>
         {icon ?
-            <Icon src={icon}/>
+            <Icon src={icon} alt=""/>
           : <span style={{fontWeight: 900, fontSize: "1.6em"}}>{children}</span>}
       </Content>
     </WindowBorder>

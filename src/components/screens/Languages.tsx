@@ -11,7 +11,7 @@ export const Languages = () => {
   const {language, setLanguage} = useContext(SettingsContext)
   return (
     <StyledLanguages>
-      <HeaderImage src="/images/languages-header.png"/>
+      <HeaderImage src="/images/languages-header.png" alt="header"/>
       <DescriptionBlock>
         <Divider/>
         <Text>

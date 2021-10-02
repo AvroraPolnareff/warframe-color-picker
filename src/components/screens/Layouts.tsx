@@ -13,7 +13,7 @@ export const Layouts = () => {
 
   return (
     <StyledLayoutsScreen>
-      <HeaderImage src={t("layoutSelection.headerImage")}/>
+      <HeaderImage src={t("layoutSelection.headerImage")} alt=""/>
       <DescriptionBlock>
         <Divider/>
         <Text><span>{t("layoutSelection.headerText")}</span></Text>

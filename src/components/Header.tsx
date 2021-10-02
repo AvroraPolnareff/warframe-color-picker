@@ -50,7 +50,7 @@ const StyledHeader = styled.header`
   width: fit-content;
 `
 
-const TipOfADay = styled.img.attrs(() => ({src: "/images/tipOfADay.svg"}))`
+const TipOfADay = styled.img.attrs(() => ({src: "/images/tipOfADay.svg", alt: ""}))`
   width: 14.7em;
   height: 4.83em;
 `
