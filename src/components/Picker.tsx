@@ -45,6 +45,7 @@ export class Picker extends Component<PickerProps> {
   }
 
   handleMouseDown = (e: React.MouseEvent<HTMLCanvasElement>) => {
+    if (typeof window === "undefined") return
     e.preventDefault()
     this.handleChange(e)
     // @ts-ignore
@@ -54,6 +55,7 @@ export class Picker extends Component<PickerProps> {
   }
 
   handleTouchStart = (e: React.TouchEvent<HTMLCanvasElement>) => {
+    if (typeof window === "undefined") return
     e.preventDefault()
     this.handleChange(e)
     // @ts-ignore
@@ -68,6 +70,7 @@ export class Picker extends Component<PickerProps> {
   }
 
   unbindEventListeners() {
+    if (typeof window === "undefined") return
     // @ts-ignore
     window.removeEventListener('mousemove', this.handleChange)
     window.removeEventListener('mouseup', this.handleMoveEnd)
@@ -121,7 +124,7 @@ class CanvasPicker {
   }
 
   private getEventDot = (e: any | Event | undefined ) => {
-
+    if (typeof window === "undefined") return {x: 10, y: 10}
     e = e || window.event;
     var x, y;
     var scrollX = document.body.scrollLeft + document.documentElement.scrollLeft;

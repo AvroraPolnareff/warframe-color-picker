@@ -27,6 +27,7 @@ export const SchemeImport = () => {
   }
 
   useEffect(() => {
+    if (typeof localStorage === "undefined") return
     const colors = JSON.parse(localStorage.getItem("manualColors") ?? "{}") as string[]
     setCurrentColors(colors)
   }, [])

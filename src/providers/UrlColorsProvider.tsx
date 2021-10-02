@@ -37,6 +37,7 @@ export const UrlPaletteContextProvider = ({children}: {children: ReactNode}) => 
   const url = useRef("")
 
   useEffect(() => {
+    if (typeof window === "undefined") return
     if (hookState !== UrlColorsState.INIT) return;
     const url = new URL(window.location.href)
     const getPalette = async (id: string) => {

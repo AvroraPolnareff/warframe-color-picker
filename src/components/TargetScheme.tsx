@@ -31,6 +31,7 @@ const TargetScheme = (
   const urlColors = useContext(UrlPaletteContext)
 
   const onExportClick = async () => {
+    if (typeof navigator === "undefined") return
     try {
       const hexColors = paletteColors.map(color => color ? Color(color).hex() : "")
       const exportUrl = await urlColors.savePalette({name: "defname", colors: hexColors})
