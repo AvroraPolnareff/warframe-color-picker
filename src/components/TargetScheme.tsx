@@ -1,5 +1,5 @@
 import React, {useContext, useMemo, useState} from "react";
-import styled, {css, DefaultTheme, Keyframes, keyframes} from "styled-components/macro";
+import styled, {css, DefaultTheme, Keyframes, keyframes} from "styled-components";
 import {Window} from "./shared/Window";
 import {FlexColumnCenter} from "./shared/FlexColumnCenter";
 import {Button} from "./shared/Button";
@@ -31,6 +31,7 @@ const TargetScheme = (
   const urlColors = useContext(UrlPaletteContext)
 
   const onExportClick = async () => {
+    if (typeof navigator === "undefined") return
     try {
       const hexColors = paletteColors.map(color => color ? Color(color).hex() : "")
       const exportUrl = await urlColors.savePalette({name: "defname", colors: hexColors})

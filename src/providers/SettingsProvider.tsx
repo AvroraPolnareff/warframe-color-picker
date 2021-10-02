@@ -1,4 +1,4 @@
-import {createContext, ReactNode} from "react";
+import {createContext, ReactNode, useEffect} from "react"
 import {useStickyState} from "../hooks/useStickyState";
 
 export enum Layout {
@@ -37,6 +37,16 @@ export const SettingsProvider = ({children}: {children: ReactNode}) => {
   const [layout, setLayout] = useStickyState(initSettings.layout, "layout");
   const [language, setLanguage] = useStickyState(initSettings.language, "language");
   const [enableMOTD, setEnableMOTD] = [false, (a: boolean) => {}];
+
+  // fix improper hydration
+  useEffect(() => {
+    if (initSettings.layout !== layout) {
+      setLayout(initSettings.layout)
+      setTimeout(() => {
+        setLayout(layout)
+      })
+    }
+  }, [])
 
   return (
     <SettingsContext.Provider value={{

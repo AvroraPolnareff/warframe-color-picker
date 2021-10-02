@@ -1,6 +1,5 @@
 import React, {useContext} from "react";
-import styled, { css } from "styled-components/macro";
-import tipOfADay from "../assets/tipOfADay.svg"
+import styled, { css } from "styled-components";
 import {CurrentScreenContext, Screen} from "../providers/CurrentScreenProvider";
 import {SettingsContext} from "../providers/SettingsProvider";
 import {TransitionProps} from "react-transition-group/Transition";
@@ -51,7 +50,7 @@ const StyledHeader = styled.header`
   width: fit-content;
 `
 
-const TipOfADay = styled.img.attrs(() => ({src: tipOfADay}))`
+const TipOfADay = styled.img.attrs(() => ({src: "/images/tipOfADay.svg"}))`
   width: 14.7em;
   height: 4.83em;
 `

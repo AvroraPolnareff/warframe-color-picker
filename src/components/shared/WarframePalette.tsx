@@ -1,7 +1,7 @@
 import {Position} from "../../common/Palette";
 import React from "react";
 import {palettes} from "../../common/palettes";
-import styled, {css, keyframes} from "styled-components/macro";
+import styled, {css, keyframes} from "styled-components";
 
 interface WarframePaletteProps {
   size: number,

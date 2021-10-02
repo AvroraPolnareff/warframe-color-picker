@@ -3,7 +3,7 @@ import {Position} from "../common/Palette";
 import {Divider} from "./shared/Divider";
 import {FlexColumnCenter} from "./shared/FlexColumnCenter";
 import {Window} from "./shared/Window";
-import styled from "styled-components/macro";
+import styled from "styled-components";
 import {ColorCell} from "./shared/ColorCell";
 import {Badge} from "./shared/Badge";
 import {Switch} from "./shared/Switch";
@@ -37,7 +37,6 @@ export const Suggestions = (props: SuggestionsProps) => {
   const [switched, setSwitched] = useState(false)
   const [selected, setSelected] = useState("")
   const {t} = useTranslation()
-
   useEffect(() => {
     if (props.matchedColors.length)
       setSelected(props.matchedColors[0].uid)
@@ -79,10 +78,7 @@ export const Suggestions = (props: SuggestionsProps) => {
     <Window width={14.321}>
       <FlexColumnCenter>
         <img
-          src={
-            /* @ts-ignore */
-            t("colorPicker.suggestions.suggestions")
-          }
+          src={t("colorPicker.suggestions.suggestions", {defaultValue: "/images/suggestions.svg"})}
           style={{width: "12em", marginTop: "0.25em", pointerEvents: "none", userSelect: "none"}}
           alt=""
         />
@@ -102,6 +98,7 @@ export const Suggestions = (props: SuggestionsProps) => {
         <Scrollbars
           style={{height: props.height ?? "32.55em", width: "104%"}}
           autoHide autoHideDuration={200}
+          universal
           ref={scrollbarsRef}
           onUpdate={onScrollbarUpdate}
         >

@@ -1,6 +1,5 @@
 import React, {ReactNode} from 'react'
-import styled, {keyframes} from "styled-components/macro"
-import grid from "../../assets/no-color-grid-small.png"
+import styled, {keyframes} from "styled-components"
 
 interface ColorCellProps {
   outline?: boolean
@@ -60,7 +59,7 @@ const OutlineWrapper = styled.div<{outline?: boolean}>`
 `
 
 const StyledColorCell = styled.div.attrs<{color: string}>(({color}) => ({
-  style: {background: color !== "" ? color : `repeat center/150% url(${grid})`}
+  style: {background: color !== "" ? color : `repeat center/150% url("/images/no-color-grid-small.png")`}
 }))`
     content: " ";
     height: 1.07em;
