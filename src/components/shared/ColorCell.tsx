@@ -17,11 +17,14 @@ export const ColorCell = (
   }: ColorCellProps
 ) => {
   return (
-    <OutlineWrapper outline={outline}>
-      <StyledColorCell onClick={onClick} color={color} onContextMenu={onClick}>
-        {children}
-      </StyledColorCell>
-    </OutlineWrapper>)
+    <CellWrapper onClick={onClick}>
+      <OutlineWrapper outline={outline}>
+        <StyledColorCell color={color} onContextMenu={onClick}>
+          {children}
+        </StyledColorCell>
+      </OutlineWrapper>
+    </CellWrapper>
+  )
 }
 
 const gradient = keyframes`
@@ -40,6 +43,10 @@ const gradient = keyframes`
   100% {
     background-position: 0 0;
   }
+`
+
+const CellWrapper = styled.div`
+  z-index: 100;
 `
 
 const OutlineWrapper = styled.div<{outline?: boolean}>`
@@ -64,6 +71,6 @@ const StyledColorCell = styled.div.attrs<{color: string}>(({color}) => ({
     content: " ";
     height: 1.07em;
     margin: 0.15em;
-    width: 1.21em;
+    width: 1.25em;
     border-radius: 0.55em;
 `

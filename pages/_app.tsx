@@ -15,6 +15,10 @@ import "public/css/normalize.css"
 const GlobalStyle = createGlobalStyle`
   html {
     font-size: 14px;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+    text-shadow: rgba(0, 0, 0, .1) 0 0 1px
   }
 
   @media (min-width: 1400px) {
@@ -25,6 +29,7 @@ const GlobalStyle = createGlobalStyle`
 
   * {
     box-sizing: border-box;
+    
   }
 `
 

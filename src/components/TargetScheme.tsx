@@ -1,5 +1,5 @@
 import React, {useContext, useMemo, useState} from "react";
-import styled, {css, DefaultTheme, Keyframes, keyframes} from "styled-components";
+import styled, {css} from "styled-components";
 import {Window} from "./shared/Window";
 import {FlexColumnCenter} from "./shared/FlexColumnCenter";
 import {Button} from "./shared/Button";
@@ -177,6 +177,7 @@ const Manual = (
       <StyledManual>
         {cellsRows.map((row, index) => (
           <CellsRow selected={selectedRow === index}>
+            <CellsBorder selected={selectedRow === index}/>
             {row.map((cell) => (
               <ColorCell
                 color={cell.color}
@@ -184,6 +185,7 @@ const Manual = (
                 onClick={(e) => onCellChange(cell.index, e)}
               />
             ))}
+
           </CellsRow>
         ))}
       </StyledManual>
@@ -192,11 +194,27 @@ const Manual = (
 }
 
 const StyledManual = styled.div`
+  
   //display: grid;
   //grid-template-rows: repeat(6, 1fr);
   //grid-template-columns: repeat(8, 1fr);
   //row-gap: 0.15em;
   
+`
+
+const CellsBorder = styled.div<{selected?: boolean}>`
+  position: absolute;
+  content: " ";
+  left: -2%;
+  top: -5.6%;
+  width: 104%;
+  height: 1.55em;
+  border: 2px dashed transparent;
+  border-radius: 1.6em;
+  transition: border-color linear 0.2s;
+  ${({selected, theme}) => selected && css`
+    border-color: ${theme.colors.secondary};
+  `}
 `
 
 const Wrapper = styled.div`
@@ -205,40 +223,10 @@ const Wrapper = styled.div`
 `
 
 const CellsRow = styled.div<{selected?: boolean}>`
+  position: relative;
   display: flex;
   justify-content: space-between;
   height: 1.55em;
-  border: 2px dashed transparent;
-  border-radius: 0.4em;
-  ${({selected}) => selected && css`
-    animation-duration: 2s;
-    animation-name: ${props => animation(props)};
-    
-  `}
-`
-
-const animation: ({theme}: { theme: DefaultTheme }) => Keyframes = ({theme}) => keyframes`
-  0% {
-    border-color: transparent;
-  }
-  17% {
-    border-color: ${theme.colors.secondary};;
-  }
-  35% {
-    border-color: transparent;
-  }
-  50% {
-     border-color: ${theme.colors.secondary};;
-  }
-  67% {
-    border-color: transparent;
-  }
-  84% {
-     border-color: ${theme.colors.secondary};;
-  }
-  100 % {
-    border-color: transparent;
-  }
 `
 
 interface ColorEntryProps {
