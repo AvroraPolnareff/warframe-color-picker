@@ -1,6 +1,6 @@
 {
   "layoutSelection": {
-    "headerImage": "choose-your-fighter.svg",
+    "headerImage": "/images/choose-your-fighter.svg",
     "headerText": "选择是要使用扩展布局还是原始的经典布局。",
     "bottomText": [
       "更多定制选项即将推出！如果您有好点子，或者想提前体验新功能，请加入我们的 ",
@@ -46,7 +46,7 @@
     "clear": "清空"
   },
   "schemeImport": {
-    "headerImage": "scheme-import-en.svg",
+    "headerImage": "/images/scheme-import-en.svg",
     "headerText": "警告: 这将覆盖您当前的配色方案。选择是要保留当前配色方案，还是从链接中导入新配色方案。",
     "currentScheme": "当前方案",
     "newScheme": "新方案",
@@ -69,7 +69,7 @@
       "copied": "已复制"
     },
     "suggestions": {
-      "suggestions": "SUGGESTIONS.svg",
+      "suggestions": "/images/suggestions.svg",
       "scroll": "滚动查看更多！",
       "palettes": "色板"
     },

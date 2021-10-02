@@ -1,6 +1,6 @@
 {
   "layoutSelection": {
-    "headerImage": "choose-your-fighter.svg",
+    "headerImage": "/images/choose-your-fighter.svg",
     "headerText": "Select whether you want to use an expanded layout, or the original, classic one.",
     "bottomText": [
       "More customization options are on the way! Hop onto our ",
@@ -46,7 +46,7 @@
     "clear": "clear"
   },
   "schemeImport": {
-    "headerImage": "scheme-import-en.svg",
+    "headerImage": "/images/scheme-import-en.svg",
     "headerText": "Warning: this will override your current scheme. Choose whether you want to keep the current scheme, or import a new one from the link.",
     "currentScheme": "Current scheme",
     "newScheme": "New scheme",
@@ -69,7 +69,7 @@
       "copied": "copied!"
     },
     "suggestions": {
-      "suggestions": "SUGGESTIONS.svg",
+      "suggestions": "/images/suggestions.svg",
       "scroll": "SCROLL FOR MORE!",
       "palettes": "PALETTES"
     },

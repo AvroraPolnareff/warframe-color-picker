@@ -1,6 +1,6 @@
 {
   "layoutSelection": {
-    "headerImage": "choose-your-fighter-ru.svg",
+    "headerImage": "/images/choose-your-fighter-ru.svg",
     "headerText": "Выберите одну из двух планировок расположения окон: расширенную или классическую.",
     "bottomText": [
       "Более широкие инструменты настройки уже находятся в разработке! Заглядывай к нам на огонёк в ",
@@ -46,7 +46,7 @@
     "clear": "clear"
   },
   "schemeImport": {
-    "headerImage": "scheme-import-ru.svg",
+    "headerImage": "/images/scheme-import-ru.svg",
     "headerText": "Внимание: новая палитра безвозвратно перезапишет старую. Выберите одну из палитр ниже.",
     "currentScheme": "Старая палитра",
     "newScheme": "Новая палитра",
@@ -69,7 +69,7 @@
       "copied": "скопировано!"
     },
     "suggestions": {
-      "suggestions": "SUGGESTIONS.svg",
+      "suggestions": "/images/suggestions.svg",
       "scroll": "SCROLL FOR MORE!",
       "palettes": "PALETTES"
     },
