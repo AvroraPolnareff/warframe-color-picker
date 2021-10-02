@@ -8,7 +8,7 @@ import {ColorCell} from "./shared/ColorCell";
 import {Badge} from "./shared/Badge";
 import {Switch} from "./shared/Switch";
 import {Button} from "./shared/Button";
-import {positionValues, Scrollbars} from "react-custom-scrollbars"
+import {positionValues, Scrollbars} from "react-custom-scrollbars-2"
 import {SwapIcon} from "../assets/SwapIcon"
 import Color from "color";
 import {useTranslation} from "react-i18next";
