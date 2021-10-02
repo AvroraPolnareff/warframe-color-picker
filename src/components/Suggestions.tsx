@@ -98,6 +98,7 @@ export const Suggestions = (props: SuggestionsProps) => {
         <Scrollbars
           style={{height: props.height ?? "32.55em", width: "104%"}}
           autoHide autoHideDuration={200}
+          universal
           ref={scrollbarsRef}
           onUpdate={onScrollbarUpdate}
         >
