@@ -43,7 +43,7 @@ function App() {
       </AppBar>
       <ScreensSwitcher/>
       {
-        process.env.noIndex ?
+        !process.env.index ?
           <Credentials><span>App was moved to: </span><a href="https://www.warframecolorpicker.app/">https://www.warframecolorpicker.app/</a>. Please, export your palette and follow the link.</Credentials> :
           <Credentials><span>Hippothoe & Morisabeau</span></Credentials>
       }
