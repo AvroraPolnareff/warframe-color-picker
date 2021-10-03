@@ -8,6 +8,8 @@ const Index = () => {
         title="Warframe Color Picker"
         description="I'm your very own Cephalon Cosmetologist from now on, Operator! 😎 Find closest colors | Import colors schemes from screenshots | Share with your friends"
         canonical="https://www.warframecolorpicker.app/"
+        noindex={!!process.env.NO_INDEX}
+        nofollow={!!process.env.NO_INDEX}
         additionalLinkTags={[
           {rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png"},
           {rel: "mask-icon", href: "/safari-pinned-tab.svg", color: "#5bbad5"},
