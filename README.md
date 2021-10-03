@@ -79,7 +79,7 @@ Here's a sum up of all available tips & guides for the app!
 
 * [Sometimes Export feature doesn't work due to AdBlock extensions (such as uBlock Origin or AdBlockPlus)](https://github.com/AvroraPolnareff/warframe-color-picker/issues/15).
 
-## Contributors ✨
+# Contributors ✨
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
