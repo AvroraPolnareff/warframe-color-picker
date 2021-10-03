@@ -26,24 +26,24 @@
     "show": "Показать"
   },
   "palettesModal": {
-    "modalName": "Palettes",
-    "description": "Customize your suggestions",
-    "disableAll": "disable all",
-    "enableAll": "enable all"
+    "modalName": "Палитры",
+    "description": "Выберите доступные палитры",
+    "disableAll": "выключить все",
+    "enableAll": "включить все"
   },
   "importModal": {
-    "modalName": "Scheme Import",
-    "description": "Insert the code below",
+    "modalName": "Импорт цветовой схемы",
+    "description": "Вставьте код ниже",
     "textArea": [
-      "Paste your ",
-      "code",
-      " or ",
-      "scheme screenshot",
-      " here..."
+      "Вставьте ",
+      "код",
+      " или ",
+      "скриншот цветовой схемы",
+      " здесь..."
     ],
-    "manualUpload": "MANUAL UPLOAD",
-    "accept": "accept",
-    "clear": "clear"
+    "manualUpload": "Загрузка скриншота",
+    "accept": "принять",
+    "clear": "отчистить"
   },
   "schemeImport": {
     "headerImage": "/images/scheme-import-ru.svg",
@@ -55,7 +55,7 @@
   },
   "colorPicker": {
     "targetScheme": {
-      "targetScheme": "TARGET SCHEME",
+      "targetScheme": "Цветовая схема",
       "default": "DEFAULT",
       "manual": "MANUAL",
       "primary": "ОСНОВНОЙ",
@@ -70,14 +70,14 @@
     },
     "suggestions": {
       "suggestions": "/images/suggestions.svg",
-      "scroll": "SCROLL FOR MORE!",
-      "palettes": "PALETTES"
+      "scroll": "Доброе утро, славяне!",
+      "palettes": "Палитры"
     },
     "selectedColor": {
-      "selectedColor": "SELECTED COLOR"
+      "selectedColor": "Палитра"
     },
     "motd": "Join our Discord at: discord.gg/WWBYuY3! This place is not only limited to Warframe, so feel free to hop in even if you’re on a break. Our community is still growing, and we’re actively looking for new people. Hope to see you around!",
-    "howToUse": "HOW TO USE"
+    "howToUse": "МАНУАЛ"
   },
   "palettes": {
     "Agony": "Агония",
