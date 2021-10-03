@@ -12,7 +12,8 @@ const Index = () => {
         //   {name: "theme-color", content: "#ffffff"}
         // ]}
         additionalLinkTags={[
-          {rel: "manifest", href: "/manifest.json"}
+          {rel: "manifest", href: "/manifest.json"},
+          {rel:"shortcut icon", href: "/favicon.ico", type:"image/x-icon"}
         ]}
         additionalMetaTags={[
           {name: "yandex-verification", content: "b316278f5276b429"}
