@@ -44,6 +44,7 @@ jobs:
         run: |
           npm ci --legacy-peer-deps
           ASSET_PREFIX="/warframe-color-picker/"
+          NO_INDEX=true
           npm run build
           npm run export
           
