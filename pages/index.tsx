@@ -2,7 +2,7 @@ import App from "../src/components/App";
 import {NextSeo} from "next-seo"
 
 const Index = () => {
-  const description = process.env.index ?
+  const description = !process.env.index ?
     "App was moved to: https://www.warframecolorpicker.app/. Please, follow the link." :
     "I'm your very own Cephalon Cosmetologist from now on, Operator! 😎 Find closest colors | Import colors schemes from screenshots | Share with your friends"
   return (
@@ -11,8 +11,8 @@ const Index = () => {
         title="Warframe Color Picker"
         description={description}
         canonical="https://www.warframecolorpicker.app/"
-        noindex={!!process.env.index}
-        nofollow={!!process.env.index}
+        noindex={!process.env.index}
+        nofollow={!process.env.index}
         additionalLinkTags={[
           {rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png"},
           {rel: "mask-icon", href: "/safari-pinned-tab.svg", color: "#5bbad5"},
