@@ -1,17 +1,15 @@
 import React, {useContext, useEffect} from 'react';
 import styled from "styled-components";
-import {AppBar, Container, Entry} from './AppBar';
-import {ScreensSwitcher} from "./ScreensSwitcher";
-import {CurrentScreenContext, Screen} from "../providers/CurrentScreenProvider";
-import {SettingsContext} from "../providers/SettingsProvider";
 import {useTranslation} from "react-i18next";
-import {Link} from "./shared/Link" 
+import {AppBar, Container, Entry} from 'src/components/AppBar';
+import {ScreensSwitcher} from "src/components/ScreensSwitcher"
+import {CurrentScreenContext, Screen} from "src/providers/CurrentScreenProvider";
+import {SettingsContext} from "src/providers/SettingsProvider";
 
 function App() {
   const {setScreen, screen} = useContext(CurrentScreenContext);
-  const {language, enableMOTD, setEnableMOTD} = useContext(SettingsContext);
+  const {language} = useContext(SettingsContext);
   const {t, i18n} = useTranslation();
-  const showMOTD = screen === Screen.COLOR_PICKER
   useEffect(() => {
     i18n.changeLanguage(language).catch(e => console.log(e))
   }, [language, i18n])
@@ -61,11 +59,6 @@ export const StyledApp = styled.div`
   position: relative;
   color: ${props => props.theme.colors.secondary};
   margin: 0;
-  font-family: "Gilroy", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-  sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 `
 
 export default App;

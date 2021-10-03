@@ -13,10 +13,6 @@ const GlobalStyle = createGlobalStyle`
       font-size: 20px;
     }
   }
-
-  * {
-    box-sizing: border-box;
-  }
 `
 
 const Index = () => {

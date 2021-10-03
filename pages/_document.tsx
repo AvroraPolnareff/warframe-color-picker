@@ -3,6 +3,7 @@ import { ServerStyleSheet } from 'styled-components'
 import en from "locales/en/translation.json";
 import ru from "locales/ru/translation.json";
 import zh_CN from "locales/zh_CN/translation.json";
+import {NextSeo} from "next-seo"
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {

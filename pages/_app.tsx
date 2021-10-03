@@ -10,26 +10,21 @@ import {I18nextProvider, Resources, useSSR} from "react-i18next";
 import i18n from "../src/i18n";
 import "public/fonts/stylesheet.css"
 import "public/css/normalize.css"
-
+import {NextSeo} from "next-seo"
 
 const GlobalStyle = createGlobalStyle`
   html {
-    font-size: 14px;
+    font-family: "Gilroy", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
     -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
     -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
     text-shadow: rgba(0, 0, 0, .1) 0 0 1px
-  }
-
-  @media (min-width: 1400px) {
-    html {
-      font-size: 20px;
-    }
   }
 
   * {
     box-sizing: border-box;
-    
   }
 `
 
@@ -43,6 +38,21 @@ function MyApp({ Component, pageProps }: AppProps<{langResources: Resources}>) {
           <UrlPaletteContextProvider>
             <I18nextProvider i18n={i18n}>
               <GlobalStyle/>
+              <NextSeo
+                additionalLinkTags={[
+                  {rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png"},
+                  {rel: "mask-icon", href: "/safari-pinned-tab.svg", color: "#5bbad5"},
+                  {rel: "icon", type: "image/png", sizes: "32x32", href: "/favicon-32x32.png"},
+                  {rel: "icon", type: "image/png", sizes: "16x16", href: "/favicon-16x16.png"},
+                  {rel: "manifest", href: "/site.webmanifest"},
+                  {rel:"shortcut icon", href: "/favicon.ico", type:"image/x-icon"}
+                ]}
+                additionalMetaTags={[
+                  {name: "msapplication-TileColor", content: "#5bbad5"},
+                  {name: "theme-color", content: "#000000"},
+                  {name: "yandex-verification", content: "b316278f5276b429"}
+                ]}
+              />
               <Component {...pageProps} />
             </I18nextProvider>
           </UrlPaletteContextProvider>
