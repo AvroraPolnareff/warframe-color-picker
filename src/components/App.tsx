@@ -5,13 +5,11 @@ import {ScreensSwitcher} from "./ScreensSwitcher";
 import {CurrentScreenContext, Screen} from "../providers/CurrentScreenProvider";
 import {SettingsContext} from "../providers/SettingsProvider";
 import {useTranslation} from "react-i18next";
-import {Link} from "./shared/Link" 
 
 function App() {
   const {setScreen, screen} = useContext(CurrentScreenContext);
-  const {language, enableMOTD, setEnableMOTD} = useContext(SettingsContext);
+  const {language} = useContext(SettingsContext);
   const {t, i18n} = useTranslation();
-  const showMOTD = screen === Screen.COLOR_PICKER
   useEffect(() => {
     i18n.changeLanguage(language).catch(e => console.log(e))
   }, [language, i18n])
@@ -44,7 +42,12 @@ function App() {
         <Container/>
       </AppBar>
       <ScreensSwitcher/>
-      <Credentials><span>Hippothoe & Morisabeau</span></Credentials>
+      {
+        process.env.noIndex ?
+          <Credentials><span>App was moved to: </span><a>https://www.warframecolorpicker.app/</a>. Please, export your palette and follow the link.</Credentials> :
+          <Credentials><span>Hippothoe & Morisabeau</span></Credentials>
+      }
+
     </StyledApp>
   );
 }
