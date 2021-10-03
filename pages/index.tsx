@@ -2,11 +2,14 @@ import App from "../src/components/App";
 import {NextSeo} from "next-seo"
 
 const Index = () => {
+  const description = process.env.noIndex ?
+    "App was moved to: https://www.warframecolorpicker.app/. Please, follow the link." :
+    "I'm your very own Cephalon Cosmetologist from now on, Operator! 😎 Find closest colors | Import colors schemes from screenshots | Share with your friends"
   return (
     <>
       <NextSeo
         title="Warframe Color Picker"
-        description="I'm your very own Cephalon Cosmetologist from now on, Operator! 😎 Find closest colors | Import colors schemes from screenshots | Share with your friends"
+        description={description}
         canonical="https://www.warframecolorpicker.app/"
         noindex={!!process.env.noIndex}
         nofollow={!!process.env.noIndex}

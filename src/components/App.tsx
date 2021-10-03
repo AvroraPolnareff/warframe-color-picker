@@ -44,7 +44,7 @@ function App() {
       <ScreensSwitcher/>
       {
         process.env.noIndex ?
-          <Credentials><span>App was moved to: </span><a>https://www.warframecolorpicker.app/</a>. Please, export your palette and follow the link.</Credentials> :
+          <Credentials><span>App was moved to: </span><a href="https://www.warframecolorpicker.app/">https://www.warframecolorpicker.app/</a>. Please, export your palette and follow the link.</Credentials> :
           <Credentials><span>Hippothoe & Morisabeau</span></Credentials>
       }
 
@@ -58,6 +58,10 @@ const Credentials = styled.div`
   left: 2%;
   text-align: right;
   font-size: 1.25rem;
+  
+  a {
+    color: ${({theme}) => theme.colors.link}
+  }
 `
 
 export const StyledApp = styled.div`
