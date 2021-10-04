@@ -205,9 +205,9 @@ const StyledManual = styled.div`
 const CellsBorder = styled.div<{selected?: boolean}>`
   position: absolute;
   content: " ";
-  left: -2%;
+  left: -1.1%;
   top: -5.6%;
-  width: 104%;
+  width: 102.4%;
   height: 1.55em;
   border: 2px dashed transparent;
   border-radius: 1.6em;
