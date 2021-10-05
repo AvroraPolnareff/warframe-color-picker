@@ -2,4 +2,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://warframecolorpicker.app/sitemap.xml
+Sitemap: https://www.warframecolorpicker.app/sitemap.xml
