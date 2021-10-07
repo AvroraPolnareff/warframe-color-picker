@@ -1,7 +1,7 @@
-# What is Warframe Color Picker?
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
+# What is Warframe Color Picker?
 
 Warframe Color Picker is an easy tool designed to help you with managing your in-game fashion. If you’re a fashionframe enthusiast, this tool will be irreplaceable for you!
 
