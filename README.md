@@ -63,7 +63,7 @@ Here's the list of currently available features, divided into sections. Named ac
   * Hover your mouse over a color to get its coordinates displayed in the palette name field (X, Y)
 
 # **How to use**
-Here's a sum up of all available tips & guides for the app!
+Here's the list of all available tips & guides for the app!
 
 ### HOW TO IMPORT FROM SCREENSHOT:
 
