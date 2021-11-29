@@ -3,18 +3,18 @@
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 # What is Warframe Color Picker?
 
-Warframe Color Picker is an easy tool designed to help you with managing your in-game fashion. If you’re a fashionframe enthusiast, this tool will be irreplaceable for you!
+Warframe Color Picker is an easy tool designed to help with managing your in-game fashion. If you’re a fashionframe enthusiast, this tool will be irreplaceable for you!
 
-All models in Warframe tend to have different textures, bump maps, and other stuff that heavily affects the color, sometimes changing it in a drastic way. In order to solve this, you’ll need a slightly brighter, or less saturated version of the color that you want to achieve. Without this tool, it’d be an absolute nightmare to grind your eyes through all the available palettes, since there are over 3000 colors in the game!
+All models in Warframe tend to have different textures, bump maps, and other stuff that heavily affects the color, sometimes changing it in a drastic way. In order to solve this, you’ll need a slightly brighter or less saturated variation of the color you wanted to achieve. Without this tool, it’d be an absolute nightmare to grind your eyes through all the available palettes, since there are over 3000 colors in the game!
 
-Lucky for all of us, we’ve made an app that lets you adjust your entire color scheme on the fly! Once you’ve adjusted a color, it’ll show a list of the closest colors to the one you want to achieve from all in-game palettes.
+Lucky for everyone, we’ve made an app that lets you adjust your entire color scheme on the fly! Once you’ve adjusted a color, it’ll show a list of the closest colors to the one you wanted to achieve from all in-game palettes. Try it out!
 
-Here's the link! https://warframecolorpicker.app/
+Here's the link: https://warframecolorpicker.app/
 
 ![App](https://cdn.discordapp.com/attachments/752169119331385444/892765258681315378/unknown.png)
 
-# What are the main features?
-Here is the list of currently available most important features divided into sections, named accordingly.
+# Warframe Color Picker Features
+Here's the list of currently available features, divided into sections. Named accordingly.
 
 ### **COLOR PICKER**:
 
@@ -69,11 +69,11 @@ Here's a sum up of all available tips & guides for the app!
 
 ![HowToImport](https://cdn.discordapp.com/attachments/752169119331385444/892780487532232824/HowToImport2.jpg)
 
-1. In order to do that, you first need to make a screenshot of your in-game scheme (using **Snip & Sketch** on Windows is pretty much enough), cropping it in the same way as shown in the picture.
+1. In order to do that, you'll first need to make a screenshot of your in-game scheme using any software at your disposal (pro tip: using **Snip & Sketch** on Windows is pretty much enough), cropping it in the same way as shown in the picture. Please do not use your smartphone camera, that's cringe.
 
-2. Once you've made the screenshot, please insert it in this field via CTRL+V. If it doesn't work, please save it on your PC and use **MANUAL UPLOAD** button.
+2. Once you've made the screenshot, please insert it in the Scheme Import field via CTRL+V. If it doesn't work, please save it on your PC first, and then use **MANUAL UPLOAD** button. Select the cropped screenshot and click the upload button.
 
-3. BOOM, you're done!! If you did everything right, of course.
+3. BOOM, you're done!! If you did everything right, the scheme will appear in the app. It will take the selected horizontal row of color slots in the **MANUAL** menu.
 
 # Known issues
 
