@@ -3,8 +3,8 @@ import {NextSeo} from "next-seo"
 
 const Index = () => {
   const description = !process.env.index ?
-    "App was moved to: https://www.warframecolorpicker.app/. Please, follow the link." :
-    "I'm your very own Cephalon Cosmetologist from now on, Operator! 😎 Find closest colors | Import colors schemes from screenshots | Share with your friends"
+    "The app has been moved to a new link: https://www.warframecolorpicker.app/" :
+    "Unironically the best and most versatile fashionframe companion out there. Adjust your colors, import schemes from screenshots, share with your friends!"
   return (
     <>
       <NextSeo
