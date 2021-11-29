@@ -89,7 +89,7 @@ export const Expanded = () => {
               />
             </div>
             <Link
-              href="https://github.com/AvroraPolnareff/warframe-color-picker/blob/master/docs/GUIDE.md"
+              href="https://github.com/AvroraPolnareff/warframe-color-picker/blob/master/docs/GUIDE.md#how-to-use"
               height={2.3}
               width={11}>{t("colorPicker.howToUse")}</Link>
             <div style={{display: "flex"}}>
