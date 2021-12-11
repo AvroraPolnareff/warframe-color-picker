@@ -1,4 +1,7 @@
 # **How to use**
+
+[简体中文版说明](GUIDE.CN.md)
+
 Here's the list of all available tips & guides for the app!
 
 ### HOW TO IMPORT FROM SCREENSHOT:
