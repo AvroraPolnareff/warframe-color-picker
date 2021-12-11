@@ -37,7 +37,7 @@ function App() {
           >
             {t("menu.languageSwitch")}
           </Entry>
-          <Entry><a href="https://github.com/AvroraPolnareff/warframe-color-picker/blob/master/README.md" style={{textDecoration: "none", color: "inherit"}}>{t("menu.help")}</a></Entry>
+          <Entry><a href={t("links.guide")} style={{textDecoration: "none", color: "inherit"}}>{t("menu.help")}</a></Entry>
         </Container>
         <Container/>
       </AppBar>
