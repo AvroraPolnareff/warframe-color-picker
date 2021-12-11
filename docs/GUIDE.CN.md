@@ -1,4 +1,7 @@
 # **使用方法**
+
+[Read in English](GUIDE.md)
+
 这里是 Warframe Color Picker 的使用教学和提示。
 
 ### 如何从截图导入配色:
