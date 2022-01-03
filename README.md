@@ -1,6 +1,28 @@
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
+
+# Contributors ✨
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/Morisabeau"><img src="https://avatars.githubusercontent.com/u/74872505?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Asta Ness</b></sub></a><br /><a href="#design-Morisabeau" title="Design">🎨</a> <a href="#content-Morisabeau" title="Content">🖋</a> <a href="#question-Morisabeau" title="Answering Questions">💬</a> <a href="#ideas-Morisabeau" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="https://github.com/AvroraPolnareff"><img src="https://avatars.githubusercontent.com/u/46288303?v=4?s=100" width="100px;" alt=""/><br /><sub><b>AvroraPolnareff</b></sub></a><br /><a href="https://github.com/Avrora Polnareff/Warframe Color Picker/commits?author=AvroraPolnareff" title="Code">💻</a> <a href="#infra-AvroraPolnareff" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#ideas-AvroraPolnareff" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="https://www.ckylin.site/"><img src="https://avatars.githubusercontent.com/u/11648014?v=4?s=100" width="100px;" alt=""/><br /><sub><b>CKylinMC</b></sub></a><br /><a href="#translation-CKylinMC" title="Translation">🌍</a> <a href="https://github.com/Avrora Polnareff/Warframe Color Picker/commits?author=CKylinMC" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/rokettu"><img src="https://avatars.githubusercontent.com/u/84252990?v=4?s=100" width="100px;" alt=""/><br /><sub><b>rokettu</b></sub></a><br /><a href="#translation-rokettu" title="Translation">🌍</a> <a href="#content-rokettu" title="Content">🖋</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+
 # What is Warframe Color Picker?
 
 Warframe Color Picker is an easy tool designed to help with managing your in-game fashion. If you’re a fashionframe enthusiast, this tool will be irreplaceable for you!
@@ -78,24 +100,3 @@ Here's the list of all available tips & guides for the app!
 # Known issues
 
 * [Sometimes Export feature doesn't work due to AdBlock extensions (such as uBlock Origin or AdBlockPlus)](https://github.com/AvroraPolnareff/warframe-color-picker/issues/15).
-
-# Contributors ✨
-
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-<table>
-  <tr>
-    <td align="center"><a href="https://github.com/Morisabeau"><img src="https://avatars.githubusercontent.com/u/74872505?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Asta Ness</b></sub></a><br /><a href="#design-Morisabeau" title="Design">🎨</a> <a href="#content-Morisabeau" title="Content">🖋</a> <a href="#question-Morisabeau" title="Answering Questions">💬</a> <a href="#ideas-Morisabeau" title="Ideas, Planning, & Feedback">🤔</a></td>
-    <td align="center"><a href="https://github.com/AvroraPolnareff"><img src="https://avatars.githubusercontent.com/u/46288303?v=4?s=100" width="100px;" alt=""/><br /><sub><b>AvroraPolnareff</b></sub></a><br /><a href="https://github.com/Avrora Polnareff/Warframe Color Picker/commits?author=AvroraPolnareff" title="Code">💻</a> <a href="#infra-AvroraPolnareff" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#ideas-AvroraPolnareff" title="Ideas, Planning, & Feedback">🤔</a></td>
-    <td align="center"><a href="https://www.ckylin.site/"><img src="https://avatars.githubusercontent.com/u/11648014?v=4?s=100" width="100px;" alt=""/><br /><sub><b>CKylinMC</b></sub></a><br /><a href="#translation-CKylinMC" title="Translation">🌍</a> <a href="https://github.com/Avrora Polnareff/Warframe Color Picker/commits?author=CKylinMC" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/rokettu"><img src="https://avatars.githubusercontent.com/u/84252990?v=4?s=100" width="100px;" alt=""/><br /><sub><b>rokettu</b></sub></a><br /><a href="#translation-rokettu" title="Translation">🌍</a> <a href="#content-rokettu" title="Content">🖋</a></td>
-  </tr>
-</table>
-
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
-
-<!-- ALL-CONTRIBUTORS-LIST:END -->
-
-This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
