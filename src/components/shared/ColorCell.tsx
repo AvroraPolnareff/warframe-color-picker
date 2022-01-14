@@ -19,7 +19,12 @@ export const ColorCell = (
   return (
     <CellWrapper onClick={onClick}>
       <OutlineWrapper outline={outline}>
-        {process.browser && <StyledColorCell cellColor={color} onContextMenu={onClick}>
+        {process.browser && <StyledColorCell
+            //@ts-ignore
+            //TODO FIX
+            cellColor={color}
+            onContextMenu={onClick}
+        >
           {children}
         </StyledColorCell>
         }
