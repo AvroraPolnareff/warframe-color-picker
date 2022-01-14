@@ -19,9 +19,10 @@ export const ColorCell = (
   return (
     <CellWrapper onClick={onClick}>
       <OutlineWrapper outline={outline}>
-        <StyledColorCell color={color} onContextMenu={onClick}>
+        {process.browser && <StyledColorCell cellColor={color} onContextMenu={onClick}>
           {children}
         </StyledColorCell>
+        }
       </OutlineWrapper>
     </CellWrapper>
   )
@@ -65,8 +66,8 @@ const OutlineWrapper = styled.div<{outline?: boolean}>`
     -webkit-tap-highlight-color: transparent;
 `
 
-const StyledColorCell = styled.div.attrs<{color: string}>(({color}) => ({
-  style: {background: color !== "" ? color : `repeat center/150% url("/images/no-color-grid-small.png")`}
+const StyledColorCell = styled.div.attrs<{cellColor?: string}>(({cellColor}) => ({
+  style: {background: cellColor || `repeat center/150% url("/images/no-color-grid-small.png")`}
 }))`
     content: " ";
     height: 1.07em;
