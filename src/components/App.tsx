@@ -64,14 +64,6 @@ const Credentials = styled.div`
   }
 `
 
-const Attention = styled.div`
-  width: 100%;
-  font-size: 1.25rem;
-  text-align: center;
-  display: flex;
-  
-`
-
 export const StyledApp = styled.div`
   position: relative;
   color: ${props => props.theme.colors.secondary};
