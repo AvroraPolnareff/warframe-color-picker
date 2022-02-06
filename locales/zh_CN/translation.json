@@ -1,7 +1,7 @@
 {
   "layoutSelection": {
     "headerImage": "/images/choose-your-fighter.svg",
-    "headerText": "选择是要使用扩展布局还是原始的经典布局。",
+    "headerText": "选择是要使用扩展布局还是原本的经典布局。",
     "bottomText": [
       "更多定制选项即将推出！如果您有好点子，或者想提前体验新功能，请加入我们的 ",
       "Discord",
@@ -9,7 +9,7 @@
     ]
   },
   "languageSelection": {
-    "headerText": ["注意!", " 调色板名称将根据所选语言进行更改。"],
+    "headerText": ["注意!", " 调色板名称将根据所选语言进行翻译。"],
     "bottomText": [
       "缺少您所使用的语言？不用担心，您可以帮忙添加您的语言的翻译！前往我们的 ",
       "Discord",
@@ -26,8 +26,8 @@
     "show": "显示"
   },
   "palettesModal": {
-    "modalName": "色板",
-    "description": "自定义您的建议",
+    "modalName": "色板列表",
+    "description": "选择启用的色板",
     "disableAll": "禁用全部",
     "enableAll": "启用全部"
   },
