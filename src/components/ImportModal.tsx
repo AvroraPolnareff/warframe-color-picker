@@ -96,7 +96,7 @@ export const ImportModal = (
             onClick={() => setContent("")}
             style={{marginRight: '0.4em'}}
           >
-            clear
+            {t("importModal.clear")}
           </Button>
           <Button round small primary onClick={() => onAccept(content)}>{t("importModal.accept")}</Button>
         </div>
