@@ -15,7 +15,7 @@ export const colors: Colors = {
 }
 
 export const createTheme = (colors: Colors) : DefaultTheme => {
-  const darken = Object.entries(colors).map(([key, value]) => [key, Color(value).darken(0.2).toString()])
+  const darken = Object.entries(colors).map(([key, value]) => [key, Color(value).darken(0.2).hex().toString()])
   return ({
     colors: {
       ...colors,
