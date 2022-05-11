@@ -1,15 +1,40 @@
 import React, {useContext, useEffect} from 'react';
-import styled from "styled-components";
+import styled, {Colors} from "styled-components";
 import {AppBar, Container, Entry} from './AppBar';
 import {ScreensSwitcher} from "./ScreensSwitcher";
 import {CurrentScreenContext, Screen} from "../providers/CurrentScreenProvider";
 import {SettingsContext} from "../providers/SettingsProvider";
 import {useTranslation} from "react-i18next";
+import Color from "color";
+import {Window} from "./shared/Window";
+import {useRouter} from "next/router";
+
+const ThemePanel = ({themeColors, setThemeColors}: {themeColors: Colors, setThemeColors:  React.Dispatch<React.SetStateAction<Colors>>}) => {
+  const setColor = (name: string, color: string) => {
+    try {
+      new Color(color)
+      setThemeColors((prev) => ({...prev, [name]: color}))
+    } catch {}
+  }
+  return (
+    <div style={{position: "fixed", bottom: 0, left: 0, zIndex: 100}}>
+      <Window >
+        {Object.entries(themeColors).map(([name, value]) => (
+          <div>
+            {name}{value}{<input type="color" value={value} onChange={(e) => setColor(name, e.target.value)}/>}
+          </div>
+        ))}
+      </Window>
+    </div>
+  )
+}
 
 function App() {
   const {setScreen, screen} = useContext(CurrentScreenContext);
-  const {language} = useContext(SettingsContext);
+  const {language, colors, setColors} = useContext(SettingsContext);
   const {t, i18n} = useTranslation();
+  const router = useRouter()
+  const showPanel = router.asPath.includes("moriska")
   useEffect(() => {
     i18n.changeLanguage(language).catch(e => console.log(e))
   }, [language, i18n])
@@ -47,7 +72,7 @@ function App() {
           <Credentials><a href="https://www.warframecolorpicker.app/">Hooray, we've gotten a new link!</a>Please follow <a href="https://github.com/AvroraPolnareff/warframe-color-picker/blob/master/README.md">this guide</a> to move your old palettes.</Credentials> :
           <Credentials><span>Hippothoe & Morisabeau</span></Credentials>
       }
-
+      {showPanel && <ThemePanel themeColors={colors} setThemeColors={setColors}/>}
     </StyledApp>
   );
 }

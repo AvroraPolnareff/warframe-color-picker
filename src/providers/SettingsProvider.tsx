@@ -1,5 +1,7 @@
 import {createContext, ReactNode, useEffect} from "react"
 import {useStickyState} from "../hooks/useStickyState";
+import {Colors} from "styled-components";
+import {colors} from "../common/themes";
 
 export enum Layout {
   EXPANDED = "EXPANDED",
@@ -19,11 +21,15 @@ export interface Settings {
   setEnableMOTD: (enable: boolean) => void,
   setLanguage: (lang: Language) => void,
   setLayout: (layout: Layout) => void,
+  colors: Colors,
+  setColors:  React.Dispatch<React.SetStateAction<Colors>>
 }
 
 const initSettings: Settings = {
   layout: Layout.EXPANDED,
   language: Language.ENGLISH,
+  colors: colors,
+  setColors: () => {},
   enableMOTD: true,
   setLanguage: () => {},
   setLayout: () => {},
@@ -33,7 +39,7 @@ const initSettings: Settings = {
 export const SettingsContext = createContext<Settings>(initSettings);
 
 
-export const SettingsProvider = ({children}: {children: ReactNode}) => {
+export const SettingsProvider = ({children, colors, setColors}: {children: ReactNode, colors: Colors, setColors: React.Dispatch<React.SetStateAction<Colors>>}) => {
   const [layout, setLayout] = useStickyState(initSettings.layout, "layout");
   const [language, setLanguage] = useStickyState(initSettings.language, "language");
   const [enableMOTD, setEnableMOTD] = [false, (a: boolean) => {}];
@@ -56,6 +62,8 @@ export const SettingsProvider = ({children}: {children: ReactNode}) => {
       setLayout,
       setLanguage,
       setEnableMOTD,
+      colors,
+      setColors
     }}>
       {children}
     </SettingsContext.Provider>
