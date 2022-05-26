@@ -70,7 +70,7 @@ function App() {
       {
         !process.env.index ?
           <Credentials><a href="https://www.warframecolorpicker.app/">Hooray, we've gotten a new link!</a>Please follow <a href="https://github.com/AvroraPolnareff/warframe-color-picker/blob/master/README.md">this guide</a> to move your old palettes.</Credentials> :
-          <Credentials><span>Hippothoe & Morisabeau, last updated: 26/05/2022</span></Credentials>
+          <Credentials><span>Hippothoe & Morisabeau, <br/>last upd.: 26/05/2022</span></Credentials>
       }
       {showPanel && <ThemePanel themeColors={colors} setThemeColors={setColors}/>}
     </StyledApp>
@@ -81,8 +81,8 @@ const Credentials = styled.div`
   position: fixed;
   bottom: 2%;
   left: 2%;
-  text-align: right;
-  font-size: 1.25rem;
+  text-align: left;
+  font-size: 1.125rem;
 
   a {
     color: ${({theme}) => theme.colors.link}
