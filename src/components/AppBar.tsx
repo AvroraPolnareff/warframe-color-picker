@@ -38,7 +38,7 @@ export const Entry = (
 
 export const StyledEntry = styled.div<{active?: boolean}>`
   padding: 0.05em 0.3em;
-  background-color: ${({theme, active}) => active ? theme.colors.primary : theme.colors.secondary};
+  background-color: ${({theme, active}) => active ? theme.colors.primary : theme.colors.tertiary};
   border-bottom-left-radius: 0.7em;
   border-bottom-right-radius: 0.7em;
   user-select: none;
@@ -48,7 +48,7 @@ export const StyledEntry = styled.div<{active?: boolean}>`
   width: 9em;
 
   :hover {
-    background-color: ${({theme, active}) => active ? theme.colors.darken.primary : theme.colors.darken.secondary};
+    background-color: ${({theme, active}) => active ? theme.colors.darken.primary : theme.colors.darken.tertiary};
   }
   
   transition: background-color 0.3s ease;
