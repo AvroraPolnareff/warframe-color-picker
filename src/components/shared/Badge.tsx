@@ -8,7 +8,7 @@ interface BadgeProps {
 }
 
 export const Badge = styled.div<BadgeProps>`
-  background-color: ${props => props.color || props.theme.colors.secondary};
+  background-color: ${props => props.color || props.theme.colors.tertiary};
   color: ${props => props.theme.colors.background};
   padding: 0.1em 0.45em;
   
@@ -21,7 +21,7 @@ export const Badge = styled.div<BadgeProps>`
   transition: background-color 0.15s linear;
   ${props => props.hoverable && css`
     &:hover {
-      background-color: ${props => props.theme.colors.darken.secondary};
+      background-color: ${props => props.theme.colors.darken.tertiary};
     }
   `}
 `
