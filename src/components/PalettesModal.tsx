@@ -82,7 +82,7 @@ const PaletteName = styled.div`
   font-size: 0.655rem;
   text-transform: uppercase;
   width: 11.8em;
-  border: 0.15em solid ${props => props.theme.colors.tertiary};
+  border: 0.15em solid ${props => props.theme.colors.quaternary};
   border-radius: 0.5em;
   padding: 0.5em 0;
   margin-bottom: 0.5em;

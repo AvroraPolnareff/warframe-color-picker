@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react"
+import React, {useState} from "react"
 import {Window} from "./shared/Window";
 import {FlexColumnCenter} from "./shared/FlexColumnCenter";
 import styled from "styled-components";
@@ -93,7 +93,7 @@ const PaletteName = styled.div`
     margin-bottom: 0.5em;
     width: 100%;
     font-size: 0.8rem;
-    border: 0.15em solid ${props => props.theme.colors.tertiary};
+    border: 0.15em solid ${props => props.theme.colors.quaternary};
     border-radius: 0.5em;
     text-transform: uppercase;
 `

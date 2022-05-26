@@ -100,7 +100,7 @@ const PalleteName = styled.h2`
 `
 
 const StyledPalette = styled.div`
-  background-color: ${({theme}) => theme.colors.tertiary};
+  background-color: ${({theme}) => theme.colors.quaternary};
   border-radius: 1em;
   padding: 0.5em;
   display: grid;
@@ -116,9 +116,9 @@ const PaletteChooserEntry = styled.div<{enabled?: boolean}>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: ${({theme}) => theme.colors.tertiary};
+  color: ${({theme}) => theme.colors.quaternary};
   #choose-circle {
-    fill: ${({theme}) => theme.colors.darken.tertiary};
+    fill: ${({theme}) => theme.colors.darken.quaternary};
   }
   ${({enabled}) => enabled && css`
       #choose-circle {
@@ -127,18 +127,18 @@ const PaletteChooserEntry = styled.div<{enabled?: boolean}>`
     `}
   :hover {
     .svg-background {
-      fill: ${({theme}) => theme.colors.darken.tertiary};
+      fill: ${({theme}) => theme.colors.darken.quaternary};
     }
     #border {
-      fill: ${({theme}) => theme.colors.darken.tertiary};
+      fill: ${({theme}) => theme.colors.darken.quaternary};
     }
     ${({enabled}) => !enabled && css`
       #choose-circle {
-        fill: ${({theme}) => theme.colors.darken.tertiary};
+        fill: ${({theme}) => theme.colors.darken.quaternary};
       }
     `}
     ${StyledPalette} {
-      background-color: ${({theme}) => theme.colors.darken.tertiary};
+      background-color: ${({theme}) => theme.colors.darken.quaternary};
     }
   }
   
