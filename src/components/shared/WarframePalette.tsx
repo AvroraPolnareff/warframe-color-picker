@@ -44,7 +44,7 @@ const StyledWarframePalette = styled.div<{ size: number }>`
   grid-template-rows: repeat(18, 1fr);
   justify-items: center;
   align-items: center;
-  border: 0.2em solid ${props => props.theme.colors.tertiary};
+  border: 0.2em solid ${props => props.theme.colors.quaternary};
   border-radius: 0.633em;
   overflow: hidden;
 `

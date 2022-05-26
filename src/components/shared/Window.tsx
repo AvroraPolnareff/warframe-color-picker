@@ -35,7 +35,7 @@ const Content = styled.div`
 
 const WindowBorder = styled.div<{width?: number, height?: number}>`
     padding: 0.27em 0.7em 0.7em 0.27em;
-    background-color: ${props => props.theme.colors.tertiary};
+    background-color: ${props => props.theme.colors.quaternary};
     border-radius: 0.8em;
     margin: 0.5rem;
     ${props => props.width ? `width: ${props.width}em;`: ""}

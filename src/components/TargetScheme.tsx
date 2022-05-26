@@ -132,7 +132,7 @@ const Default = (
                   onClick={(e) => onCellClick(0, e)} color={colors[0]}/>
       <ColorEntry text={t("colorPicker.targetScheme.secondary")} selected={isSelected(1)}
                   onClick={(e) => onCellClick(1, e)} color={colors[1]}/>
-      <ColorEntry text={t("colorPicker.targetScheme.tertiary")} selected={isSelected(2)}
+      <ColorEntry text={t("colorPicker.targetScheme.quaternary")} selected={isSelected(2)}
                   onClick={(e) => onCellClick(2, e)} color={colors[2]}/>
       <ColorEntry text={t("colorPicker.targetScheme.quaternary")} selected={isSelected(3)}
                   onClick={(e) => onCellClick(3, e)} color={colors[3]}/>
@@ -213,7 +213,7 @@ const CellsBorder = styled.div<{selected?: boolean}>`
   border-radius: 1.6em;
   transition: border-color linear 0.2s;
   ${({selected, theme}) => selected && css`
-    border-color: ${theme.colors.secondary};
+    border-color: ${theme.colors.quaternary};
   `}
 `
 

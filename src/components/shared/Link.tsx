@@ -57,7 +57,7 @@ const Content = styled.div<{width?: number, height?: number}>`
 
 const WindowBorder = styled.a<{width?: number, height?: number}>`
   display: block;
-  background-color: ${props => props.theme.colors.tertiary};
+  background-color: ${props => props.theme.colors.quaternary};
   border-radius: 0.8em;
   margin: 0.5em;
   width: ${({width}) => width && width + 0.25 + 0.7}em;
