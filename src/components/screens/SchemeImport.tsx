@@ -102,14 +102,15 @@ const PalleteName = styled.h2`
 const StyledPalette = styled.div`
   background-color: ${({theme}) => theme.colors.quaternary};
   border-radius: 1em;
-  padding: 0.5em;
+  border: 0.25em solid ${({theme}) => theme.colors.tertiary};
+  padding: 0.25em;
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   grid-template-rows: repeat(6, 1fr);
   row-gap: 0.15em;
   column-gap: 0.15em;
   margin: 0.5em auto 1.5em auto;
-  transition: background-color 0.15s linear;
+  transition: border-color 0.15s linear;
 `
 
 const PaletteChooserEntry = styled.div<{enabled?: boolean}>`
@@ -138,7 +139,7 @@ const PaletteChooserEntry = styled.div<{enabled?: boolean}>`
       }
     `}
     ${StyledPalette} {
-      background-color: ${({theme}) => theme.colors.darken.quaternary};
+      border-color: ${({theme}) => theme.colors.darken.tertiary};
     }
   }
   
