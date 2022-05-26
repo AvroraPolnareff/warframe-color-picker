@@ -1,7 +1,10 @@
+import {useTheme} from "styled-components";
+
 export const ClassicLayoutIcon = () => {
+  const {colors} = useTheme()
   return (
     <svg id="svg" width="272" height="272" viewBox="0 0 272 272" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect className="svg-background" x="21.1805" width="232.986" height="232.986" rx="20" fill="#EBEBEB" style={{transition: "fill 0.5s ease"}}/>
+      <rect className="svg-background" x="21.1805" width="232.986" height="232.986" rx="20" fill={colors.tertiary} style={{transition: "fill 0.5s ease"}}/>
       <rect x="47" y="32" width="62" height="83" rx="5" fill="white"/>
       <rect x="117" y="23" width="57" height="70" rx="5" fill="white"/>
       <rect x="117" y="100" width="57" height="110" rx="5" fill="white"/>
