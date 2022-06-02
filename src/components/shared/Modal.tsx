@@ -59,7 +59,7 @@ const WindowWrapper = styled.div<{width?: number, height?: number}>`
   margin: 10% auto;
 `
 const Borders = styled.div`
-  background-color: ${props => props.theme.colors.quaternary};
+  background-color: ${props => props.theme.colors.secondary};
   padding: 0.3em 0.35em;
   border-radius: 10px;
 `
@@ -74,7 +74,7 @@ const ModalContent = styled.div`
 const TopBar = styled.div`
   display: flex;
   justify-content: space-between;
-  background-color: ${props => props.theme.colors.quaternary};
+  background-color: ${props => props.theme.colors.secondary};
   height: 1.2em;
   
 `

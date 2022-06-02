@@ -70,7 +70,7 @@ const HoveredPalette  = styled.div`
   position: absolute;
   right: -11.2em;
   top: -1.9em;
-  border: 4px solid ${props => props.theme.colors.quaternary};
+  border: 4px solid ${props => props.theme.colors.secondary};
   padding: 0.4em 0.6em;
   background-color: white;
   border-radius: 0.8em;
