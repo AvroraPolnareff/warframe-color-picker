@@ -3,17 +3,18 @@ import {useTheme} from "styled-components";
 export const ClassicLayoutIcon = () => {
   const {colors} = useTheme()
   return (
-    <svg id="svg" width="272" height="272" viewBox="0 0 272 272" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect className="svg-background" x="21.1805" width="232.986" height="232.986" rx="20" fill={colors.tertiary} style={{transition: "fill 0.5s ease"}}/>
-      <rect x="47" y="32" width="62" height="83" rx="5" fill="white"/>
-      <rect x="117" y="23" width="57" height="70" rx="5" fill="white"/>
-      <rect x="117" y="100" width="57" height="110" rx="5" fill="white"/>
-      <rect x="181" y="32" width="43" height="155" rx="5" fill="white"/>
-      <rect x="98" y="153" width="12" height="12" rx="5" fill="white"/>
-      <rect x="98" y="137" width="12" height="12" rx="5" fill="white"/>
-      <rect x="81" y="137" width="13" height="12" rx="5" fill="white"/>
-      <rect x="65" y="120" width="45" height="13" rx="5" fill="white"/>
-    </svg>
+      <svg width="163" height="162" viewBox="0 0 163 162" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0.389526" width="162" height="162" rx="20" className="svg-fill" fill={colors.secondary} style={{transition: "fill 0.5s ease"}}/>
+          <rect x="18.3423" y="22.2503" width="43.1099" height="57.7116" rx="5" fill="white"/>
+          <rect x="67.0147" y="15.9924" width="39.6333" height="48.6724" rx="5" fill="white"/>
+          <rect x="67.0147" y="69.532" width="39.6333" height="76.4852" rx="5" fill="white"/>
+          <rect x="111.515" y="22.2503" width="29.8988" height="107.775" rx="5" fill="white"/>
+          <rect x="53.8036" y="106.384" width="8.34384" height="8.34384" rx="4.17192" fill="white"/>
+          <rect x="53.8036" y="95.2589" width="8.34384" height="8.34384" rx="4.17192" fill="white"/>
+          <rect x="41.9832" y="95.2589" width="9.03917" height="8.34384" rx="4.17192" fill="white"/>
+          <rect x="30.858" y="83.4384" width="31.2894" height="9.03917" rx="4.51958" fill="white"/>
+      </svg>
+
   )
 }
 

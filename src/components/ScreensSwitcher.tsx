@@ -3,7 +3,7 @@ import {CurrentScreenContext, Screen} from "../providers/CurrentScreenProvider";
 import {Layout, SettingsContext} from "../providers/SettingsProvider";
 import {Classic} from "./layouts/Classic";
 import {Expanded} from "./layouts/Expanded";
-import {Layouts} from "./screens/Layouts";
+import {Interface} from "./screens/Interface";
 import {Languages} from "./screens/Languages";
 import {SwitchTransition, Transition} from "react-transition-group";
 import styled from "styled-components";
@@ -24,7 +24,7 @@ export const ScreensSwitcher = () => {
         <StyledScreenSwitcher>
         {
           screen === Screen.COLOR_PICKER ? <CurrentLayout layout={layout}/> :
-          screen === Screen.LAYOUT_SELECTION ? <Layouts/> :
+          screen === Screen.LAYOUT_SELECTION ? <Interface/> :
           screen === Screen.LANGUAGE_SELECTION ? <Languages/> :
           screen === Screen.SCHEME_IMPORT && <SchemeImport/>
         }

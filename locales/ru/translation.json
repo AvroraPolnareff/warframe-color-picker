@@ -1,15 +1,16 @@
 {
-  "layoutSelection": {
+  "interfaceScreen": {
     "headerImage": "/images/choose-your-fighter-ru.svg",
-    "headerText": "Выберите одну из двух планировок расположения окон: расширенную или классическую.",
+    "themeHint": "Select between Day & Night modes.",
+    "layoutHint": "Выберите одну из двух планировок расположения окон: расширенную или классическую.",
     "bottomText": [
       "Более широкие инструменты настройки уже находятся в разработке! Заглядывай к нам на огонёк в ",
       "Discord",
       ", если хочешь узнать больше!"
     ]
   },
-  "languageSelection": {
-    "headerText": ["Внимание!", " Названия палитр будут переведены в соответствии с выбранным языком."],
+  "languageScreen": {
+    "layoutHint": ["Внимание!", " Названия палитр будут переведены в соответствии с выбранным языком."],
     "bottomText": [
       "Your language is missing? No worries, you can support us by helping to add it! Head over to our ",
       "Discord",
@@ -17,7 +18,7 @@
     ]
   },
   "menu": {
-    "layoutSwitch": "Интерфейс",
+    "interface": "Интерфейс",
     "languageSwitch": "Язык",
     "help": "Справка",
     "colorPicker": "Пипетка",
@@ -47,7 +48,7 @@
   },
   "schemeImport": {
     "headerImage": "/images/scheme-import-ru.svg",
-    "headerText": "Внимание: новая палитра безвозвратно перезапишет старую. Выберите одну из палитр ниже.",
+    "layoutHint": "Внимание: новая палитра безвозвратно перезапишет старую. Выберите одну из палитр ниже.",
     "currentScheme": "Старая палитра",
     "newScheme": "Новая палитра",
     "confirm": "Подтвердить",

@@ -6,39 +6,56 @@ import {Divider} from "../shared/Divider";
 import {Layout, SettingsContext} from "../../providers/SettingsProvider";
 import {useTranslation} from "react-i18next";
 import {css} from "styled-components";
+import {Day} from "../../assets/Day";
+import {Night} from "../../assets/Night";
 
-export const Layouts = () => {
-  const {layout, setLayout} = useContext(SettingsContext);
+export const Interface = () => {
+  const {theme, setTheme, layout, setLayout} = useContext(SettingsContext);
   const {t} = useTranslation()
 
   return (
     <StyledLayoutsScreen>
-      <HeaderImage src={t("layoutSelection.headerImage")} alt=""/>
-      <DescriptionBlock>
+      <HeaderImage src={t("interfaceScreen.headerImage")} alt=""/>
+      <DescriptionBlock small>
         <Divider/>
-        <Text><span>{t("layoutSelection.headerText")}</span></Text>
+        <Text><span>{t("interfaceScreen.themeHint")}</span></Text>
         <Divider/>
       </DescriptionBlock>
-      <LayoutsChooser>
-        <LayoutChooserEntry onClick={() => setLayout(Layout.EXPANDED)} enabled={layout === Layout.EXPANDED}>
+      <OptionChooser>
+        <OptionChooserEntry onClick={() => setTheme("day")} enabled={theme === "day"}>
+          <Day/>
+          <Checkbox />
+        </OptionChooserEntry>
+        <OptionChooserEntry onClick={() => setTheme("night")} enabled={theme === "night"}>
+          <Night/>
+          <Checkbox/>
+        </OptionChooserEntry>
+      </OptionChooser>
+      <DescriptionBlock small>
+        <Divider/>
+        <Text><span>{t("interfaceScreen.layoutHint")}</span></Text>
+        <Divider/>
+      </DescriptionBlock>
+      <OptionChooser>
+        <OptionChooserEntry onClick={() => setLayout(Layout.EXPANDED)} enabled={layout === Layout.EXPANDED}>
           <ExpandedLayoutIcon/>
           <Checkbox />
-        </LayoutChooserEntry>
-        <LayoutChooserEntry onClick={() => setLayout(Layout.CLASSIC)} enabled={layout === Layout.CLASSIC}>
+        </OptionChooserEntry>
+        <OptionChooserEntry onClick={() => setLayout(Layout.CLASSIC)} enabled={layout === Layout.CLASSIC}>
           <ClassicLayoutIcon/>
           <Checkbox/>
-        </LayoutChooserEntry>
-      </LayoutsChooser>
+        </OptionChooserEntry>
+      </OptionChooser>
       <BottomBlock>
         <DescriptionBlock>
           <Divider/>
           <Text>
             <span>
-              {t("layoutSelection.bottomText", {returnObjects: true})[0]}
+              {t("interfaceScreen.bottomText", {returnObjects: true})[0]}
               <Link target="_blank" href="https://discord.gg/WWBYuY3">
-                {t("layoutSelection.bottomText", {returnObjects: true})[1]}
+                {t("interfaceScreen.bottomText", {returnObjects: true})[1]}
               </Link>
-              {t("layoutSelection.bottomText", {returnObjects: true})[2]}
+              {t("interfaceScreen.bottomText", {returnObjects: true})[2]}
             </span>
           </Text>
           <Divider/>
@@ -59,9 +76,9 @@ export const HeaderImage = styled.img`
   height: 9em;
 `;
 
-export const DescriptionBlock = styled.div`
-  margin: 1em 0;
-  width: 32em;
+export const DescriptionBlock = styled.div<{small?: boolean}>`
+  margin: 1.5em 0 0.5em 0;
+  width: ${({small}) => small ? "25em" : "32em"};
   font-size: 1.3rem;
   font-weight: 500;
   display: flex;
@@ -77,12 +94,11 @@ export const Text = styled.div`
   justify-content: center;
 `
 
-export const LayoutsChooser = styled.div`
+export const OptionChooser = styled.div`
   display: flex;
-  margin-top: 3em;
 `
 
-export const LayoutChooserEntry = styled.div<{enabled?: boolean}>`
+export const OptionChooserEntry = styled.div<{enabled?: boolean}>`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -96,8 +112,11 @@ export const LayoutChooserEntry = styled.div<{enabled?: boolean}>`
       }
     `}
   :hover {
-    .svg-background {
+    .svg-fill {
       fill: ${({theme}) => theme.colors.darken.tertiary};
+    }
+    .svg-stroke {
+      stroke: ${({theme}) => theme.colors.darken.tertiary};
     }
     #border {
       fill: ${({theme}) => theme.colors.darken.tertiary};
@@ -140,10 +159,11 @@ export const Checkbox = () => {
 
 const StyledCheckbox = styled.div`
   position: relative;
+  margin-top: 0.5em;
 `
 
 const CheckboxBackground = styled.svg`
-  width: 6em;
+  width: 5.5em;
   & > #choose-circle {
     transition: fill 0.2s ease;
   }

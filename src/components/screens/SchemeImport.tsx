@@ -2,7 +2,7 @@ import styled from "styled-components";
 import React, {useContext, useEffect, useState} from "react";
 import {useTranslation} from "react-i18next";
 import {Divider} from "../shared/Divider";
-import {Checkbox, DescriptionBlock, HeaderImage, Text} from "./Layouts";
+import {Checkbox, DescriptionBlock, HeaderImage, Text} from "./Interface";
 import {ColorCell} from "../shared/ColorCell";
 import {UrlPaletteContext} from "../../providers/UrlColorsProvider";
 import {Button} from "../shared/Button";

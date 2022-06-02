@@ -16,8 +16,8 @@ export const Languages = () => {
         <Divider/>
         <Text>
           <span>
-            <Danger>{t("languageSelection.headerText", {returnObjects: true})[0]}</Danger>
-            {t("languageSelection.headerText", {returnObjects: true})[1]}
+            <Danger>{t("languageScreen.headerText", {returnObjects: true})[0]}</Danger>
+            {t("languageScreen.headerText", {returnObjects: true})[1]}
           </span>
         </Text>
         <Divider/>
@@ -37,11 +37,11 @@ export const Languages = () => {
           <Divider/>
           <Text>
             <span>
-              {t("languageSelection.bottomText", {returnObjects: true})[0]}
+              {t("languageScreen.bottomText", {returnObjects: true})[0]}
               <Link target="_blank" href="https://discord.gg/WWBYuY3">
-                {t("languageSelection.bottomText", {returnObjects: true})[1]}
+                {t("languageScreen.bottomText", {returnObjects: true})[1]}
               </Link>
-              {t("languageSelection.bottomText", {returnObjects: true})[2]}
+              {t("languageScreen.bottomText", {returnObjects: true})[2]}
             </span>
           </Text>
           <Divider/>

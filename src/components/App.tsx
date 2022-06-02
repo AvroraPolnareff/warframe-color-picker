@@ -54,7 +54,7 @@ function App() {
             onClick={() => setScreen(Screen.LAYOUT_SELECTION)}
             active={screen === Screen.LAYOUT_SELECTION}
           >
-            {t("menu.layoutSwitch")}
+            {t("menu.interface")}
           </Entry>
           <Entry
             onClick={() => setScreen(Screen.LANGUAGE_SELECTION)}

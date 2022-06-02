@@ -1,15 +1,16 @@
 {
-  "layoutSelection": {
+  "interfaceScreen": {
     "headerImage": "/images/choose-your-fighter.svg",
-    "headerText": "Select whether you want to use an expanded layout, or the original, classic one.",
+    "themeHint": "Select between Day & Night modes.",
+    "layoutHint": "Select whether you want to use an expanded layout, or the original, classic one.",
     "bottomText": [
       "More customization options are on the way! Hop onto our ",
       "Discord",
       " if you have any suggestions, or if you just want to get a sneak peek on the upcoming changes!"
     ]
   },
-  "languageSelection": {
-    "headerText": ["Attention!", " Color Palette names will be changed according to the chosen language."],
+  "languageScreen": {
+    "layoutHint": ["Attention!", " Color Palette names will be changed according to the chosen language."],
     "bottomText": [
       "Your language is missing? No worries, you can support us by helping to add it! Head over to our ",
       "Discord",
@@ -17,7 +18,7 @@
     ]
   },
   "menu": {
-    "layoutSwitch": "Layout Switch",
+    "interface": "Interface",
     "languageSwitch": "Language",
     "help": "Help & Info",
     "colorPicker": "Color Picker",
@@ -47,7 +48,7 @@
   },
   "schemeImport": {
     "headerImage": "/images/scheme-import-en.svg",
-    "headerText": "Warning: this will override your current scheme. Choose whether you want to keep the current scheme, or import a new one from the link.",
+    "layoutHint": "Warning: this will override your current scheme. Choose whether you want to keep the current scheme, or import a new one from the link.",
     "currentScheme": "Current scheme",
     "newScheme": "New scheme",
     "confirm": "Confirm",

@@ -14,13 +14,17 @@ export enum Language {
   CHINESE = "zh_CN",
 }
 
+export type ThemeVariants = "night" | "day"
+
 export interface Settings {
   layout: Layout,
   language: Language,
+  theme: ThemeVariants,
   enableMOTD: boolean,
   setEnableMOTD: (enable: boolean) => void,
   setLanguage: (lang: Language) => void,
   setLayout: (layout: Layout) => void,
+  setTheme: (theme: ThemeVariants) => void,
   colors: Colors,
   setColors:  React.Dispatch<React.SetStateAction<Colors>>
 }
@@ -28,10 +32,12 @@ export interface Settings {
 const initSettings: Settings = {
   layout: Layout.EXPANDED,
   language: Language.ENGLISH,
+  theme: "night",
   colors: colors,
   setColors: () => {},
   enableMOTD: true,
   setLanguage: () => {},
+  setTheme: () => {},
   setLayout: () => {},
   setEnableMOTD: () => {},
 }
@@ -42,6 +48,7 @@ export const SettingsContext = createContext<Settings>(initSettings);
 export const SettingsProvider = ({children, colors, setColors}: {children: ReactNode, colors: Colors, setColors: React.Dispatch<React.SetStateAction<Colors>>}) => {
   const [layout, setLayout] = useStickyState(initSettings.layout, "layout");
   const [language, setLanguage] = useStickyState(initSettings.language, "language");
+  const [theme, setTheme] = useStickyState(initSettings.theme, "theme");
   const [enableMOTD, setEnableMOTD] = [false, (a: boolean) => {}];
 
   // fix improper hydration
@@ -58,9 +65,11 @@ export const SettingsProvider = ({children, colors, setColors}: {children: React
     <SettingsContext.Provider value={{
       layout,
       language,
+      theme,
       enableMOTD,
       setLayout,
       setLanguage,
+      setTheme,
       setEnableMOTD,
       colors,
       setColors

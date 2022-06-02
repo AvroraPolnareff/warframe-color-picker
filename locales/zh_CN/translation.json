@@ -1,15 +1,16 @@
 {
-  "layoutSelection": {
+  "interfaceScreen": {
     "headerImage": "/images/choose-your-fighter.svg",
-    "headerText": "选择是要使用扩展布局还是原本的经典布局。",
+    "themeHint": "Select between Day & Night modes.",
+    "layoutHint": "选择是要使用扩展布局还是原本的经典布局。",
     "bottomText": [
       "更多定制选项即将推出！如果您有好点子，或者想提前体验新功能，请加入我们的 ",
       "Discord",
       " !"
     ]
   },
-  "languageSelection": {
-    "headerText": ["注意!", " 调色板名称将根据所选语言进行翻译。"],
+  "languageScreen": {
+    "layoutHint": ["注意!", " 调色板名称将根据所选语言进行翻译。"],
     "bottomText": [
       "缺少您所使用的语言？不用担心，您可以帮忙添加您的语言的翻译！前往我们的 ",
       "Discord",
@@ -17,7 +18,7 @@
     ]
   },
   "menu": {
-    "layoutSwitch": "切换布局",
+    "interface": "切换布局",
     "languageSwitch": "语言",
     "help": "帮助 & 关于",
     "colorPicker": "取色器",
@@ -47,7 +48,7 @@
   },
   "schemeImport": {
     "headerImage": "/images/scheme-import-en.svg",
-    "headerText": "警告: 这将覆盖您当前的配色方案。选择是要保留当前配色方案，还是从链接中导入新配色方案。",
+    "layoutHint": "警告: 这将覆盖您当前的配色方案。选择是要保留当前配色方案，还是从链接中导入新配色方案。",
     "currentScheme": "当前方案",
     "newScheme": "新方案",
     "confirm": "确定",
