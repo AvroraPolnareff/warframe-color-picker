@@ -45,15 +45,14 @@ const initSettings: Settings = {
 export const SettingsContext = createContext<Settings>(initSettings);
 
 
-export const SettingsProvider = ({children}: {children: ReactNode}) => {
+export const SettingsProvider = (props: {children: ReactNode, theme: DefaultTheme, setTheme: React.Dispatch<React.SetStateAction<DefaultTheme>>}) => {
   const [layout, setLayout] = useStickyState(initSettings.layout, "layout")
   const [language, setLanguage] = useStickyState(initSettings.language, "language")
   const [theme, setTheme] = useStickyState(initSettings.theme, "theme")
-  const [colors, setColors] = useState(() => createTheme(theme === "night" ? nightTheme : dayTheme))
   const [enableMOTD, setEnableMOTD] = [false, (a: boolean) => {}]
 
   useEffect(() => {
-    setColors(createTheme(theme === "night" ? nightTheme : dayTheme))
+    props.setTheme(createTheme(theme === "night" ? nightTheme : dayTheme))
   }, [theme])
 
   // fix improper hydration
@@ -76,10 +75,10 @@ export const SettingsProvider = ({children}: {children: ReactNode}) => {
       setLanguage,
       setTheme,
       setEnableMOTD,
-      colors,
-      setColors
+      colors: props.theme,
+      setColors: props.setTheme,
     }}>
-      {children}
+      {props.children}
     </SettingsContext.Provider>
   )
 }

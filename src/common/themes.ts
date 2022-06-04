@@ -17,14 +17,14 @@ export const dayTheme: Colors = {
 
 
 export const nightTheme: Colors = {
-  primary: "#A5E8E8",
+  primary: "#55dcdc",
   textOnBackground: "#c8c8c8",
   textOnButtons: "#ffffff",
   buttons: "#424242",
   misc: "#424242",
-  danger: "#dba3a3",
-  success: "#A3DBA3",
-  link: "#A0A2EB",
+  danger: "#b25858",
+  success: "#5ab45a",
+  link: "#5c60b9",
   warning: "#e8dba5",
   targetSchemeHeader: "#e8a5a5",
   background: "#242424",

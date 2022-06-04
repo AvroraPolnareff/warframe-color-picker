@@ -8,6 +8,7 @@ import {useTranslation} from "react-i18next";
 import {css} from "styled-components";
 import {Day} from "../../assets/Day";
 import {Night} from "../../assets/Night";
+import InlineSVG from "react-inlinesvg";
 
 export const Interface = () => {
   const {theme, setTheme, layout, setLayout} = useContext(SettingsContext);
@@ -15,7 +16,9 @@ export const Interface = () => {
 
   return (
     <StyledLayoutsScreen>
-      <HeaderImage src={t("interfaceScreen.headerImage")} alt=""/>
+      <HeaderImage>
+        <InlineSVG src={t("interfaceScreen.headerImage")}/>
+      </HeaderImage>
       <DescriptionBlock small>
         <Divider/>
         <Text><span>{t("interfaceScreen.themeHint")}</span></Text>
@@ -71,9 +74,18 @@ const StyledLayoutsScreen = styled.div`
   align-items: center;
 `
 
-export const HeaderImage = styled.img`
-  width: 32.5em;
-  height: 9em;
+export const HeaderImage = styled.div`
+  svg {
+    width: 32.5em;
+    height: 9em;
+    & .background-stroke {
+      stroke: ${({theme}) => theme.colors.background}
+    }
+    & .lines-stroke {
+      stroke: ${({theme}) => theme.colors.misc}
+    }
+  }
+  
 `;
 
 export const DescriptionBlock = styled.div<{small?: boolean}>`

@@ -4,14 +4,13 @@ import {Divider} from "../shared/Divider";
 import {useTranslation} from "react-i18next";
 import {Language, SettingsContext} from "../../providers/SettingsProvider";
 import {css} from "styled-components";
-import Color from "color";
 
 export const Languages = () => {
   const {t} = useTranslation()
-  const {language, setLanguage} = useContext(SettingsContext)
+  const {language, setLanguage, theme} = useContext(SettingsContext)
   return (
     <StyledLanguages>
-      <HeaderImage src="/images/languages-header.png" alt="header"/>
+      <HeaderImage src={`/images/languages-header-${theme}.png`} alt="header"/>
       <DescriptionBlock>
         <Divider/>
         <Text>
