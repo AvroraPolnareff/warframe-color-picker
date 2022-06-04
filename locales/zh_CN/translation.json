@@ -48,7 +48,7 @@
   },
   "schemeImport": {
     "headerImage": "/images/scheme-import-en.svg",
-    "layoutHint": "警告: 这将覆盖您当前的配色方案。选择是要保留当前配色方案，还是从链接中导入新配色方案。",
+    "headerText": "警告: 这将覆盖您当前的配色方案。选择是要保留当前配色方案，还是从链接中导入新配色方案。",
     "currentScheme": "当前方案",
     "newScheme": "新方案",
     "confirm": "确定",
