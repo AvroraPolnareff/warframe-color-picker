@@ -55,7 +55,7 @@ export const StyledEntry = styled.div<{active?: boolean}>`
 `
 
 const EntryWrapper = styled.div`
-  color: ${({theme}) => theme.colors.background};
+  color: ${({theme}) => theme.colors.textOnButtons};
   transition: transform 0.3s ease;
 
   & + & {

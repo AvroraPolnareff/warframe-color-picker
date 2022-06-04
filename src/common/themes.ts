@@ -19,7 +19,7 @@ export const dayTheme: Colors = {
 export const nightTheme: Colors = {
   primary: "#A5E8E8",
   textOnBackground: "#c8c8c8",
-  textOnButtons: "#c8c8c8",
+  textOnButtons: "#ffffff",
   buttons: "#424242",
   misc: "#424242",
   danger: "#dba3a3",

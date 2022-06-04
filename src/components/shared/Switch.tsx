@@ -72,7 +72,7 @@ const Selection = styled.div<{switched: boolean, width: number}>`
 `
 
 const LeftText = styled.div`
-  color: ${props => props.theme.colors.background};
+  color: ${props => props.theme.colors.textOnButtons};
   z-index: 1;
   text-transform: uppercase;
   user-select: none;
@@ -80,7 +80,7 @@ const LeftText = styled.div`
   
 `
 const RightText = styled.div`
-  color: ${props => props.theme.colors.background};
+  color: ${props => props.theme.colors.textOnButtons};
   z-index: 1;
   text-transform: uppercase;
   user-select: none;

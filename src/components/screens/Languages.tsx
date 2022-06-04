@@ -124,7 +124,7 @@ const ListCheckbox = (
 }
 
 const CheckboxText = styled.div`
-  color: ${({theme}) => theme.colors.background};
+  color: ${({theme}) => theme.colors.textOnButtons};
   background: ${({theme}) => theme.colors.buttons};
   transition: background-color 0.5s ease;
   font-size: 1.5em;
