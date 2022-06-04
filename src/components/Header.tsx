@@ -64,6 +64,6 @@ const TipWrapper = styled.div<{hidden?: boolean}>`
   font-size: 1.3rem;
   margin: 0.35em auto auto 0.35em;
   width: 39em;
-  color: ${props => props.theme.colors.secondary};
+  color: ${props => props.theme.colors.textOnBackground};
   line-height: 1;
 `

@@ -4,7 +4,7 @@ export const ExpandedLayoutIcon = () => {
   const {colors} = useTheme()
   return (
       <svg width="163" height="162" viewBox="0 0 163 162" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="0.957703" width="162" height="162" rx="20" className="svg-fill"  fill={colors.secondary} style={{transition: "fill 0.5s ease"}}/>
+          <rect x="0.957703" width="162" height="162" rx="20" className="svg-fill" fill={colors.buttons} style={{transition: "fill 0.5s ease"}}/>
           <rect x="10.4258" y="15.8529" width="47.9812" height="59.0926" rx="5" fill="white"/>
           <rect x="10.4571" y="79.6504" width="47.9038" height="35.787" rx="5" fill="white"/>
           <rect x="63.1515" y="15.8255" width="47.9038" height="130.467" rx="5" fill="white"/>

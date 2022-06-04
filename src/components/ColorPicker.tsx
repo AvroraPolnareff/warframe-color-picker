@@ -263,7 +263,7 @@ const ColorInput = (
 const StyledColorInput = styled.input`
     display: flex;
     align-items: baseline;
-    background-color: ${props => props.color || props.theme.colors.tertiary};
+    background-color: ${props => props.color || props.theme.colors.buttons};
     color: ${props => props.theme.colors.background};
     padding: 0.2em 0.15em;
     max-height: 1.3em;
@@ -277,7 +277,7 @@ const StyledColorInput = styled.input`
     text-align: center;
   
     &:focus, &:hover {
-      background-color: ${props => Color(props.color || props.theme.colors.tertiary).darken(0.2).toString()};
+      background-color: ${props => Color(props.color || props.theme.colors.buttons).darken(0.2).toString()};
     }
     
     &:focus {
@@ -354,7 +354,7 @@ const StyledHexInput = styled.input.attrs(() => ({
 }))<{ valid: boolean, compact?: boolean }>`
   display: flex;
   align-items: center;
-  background-color: ${props => props.valid ? props.theme.colors.tertiary : props.theme.colors.danger};
+  background-color: ${props => props.valid ? props.theme.colors.buttons : props.theme.colors.danger};
   color: ${props => props.theme.colors.background};
   padding: 0.2em 0.3em;
   max-height: 1.3em;
@@ -372,7 +372,7 @@ const StyledHexInput = styled.input.attrs(() => ({
   `}
   
   &:hover {
-    background-color: ${props => props.valid ? props.theme.colors.darken.tertiary : props.theme.colors.darken.danger};
+    background-color: ${props => props.valid ? props.theme.colors.darken.buttons : props.theme.colors.darken.danger};
   }
   
   &:focus {

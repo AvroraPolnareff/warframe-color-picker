@@ -41,7 +41,7 @@ const Wrapper = styled.div.attrs(() => ({tabIndex: 0}))<{ width: number}>`
   font-weight: bold;
   position: relative;
   padding: ${offset}em;
-  background: ${props => props.theme.colors.tertiary};
+  background: ${props => props.theme.colors.buttons};
   border-radius: 0.766em;
   width: ${props => props.width}em;
   height: ${height + offset*2 }em;
@@ -51,7 +51,7 @@ const Wrapper = styled.div.attrs(() => ({tabIndex: 0}))<{ width: number}>`
   outline: none;
   
   &:hover  {
-    background-color: ${props => props.theme.colors.darken.tertiary};
+    background-color: ${props => props.theme.colors.darken.buttons};
   }
 `
 

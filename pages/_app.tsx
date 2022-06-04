@@ -1,10 +1,8 @@
-// import App from "next/app";
-import type { AppProps /*, AppContext */ } from "next/app"
+import type { AppProps } from "next/app"
 import {Colors, createGlobalStyle, ThemeProvider} from "styled-components";
-import React, {useState} from "react";
-import {colors, createTheme} from "../src/common/themes";
+import React, {ReactNode, useContext, useState} from "react";
 import {CurrentScreenProvider} from "../src/providers/CurrentScreenProvider";
-import {SettingsProvider} from "../src/providers/SettingsProvider";
+import {SettingsContext, SettingsProvider} from "../src/providers/SettingsProvider";
 import {UrlPaletteContextProvider} from "../src/providers/UrlColorsProvider";
 import {I18nextProvider, Resources, useSSR} from "react-i18next";
 import i18n from "../src/i18n";
@@ -29,28 +27,37 @@ const GlobalStyle = createGlobalStyle`
 
   * {
     box-sizing: border-box;
-    
   }
 `
 
+const AppThemeProvider = (props: {children: ReactNode}) => {
+  const {colors} = useContext(SettingsContext)
+  return (
+      <ThemeProvider theme={colors}>
+        {props.children}
+      </ThemeProvider>
+  )
+}
 
 function MyApp({ Component, pageProps }: AppProps<{langResources: Resources}>) {
   // TODO: change to dynamic ssr translations
   useSSR(pageProps.langResources, "en")
-  const [themeColors, setThemeColors] = useState(colors)
+
   return (
-    <ThemeProvider theme={createTheme(themeColors)}>
-      <CurrentScreenProvider>
-        <SettingsProvider colors={themeColors} setColors={setThemeColors}>
+
+    <CurrentScreenProvider>
+      <SettingsProvider>
+        <AppThemeProvider>
           <UrlPaletteContextProvider>
             <I18nextProvider i18n={i18n}>
               <GlobalStyle/>
               <Component {...pageProps} />
             </I18nextProvider>
           </UrlPaletteContextProvider>
-        </SettingsProvider>
-      </CurrentScreenProvider>
-    </ThemeProvider>
+        </AppThemeProvider>
+      </SettingsProvider>
+    </CurrentScreenProvider>
+
   )
 }
 

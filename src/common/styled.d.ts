@@ -7,9 +7,10 @@ declare module 'styled-components' {
 
   export interface ThemeColors {
     primary: string;
-    secondary: string;
-    tertiary: string;
-    quaternary: string;
+    textOnBackground: string;
+    textOnButtons: string;
+    buttons: string;
+    misc: string;
     danger: string;
     success: string;
     link: string;

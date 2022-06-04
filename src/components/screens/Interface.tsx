@@ -1,5 +1,5 @@
 import React, {useContext} from "react";
-import styled from "styled-components";
+import styled, {useTheme} from "styled-components";
 import {ClassicLayoutIcon} from "../../assets/ClassicLayoutIcon"
 import {ExpandedLayoutIcon} from "../../assets/ExpandedLayoutIcon"
 import {Divider} from "../shared/Divider";
@@ -72,7 +72,7 @@ const StyledLayoutsScreen = styled.div`
 `
 
 export const HeaderImage = styled.img`
-  width: 35em;
+  width: 32.5em;
   height: 9em;
 `;
 
@@ -102,9 +102,9 @@ export const OptionChooserEntry = styled.div<{enabled?: boolean}>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: ${({theme}) => theme.colors.tertiary};
+  color: ${({theme}) => theme.colors.buttons};
   #choose-circle {
-    fill: ${({theme}) => theme.colors.darken.tertiary};
+    fill: ${({theme}) => theme.colors.darken.buttons};
   }
   ${({enabled}) => enabled && css`
       #choose-circle {
@@ -113,17 +113,17 @@ export const OptionChooserEntry = styled.div<{enabled?: boolean}>`
     `}
   :hover {
     .svg-fill {
-      fill: ${({theme}) => theme.colors.darken.tertiary};
+      fill: ${({theme}) => theme.colors.darken.buttons};
     }
     .svg-stroke {
-      stroke: ${({theme}) => theme.colors.darken.tertiary};
+      stroke: ${({theme}) => theme.colors.darken.buttons};
     }
     #border {
-      fill: ${({theme}) => theme.colors.darken.tertiary};
+      fill: ${({theme}) => theme.colors.darken.buttons};
     }
     ${({enabled}) => !enabled && css`
       #choose-circle {
-        fill: ${({theme}) => theme.colors.darken.tertiary};
+        fill: ${({theme}) => theme.colors.darken.buttons};
       }
     `}
   }
@@ -145,12 +145,13 @@ const BottomBlock = styled.div`
 
 
 export const Checkbox = () => {
+  const {colors} = useTheme()
   return (
     <StyledCheckbox>
       <CheckboxBackground viewBox="0 0 128 48">
         <rect id="border" x="40" width="48" height="48" rx="24" fill="currentColor"/>
         <rect id="border" y="21" width="128" height="6" rx="3" fill="currentColor"/>
-        <rect x="48" y="8" width="32" height="32" rx="16" fill="white"/>
+        <rect x="48" y="8" width="32" height="32" rx="16" fill={colors.background}/>
         <rect id="choose-circle" x="51" y="11" width="26" height="26" rx="16"/>
       </CheckboxBackground>
     </StyledCheckbox>

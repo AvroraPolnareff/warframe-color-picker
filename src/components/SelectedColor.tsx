@@ -93,7 +93,7 @@ const PaletteName = styled.div`
     margin-bottom: 0.5em;
     width: 100%;
     font-size: 0.8rem;
-    border: 0.15em solid ${props => props.theme.colors.quaternary};
+    border: 0.15em solid ${props => props.theme.colors.misc};
     border-radius: 0.5em;
     text-transform: uppercase;
 `

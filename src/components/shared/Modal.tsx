@@ -59,7 +59,7 @@ const WindowWrapper = styled.div<{width?: number, height?: number}>`
   margin: 10% auto;
 `
 const Borders = styled.div`
-  background-color: ${props => props.theme.colors.secondary};
+  background-color: ${props => props.theme.colors.textOnBackground};
   padding: 0.3em 0.35em;
   border-radius: 10px;
 `
@@ -68,13 +68,13 @@ const ModalContent = styled.div`
   background-color: white;
   border-radius: 0.3em;
   padding: 0.4em 0.4em;
-  color: ${props => props.theme.colors.darken.secondary}
+  color: ${props => props.theme.colors.darken.textOnBackground}
 `
 
 const TopBar = styled.div`
   display: flex;
   justify-content: space-between;
-  background-color: ${props => props.theme.colors.secondary};
+  background-color: ${props => props.theme.colors.textOnBackground};
   height: 1.2em;
   
 `

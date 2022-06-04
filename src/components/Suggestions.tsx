@@ -3,7 +3,7 @@ import {Position} from "../common/Palette";
 import {Divider} from "./shared/Divider";
 import {FlexColumnCenter} from "./shared/FlexColumnCenter";
 import {Window} from "./shared/Window";
-import styled from "styled-components";
+import styled, {useTheme} from "styled-components";
 import {ColorCell} from "./shared/ColorCell";
 import {Badge} from "./shared/Badge";
 import {Switch} from "./shared/Switch";
@@ -37,6 +37,7 @@ export const Suggestions = (props: SuggestionsProps) => {
   const [switched, setSwitched] = useState(false)
   const [selected, setSelected] = useState("")
   const {t} = useTranslation()
+  const {colors} = useTheme()
   useEffect(() => {
     if (props.matchedColors.length)
       setSelected(props.matchedColors[0].uid)
@@ -62,8 +63,8 @@ export const Suggestions = (props: SuggestionsProps) => {
       pointer-events: none;
     `
     const gradient = `background: linear-gradient(
-      0deg, rgba(255,255,255,1) 0%, rgba(0,0,0,0) ${(1 - values.top) * 20}%,
-      rgba(0,0,0,0) ${100 - (values.top) * 20}%, rgba(255,255,255,1) 100%
+      0deg, ${colors.background} 0%, rgba(0,0,0,0) ${(1 - values.top) * 20}%,
+      rgba(0,0,0,0) ${100 - (values.top) * 20}%, ${colors.background} 100%
     )`
 
     fadesRef.current.setAttribute("style", fadesStyle + gradient)

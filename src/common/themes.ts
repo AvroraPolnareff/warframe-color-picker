@@ -1,17 +1,33 @@
 import {Colors, DefaultTheme, ThemeColors} from 'styled-components'
 import Color from "color";
 
-export const colors: Colors = {
+export const dayTheme: Colors = {
   primary: "#A5E8E8",
-  secondary: "#c8c8c8",
-  tertiary: "#c8c8c8",
-  quaternary: "#e6e6e6",
+  textOnBackground: "#c8c8c8",
+  textOnButtons: "#ffffff",
+  buttons: "#c8c8c8",
+  misc: "#e6e6e6",
   danger: "#dba3a3",
   success: "#A3DBA3",
   link: "#A0A2EB",
   warning: "#e8dba5",
   targetSchemeHeader: "#e8a5a5",
   background: "#ffffff",
+}
+
+
+export const nightTheme: Colors = {
+  primary: "#A5E8E8",
+  textOnBackground: "#c8c8c8",
+  textOnButtons: "#c8c8c8",
+  buttons: "#424242",
+  misc: "#424242",
+  danger: "#dba3a3",
+  success: "#A3DBA3",
+  link: "#A0A2EB",
+  warning: "#e8dba5",
+  targetSchemeHeader: "#e8a5a5",
+  background: "#242424",
 }
 
 export const createTheme = (colors: Colors) : DefaultTheme => {

@@ -95,14 +95,14 @@ const Palette = ({colors}: {colors: string[]}) => {
 }
 
 const PalleteName = styled.h2`
-  color: ${({theme}) => theme.colors.secondary};
+  color: ${({theme}) => theme.colors.textOnBackground};
   margin: 0 auto;
 `
 
 const StyledPalette = styled.div`
-  background-color: ${({theme}) => theme.colors.quaternary};
+  background-color: ${({theme}) => theme.colors.misc};
   border-radius: 1em;
-  border: 0.25em solid ${({theme}) => theme.colors.tertiary};
+  border: 0.25em solid ${({theme}) => theme.colors.buttons};
   padding: 0.25em;
   display: grid;
   grid-template-columns: repeat(8, 1fr);
@@ -117,9 +117,9 @@ const PaletteChooserEntry = styled.div<{enabled?: boolean}>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: ${({theme}) => theme.colors.quaternary};
+  color: ${({theme}) => theme.colors.misc};
   #choose-circle {
-    fill: ${({theme}) => theme.colors.darken.quaternary};
+    fill: ${({theme}) => theme.colors.darken.misc};
   }
   ${({enabled}) => enabled && css`
       #choose-circle {
@@ -128,18 +128,18 @@ const PaletteChooserEntry = styled.div<{enabled?: boolean}>`
     `}
   :hover {
     .svg-background {
-      fill: ${({theme}) => theme.colors.darken.quaternary};
+      fill: ${({theme}) => theme.colors.darken.misc};
     }
     #border {
-      fill: ${({theme}) => theme.colors.darken.quaternary};
+      fill: ${({theme}) => theme.colors.darken.misc};
     }
     ${({enabled}) => !enabled && css`
       #choose-circle {
-        fill: ${({theme}) => theme.colors.darken.quaternary};
+        fill: ${({theme}) => theme.colors.darken.misc};
       }
     `}
     ${StyledPalette} {
-      border-color: ${({theme}) => theme.colors.darken.tertiary};
+      border-color: ${({theme}) => theme.colors.darken.buttons};
     }
   }
   

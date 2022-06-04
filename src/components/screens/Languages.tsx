@@ -1,5 +1,5 @@
 import React, {ReactNode, useContext} from "react";
-import styled from "styled-components";
+import styled, {useTheme} from "styled-components";
 import {Divider} from "../shared/Divider";
 import {useTranslation} from "react-i18next";
 import {Language, SettingsContext} from "../../providers/SettingsProvider";
@@ -101,6 +101,7 @@ const ListCheckbox = (
     children: ReactNode
   }
 ) => {
+  const {colors} = useTheme()
   return (
     <StyledListCheckbox onClick={onClick} enabled={enabled}>
       <TextContainer>
@@ -113,9 +114,9 @@ const ListCheckbox = (
         <rect className="border" x="308" y="-3.8147e-06" width="35" height="35" rx="17.2987"/>
         <rect className="border" x="5" y="15" width="333" height="5" rx="2.5"/>
         <rect className="border" x="35" y="35" width="35" height="35" rx="17.2987" transform="rotate(-180 35 35)"/>
-        <rect x="30" y="30" width="25" height="25" rx="12.5" transform="rotate(-180 30 30)" fill="white"/>
+        <rect x="30" y="30" width="25" height="25" rx="12.5" transform="rotate(-180 30 30)" fill={colors.background}/>
         <rect className="checkbox" x="27" y="27" width="19" height="19" rx="9.5" transform="rotate(-180 27 27)"/>
-        <rect  x="338" y="30" width="25" height="25" rx="12.5" transform="rotate(-180 338 30)" fill="white"/>
+        <rect  x="338" y="30" width="25" height="25" rx="12.5" transform="rotate(-180 338 30)" fill={colors.background}/>
         <rect className="checkbox" x="335" y="27" width="19" height="19" rx="9.5" transform="rotate(-180 335 27)"/>
       </CheckboxSvg>
     </StyledListCheckbox>
@@ -124,7 +125,7 @@ const ListCheckbox = (
 
 const CheckboxText = styled.div`
   color: ${({theme}) => theme.colors.background};
-  background: ${({theme}) => theme.colors.tertiary};
+  background: ${({theme}) => theme.colors.buttons};
   transition: background-color 0.5s ease;
   font-size: 1.5em;
   font-weight: 600;
@@ -140,20 +141,20 @@ const StyledListCheckbox = styled.div<{enabled?: boolean}>`
   height: fit-content;
   margin-bottom: 1em;
   .border {
-    fill: ${({theme}) => theme.colors.tertiary}
+    fill: ${({theme}) => theme.colors.buttons}
   }
   .checkbox {
-    fill: ${({theme}) => theme.colors.tertiary};
+    fill: ${({theme}) => theme.colors.buttons};
   }
   ${({enabled}) => enabled && css`
       .checkbox { fill: ${({theme}) => theme.colors.primary}}`
   }
   :hover {
     .border {
-      fill: ${({theme}) => Color(theme.colors.tertiary).darken(0.05).toString()}
+      fill: ${({theme}) => theme.colors.darken.buttons}
     }
     ${CheckboxText} {
-      background: ${({theme}) => Color(theme.colors.tertiary).darken(0.05).toString()};
+      background: ${({theme}) => theme.colors.darken.buttons};
     }
   }
 `
@@ -178,6 +179,6 @@ const CheckboxSvg = styled.svg`
   }
 
   .border {
-    fill: ${({theme}) => theme.colors.tertiary};
+    fill: ${({theme}) => theme.colors.buttons};
   }
 `

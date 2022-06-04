@@ -128,7 +128,7 @@ const TextArea = ({children, ...props}: TextAreaProps) => {
 
 const Relative = styled.div`
   position: relative;
-  color: ${props => props.theme.colors.darken.secondary};
+  color: ${props => props.theme.colors.darken.textOnBackground};
 `
 
 const StyledTextArea = styled.textarea.attrs(() => ({
@@ -141,7 +141,7 @@ const StyledTextArea = styled.textarea.attrs(() => ({
   height: 4em;
   resize: none;
   outline: none;
-  color: ${props => props.theme.colors.darken.secondary};
+  color: ${props => props.theme.colors.darken.textOnBackground};
   overflow-y: auto;
   
   &:focus {

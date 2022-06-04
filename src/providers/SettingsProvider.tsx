@@ -1,7 +1,7 @@
-import {createContext, ReactNode, useEffect} from "react"
+import {createContext, ReactNode, useEffect, useState} from "react"
 import {useStickyState} from "../hooks/useStickyState";
-import {Colors} from "styled-components";
-import {colors} from "../common/themes";
+import {Colors, DefaultTheme, ThemeColors} from "styled-components";
+import {createTheme, dayTheme, nightTheme} from "../common/themes";
 
 export enum Layout {
   EXPANDED = "EXPANDED",
@@ -25,15 +25,15 @@ export interface Settings {
   setLanguage: (lang: Language) => void,
   setLayout: (layout: Layout) => void,
   setTheme: (theme: ThemeVariants) => void,
-  colors: Colors,
-  setColors:  React.Dispatch<React.SetStateAction<Colors>>
+  colors: DefaultTheme,
+  setColors: React.Dispatch<React.SetStateAction<DefaultTheme>>
 }
 
 const initSettings: Settings = {
   layout: Layout.EXPANDED,
   language: Language.ENGLISH,
   theme: "night",
-  colors: colors,
+  colors: createTheme(nightTheme),
   setColors: () => {},
   enableMOTD: true,
   setLanguage: () => {},
@@ -45,11 +45,16 @@ const initSettings: Settings = {
 export const SettingsContext = createContext<Settings>(initSettings);
 
 
-export const SettingsProvider = ({children, colors, setColors}: {children: ReactNode, colors: Colors, setColors: React.Dispatch<React.SetStateAction<Colors>>}) => {
-  const [layout, setLayout] = useStickyState(initSettings.layout, "layout");
-  const [language, setLanguage] = useStickyState(initSettings.language, "language");
-  const [theme, setTheme] = useStickyState(initSettings.theme, "theme");
-  const [enableMOTD, setEnableMOTD] = [false, (a: boolean) => {}];
+export const SettingsProvider = ({children}: {children: ReactNode}) => {
+  const [layout, setLayout] = useStickyState(initSettings.layout, "layout")
+  const [language, setLanguage] = useStickyState(initSettings.language, "language")
+  const [theme, setTheme] = useStickyState(initSettings.theme, "theme")
+  const [colors, setColors] = useState(() => createTheme(theme === "night" ? nightTheme : dayTheme))
+  const [enableMOTD, setEnableMOTD] = [false, (a: boolean) => {}]
+
+  useEffect(() => {
+    setColors(createTheme(theme === "night" ? nightTheme : dayTheme))
+  }, [theme])
 
   // fix improper hydration
   useEffect(() => {

@@ -10,7 +10,7 @@
     ]
   },
   "languageScreen": {
-    "layoutHint": ["Attention!", " Color Palette names will be changed according to the chosen language."],
+    "headerText": ["Attention!", " Color Palette names will be changed according to the chosen language."],
     "bottomText": [
       "Your language is missing? No worries, you can support us by helping to add it! Head over to our ",
       "Discord",
