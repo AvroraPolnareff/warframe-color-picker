@@ -1,5 +1,6 @@
 import React, {CSSProperties, ReactNode} from "react";
 import styled from "styled-components";
+import InlineSVG from "react-inlinesvg";
 
 export const Wires = (
   {
@@ -13,11 +14,26 @@ export const Wires = (
   }
 ) => <div style={{position: 'relative'}}>
   {children}
-  <StyledWires style={style} src={src} alt=""/>
+  <StyledWires>
+    <InlineSVG src={src} style={style}/>
+  </StyledWires>
 </div>
 
-const StyledWires = styled.img`
-  position: absolute;
+const StyledWires = styled.div`
+  & svg {
+    position: absolute;
+    user-select: none;
+    pointer-events: none;
+    .red {
+      stroke: ${({theme}) => theme.colors.danger};
+    }
+    .green {
+      stroke: ${({theme}) => theme.colors.success};
+    }
+    .blue {
+      stroke: ${({theme}) => theme.colors.link};
+    }
+  }
   user-select: none;
   pointer-events: none
 `
