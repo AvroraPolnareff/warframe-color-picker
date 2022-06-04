@@ -10,7 +10,7 @@
     ]
   },
   "languageScreen": {
-    "layoutHint": ["Внимание!", " Названия палитр будут переведены в соответствии с выбранным языком."],
+    "headerText": ["Внимание!", " Названия палитр будут переведены в соответствии с выбранным языком."],
     "bottomText": [
       "Your language is missing? No worries, you can support us by helping to add it! Head over to our ",
       "Discord",
