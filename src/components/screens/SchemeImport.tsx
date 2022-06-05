@@ -8,6 +8,7 @@ import {UrlPaletteContext} from "../../providers/UrlColorsProvider";
 import {Button} from "../shared/Button";
 import {css} from "styled-components";
 import {CurrentScreenContext, Screen} from "../../providers/CurrentScreenProvider";
+import InlineSVG from "react-inlinesvg";
 
 enum SelectedPalette {
   NEW,
@@ -34,7 +35,9 @@ export const SchemeImport = () => {
 
   return (
     <StyledSchemeImport>
-      <HeaderImage src={t("schemeImport.headerImage")} alt=""/>
+      <HeaderImage>
+        <InlineSVG src={t("schemeImport.headerImage")}/>
+      </HeaderImage>
       <DescriptionBlock>
         <Divider/>
         <Text><span>{t("schemeImport.headerText")}</span></Text>

@@ -1,6 +1,6 @@
 import type { AppProps } from "next/app"
 import {Colors, createGlobalStyle, ThemeProvider} from "styled-components";
-import React, {ReactNode, useContext, useState} from "react";
+import React, {ReactNode, useContext, useEffect, useState} from "react";
 import {CurrentScreenProvider} from "../src/providers/CurrentScreenProvider";
 import {SettingsContext, SettingsProvider} from "../src/providers/SettingsProvider";
 import {UrlPaletteContextProvider} from "../src/providers/UrlColorsProvider";
@@ -42,21 +42,29 @@ const AppThemeProvider = (props: {children: ReactNode}) => {
 function MyApp({ Component, pageProps }: AppProps<{langResources: Resources}>) {
   // TODO: change to dynamic ssr translations
   useSSR(pageProps.langResources, "en")
+  const [isMounted, setIsMounted] = useState(true)
+
+  useEffect(() => {
+    setIsMounted(false)
+    setTimeout(() => {
+      setIsMounted(true)
+    }, 5)
+  }, [])
 
   return (
-
-    <CurrentScreenProvider>
-      <SettingsProvider>
-        <AppThemeProvider>
-          <UrlPaletteContextProvider>
-            <I18nextProvider i18n={i18n}>
+    <I18nextProvider i18n={i18n}>
+      <CurrentScreenProvider>
+        <SettingsProvider>
+          <AppThemeProvider>
+            <UrlPaletteContextProvider>
               <GlobalStyle/>
-              <Component {...pageProps} />
-            </I18nextProvider>
-          </UrlPaletteContextProvider>
-        </AppThemeProvider>
-      </SettingsProvider>
-    </CurrentScreenProvider>
+              {isMounted && <Component {...pageProps} />}
+            </UrlPaletteContextProvider>
+          </AppThemeProvider>
+        </SettingsProvider>
+      </CurrentScreenProvider>
+    </I18nextProvider>
+
 
   )
 }
