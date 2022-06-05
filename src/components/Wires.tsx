@@ -6,7 +6,7 @@ export const Wires = (
   {
     children,
     style,
-    src
+    src,
   }: {
     style: CSSProperties,
     src: string,
@@ -14,26 +14,21 @@ export const Wires = (
   }
 ) => <div style={{position: 'relative'}}>
   {children}
-  <StyledWires>
-    <InlineSVG src={src} style={style}/>
-  </StyledWires>
+  <StyledWires style={style} src={src}/>
 </div>
 
-const StyledWires = styled.div`
-  & svg {
-    position: absolute;
-    user-select: none;
-    pointer-events: none;
-    .red {
-      stroke: ${({theme}) => theme.colors.danger};
-    }
-    .green {
-      stroke: ${({theme}) => theme.colors.success};
-    }
-    .blue {
-      stroke: ${({theme}) => theme.colors.link};
-    }
-  }
+const StyledWires = styled(InlineSVG)`
   user-select: none;
-  pointer-events: none
+  pointer-events: none;
+  position: absolute;
+
+  .red {
+    stroke: ${({theme}) => theme.colors.danger};
+  }
+  .green {
+    stroke: ${({theme}) => theme.colors.success};
+  }
+  .blue {
+    stroke: ${({theme}) => theme.colors.link};
+  }
 `

@@ -72,8 +72,14 @@ export const Expanded = () => {
 
         <div style={{display: 'flex', alignItems: "flex-start"}}>
           <div style={{display: 'flex', flexDirection: "column", alignItems: "flex-end", marginRight: "0.6em"}}>
-            <Wires src="/images/Wires (Col Pic -_ Tar Sch).svg" style={{right: "-1.2em", top: "3.2em", width: "2.1em"}}>
-              <Wires src="/images/Wires (Tar Sch -_ Col Pic).svg" style={{bottom: "-1.8em", right: "2em", width: "4.3em"}}>
+            <Wires
+              src="/images/Wires (Col Pic -_ Tar Sch).svg"
+              style={{right: "-1.2em", top: "3.2em", width: "2.1em", height: "12em"}}
+            >
+              <Wires
+                src="/images/Wires (Tar Sch -_ Col Pic).svg"
+                style={{bottom: "-1.8em", right: "2em", width: "4.3em", height: "2.2em"}}
+              >
                 <TargetScheme
                   paletteColors={paletteColors}
                   onCellClick={onCellClick}
@@ -100,7 +106,7 @@ export const Expanded = () => {
             </div>
           </div>
           <div style={{marginRight: "0.6em", zIndex: 1}}>
-            <Wires style={{top: "8.5em", right: "-1.2em", width: "2.1em"}} src="/images/Wires (Sugg -_ Sel Col).svg">
+            <Wires style={{top: "8.5em", right: "-1.2em", width: "2.1em", height: "13em"}} src="/images/Wires (Sugg -_ Sel Col).svg">
               <Suggestions matchedColors={matchedColors}
                            onSuggestionClick={onSuggestionClick}
                            onPalettesClick={() => setShowPalettesModal(true)}
