@@ -48,7 +48,7 @@
   },
   "schemeImport": {
     "headerImage": "/images/scheme-import-en.svg",
-    "layoutHint": "Warning: this will override your current scheme. Choose whether you want to keep the current scheme, or import a new one from the link.",
+    "headerText": "Warning: this will override your current scheme. Choose whether you want to keep the current scheme, or import a new one from the link.",
     "currentScheme": "Current scheme",
     "newScheme": "New scheme",
     "confirm": "Confirm",
