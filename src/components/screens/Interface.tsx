@@ -76,8 +76,8 @@ const StyledLayoutsScreen = styled.div`
 
 export const HeaderImage = styled.div`
   svg {
-    width: 32.5em;
-    height: 9em;
+    width: 30em;
+    height: 8em;
     & .background-stroke {
       stroke: ${({theme}) => theme.colors.background}
     }
@@ -89,7 +89,7 @@ export const HeaderImage = styled.div`
 `;
 
 export const DescriptionBlock = styled.div<{small?: boolean}>`
-  margin: 1.5em 0 0.5em 0;
+  margin: 0 0 0.5em 0;
   width: ${({small}) => small ? "25em" : "32em"};
   font-size: 1.3rem;
   font-weight: 500;
@@ -116,7 +116,7 @@ export const OptionChooserEntry = styled.div<{enabled?: boolean}>`
   align-items: center;
   color: ${({theme}) => theme.colors.buttons};
   #choose-circle {
-    fill: ${({theme}) => theme.colors.darken.buttons};
+    fill: ${({theme}) => theme.colors.textOnBackground};
   }
   ${({enabled}) => enabled && css`
       #choose-circle {
@@ -135,7 +135,7 @@ export const OptionChooserEntry = styled.div<{enabled?: boolean}>`
     }
     ${({enabled}) => !enabled && css`
       #choose-circle {
-        fill: ${({theme}) => theme.colors.darken.buttons};
+        fill: ${({theme}) => theme.colors.darken.textOnBackground};
       }
     `}
   }
@@ -172,7 +172,7 @@ export const Checkbox = () => {
 
 const StyledCheckbox = styled.div`
   position: relative;
-  margin-top: 0.5em;
+  margin: 0.7em 0;
 `
 
 const CheckboxBackground = styled.svg`
