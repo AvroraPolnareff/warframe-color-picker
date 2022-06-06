@@ -1,8 +1,8 @@
 {
   "interfaceScreen": {
     "headerImage": "/images/choose-your-fighter-ru.svg",
-    "themeHint": "Select between Day & Night modes.",
-    "layoutHint": "Выберите одну из двух планировок расположения окон: расширенную или классическую.",
+    "themeHint": "Выберите дневной или ночной режим.",
+    "layoutHint": "Выберите расположение окон.",
     "bottomText": [
       "Более широкие инструменты настройки уже находятся в разработке! Заглядывай к нам на огонёк в ",
       "Discord",

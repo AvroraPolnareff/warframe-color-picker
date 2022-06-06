@@ -2,7 +2,7 @@
   "interfaceScreen": {
     "headerImage": "/images/choose-your-fighter.svg",
     "themeHint": "Select between Day & Night modes.",
-    "layoutHint": "Select whether you want to use an expanded layout, or the original, classic one.",
+    "layoutHint": "Select which layout you want to use.",
     "bottomText": [
       "More customization options are on the way! Hop onto our ",
       "Discord",
