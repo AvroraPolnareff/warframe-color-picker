@@ -1,5 +1,6 @@
-import React, {ReactNode} from "react";
+import React, {ReactNode, useContext} from "react";
 import styled from "styled-components";
+import {SettingsContext} from "../../providers/SettingsProvider";
 
 interface ModalProps {
   width?: number
@@ -22,6 +23,7 @@ export const Modal = (
     children
   }: ModalProps
 ) => {
+  const {theme} = useContext(SettingsContext)
   return (
     <StyledModal show={show}>
       <WindowWrapper width={width} height={height}>
@@ -30,7 +32,7 @@ export const Modal = (
             <Header>
               {name}<span style={{fontWeight: "normal"}}> // {description}</span>
             </Header>
-            <ExitButton onClick={onExit}/>
+            <ExitButton mode={theme} onClick={onExit}/>
           </TopBar>
           <ModalContent>
             {children}
@@ -87,7 +89,7 @@ const Header = styled.div`
   text-transform: uppercase;
 `
 
-const ExitButton = styled.img.attrs(() => ({src: "/images/exit-button.svg", alt: ""}))`
+const ExitButton = styled.img.attrs<{ mode: "day" | "night" }>(({mode}) => ({src: `/images/exit-button-${mode}.svg`, alt: ""}))<{ mode: "day" | "night" }>`
   cursor: pointer;
   font-weight: bold;
   border: none;
