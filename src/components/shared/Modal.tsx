@@ -87,7 +87,7 @@ const Header = styled.div`
   text-transform: uppercase;
 `
 
-const ExitButton = styled.img.attrs(() => ({src: "/images/exitButton.svg", alt: ""}))`
+const ExitButton = styled.img.attrs(() => ({src: "/images/exit-button.svg", alt: ""}))`
   cursor: pointer;
   font-weight: bold;
   border: none;
