@@ -43,7 +43,7 @@ export const Classic = () => {
     selectedColor,
   } = useColorPickerLogic()
 
-  const {enableMOTD} = useContext(SettingsContext)
+  const {enableMOTD, theme} = useContext(SettingsContext)
   const {t} = useTranslation()
 
   return (
@@ -92,11 +92,11 @@ export const Classic = () => {
               height={2.3}
               width={11}>{t("colorPicker.howToUse")}</Link>
             <div style={{display: "flex"}}>
-              <Link href={"#"} icon="/images/wf-logo.svg" width={2.3} height={2.3}/>
+              <Link href={"#"} icon={`/images/wf-logo-${theme}.svg`} width={2.3} height={2.3}/>
               <div style={{display: "flex", flexDirection: "column"}}>
-                <Link href={"https://discord.gg/WWBYuY3"} icon="/images/discord-logo.svg" width={2.3} height={2.3}/>
+                <Link href={"https://discord.gg/WWBYuY3"} icon={`/images/discord-logo-${theme}.svg`} width={2.3} height={2.3}/>
                 <Link href={"https://github.com/AvroraPolnareff/warframe-color-picker-ts"}
-                      icon="/images/github-logo.svg" width={2.3}
+                      icon={`/images/github-logo-${theme}.svg`} width={2.3}
                       height={2.3}/>
               </div>
 

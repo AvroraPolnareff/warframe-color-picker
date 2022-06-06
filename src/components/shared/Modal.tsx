@@ -59,13 +59,13 @@ const WindowWrapper = styled.div<{width?: number, height?: number}>`
   margin: 10% auto;
 `
 const Borders = styled.div`
-  background-color: ${props => props.theme.colors.textOnBackground};
+  background-color: ${props => props.theme.colors.misc};
   padding: 0.3em 0.35em;
   border-radius: 10px;
 `
 
 const ModalContent = styled.div`
-  background-color: white;
+  background-color: ${({theme}) => theme.colors.background};
   border-radius: 0.3em;
   padding: 0.4em 0.4em;
   color: ${props => props.theme.colors.darken.textOnBackground}
@@ -74,7 +74,7 @@ const ModalContent = styled.div`
 const TopBar = styled.div`
   display: flex;
   justify-content: space-between;
-  background-color: ${props => props.theme.colors.textOnBackground};
+  background-color: ${props => props.theme.colors.misc};
   height: 1.2em;
   
 `
@@ -83,7 +83,7 @@ const Header = styled.div`
   font-weight: bold;
   margin: 0 0.3em;
   font-size: 1rem;
-  color: white;
+  color: ${({theme}) => theme.colors.textOnButtons};
   text-transform: uppercase;
 `
 

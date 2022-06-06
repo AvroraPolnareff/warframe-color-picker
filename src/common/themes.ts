@@ -1,42 +1,50 @@
-import {Colors, DefaultTheme, ThemeColors} from 'styled-components'
+import {Colors, DefaultTheme, Mode} from 'styled-components'
 import Color from "color";
 
-export const dayTheme: Colors = {
-  primary: "#A5E8E8",
-  textOnBackground: "#c8c8c8",
-  textOnButtons: "#ffffff",
-  buttons: "#c8c8c8",
-  misc: "#e6e6e6",
-  danger: "#dba3a3",
-  success: "#A3DBA3",
-  link: "#A0A2EB",
-  warning: "#e8dba5",
-  targetSchemeHeader: "#e8a5a5",
-  background: "#ffffff",
+type ColorsWithMode = {colors: Colors, mode: Mode}
+
+export const dayTheme: ColorsWithMode = {
+  mode: "light",
+  colors: {
+    primary: "#A5E8E8",
+    textOnBackground: "#c8c8c8",
+    textOnButtons: "#ffffff",
+    buttons: "#c8c8c8",
+    misc: "#e6e6e6",
+    danger: "#dba3a3",
+    success: "#A3DBA3",
+    link: "#A0A2EB",
+    warning: "#e8dba5",
+    targetSchemeHeader: "#e8a5a5",
+    background: "#ffffff",
+  }
 }
 
-
-export const nightTheme: Colors = {
-  primary: "#55dcdc",
-  textOnBackground: "#c8c8c8",
-  textOnButtons: "#ffffff",
-  buttons: "#424242",
-  misc: "#424242",
-  danger: "#b25858",
-  success: "#5ab45a",
-  link: "#5c60b9",
-  warning: "#e8dba5",
-  targetSchemeHeader: "#e8a5a5",
-  background: "#242424",
+export const nightTheme: ColorsWithMode = {
+  mode: "dark",
+  colors: {
+    primary: "#55dcdc",
+    textOnBackground: "#c8c8c8",
+    textOnButtons: "#ffffff",
+    buttons: "#424242",
+    misc: "#424242",
+    danger: "#b25858",
+    success: "#5ab45a",
+    link: "#5c60b9",
+    warning: "#c2ab5c",
+    targetSchemeHeader: "#e8a5a5",
+    background: "#242424",
+  }
 }
 
-export const createTheme = (colors: Colors) : DefaultTheme => {
+export const createTheme = ({colors, mode}: ColorsWithMode) : DefaultTheme => {
   const darken = Object.entries(colors).map(([key, value]) => [key, Color(value).darken(0.2).hex().toString()])
   return ({
     colors: {
       ...colors,
       darken: Object.fromEntries(darken)
-    }
+    },
+    mode
   })
 }
 

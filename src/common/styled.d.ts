@@ -1,8 +1,10 @@
 import 'styled-components'
 
 declare module 'styled-components' {
+  export type Mode = "light" | "dark"
   export interface DefaultTheme {
-    colors: ThemeColors
+    colors: ThemeColors,
+    mode: Mode
   }
 
   export interface ThemeColors {

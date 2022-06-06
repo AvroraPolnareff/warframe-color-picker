@@ -141,6 +141,7 @@ const StyledTextArea = styled.textarea.attrs(() => ({
   height: 4em;
   resize: none;
   outline: none;
+  background-color: ${({theme}) => theme.colors.background};
   color: ${props => props.theme.colors.darken.textOnBackground};
   overflow-y: auto;
   
