@@ -213,7 +213,7 @@ const CellsBorder = styled.div<{selected?: boolean}>`
   border-radius: 1.6em;
   transition: border-color linear 0.2s;
   ${({selected, theme}) => selected && css`
-    border-color: ${theme.colors.misc};
+    border-color: ${theme.colors.textOnBackground};
   `}
 `
 
