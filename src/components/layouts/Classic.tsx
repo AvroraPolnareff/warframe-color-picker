@@ -43,7 +43,7 @@ export const Classic = () => {
     selectedColor,
   } = useColorPickerLogic()
 
-  const {enableMOTD} = useContext(SettingsContext)
+  const {enableMOTD, theme} = useContext(SettingsContext)
   const {t} = useTranslation()
 
   return (
@@ -79,7 +79,7 @@ export const Classic = () => {
             marginTop: "2.5em",
           }}>
             <Wires src="/images/Wires (Col Pic -_ Tar Sch).svg"
-                   style={{right: "-1.2em", top: "3.2em", width: "2.1em", transform: "scaleY(-1)"}}>
+                   style={{right: "-1.2em", top: "3.2em", width: "2.1em", height: "12em", transform: "scaleY(-1)"}}>
               <div style={{marginTop: "0.6em", zIndex: 1}}>
                 <ColorPicker
                   color={Color(getCurrentColor())}
@@ -92,11 +92,11 @@ export const Classic = () => {
               height={2.3}
               width={11}>{t("colorPicker.howToUse")}</Link>
             <div style={{display: "flex"}}>
-              <Link href={"#"} icon="/images/wf-logo.svg" width={2.3} height={2.3}/>
+              <Link href={"#"} icon={`/images/wf-logo-${theme}.svg`} width={2.3} height={2.3}/>
               <div style={{display: "flex", flexDirection: "column"}}>
-                <Link href={"https://discord.gg/WWBYuY3"} icon="/images/discord-logo.svg" width={2.3} height={2.3}/>
+                <Link href={"https://discord.gg/WWBYuY3"} icon={`/images/discord-logo-${theme}.svg`} width={2.3} height={2.3}/>
                 <Link href={"https://github.com/AvroraPolnareff/warframe-color-picker-ts"}
-                      icon="/images/github-logo.svg" width={2.3}
+                      icon={`/images/github-logo-${theme}.svg`} width={2.3}
                       height={2.3}/>
               </div>
 
@@ -105,7 +105,7 @@ export const Classic = () => {
           <div style={{marginRight: "0.6em", zIndex: 1}}>
             <div style={{marginBottom: "1.5em"}}>
               <Wires src="/images/Wires (Tar Sch -_ Col Pic).svg"
-                     style={{bottom: "-1.8em", right: "2em", width: "4.3em"}}>
+                     style={{bottom: "-1.8em", right: "2em", width: "4.3em", height: "2.2em"}}>
                 <TargetScheme
                   paletteColors={paletteColors}
                   onCellClick={onCellClick}
@@ -113,7 +113,7 @@ export const Classic = () => {
                 />
               </Wires>
             </div>
-            <Wires style={{top: "1.2em", right: "-1.2em", width: "2.1em"}} src="/images/Wires (Sugg -_ Sel Col).svg">
+            <Wires style={{top: "1.2em", right: "-1.2em", width: "2.1em", height: "13em"}} src="/images/Wires (Sugg -_ Sel Col).svg">
               <Suggestions
                 matchedColors={matchedColors}
                 onSuggestionClick={onSuggestionClick}

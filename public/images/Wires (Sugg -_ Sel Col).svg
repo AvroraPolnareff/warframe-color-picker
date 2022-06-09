@@ -1,5 +1,5 @@
 <svg width="50" height="292" viewBox="0 0 50 292" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M2.77521 156.072C12.5632 156.072 29.6922 156.072 29.6922 178.707C29.6922 201.342 29.6922 261.293 29.6922 269.858C29.6922 278.422 29.6922 289.434 46.8212 289.434" stroke="#DBA3A3" stroke-width="4.894" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M2.77521 99.7911C12.5632 99.7911 29.6922 100.403 29.6922 121.814C29.6922 127.932 29.6922 143.837 46.8212 143.837" stroke="#A3DBA3" stroke-width="4.894" stroke-linecap="round"/>
-<path d="M2.77521 70.4271C12.5632 70.4271 29.6922 70.4271 29.6922 48.4041C29.6922 26.3811 29.6922 32.4986 29.6922 23.9341C29.6922 15.3695 29.6922 3.13455 46.8212 3.13454" stroke="#A3A3DB" stroke-width="4.894" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M2.77521 156.072C12.5632 156.072 29.6922 156.072 29.6922 178.707C29.6922 201.342 29.6922 261.293 29.6922 269.858C29.6922 278.422 29.6922 289.434 46.8212 289.434" stroke="#DBA3A3" class="red" stroke-width="4.894" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M2.77521 99.7911C12.5632 99.7911 29.6922 100.403 29.6922 121.814C29.6922 127.932 29.6922 143.837 46.8212 143.837" stroke="#A3DBA3" class="green" stroke-width="4.894" stroke-linecap="round"/>
+<path d="M2.77521 70.4271C12.5632 70.4271 29.6922 70.4271 29.6922 48.4041C29.6922 26.3811 29.6922 32.4986 29.6922 23.9341C29.6922 15.3695 29.6922 3.13455 46.8212 3.13454" class="blue" stroke="#A3A3DB" stroke-width="4.894" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>

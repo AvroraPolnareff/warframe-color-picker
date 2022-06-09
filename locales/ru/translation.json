@@ -1,14 +1,15 @@
 {
-  "layoutSelection": {
+  "interfaceScreen": {
     "headerImage": "/images/choose-your-fighter-ru.svg",
-    "headerText": "Выберите одну из двух планировок расположения окон: расширенную или классическую.",
+    "themeHint": "Выберите дневной или ночной режим.",
+    "layoutHint": "Выберите расположение окон.",
     "bottomText": [
       "Более широкие инструменты настройки уже находятся в разработке! Заглядывай к нам на огонёк в ",
       "Discord",
       ", если хочешь узнать больше!"
     ]
   },
-  "languageSelection": {
+  "languageScreen": {
     "headerText": ["Внимание!", " Названия палитр будут переведены в соответствии с выбранным языком."],
     "bottomText": [
       "Your language is missing? No worries, you can support us by helping to add it! Head over to our ",
@@ -17,7 +18,7 @@
     ]
   },
   "menu": {
-    "layoutSwitch": "Интерфейс",
+    "interface": "Интерфейс",
     "languageSwitch": "Язык",
     "help": "Справка",
     "colorPicker": "Пипетка",

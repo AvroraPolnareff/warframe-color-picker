@@ -38,7 +38,8 @@ export const Entry = (
 
 export const StyledEntry = styled.div<{active?: boolean}>`
   padding: 0.05em 0.3em;
-  background-color: ${({theme, active}) => active ? theme.colors.primary : theme.colors.tertiary};
+  background-color: ${({theme}) => theme.colors.buttons};
+  ${({active, theme}) => active && `background-color: ${theme.colors.primary};`}
   border-bottom-left-radius: 0.7em;
   border-bottom-right-radius: 0.7em;
   user-select: none;
@@ -48,14 +49,14 @@ export const StyledEntry = styled.div<{active?: boolean}>`
   width: 9em;
 
   :hover {
-    background-color: ${({theme, active}) => active ? theme.colors.darken.primary : theme.colors.darken.tertiary};
+    background-color: ${({theme, active}) => active ? theme.colors.darken.primary : theme.colors.darken.buttons};
   }
   
   transition: background-color 0.3s ease;
 `
 
 const EntryWrapper = styled.div`
-  color: ${({theme}) => theme.colors.background};
+  color: ${({theme}) => theme.colors.textOnButtons};
   transition: transform 0.3s ease;
 
   & + & {

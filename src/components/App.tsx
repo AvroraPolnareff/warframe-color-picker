@@ -1,5 +1,5 @@
 import React, {useContext, useEffect} from 'react';
-import styled, {Colors} from "styled-components";
+import styled, {Colors, createGlobalStyle} from "styled-components";
 import {AppBar, Container, Entry} from './AppBar';
 import {ScreensSwitcher} from "./ScreensSwitcher";
 import {CurrentScreenContext, Screen} from "../providers/CurrentScreenProvider";
@@ -9,17 +9,18 @@ import Color from "color";
 import {Window} from "./shared/Window";
 import {useRouter} from "next/router";
 
-const ThemePanel = ({themeColors, setThemeColors}: {themeColors: Colors, setThemeColors:  React.Dispatch<React.SetStateAction<Colors>>}) => {
+const ThemePanel = () => {
+  const {colors, setColors} = useContext(SettingsContext);
   const setColor = (name: string, color: string) => {
     try {
       new Color(color)
-      setThemeColors((prev) => ({...prev, [name]: color}))
+      setColors((prev) => ({...prev, [name]: color}))
     } catch {}
   }
   return (
     <div style={{position: "fixed", bottom: 0, left: 0, zIndex: 100}}>
       <Window >
-        {Object.entries(themeColors).map(([name, value]) => (
+        {Object.entries(colors).map(([name, value]) => (
           <div>
             {name}{value}{<input type="color" value={value} onChange={(e) => setColor(name, e.target.value)}/>}
           </div>
@@ -29,9 +30,15 @@ const ThemePanel = ({themeColors, setThemeColors}: {themeColors: Colors, setThem
   )
 }
 
+const GlobalStyles = createGlobalStyle`
+  body {
+    background: ${({theme}) => theme.colors.background};
+  }
+`
+
 function App() {
   const {setScreen, screen} = useContext(CurrentScreenContext);
-  const {language, colors, setColors} = useContext(SettingsContext);
+  const {language} = useContext(SettingsContext);
   const {t, i18n} = useTranslation();
   const router = useRouter()
   const showPanel = router.asPath.includes("moriska")
@@ -40,6 +47,7 @@ function App() {
   }, [language, i18n])
   return (
     <StyledApp>
+      <GlobalStyles/>
       <AppBar>
         <Container>
         </Container>
@@ -54,7 +62,7 @@ function App() {
             onClick={() => setScreen(Screen.LAYOUT_SELECTION)}
             active={screen === Screen.LAYOUT_SELECTION}
           >
-            {t("menu.layoutSwitch")}
+            {t("menu.interface")}
           </Entry>
           <Entry
             onClick={() => setScreen(Screen.LANGUAGE_SELECTION)}
@@ -70,9 +78,9 @@ function App() {
       {
         !process.env.index ?
           <Credentials><a href="https://www.warframecolorpicker.app/">Hooray, we've gotten a new link!</a>Please follow <a href="https://github.com/AvroraPolnareff/warframe-color-picker/blob/master/README.md">this guide</a> to move your old palettes.</Credentials> :
-          <Credentials><span>Hippothoe & Morisabeau, <br/>last upd.: 26/05/2022</span></Credentials>
+          <Credentials><span>Hippothoe & Morisabeau, <br/>last upd.: 6/06/2022</span></Credentials>
       }
-      {showPanel && <ThemePanel themeColors={colors} setThemeColors={setColors}/>}
+      {showPanel && <ThemePanel />}
     </StyledApp>
   );
 }
@@ -91,7 +99,7 @@ const Credentials = styled.div`
 
 export const StyledApp = styled.div`
   position: relative;
-  color: ${props => props.theme.colors.secondary};
+  color: ${props => props.theme.colors.textOnBackground};
   margin: 0;
   font-family: "Gilroy", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
   'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',

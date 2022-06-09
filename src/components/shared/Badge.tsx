@@ -8,8 +8,8 @@ interface BadgeProps {
 }
 
 export const Badge = styled.div<BadgeProps>`
-  background-color: ${props => props.color || props.theme.colors.tertiary};
-  color: ${props => props.theme.colors.background};
+  background-color: ${props => props.color || props.theme.colors.buttons};
+  color: ${props => props.theme.colors.textOnButtons};
   padding: 0.1em 0.45em;
   
   margin: 0 0.2em;
@@ -21,7 +21,7 @@ export const Badge = styled.div<BadgeProps>`
   transition: background-color 0.15s linear;
   ${props => props.hoverable && css`
     &:hover {
-      background-color: ${props => props.theme.colors.darken.tertiary};
+      background-color: ${props => props.theme.colors.darken.buttons};
     }
   `}
 `

@@ -3,16 +3,17 @@ import {useTheme} from "styled-components";
 export const ExpandedLayoutIcon = () => {
   const {colors} = useTheme()
   return (
-    <svg id="svg" width="272" height="272" viewBox="0 0 272 272" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect className="svg-background" x="21.1805" width="232.986" height="232.986" rx="20" fill={colors.tertiary} style={{transition: "fill 0.5s ease"}}/>
-      <rect x="34.7974" y="22.7994" width="69.0059" height="84.9862" rx="5" fill="white"/>
-      <rect x="34.8424" y="114.552" width="68.8946" height="51.4683" rx="5" fill="white"/>
-      <rect x="110.627" y="22.76" width="68.8946" height="187.637" rx="5" fill="white"/>
-      <rect x="186.411" y="22.5573" width="51.4683" height="187.839" rx="5" fill="white"/>
-      <rect x="87.5265" y="190.133" width="15.6026" height="15.6026" rx="5" fill="white"/>
-      <rect x="67.2632" y="190.133" width="15.6026" height="15.6026" rx="5" fill="white"/>
-      <rect x="47.0003" y="190.133" width="15.6026" height="15.6026" rx="5" fill="white"/>
-      <rect x="47.0003" y="170.478" width="56.1289" height="15.4" rx="5" fill="white"/>
-    </svg>
+      <svg width="163" height="162" viewBox="0 0 163 162" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0.957703" width="162" height="162" rx="20" className="svg-fill" fill={colors.buttons} style={{transition: "fill 0.5s ease"}}/>
+          <rect x="10.4258" y="15.8529" width="47.9812" height="59.0926" rx="5" fill="white"/>
+          <rect x="10.4571" y="79.6504" width="47.9038" height="35.787" rx="5" fill="white"/>
+          <rect x="63.1515" y="15.8255" width="47.9038" height="130.467" rx="5" fill="white"/>
+          <rect x="115.846" y="15.6846" width="35.787" height="130.608" rx="5" fill="white"/>
+          <rect x="47.0894" y="132.204" width="10.8488" height="10.8488" rx="5" fill="white"/>
+          <rect x="32.9999" y="132.204" width="10.8488" height="10.8488" rx="5" fill="white"/>
+          <rect x="18.9107" y="132.204" width="10.8488" height="10.8488" rx="5" fill="white"/>
+          <rect x="18.9107" y="118.537" width="39.0275" height="10.7079" rx="5" fill="white"/>
+      </svg>
+
   )
 }

@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import Color from "color";
 import {Window} from "./shared/Window";
 import {FlexColumnCenter} from "./shared/FlexColumnCenter";
-import styled, {css} from "styled-components";
+import styled, {css, useTheme} from "styled-components";
 import {Divider} from "./shared/Divider";
 import {ColorPickerHeader} from "../assets/ColorPickerHeader"
 import {Picker} from "./Picker";
@@ -111,6 +111,7 @@ const NumbersPicker = (
   const [hsvValue, setHsvValue] = useState({h: 0, s: 0, v: 0})
   const [userTyping, setUserTyping] = useState(false)
   const [timer, setTimer] = useState<NodeJS.Timeout | null>(null)
+  const theme = useTheme()
   useEffect(() => {
     if (!userTyping) {
       setHsvValue({h: color.hue(), s: color.saturationv(), v: color.value()})
@@ -159,11 +160,11 @@ const NumbersPicker = (
       {compact ? (
         <Grid2X4 compact={compact}>
           <ColorInput name={"red"} onChange={onChange} min={0} max={255}
-                      color="#dba3a3" value={Math.round(color.red())}/>
+                      color={theme.colors.danger} value={Math.round(color.red())}/>
           <ColorInput name={"green"} onChange={onChange} min={0} max={255}
-                      color="#a3dba3" value={Math.round(color.green())}/>
+                      color={theme.colors.success} value={Math.round(color.green())}/>
           <ColorInput name={"blue"} onChange={onChange} min={0} max={255}
-                      color="#a3a3db" value={Math.round(color.blue())}/>
+                      color={theme.colors.link} value={Math.round(color.blue())}/>
           <ColorSchemeName>R</ColorSchemeName>
           <ColorSchemeName>G</ColorSchemeName>
           <ColorSchemeName>B</ColorSchemeName>
@@ -181,11 +182,11 @@ const NumbersPicker = (
         <Grid2X4 compact={compact}>
           <ColorSchemeName>RGB&nbsp;&nbsp;&nbsp;</ColorSchemeName>
           <ColorInput name={"red"} onChange={onChange} min={0} max={255}
-                      color="#dba3a3" value={Math.round(color.red())}/>
+                      color={theme.colors.danger} value={Math.round(color.red())}/>
           <ColorInput name={"green"} onChange={onChange} min={0} max={255}
-                      color="#a3dba3" value={Math.round(color.green())}/>
+                      color={theme.colors.success} value={Math.round(color.green())}/>
           <ColorInput name={"blue"} onChange={onChange} min={0} max={255}
-                      color="#a3a3db" value={Math.round(color.blue())}/>
+                      color={theme.colors.link} value={Math.round(color.blue())}/>
           <ColorSchemeName>HSV&nbsp;&nbsp;&nbsp;</ColorSchemeName>
           <ColorInput name={"hue"} min={0} max={359}
                       onChange={onChange} value={Math.round(hsvValue.h)}/>
@@ -263,8 +264,8 @@ const ColorInput = (
 const StyledColorInput = styled.input`
     display: flex;
     align-items: baseline;
-    background-color: ${props => props.color || props.theme.colors.tertiary};
-    color: ${props => props.theme.colors.background};
+    background-color: ${props => props.color || props.theme.colors.buttons};
+    color: ${props => props.theme.colors.textOnButtons};
     padding: 0.2em 0.15em;
     max-height: 1.3em;
     margin: 0 0.2em;
@@ -277,7 +278,7 @@ const StyledColorInput = styled.input`
     text-align: center;
   
     &:focus, &:hover {
-      background-color: ${props => Color(props.color || props.theme.colors.tertiary).darken(0.2).toString()};
+      background-color: ${props => Color(props.color || props.theme.colors.buttons).darken(0.2).toString()};
     }
     
     &:focus {
@@ -354,8 +355,8 @@ const StyledHexInput = styled.input.attrs(() => ({
 }))<{ valid: boolean, compact?: boolean }>`
   display: flex;
   align-items: center;
-  background-color: ${props => props.valid ? props.theme.colors.tertiary : props.theme.colors.danger};
-  color: ${props => props.theme.colors.background};
+  background-color: ${props => props.valid ? props.theme.colors.buttons : props.theme.colors.danger};
+  color: ${props => props.theme.colors.textOnButtons};
   padding: 0.2em 0.3em;
   max-height: 1.3em;
   margin: 0.3em 0.3em 0.6em 0.3em;
@@ -372,7 +373,7 @@ const StyledHexInput = styled.input.attrs(() => ({
   `}
   
   &:hover {
-    background-color: ${props => props.valid ? props.theme.colors.darken.tertiary : props.theme.colors.darken.danger};
+    background-color: ${props => props.valid ? props.theme.colors.darken.buttons : props.theme.colors.darken.danger};
   }
   
   &:focus {

@@ -13,11 +13,11 @@ interface ButtonProps {
 
 export const Button = styled.div<ButtonProps>`
   user-select: none;
-  background-color: ${props => props.backgroundColor || props.theme.colors.tertiary};
+  background-color: ${props => props.backgroundColor || props.theme.colors.buttons};
   background-color: ${props => props.primary && props.theme.colors.primary};
   background-color: ${props => props.success && props.theme.colors.success};
   background-color: ${props => props.warning && props.theme.colors.warning};
-  color: ${props => props.theme.colors.background};
+  color: ${props => props.theme.colors.textOnButtons};
   font-weight: bold;
   border: 0;
   cursor: pointer;
@@ -45,7 +45,7 @@ export const Button = styled.div<ButtonProps>`
   `};
   
   &:hover {
-    background-color: ${props => Color(props.theme.colors.tertiary).darken(0.2).toString()};
+    background-color: ${props => Color(props.theme.colors.buttons).darken(0.2).toString()};
     background-color: ${props => props.primary && Color(props.theme.colors.primary).darken(0.2).toString()};
     background-color: ${props => props.success && props.theme.colors.success};
     background-color: ${props => props.warning && Color(props.theme.colors.warning).darken(0.2).toString()};

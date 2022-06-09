@@ -70,19 +70,19 @@ const HoveredPalette  = styled.div`
   position: absolute;
   right: -11.2em;
   top: -1.9em;
-  border: 4px solid ${props => props.theme.colors.secondary};
+  border: 4px solid ${props => props.theme.colors.textOnBackground};
   padding: 0.4em 0.6em;
-  background-color: white;
+  background-color: ${({theme}) => theme.colors.background};
   border-radius: 0.8em;
 `
 
 const PaletteName = styled.div`
   text-align: center;
-  color: ${props => props.theme.colors.secondary};
+  color: ${props => props.theme.colors.textOnBackground};
   font-size: 0.655rem;
   text-transform: uppercase;
   width: 11.8em;
-  border: 0.15em solid ${props => props.theme.colors.quaternary};
+  border: 0.15em solid ${props => props.theme.colors.misc};
   border-radius: 0.5em;
   padding: 0.5em 0;
   margin-bottom: 0.5em;
@@ -92,7 +92,7 @@ const PaletteName = styled.div`
 
 
 const Grid = styled.div`
-  color: ${props => props.theme.colors.secondary};
+  color: ${props => props.theme.colors.textOnBackground};
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   row-gap: 0.2em;

@@ -1,15 +1,18 @@
 import 'styled-components'
 
 declare module 'styled-components' {
+  export type Mode = "light" | "dark"
   export interface DefaultTheme {
-    colors: ThemeColors
+    colors: ThemeColors,
+    mode: Mode
   }
 
   export interface ThemeColors {
     primary: string;
-    secondary: string;
-    tertiary: string;
-    quaternary: string;
+    textOnBackground: string;
+    textOnButtons: string;
+    buttons: string;
+    misc: string;
     danger: string;
     success: string;
     link: string;
