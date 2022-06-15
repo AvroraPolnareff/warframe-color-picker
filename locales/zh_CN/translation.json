@@ -18,7 +18,7 @@
     ]
   },
   "menu": {
-    "interface": "切换布局",
+    "interface": "界面",
     "languageSwitch": "语言",
     "help": "帮助 & 关于",
     "colorPicker": "取色器",
