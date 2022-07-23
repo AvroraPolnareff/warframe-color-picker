@@ -67,6 +67,10 @@
       "energy": "ENERGY 1, 2",
       "import": "import",
       "export": "export",
+      "manualUpload": "MANUAL UPLOAD",
+      "back": "back",
+      "exportDescription": "Opening this link will let you choose whether you want to overwrite your current scheme.",
+      "importDescription": "Insert your screenshot here via CTRL+V in this text field for it to be uploaded and recognized automatically.\n\nIf it doesn’t work, please use the MANUAL UPLOAD button.\n\nAlternatively, enter the in-game name of the player you want to get a scheme from.",
       "copied": "copied!"
     },
     "suggestions": {

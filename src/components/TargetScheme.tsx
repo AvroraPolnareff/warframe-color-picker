@@ -10,12 +10,66 @@ import _ from "lodash";
 import {useTranslation} from "react-i18next";
 import Color from "color";
 import {UrlPaletteContext} from "../providers/UrlColorsProvider";
+import {assign, createMachine} from "xstate";
+import {useMachine} from "@xstate/react";
 
 interface TargetSchemeProps {
   paletteColors: string[]
   onCellClick: (colorPosition: number, e: React.MouseEvent) => void;
   onImportClick: () => void;
 }
+
+type WindowState = "normal" | "export" | "import"
+
+type WindowMachineEvents =
+  | { type: "TOGGLE" }
+  | { type: "EXPORT" }
+  | { type: "IMPORT" }
+  | { type: "BACK" }
+
+const windowMachine = createMachine({
+  id: "window",
+  initial: "colorWindows",
+  tsTypes: {} as import("./TargetScheme.typegen").Typegen0,
+  schema: {
+    events: {} as WindowMachineEvents,
+  },
+  states: {
+    colorWindows: {
+      initial: "default",
+      on: {
+        EXPORT: {target: "sharing.export"},
+        IMPORT: {target: "sharing.import"}
+      },
+      states: {
+        default: {
+          on: {
+            TOGGLE: {target: "manual"}
+          }
+        },
+        manual: {
+          on: {
+            TOGGLE: {target: "default"}
+          }
+        },
+        hist: {
+          type: "history",
+          history: "shallow"
+        }
+      }
+    },
+    sharing: {
+      on: {
+        BACK: {target: "#window.colorWindows.hist"}
+      },
+      initial: "export",
+      states: {
+        export: {},
+        import: {}
+      },
+    }
+  }
+})
 
 const TargetScheme = (
   {
@@ -25,26 +79,23 @@ const TargetScheme = (
   }: TargetSchemeProps
 ) => {
   const {t} = useTranslation()
-  const [copied, setCopied] = useState(false)
-  const [switched, setSwitched] = useState(false)
   const [selectedCell, setSelectedCell] = useState(0)
-  const urlColors = useContext(UrlPaletteContext)
+  //const urlColors = useContext(UrlPaletteContext)
+
+  const [current, send] = useMachine(windowMachine)
 
   const onExportClick = async () => {
-    if (typeof navigator === "undefined") return
-    try {
-      const hexColors = paletteColors.map(color => color ? Color(color).hex() : "")
-      const exportUrl = await urlColors.savePalette({name: "defname", colors: hexColors})
-      await navigator.clipboard.writeText(exportUrl)
-      setCopied(true)
-      setTimeout(() => {
-        setCopied(false)
-      }, 2000)
-    } catch (e) {
-      console.log(e)
-      alert("error!")
-    }
-
+    // if (typeof navigator === "undefined") return
+    // try {
+    //   const hexColors = paletteColors.map(color => color ? Color(color).hex() : "")
+    //   const exportUrl = await urlColors.savePalette({name: "defname", colors: hexColors})
+    //   await navigator.clipboard.writeText(exportUrl)
+    //   setCopied(true)
+    //   setTimeout(() => {setCopied(false)}, 2000)
+    // } catch (e) {
+    //   console.log(e)
+    //   alert("error!")
+    // }
   }
 
   const onCellChange = (index: number, e: React.MouseEvent) => {
@@ -62,47 +113,94 @@ const TargetScheme = (
       <FlexColumnCenter>
         <Header>{t("colorPicker.targetScheme.targetScheme")}</Header>
         <div style={{marginBottom: "0.3em",}}>
-          <Switch
-            switched={switched}
-            width={11.13}
-            onClick={() => setSwitched(!switched)}
-            leftText={t("colorPicker.targetScheme.default")}
-            rightText={t("colorPicker.targetScheme.manual")}
-          />
+          {current.matches("colorWindows") && <>
+            <Switch
+              switched={current.matches("colorWindows.manual")}
+              width={11.13}
+              onClick={() => send("TOGGLE")}
+              leftText={t("colorPicker.targetScheme.default")}
+              rightText={t("colorPicker.targetScheme.manual")}
+            />
+            <Divider/>
+          </>}
         </div>
-        <Divider/>
       </FlexColumnCenter>
-      {switched
-        ? <Manual colors={paletteColors} onCellChange={onCellChange} selectedCell={selectedCell}/> :
-        <Default
-          colors={paletteColors.slice(Math.floor(selectedCell / 8) * 8, Math.floor(selectedCell / 8 + 1) * 8)}
-          onCellChange={(index, e) => onCellChange(index + Math.floor(selectedCell / 8) * 8, e)}
-          selectedCell={selectedCell % 8}
-        />
+      {current.matches("colorWindows.manual") &&
+          <Manual colors={paletteColors} onCellChange={onCellChange} selectedCell={selectedCell}/>
+      }
+      {current.matches("colorWindows.default") &&
+          <Default
+              colors={paletteColors.slice(Math.floor(selectedCell / 8) * 8, Math.floor(selectedCell / 8 + 1) * 8)}
+              onCellChange={(index, e) => onCellChange(index + Math.floor(selectedCell / 8) * 8, e)}
+              selectedCell={selectedCell % 8}
+          />
+      }
+      {current.matches("sharing.import") &&
+          <Import/>
+      }
+      {current.matches("sharing.export") &&
+          <Export/>
       }
       <Divider/>
-      <div style={{textAlign: "right", marginTop: "0.5em", marginBottom: "0.2em"}}>
-        <Button round small onClick={onImportClick} primary>{t("colorPicker.targetScheme.import")}</Button>
-        <Button
-          round small
-          onClick={onExportClick}
-          style={{marginLeft: "0.5em"}}
-          success={copied}
-        >
-          {copied ? t("colorPicker.targetScheme.copied") : t("colorPicker.targetScheme.export")}
-        </Button>
+      <div
+        style={{
+          display: "inline-flex",
+          width: "100%",
+          justifyContent: "space-between",
+          marginTop: "0.5em",
+          marginBottom: "0.2em"
+        }}
+      >
+        <span style={{flex: 1}}>
+          {current.matches("sharing.import") &&
+              <Button
+                  round small
+              >
+                {t("colorPicker.targetScheme.manualUpload")}
+              </Button>
+          }
+        </span>
+        {current.can("IMPORT") &&
+          <Button
+              round
+              small
+              onClick={() => send("IMPORT")}
+              primary
+          >
+            {t("colorPicker.targetScheme.import")}
+          </Button>
+        }
+        {current.can("EXPORT") &&
+          <Button
+              round small
+              onClick={() => send("EXPORT")}
+              style={{marginLeft: "0.5em"}}
+          >
+            {t("colorPicker.targetScheme.export")}
+          </Button>
+        }
+        {current.can("BACK") &&
+          <Button
+              round
+              small
+              onClick={() => send("BACK")}
+          >
+            {t("colorPicker.targetScheme.back")}
+          </Button>
+        }
       </div>
     </Window>
   )
 }
 
 const Header = styled.h2`
-    font-weight: 900;
-    color: ${props => props.theme.colors.targetSchemeHeader};
-    margin-bottom: 0.12em; margin-top: 0 ;
-    font-size: 1.6rem;
-    pointer-events: none;
-    user-select: none;
+  font-weight: 900;
+  color: ${props => props.theme.colors.targetSchemeHeader};
+  margin-bottom: 0.12em;
+  margin-top: 0;
+  font-size: 1.6rem;
+  pointer-events: none;
+  user-select: none;
 `
 
 interface DefaultProps {
@@ -152,6 +250,19 @@ const Default = (
   )
 }
 
+
+const Export = () => {
+  return <Wrapper>
+
+  </Wrapper>
+}
+
+const Import = () => {
+  return <Wrapper>
+
+  </Wrapper>
+}
+
 interface ManualProps {
   colors: string[],
   onCellChange: (colorIndex: number, e: React.MouseEvent) => void,
@@ -194,15 +305,15 @@ const Manual = (
 }
 
 const StyledManual = styled.div`
-  
+
   //display: grid;
   //grid-template-rows: repeat(6, 1fr);
   //grid-template-columns: repeat(8, 1fr);
   //row-gap: 0.15em;
-  
+
 `
 
-const CellsBorder = styled.div<{selected?: boolean}>`
+const CellsBorder = styled.div<{ selected?: boolean }>`
   position: absolute;
   content: " ";
   left: -1.1%;
@@ -222,7 +333,7 @@ const Wrapper = styled.div`
   padding-bottom: 0.25em;
 `
 
-const CellsRow = styled.div<{selected?: boolean}>`
+const CellsRow = styled.div<{ selected?: boolean }>`
   position: relative;
   display: flex;
   justify-content: space-between;
@@ -253,21 +364,22 @@ const ColorEntry = (
 }
 
 const ColorName = styled.span`
-    font-weight: normal;
-    font-size: 1rem;
-    letter-spacing: 0.05em;
-    &:before {
-        margin-right: 0.3em;
-        content: "•";
-        margin-left: 0.2em;
-    }
+  font-weight: normal;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+
+  &:before {
+    margin-right: 0.3em;
+    content: "•";
+    margin-left: 0.2em;
+  }
 `
 
 const StyledColorEntry = styled.div`
-    display: flex;
-    align-items: center;
-    width: 100%;
-    margin-bottom: 0.11em;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 0.11em;
 `
 
 export default TargetScheme

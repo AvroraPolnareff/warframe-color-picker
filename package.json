@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@xstate/react": "^3.0.0",
     "color": "4.0.1",
     "i18next": "21.2.3",
     "lodash": "4.17.21",
@@ -16,13 +17,15 @@
     "react-inlinesvg": "^3.0.0",
     "react-transition-group": "4.4.2",
     "styled-components": "5.3.1",
-    "typescript": "4.4.3"
+    "typescript": "4.4.3",
+    "xstate": "^4.32.1"
   },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "export": "next export"
+    "export": "next export",
+    "typegen": "xstate typegen ./src --watch"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -48,6 +51,7 @@
     "@types/react-dom": "17.0.3",
     "@types/react-transition-group": "4.4.3",
     "@types/styled-components": "5.1.14",
+    "@xstate/cli": "^0.2.1",
     "all-contributors-cli": "^6.20.0",
     "babel-plugin-styled-components": "1.13.2",
     "react-is": "17.0.2"
