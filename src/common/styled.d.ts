@@ -19,6 +19,7 @@ declare module 'styled-components' {
     warning: string;
     background: string;
     targetSchemeHeader: string;
+    selectedColorHeader: string;
 
     darken: Colors;
   }

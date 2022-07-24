@@ -60,7 +60,7 @@ const Selection = styled.div<{switched: boolean, width: number}>`
   transition: transform 0.3s cubic-bezier(0,1,0.5,1);
   width: ${props => props.width / 2 - offset }em;
   height: ${height}em;
-  border: ${offset }em solid ${props => props.theme.colors.background};
+  border: ${offset }em solid ${props => props.theme.colors.textOnButtons};
   border-radius: 0.633em;
   background: ${props => props.theme.colors.primary};
   
