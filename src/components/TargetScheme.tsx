@@ -209,7 +209,7 @@ const CellsBorder = styled.div<{selected?: boolean}>`
   top: -5.6%;
   width: 102.4%;
   height: 1.55em;
-  border: 2px dashed transparent;
+  border: 3px dashed transparent;
   border-radius: 1.6em;
   transition: border-color linear 0.2s;
   ${({selected, theme}) => selected && css`
