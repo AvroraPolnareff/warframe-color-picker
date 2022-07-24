@@ -24,7 +24,7 @@ export const dayTheme: ColorsWithMode = {
 export const nightTheme: ColorsWithMode = {
   mode: "dark",
   colors: {
-    primary: "#55dcdc",
+    primary: "#00C0C0",
     textOnBackground: "#c8c8c8",
     textOnButtons: "#ffffff",
     buttons: "#424242",
