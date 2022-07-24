@@ -19,8 +19,6 @@ interface TargetSchemeProps {
   onImportClick: () => void;
 }
 
-type WindowState = "normal" | "export" | "import"
-
 type WindowMachineEvents =
   | { type: "TOGGLE" }
   | { type: "EXPORT" }
