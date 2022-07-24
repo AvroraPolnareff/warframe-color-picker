@@ -51,7 +51,7 @@ const StyledModal = styled.div<{show: boolean}>`
   display: ${props => props.show ? "block" : "none"};
   left: 0; top: 0;
   overflow: auto;
-  background-color: rgba(255,255,255,0.7);
+  background-color:${({theme}) => theme.mode === "light" ? "rgba(255,255,255,0.7)" : "rgba(0,0,0,0.7)"};
   
 `
 
