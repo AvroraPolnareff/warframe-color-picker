@@ -70,7 +70,7 @@
       "manualUpload": "MANUAL UPLOAD",
       "back": "back",
       "exportDescription": "Opening this link will let you choose whether you want to overwrite your current scheme.",
-      "importDescription": "Insert your screenshot here via CTRL+V in this text field for it to be uploaded and recognized automatically.\n\nIf it doesn’t work, please use the MANUAL UPLOAD button.\n\nAlternatively, enter the in-game name of the player you want to get a scheme from.",
+      "importDescription": "Insert <1>your screenshot</1> here via <2>CTRL+V</2> in this text field for it to be uploaded and recognized automatically.<br/><br/>If it doesn’t work, please use the <3>MANUAL UPLOAD</3> button. <br/> <br/> Alternatively, enter the <4>in-game name</4> of the player you want to get a scheme from.",
       "copied": "copied!"
     },
     "suggestions": {

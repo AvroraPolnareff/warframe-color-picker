@@ -4,6 +4,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.9.3",
+    "@emotion/styled": "^11.9.3",
+    "@mui/system": "^5.9.2",
     "@xstate/react": "^3.0.0",
     "color": "4.0.1",
     "i18next": "21.2.3",

@@ -1,5 +1,5 @@
 import React, {useContext, useMemo, useState} from "react";
-import styled, {css} from "styled-components";
+import styled, {css, useTheme} from "styled-components";
 import {Window} from "./shared/Window";
 import {FlexColumnCenter} from "./shared/FlexColumnCenter";
 import {Button} from "./shared/Button";
@@ -7,11 +7,11 @@ import {Divider} from "./shared/Divider";
 import {ColorCell} from "./shared/ColorCell";
 import {Switch} from "./shared/Switch";
 import _ from "lodash";
-import {useTranslation} from "react-i18next";
-import Color from "color";
-import {UrlPaletteContext} from "../providers/UrlColorsProvider";
-import {assign, createMachine} from "xstate";
+import {Trans, useTranslation} from "react-i18next";
+import {createMachine} from "xstate";
 import {useMachine} from "@xstate/react";
+import {Input} from "./shared/Input";
+import {Box} from "@mui/system";
 
 interface TargetSchemeProps {
   paletteColors: string[]
@@ -110,18 +110,18 @@ const TargetScheme = (
     <Window width={14.321} style={{zIndex: 0}}>
       <FlexColumnCenter>
         <Header>{t("colorPicker.targetScheme.targetScheme")}</Header>
-        <div style={{marginBottom: "0.3em",}}>
           {current.matches("colorWindows") && <>
-            <Switch
-              switched={current.matches("colorWindows.manual")}
-              width={11.13}
-              onClick={() => send("TOGGLE")}
-              leftText={t("colorPicker.targetScheme.default")}
-              rightText={t("colorPicker.targetScheme.manual")}
-            />
+            <Box pb="0.3em">
+                <Switch
+                    switched={current.matches("colorWindows.manual")}
+                    width={11.13}
+                    onClick={() => send("TOGGLE")}
+                    leftText={t("colorPicker.targetScheme.default")}
+                    rightText={t("colorPicker.targetScheme.manual")}
+                />
+            </Box>
             <Divider/>
           </>}
-        </div>
       </FlexColumnCenter>
       {current.matches("colorWindows.manual") &&
           <Manual colors={paletteColors} onCellChange={onCellChange} selectedCell={selectedCell}/>
@@ -145,7 +145,7 @@ const TargetScheme = (
           display: "inline-flex",
           width: "100%",
           justifyContent: "space-between",
-          marginTop: "0.5em",
+          marginTop: "0.2em",
           marginBottom: "0.2em"
         }}
       >
@@ -250,15 +250,35 @@ const Default = (
 
 
 const Export = () => {
-  return <Wrapper>
-
-  </Wrapper>
+  const {t} = useTranslation()
+  return <Box height="11.575em">
+      <Divider/>
+      <Input fullWidth placeholder="URL" readOnly/>
+      <Divider/>
+      <Box fontSize="0.75em" whiteSpace="pre-line">
+        {t(`colorPicker.targetScheme.exportDescription`)}
+      </Box>
+    </Box>
 }
 
 const Import = () => {
-  return <Wrapper>
-
-  </Wrapper>
+  const {colors} = useTheme()
+  return <Box height="11.575em">
+    <Divider/>
+    <Input fullWidth placeholder="Player name"/>
+    <Divider/>
+    <Box fontSize="0.75em" whiteSpace="pre-line" lineHeight={1.08}>
+      <Trans src="colorPicker.targetScheme.importDescription">
+        Insert <Box component="span" color={colors.link}>your screenshot</Box> here
+        via <Box component="span" fontWeight="bold">CTRL+V</Box> in this text field for it to be uploaded and recognized automatically.
+        <br/><br/>
+        If it doesn’t work, please use the <Box component="span" fontWeight="bold">MANUAL UPLOAD</Box> button.
+        <br/><br/>
+        Alternatively, enter the <Box component="span" fontWeight="bold">in-game name</Box> of
+        the player you want to get a scheme from.
+      </Trans>
+    </Box>
+  </Box>
 }
 
 interface ManualProps {
