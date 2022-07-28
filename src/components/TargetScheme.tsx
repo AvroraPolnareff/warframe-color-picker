@@ -266,6 +266,30 @@ const Default = (
 }
 
 
+const ExportInputWrapper = styled.div`
+  position: relative;
+
+  height: fit-content;
+  &:after {
+    position: absolute;
+    content: ' ';
+    bottom: 0;
+    left: 0;
+    height: 50%;
+    width: 100%;
+    ${({theme: {colors}}) => css`
+      background: linear-gradient(0deg, ${colors.background}FF 0%, ${colors.background}00 100%)
+    `}
+  }
+`
+
+const ExportInput = styled(Input)`
+  overflow: hidden;
+  height: 10.5em;
+  resize: none;
+  font-size: 0.75em;
+`
+
 const Export = (props: {colors: string[]}) => {
   const {t} = useTranslation()
   const urlColors = useContext(UrlPaletteContext)
@@ -278,17 +302,18 @@ const Export = (props: {colors: string[]}) => {
 
   return <Box height="11.575em">
       <Divider/>
-      <Input
-        ref={inputRef}
-        as="textarea"
-        fullWidth
-        placeholder="URL"
-        readOnly
-        value={value}
-        style={{overflow: "hidden", height: "10.5em", resize: "none", fontSize: "0.75em"}}
-        onClick={() => inputRef.current?.select()}
+      <ExportInputWrapper>
+        <ExportInput
+          ref={inputRef}
+          as="textarea"
+          fullWidth
+          placeholder="URL"
+          readOnly
+          value={value}
+          onClick={() => inputRef.current?.select()}
+        />
+      </ExportInputWrapper>
 
-      />
       <Divider/>
       <Box fontSize="0.75em" whiteSpace="pre-line">
         {t(`colorPicker.targetScheme.exportDescription`)}
