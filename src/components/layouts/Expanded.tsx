@@ -23,9 +23,6 @@ export const Expanded = () => {
     clearAvailablePalettes,
     showAllAvailablePalettes,
 
-    showImportModal,
-    onAcceptImport,
-    setShowImportModal,
     onScreenshotImport,
 
     paletteColors,
@@ -60,14 +57,6 @@ export const Expanded = () => {
         : null
       }
 
-      <ImportModal
-        show={showImportModal}
-        onAccept={onAcceptImport}
-        onExit={() => {
-          setShowImportModal(false)
-        }}
-        onScreenshotImport={onScreenshotImport}
-      />
       <StyledLayout slide={enableMOTD}>
 
         <div style={{display: 'flex', alignItems: "flex-start"}}>
@@ -83,7 +72,7 @@ export const Expanded = () => {
                 <TargetScheme
                   paletteColors={paletteColors}
                   onCellClick={onCellClick}
-                  onImportClick={() => setShowImportModal(true)}
+                  onImportClick={onScreenshotImport}
                 />
               </Wires>
             </Wires>

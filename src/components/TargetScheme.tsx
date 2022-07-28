@@ -1,4 +1,4 @@
-import React, {useContext, useMemo, useState} from "react";
+import React, {useContext, useEffect, useMemo, useRef, useState} from "react";
 import styled, {css, useTheme} from "styled-components";
 import {Window} from "./shared/Window";
 import {FlexColumnCenter} from "./shared/FlexColumnCenter";
@@ -12,11 +12,13 @@ import {createMachine} from "xstate";
 import {useMachine} from "@xstate/react";
 import {Input} from "./shared/Input";
 import {Box} from "@mui/system";
+import {UrlPaletteContext} from "../providers/UrlColorsProvider";
+import {colorsFromImage} from "../common/helpers";
 
 interface TargetSchemeProps {
   paletteColors: string[]
   onCellClick: (colorPosition: number, e: React.MouseEvent) => void;
-  onImportClick: () => void;
+  onImportClick: (colors: string[]) => void;
 }
 
 type WindowMachineEvents =
@@ -78,23 +80,8 @@ const TargetScheme = (
 ) => {
   const {t} = useTranslation()
   const [selectedCell, setSelectedCell] = useState(0)
-  //const urlColors = useContext(UrlPaletteContext)
 
   const [current, send] = useMachine(windowMachine)
-
-  const onExportClick = async () => {
-    // if (typeof navigator === "undefined") return
-    // try {
-    //   const hexColors = paletteColors.map(color => color ? Color(color).hex() : "")
-    //   const exportUrl = await urlColors.savePalette({name: "defname", colors: hexColors})
-    //   await navigator.clipboard.writeText(exportUrl)
-    //   setCopied(true)
-    //   setTimeout(() => {setCopied(false)}, 2000)
-    // } catch (e) {
-    //   console.log(e)
-    //   alert("error!")
-    // }
-  }
 
   const onCellChange = (index: number, e: React.MouseEvent) => {
     e.preventDefault()
@@ -134,10 +121,10 @@ const TargetScheme = (
           />
       }
       {current.matches("sharing.import") &&
-          <Import/>
+          <Import onImport={(colors) => {onImportClick(colors); send("BACK")}}/>
       }
       {current.matches("sharing.export") &&
-          <Export/>
+          <Export colors={paletteColors}/>
       }
       <Divider/>
       <div
@@ -249,11 +236,29 @@ const Default = (
 }
 
 
-const Export = () => {
+const Export = (props: {colors: string[]}) => {
   const {t} = useTranslation()
+  const urlColors = useContext(UrlPaletteContext)
+  const value = useMemo(() => urlColors.savePalette({name: "v1", colors: props.colors}), [props.colors])
+  const inputRef = useRef<HTMLTextAreaElement>(null)
+
+  useEffect(() => {
+    inputRef.current?.select()
+  }, [])
+
   return <Box height="11.575em">
       <Divider/>
-      <Input fullWidth placeholder="URL" readOnly/>
+      <Input
+        ref={inputRef}
+        as="textarea"
+        fullWidth
+        placeholder="URL"
+        readOnly
+        value={value}
+        style={{overflow: "hidden", height: "10.5em", resize: "none", fontSize: "0.75em"}}
+        onClick={() => inputRef.current?.select()}
+
+      />
       <Divider/>
       <Box fontSize="0.75em" whiteSpace="pre-line">
         {t(`colorPicker.targetScheme.exportDescription`)}
@@ -261,13 +266,57 @@ const Export = () => {
     </Box>
 }
 
-const Import = () => {
+const Import = (props: {onImport: (colors: string[]) => void}) => {
   const {colors} = useTheme()
+
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const onScreenshotImport = (colors: string[]) => {
+    props.onImport(colors)
+  }
+
+  const onScreenshotImportChange = () => {
+    if (!inputRef.current || !inputRef.current.files) return
+    const file = inputRef.current?.files[0]
+    if (!file) return;
+    const reader = new FileReader()
+    reader.onload = (ev => {
+      const img = new Image()
+      if (!ev.target?.result) return
+      img.onload = () => onScreenshotImport(colorsFromImage(img))
+      img.src = ev.target.result as string
+
+      if (!inputRef.current) return;
+      inputRef.current.value = ""
+    })
+    reader.readAsDataURL(file)
+  }
+
+
+  const onPaste = (ev: React.ClipboardEvent<HTMLInputElement>) => {
+    if (!ev.clipboardData) return
+    const item = ev.clipboardData.items[0]
+
+    if (item.type.indexOf("image") === 0) {
+      const blob = item.getAsFile()
+      if (!blob) return;
+
+      const reader = new FileReader()
+      reader.onload = (ev => {
+        const img = new Image()
+        if (!ev.target?.result) return
+        img.onload = () => onScreenshotImport(colorsFromImage(img))
+        img.src = ev.target.result as string
+      })
+      reader.readAsDataURL(blob)
+    }
+  }
+
   return <Box height="11.575em">
     <Divider/>
-    <Input fullWidth placeholder="Player name"/>
+    <Input fullWidth placeholder="..." onPaste={onPaste} onChange={onScreenshotImportChange} />
     <Divider/>
-    <Box fontSize="0.75em" whiteSpace="pre-line" lineHeight={1.08}>
+    <Box fontSize="0.75em" whiteSpace="pre-line" lineHeight={1.0}>
       <Trans src="colorPicker.targetScheme.importDescription">
         Insert <Box component="span" color={colors.link}>your screenshot</Box> here
         via <Box component="span" fontWeight="bold">CTRL+V</Box> in this text field for it to be uploaded and recognized automatically.

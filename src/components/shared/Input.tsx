@@ -7,7 +7,6 @@ export const Input = styled.input<{size?: "normal" | "big", fullWidth?: boolean}
   background-color: ${props => props.theme.colors.buttons};
   color: ${props => props.theme.colors.textOnButtons};
   padding: 0.2em 0.3em;
-  max-height: 1.3em;
   border-radius: 0.4em;
   font-weight: 500;
   font-size: 1.3rem;

@@ -28,7 +28,6 @@ export const useColorPickerLogic = () => {
   const [matchedColors, setMatchedColors] = useState<MatchedColor[]>([])
   const [isColorChanging, setIsColorChanging] = useState(false)
   const [selectedColor, setSelectedColor] = useState<MatchedColor>(initMatchedColor)
-  const [showImportModal, setShowImportModal] = useState(false)
   const [showPalettesModal, setShowPalettesModal] = useState(false)
   const [availablePalettes, setAvailablePalettes] = useStickyState<string[]>(initAvailablePalettes, "availablePalettes")
   const {hookState, colors: importedColors, paletteImported} = useContext(UrlPaletteContext)
@@ -95,16 +94,6 @@ export const useColorPickerLogic = () => {
     }
   }
 
-  const onAcceptImport = (data: string) => {
-    try {
-      const importData = convertExportStringToColors(data)
-      setPaletteColors(importData)
-      setShowImportModal(false)
-    } catch (e) {
-      console.log(e)
-    }
-  }
-
   const onPaletteClick = (paletteName: string) => {
     const isExists = availablePalettes.indexOf(paletteName) !== -1
     if (isExists) {
@@ -132,7 +121,6 @@ export const useColorPickerLogic = () => {
       ...colors,
       ...paletteColors.slice(Math.floor(currentColorIndex / 8 + 1) * 8)
     ]);
-    setShowImportModal(false)
   }
 
   return {
@@ -143,9 +131,6 @@ export const useColorPickerLogic = () => {
     clearAvailablePalettes,
     showAllAvailablePalettes,
 
-    showImportModal,
-    onAcceptImport,
-    setShowImportModal,
     onScreenshotImport,
 
     paletteColors,
