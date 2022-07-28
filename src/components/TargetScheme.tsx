@@ -172,34 +172,37 @@ const TargetScheme = (
               </Button>
           }
         </span>
-        {current.can("IMPORT") &&
-          <Button
-              round
-              small
-              onClick={() => send("IMPORT")}
-              primary
-          >
-            {t("colorPicker.targetScheme.import")}
-          </Button>
-        }
-        {current.can("EXPORT") &&
-          <Button
-              round small
-              onClick={() => send("EXPORT")}
-              style={{marginLeft: "0.5em"}}
-          >
-            {t("colorPicker.targetScheme.export")}
-          </Button>
-        }
-        {current.can("BACK") &&
-          <Button
-              round
-              small
-              onClick={() => send("BACK")}
-          >
-            {t("colorPicker.targetScheme.back")}
-          </Button>
-        }
+        <span>
+          {current.can("IMPORT") &&
+              <Button
+                  round
+                  small
+                  onClick={() => send("IMPORT")}
+                  primary
+              >
+                {t("colorPicker.targetScheme.import")}
+              </Button>
+          }
+          {current.can("EXPORT") &&
+              <Button
+                  round small
+                  onClick={() => send("EXPORT")}
+                  style={{marginLeft: "0.5em"}}
+              >
+                {t("colorPicker.targetScheme.export")}
+              </Button>
+          }
+          {current.can("BACK") &&
+              <Button
+                  round
+                  small
+                  onClick={() => send("BACK")}
+              >
+                {t("colorPicker.targetScheme.back")}
+              </Button>
+          }
+        </span>
+
       </div>
     </Window>
   )
