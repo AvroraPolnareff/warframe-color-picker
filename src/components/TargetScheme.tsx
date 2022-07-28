@@ -213,11 +213,8 @@ const CellsBorder = styled.div<{selected?: boolean}>`
   top: -7%;
   width: 103.7%;
   height: 1.6em;
-  background-image: ${({theme}) => `url("/images/selected-row-${theme.mode}.svg")`};
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  background-clip: border-box;
+  background-color: ${({theme}) => theme.colors.misc};
+  border-radius: 3em;
   opacity: 0;
   //border-radius: 1.6em;
   transition: opacity linear 0.2s;
