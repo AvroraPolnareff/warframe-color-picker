@@ -92,6 +92,24 @@ const TargetScheme = (
       onCellClick(index, e)
     }
   }
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const onScreenshotImportChange = () => {
+    if (!inputRef.current || !inputRef.current.files) return
+    const file = inputRef.current?.files[0]
+    if (!file) return;
+    const reader = new FileReader()
+    reader.onload = (ev => {
+      const img = new Image()
+      if (!ev.target?.result) return
+      img.onload = () => {onImportClick(colorsFromImage(img)); send("BACK")}
+      img.src = ev.target.result as string
+
+      if (!inputRef.current) return;
+      inputRef.current.value = ""
+    })
+    reader.readAsDataURL(file)
+  }
 
   return (
     <Window width={14.321} style={{zIndex: 0}}>
@@ -127,6 +145,13 @@ const TargetScheme = (
           <Export colors={paletteColors}/>
       }
       <Divider/>
+      <input
+        ref={inputRef}
+        type="file"
+        style={{position: "fixed", top: -100}}
+        onChange={onScreenshotImportChange}
+        name="screenshot" id="screenshot"
+      />
       <div
         style={{
           display: "inline-flex",
@@ -140,6 +165,8 @@ const TargetScheme = (
           {current.matches("sharing.import") &&
               <Button
                   round small
+                  htmlFor="screenshot"
+                  as="label"
               >
                 {t("colorPicker.targetScheme.manualUpload")}
               </Button>
@@ -269,29 +296,9 @@ const Export = (props: {colors: string[]}) => {
 const Import = (props: {onImport: (colors: string[]) => void}) => {
   const {colors} = useTheme()
 
-  const inputRef = useRef<HTMLInputElement>(null);
-
   const onScreenshotImport = (colors: string[]) => {
     props.onImport(colors)
   }
-
-  const onScreenshotImportChange = () => {
-    if (!inputRef.current || !inputRef.current.files) return
-    const file = inputRef.current?.files[0]
-    if (!file) return;
-    const reader = new FileReader()
-    reader.onload = (ev => {
-      const img = new Image()
-      if (!ev.target?.result) return
-      img.onload = () => onScreenshotImport(colorsFromImage(img))
-      img.src = ev.target.result as string
-
-      if (!inputRef.current) return;
-      inputRef.current.value = ""
-    })
-    reader.readAsDataURL(file)
-  }
-
 
   const onPaste = (ev: React.ClipboardEvent<HTMLInputElement>) => {
     if (!ev.clipboardData) return
@@ -314,7 +321,7 @@ const Import = (props: {onImport: (colors: string[]) => void}) => {
 
   return <Box height="11.575em">
     <Divider/>
-    <Input fullWidth placeholder="..." onPaste={onPaste} onChange={onScreenshotImportChange} />
+    <Input fullWidth placeholder="..." onPaste={onPaste} />
     <Divider/>
     <Box fontSize="0.75em" whiteSpace="pre-line" lineHeight={1.0}>
       <Trans src="colorPicker.targetScheme.importDescription">

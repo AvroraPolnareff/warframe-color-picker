@@ -1,7 +1,6 @@
 import React, {useContext} from "react";
 import {useColorPickerLogic} from "../../hooks/useColorPickerLogic";
 import {PalettesModal} from "../PalettesModal";
-import {ImportModal} from "../ImportModal";
 import TargetScheme from "../TargetScheme";
 import {ColorPicker} from "../ColorPicker";
 import Color from "color";
