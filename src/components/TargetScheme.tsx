@@ -300,7 +300,7 @@ const Export = (props: {colors: string[]}) => {
     inputRef.current?.select()
   }, [])
 
-  return <Box height="11.575em">
+  return <Box height="11.575em" fontStyle="italic">
       <Divider/>
       <ExportInputWrapper>
         <ExportInput
@@ -347,7 +347,7 @@ const Import = (props: {onImport: (colors: string[]) => void}) => {
     }
   }
 
-  return <Box height="11.575em">
+  return <Box height="11.575em"  fontStyle="italic">
     <Divider/>
     <Input fullWidth placeholder="..." onPaste={onPaste} />
     <Divider/>
