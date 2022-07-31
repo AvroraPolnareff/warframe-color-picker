@@ -318,7 +318,7 @@ const Export = (props: {colors: string[]}) => {
       </ExportInputWrapper>
 
       <Divider/>
-      <Box fontSize="0.75em" whiteSpace="pre-line">
+      <Box fontSize="0.82em" whiteSpace="pre-line">
         {t(`colorPicker.targetScheme.exportDescription`)}
       </Box>
     </Box>
@@ -355,7 +355,7 @@ const Import = (props: {onImport: (colors: string[]) => void}) => {
     <Divider/>
     <Input fullWidth placeholder="..." onPaste={onPaste} />
     <Divider/>
-    <Box fontSize="0.75em" whiteSpace="pre-line" lineHeight={1.0}>
+    <Box fontSize="0.82em" whiteSpace="pre-line" lineHeight={1.0}>
       <Trans src="colorPicker.targetScheme.importDescription">
         Insert <Box component="a" color={colors.link} sx={{textDecoration: "none"}} href={t(`colorPicker.targetScheme.importGuide`)}>your screenshot</Box> here
         via <Box component="span" fontWeight="bold">CTRL+V</Box> in this text field for it to be uploaded and recognized automatically.
