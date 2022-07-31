@@ -67,7 +67,12 @@
       "energy": "能量颜色",
       "import": "导入",
       "export": "导出",
-      "copied": "已复制"
+      "manualUpload": "MANUAL UPLOAD",
+      "back": "back",
+      "exportDescription": "Opening this link will let you choose whether you want to overwrite your current scheme.",
+      "importDescription": "Insert <1>your screenshot</1> here via <2>CTRL+V</2> in this text field for it to be uploaded and recognized automatically.<br/><br/>If it doesn’t work, please use the <3>MANUAL UPLOAD</3> button.",
+      "importGuide": "https://github.com/AvroraPolnareff/warframe-color-picker/blob/master/docs/GUIDE.CN.md#如何从截图导入配色"
+
     },
     "suggestions": {
       "suggestions": "/images/suggestions.svg",

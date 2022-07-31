@@ -14,6 +14,7 @@ import {Input} from "./shared/Input";
 import {Box} from "@mui/system";
 import {UrlPaletteContext} from "../providers/UrlColorsProvider";
 import {colorsFromImage} from "../common/helpers";
+import {Link} from "./shared/Link";
 
 interface TargetSchemeProps {
   paletteColors: string[]
@@ -277,8 +278,9 @@ const ExportInputWrapper = styled.div`
     left: 0;
     height: 50%;
     width: 100%;
+    border-radius: 0.4em;
     ${({theme: {colors}}) => css`
-      background: linear-gradient(0deg, ${colors.background}FF 0%, ${colors.background}00 100%)
+      background: linear-gradient(0deg, ${colors.buttons}FF 0%, ${colors.buttons}00 100%)
     `}
   }
 `
@@ -288,6 +290,7 @@ const ExportInput = styled(Input)`
   height: 10.5em;
   resize: none;
   font-size: 0.75em;
+  padding-left: 0.45em;
 `
 
 const Export = (props: {colors: string[]}) => {
@@ -323,6 +326,7 @@ const Export = (props: {colors: string[]}) => {
 
 const Import = (props: {onImport: (colors: string[]) => void}) => {
   const {colors} = useTheme()
+  const {t} = useTranslation()
 
   const onScreenshotImport = (colors: string[]) => {
     props.onImport(colors)
@@ -353,13 +357,11 @@ const Import = (props: {onImport: (colors: string[]) => void}) => {
     <Divider/>
     <Box fontSize="0.75em" whiteSpace="pre-line" lineHeight={1.0}>
       <Trans src="colorPicker.targetScheme.importDescription">
-        Insert <Box component="span" color={colors.link}>your screenshot</Box> here
+        Insert <Box component="a" color={colors.link} sx={{textDecoration: "none"}} href={t(`colorPicker.targetScheme.importGuide`)}>your screenshot</Box> here
         via <Box component="span" fontWeight="bold">CTRL+V</Box> in this text field for it to be uploaded and recognized automatically.
         <br/><br/>
         If it doesn’t work, please use the <Box component="span" fontWeight="bold">MANUAL UPLOAD</Box> button.
         <br/><br/>
-        Alternatively, enter the <Box component="span" fontWeight="bold">in-game name</Box> of
-        the player you want to get a scheme from.
       </Trans>
     </Box>
   </Box>
