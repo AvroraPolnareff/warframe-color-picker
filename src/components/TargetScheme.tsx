@@ -154,7 +154,7 @@ const TargetScheme = (
               <Export colors={paletteColors}/>
           }
         </Box>
-        <Box>
+        <Box height={"2.1em"}>
           <Divider/>
           <input
             ref={inputRef}
@@ -258,7 +258,7 @@ const Default = (
                   onClick={(e) => onCellClick(2, e)} color={colors[2]}/>
       <ColorEntry text={t("colorPicker.targetScheme.quaternary")} selected={isSelected(3)}
                   onClick={(e) => onCellClick(3, e)} color={colors[3]}/>
-      <div style={{marginTop: "0.65em"}}>
+      <div>
         <StyledColorEntry>
           <ColorCell outline={isSelected(4)} color={colors[4]} onClick={(e) => onCellClick(4, e)}/>
           <ColorCell outline={isSelected(5)} color={colors[5]} onClick={(e) => onCellClick(5, e)}/>
@@ -306,7 +306,7 @@ const Export = (props: { colors: string[] }) => {
   const {t} = useTranslation()
   const urlColors = useContext(UrlPaletteContext)
   const value = useMemo(() => urlColors.savePalette({name: "v1", colors: props.colors}), [props.colors])
-  const inputRef = useRef<HTMLTextAreaElement>(null)
+  const inputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
     inputRef.current?.select()
@@ -314,21 +314,17 @@ const Export = (props: { colors: string[] }) => {
 
   return <Box fontStyle="italic">
     <Divider/>
-    <ExportInputWrapper>
-      <ExportInput
-        ref={inputRef}
-        as="textarea"
-        fullWidth
-        placeholder="URL"
-        readOnly
-        value={value}
-        onClick={() => inputRef.current?.select()}
-      />
-    </ExportInputWrapper>
-
+    <Box my="0.6em">
+      <Input fullWidth placeholder="..." value={value} readOnly ref={inputRef} onClick={() => inputRef.current?.select()}/>
+    </Box>
     <Divider/>
-    <Box fontSize="0.82em" whiteSpace="pre-line">
-      {t(`colorPicker.targetScheme.exportDescription`)}
+    <Box fontSize="0.82em" lineHeight={1.2} whiteSpace="pre-line" pt="0.6em">
+      <Trans src={`colorPicker.targetScheme.exportDescription`}>
+        Opening this link will let you choose whether you want to overwrite your current scheme.
+        <br/>
+        <br/>
+        The link has been automatically copied to your clipboard.
+      </Trans>
     </Box>
   </Box>
 }
@@ -362,9 +358,11 @@ const Import = (props: { onImport: (colors: string[]) => void }) => {
 
   return <Box fontStyle="italic">
     <Divider/>
-    <Input fullWidth placeholder="..." onPaste={onPaste}/>
+    <Box my="0.6em">
+      <Input fullWidth placeholder="..." onPaste={onPaste}/>
+    </Box>
     <Divider/>
-    <Box fontSize="0.82em" whiteSpace="pre-line" lineHeight={1.0}>
+    <Box fontSize="0.82em" whiteSpace="pre-line" lineHeight={1.2} pt="0.6em">
       <Trans src="colorPicker.targetScheme.importDescription">
         Insert <Box component="a" color={colors.link} sx={{textDecoration: "none"}}
                     href={t(`colorPicker.targetScheme.importGuide`)}>your screenshot</Box> here

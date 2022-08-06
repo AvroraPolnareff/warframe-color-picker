@@ -6,13 +6,14 @@ export const Input = styled.input<{size?: "normal" | "big", fullWidth?: boolean}
   align-items: center;
   background-color: ${props => props.theme.colors.buttons};
   color: ${props => props.theme.colors.textOnButtons};
-  padding: 0.2em 0.3em;
-  border-radius: 0.4em;
+  padding: 0.35em 0.45em;
+  border-radius: 0.6em;
   font-weight: 500;
-  font-size: 1.3rem;
+  font-size: 0.9rem;
   width: 5em;
   border: none;
   transition: background-color 0.15s linear;
+  text-overflow: ellipsis;
   
   ${({fullWidth}) => fullWidth && css`
     width: 100%;
