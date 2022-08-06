@@ -16,7 +16,7 @@ export const Window = (
 ) => {
   return (
       <WindowBorder width={width} height={height} style={style}>
-        <Content >
+        <Content  width={width} height={height}  >
           {children}
         </Content>
     </WindowBorder>
@@ -24,13 +24,13 @@ export const Window = (
   )
 }
 
-const Content = styled.div`
-    padding: 0.3em 0.5em;
-    border-radius: 0.54em;
-    background-color: ${props => props.theme.colors.background};
-    color: ${props => props.theme.colors.textOnBackground};
-
-    
+const Content = styled.div<{width?: number, height?: number}>`
+  padding: 0.3em 0.5em;
+  border-radius: 0.54em;
+  background-color: ${props => props.theme.colors.background};
+  color: ${props => props.theme.colors.textOnBackground};
+  width: 100%;
+  height: 100%;
 `
 
 const WindowBorder = styled.div<{width?: number, height?: number}>`

@@ -13,7 +13,7 @@ export enum UrlColorsState {
 interface UrlPalette {
   colors: string[]
   name: string
-  savePalette: (palette: {name: string, colors: string[]}) => Promise<string>
+  savePalette: (palette: {name: string, colors: string[]}) => string
   confirmPalette: (confirmed: boolean) => void
   hookState: UrlColorsState
   paletteImported: () => void
@@ -22,7 +22,7 @@ interface UrlPalette {
 const initUrlPalette: UrlPalette = {
   colors: [],
   name: "",
-  savePalette: async () => "",
+  savePalette: () => "",
   confirmPalette: (confirmed) => {},
   hookState: UrlColorsState.INIT,
   paletteImported: () => {}
@@ -68,7 +68,7 @@ export const UrlPaletteContextProvider = ({children}: {children: ReactNode}) => 
     }
   }, [hookState])
 
-  const savePalette = async (palette: {name: string, colors: string[]}) => {
+  const savePalette = (palette: {name: string, colors: string[]}) => {
     if (palette.name === name && palette.colors.join() === colors.join()) return url.current
     try {
       const encodedPalette = encodePalette(palette.name, palette.colors)
