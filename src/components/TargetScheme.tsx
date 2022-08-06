@@ -103,7 +103,10 @@ const TargetScheme = (
     reader.onload = (ev => {
       const img = new Image()
       if (!ev.target?.result) return
-      img.onload = () => {onImportClick(colorsFromImage(img)); send("BACK")}
+      img.onload = () => {
+        onImportClick(colorsFromImage(img));
+        send("BACK")
+      }
       img.src = ev.target.result as string
 
       if (!inputRef.current) return;
@@ -113,98 +116,103 @@ const TargetScheme = (
   }
 
   return (
-    <Window width={14.321} style={{zIndex: 0}}>
-      <FlexColumnCenter>
-        <Header>{t("colorPicker.targetScheme.targetScheme")}</Header>
-          {current.matches("colorWindows") && <>
-            <Box pb="0.3em">
-                <Switch
-                    switched={current.matches("colorWindows.manual")}
-                    width={11.13}
-                    onClick={() => send("TOGGLE")}
-                    leftText={t("colorPicker.targetScheme.default")}
-                    rightText={t("colorPicker.targetScheme.manual")}
-                />
-            </Box>
-            <Divider/>
-          </>}
-      </FlexColumnCenter>
-      {current.matches("colorWindows.manual") &&
-          <Manual colors={paletteColors} onCellChange={onCellChange} selectedCell={selectedCell}/>
-      }
-      {current.matches("colorWindows.default") &&
-          <Default
-              colors={paletteColors.slice(Math.floor(selectedCell / 8) * 8, Math.floor(selectedCell / 8 + 1) * 8)}
-              onCellChange={(index, e) => onCellChange(index + Math.floor(selectedCell / 8) * 8, e)}
-              selectedCell={selectedCell % 8}
-          />
-      }
-      {current.matches("sharing.import") &&
-          <Import onImport={(colors) => {onImportClick(colors); send("BACK")}}/>
-      }
-      {current.matches("sharing.export") &&
-          <Export colors={paletteColors}/>
-      }
-      <Divider/>
-      <input
-        ref={inputRef}
-        type="file"
-        style={{position: "fixed", top: -100}}
-        onChange={onScreenshotImportChange}
-        name="screenshot" id="screenshot"
-      />
-      <div
-        style={{
-          display: "inline-flex",
-          width: "100%",
-          justifyContent: "space-between",
-          marginTop: "0.2em",
-          marginBottom: "0.2em"
-        }}
-      >
-        <span style={{flex: 1}}>
+    <Window width={14.321} style={{zIndex: 0}} height={17.8}>
+      <Box display="flex" flexDirection="column" justifyContent="space-between" height="100%" width="100%">
+        <Box>
+          <FlexColumnCenter>
+            <Header>{t("colorPicker.targetScheme.targetScheme")}</Header>
+            {current.matches("colorWindows") && <>
+                <Box pb="0.3em">
+                    <Switch
+                        switched={current.matches("colorWindows.manual")}
+                        width={11.13}
+                        onClick={() => send("TOGGLE")}
+                        leftText={t("colorPicker.targetScheme.default")}
+                        rightText={t("colorPicker.targetScheme.manual")}
+                    />
+                </Box>
+                <Divider/>
+            </>}
+          </FlexColumnCenter>
+          {current.matches("colorWindows.manual") &&
+              <Manual colors={paletteColors} onCellChange={onCellChange} selectedCell={selectedCell}/>
+          }
+          {current.matches("colorWindows.default") &&
+              <Default
+                  colors={paletteColors.slice(Math.floor(selectedCell / 8) * 8, Math.floor(selectedCell / 8 + 1) * 8)}
+                  onCellChange={(index, e) => onCellChange(index + Math.floor(selectedCell / 8) * 8, e)}
+                  selectedCell={selectedCell % 8}
+              />
+          }
           {current.matches("sharing.import") &&
-              <Button
-                  round small
-                  htmlFor="screenshot"
-                  as="label"
-              >
-                {t("colorPicker.targetScheme.manualUpload")}
-              </Button>
+              <Import onImport={(colors) => {
+                onImportClick(colors);
+                send("BACK")
+              }}/>
           }
-        </span>
-        <span>
-          {current.can("IMPORT") &&
-              <Button
-                  round
-                  small
-                  onClick={() => send("IMPORT")}
-                  primary
-              >
-                {t("colorPicker.targetScheme.import")}
-              </Button>
+          {current.matches("sharing.export") &&
+              <Export colors={paletteColors}/>
           }
-          {current.can("EXPORT") &&
-              <Button
-                  round small
-                  onClick={() => send("EXPORT")}
-                  style={{marginLeft: "0.5em"}}
-              >
-                {t("colorPicker.targetScheme.export")}
-              </Button>
-          }
-          {current.can("BACK") &&
-              <Button
-                  round
-                  small
-                  onClick={() => send("BACK")}
-              >
-                {t("colorPicker.targetScheme.back")}
-              </Button>
-          }
-        </span>
-
-      </div>
+        </Box>
+        <Box>
+          <Divider/>
+          <input
+            ref={inputRef}
+            type="file"
+            style={{position: "fixed", top: -100}}
+            onChange={onScreenshotImportChange}
+            name="screenshot" id="screenshot"
+          />
+          <Box
+            display="inline-flex"
+            width="100%"
+            justifyContent="space-between"
+            margin="0.2em auto"
+          >
+            <Box component="span" flex={1}>
+              {current.matches("sharing.import") &&
+                  <Button
+                      round small
+                      htmlFor="screenshot"
+                      as="label"
+                  >
+                    {t("colorPicker.targetScheme.manualUpload")}
+                  </Button>
+              }
+            </Box>
+            <span>
+            {current.can("IMPORT") &&
+                <Button
+                    round
+                    small
+                    onClick={() => send("IMPORT")}
+                    primary
+                >
+                  {t("colorPicker.targetScheme.import")}
+                </Button>
+            }
+              {current.can("EXPORT") &&
+                  <Button
+                      round small
+                      onClick={() => send("EXPORT")}
+                      style={{marginLeft: "0.5em"}}
+                  >
+                    {t("colorPicker.targetScheme.export")}
+                  </Button>
+              }
+              {current.can("BACK") &&
+                  <Button
+                      round
+                      small
+                      onClick={() => send("BACK")}
+                  >
+                    {t("colorPicker.targetScheme.back")}
+                  </Button>
+              }
+          </span>
+          </Box>
+        </Box>
+      </Box>
     </Window>
   )
 }
@@ -271,6 +279,7 @@ const ExportInputWrapper = styled.div`
   position: relative;
 
   height: fit-content;
+
   &:after {
     position: absolute;
     content: ' ';
@@ -293,7 +302,7 @@ const ExportInput = styled(Input)`
   padding-left: 0.45em;
 `
 
-const Export = (props: {colors: string[]}) => {
+const Export = (props: { colors: string[] }) => {
   const {t} = useTranslation()
   const urlColors = useContext(UrlPaletteContext)
   const value = useMemo(() => urlColors.savePalette({name: "v1", colors: props.colors}), [props.colors])
@@ -303,28 +312,28 @@ const Export = (props: {colors: string[]}) => {
     inputRef.current?.select()
   }, [])
 
-  return <Box height="11.575em" fontStyle="italic">
-      <Divider/>
-      <ExportInputWrapper>
-        <ExportInput
-          ref={inputRef}
-          as="textarea"
-          fullWidth
-          placeholder="URL"
-          readOnly
-          value={value}
-          onClick={() => inputRef.current?.select()}
-        />
-      </ExportInputWrapper>
+  return <Box fontStyle="italic">
+    <Divider/>
+    <ExportInputWrapper>
+      <ExportInput
+        ref={inputRef}
+        as="textarea"
+        fullWidth
+        placeholder="URL"
+        readOnly
+        value={value}
+        onClick={() => inputRef.current?.select()}
+      />
+    </ExportInputWrapper>
 
-      <Divider/>
-      <Box fontSize="0.82em" whiteSpace="pre-line">
-        {t(`colorPicker.targetScheme.exportDescription`)}
-      </Box>
+    <Divider/>
+    <Box fontSize="0.82em" whiteSpace="pre-line">
+      {t(`colorPicker.targetScheme.exportDescription`)}
     </Box>
+  </Box>
 }
 
-const Import = (props: {onImport: (colors: string[]) => void}) => {
+const Import = (props: { onImport: (colors: string[]) => void }) => {
   const {colors} = useTheme()
   const {t} = useTranslation()
 
@@ -351,14 +360,16 @@ const Import = (props: {onImport: (colors: string[]) => void}) => {
     }
   }
 
-  return <Box height="11.575em"  fontStyle="italic">
+  return <Box fontStyle="italic">
     <Divider/>
-    <Input fullWidth placeholder="..." onPaste={onPaste} />
+    <Input fullWidth placeholder="..." onPaste={onPaste}/>
     <Divider/>
     <Box fontSize="0.82em" whiteSpace="pre-line" lineHeight={1.0}>
       <Trans src="colorPicker.targetScheme.importDescription">
-        Insert <Box component="a" color={colors.link} sx={{textDecoration: "none"}} href={t(`colorPicker.targetScheme.importGuide`)}>your screenshot</Box> here
-        via <Box component="span" fontWeight="bold">CTRL+V</Box> in this text field for it to be uploaded and recognized automatically.
+        Insert <Box component="a" color={colors.link} sx={{textDecoration: "none"}}
+                    href={t(`colorPicker.targetScheme.importGuide`)}>your screenshot</Box> here
+        via <Box component="span" fontWeight="bold">CTRL+V</Box> in this text field for it to be uploaded and recognized
+        automatically.
         <br/><br/>
         If it doesn’t work, please use the <Box component="span" fontWeight="bold">MANUAL UPLOAD</Box> button.
         <br/><br/>
@@ -433,7 +444,7 @@ const CellsBorder = styled.div<{ selected?: boolean }>`
 `
 
 const Wrapper = styled.div`
-  height: 9.35em;
+  //height: 9.35em;
   padding-bottom: 0.25em;
 `
 
