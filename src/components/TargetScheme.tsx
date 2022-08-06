@@ -274,36 +274,7 @@ const Default = (
   )
 }
 
-
-const ExportInputWrapper = styled.div`
-  position: relative;
-
-  height: fit-content;
-
-  &:after {
-    position: absolute;
-    content: ' ';
-    bottom: 0;
-    left: 0;
-    height: 50%;
-    width: 100%;
-    border-radius: 0.4em;
-    ${({theme: {colors}}) => css`
-      background: linear-gradient(0deg, ${colors.buttons}FF 0%, ${colors.buttons}00 100%)
-    `}
-  }
-`
-
-const ExportInput = styled(Input)`
-  overflow: hidden;
-  height: 10.5em;
-  resize: none;
-  font-size: 0.75em;
-  padding-left: 0.45em;
-`
-
 const Export = (props: { colors: string[] }) => {
-  const {t} = useTranslation()
   const urlColors = useContext(UrlPaletteContext)
   const value = useMemo(() => urlColors.savePalette({name: "v1", colors: props.colors}), [props.colors])
   const inputRef = useRef<HTMLInputElement>(null)
@@ -443,7 +414,6 @@ const CellsBorder = styled.div<{ selected?: boolean }>`
 
 const Wrapper = styled.div`
   //height: 9.35em;
-  padding-bottom: 0.25em;
 `
 
 const CellsRow = styled.div<{ selected?: boolean }>`
