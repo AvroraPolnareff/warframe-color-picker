@@ -79,7 +79,7 @@ const Header = styled.div`
     margin: 0 0;
     text-align: center;
     background: rgb(233,165,165);
-    background: linear-gradient(90deg, rgba(233,165,165,1) 0%, rgba(184,193,192,1) 25%, rgba(101,192,224,1) 50%, rgba(174,162,219,1) 75%, rgba(129,193,217,1) 100%);
+    background: ${({theme}) => theme.colors.selectedColorHeader};
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     pointer-events: none;

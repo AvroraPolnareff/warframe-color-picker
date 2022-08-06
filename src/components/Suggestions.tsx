@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from "react"
+import React, {useContext, useEffect, useRef, useState} from "react"
 import {Position} from "../common/Palette";
 import {Divider} from "./shared/Divider";
 import {FlexColumnCenter} from "./shared/FlexColumnCenter";
@@ -12,6 +12,7 @@ import {positionValues, Scrollbars} from "react-custom-scrollbars-2"
 import {SwapIcon} from "../assets/SwapIcon"
 import Color from "color";
 import {useTranslation} from "react-i18next";
+import {SettingsContext} from "../providers/SettingsProvider";
 
 
 interface SuggestionsProps {
@@ -38,6 +39,7 @@ export const Suggestions = (props: SuggestionsProps) => {
   const [selected, setSelected] = useState("")
   const {t} = useTranslation()
   const {colors} = useTheme()
+  const {theme} = useContext(SettingsContext)
   useEffect(() => {
     if (props.matchedColors.length)
       setSelected(props.matchedColors[0].uid)
@@ -79,7 +81,7 @@ export const Suggestions = (props: SuggestionsProps) => {
     <Window width={14.321}>
       <FlexColumnCenter>
         <img
-          src={t("colorPicker.suggestions.suggestions", {defaultValue: "/images/suggestions.svg"})}
+          src={`/images/suggestions-${theme}.svg`}
           style={{width: "12em", marginTop: "0.25em", pointerEvents: "none", userSelect: "none"}}
           alt=""
         />
@@ -199,7 +201,7 @@ const HoverableSwap = styled.div`
   position: relative;
   opacity: 0;
   transition: opacity 0.1s linear;
-  
+
   &:hover {
     cursor: pointer;
     opacity: 0.7;

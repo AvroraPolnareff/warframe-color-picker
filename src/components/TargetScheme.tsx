@@ -400,15 +400,21 @@ const StyledManual = styled.div`
 const CellsBorder = styled.div<{ selected?: boolean }>`
   position: absolute;
   content: " ";
-  left: -1.1%;
-  top: -5.6%;
-  width: 102.4%;
-  height: 1.55em;
-  border: 2px dashed transparent;
-  border-radius: 1.6em;
-  transition: border-color linear 0.2s;
-  ${({selected, theme}) => selected && css`
-    border-color: ${theme.colors.textOnBackground};
+  margin-left: auto;
+  margin-right: auto;
+  right: 0;
+  text-align: center;
+  left: -1.7%;
+  top: -7%;
+  width: 103.7%;
+  height: 1.6em;
+  background-color: ${({theme}) => theme.colors.misc};
+  border-radius: 3em;
+  opacity: 0;
+  //border-radius: 1.6em;
+  transition: opacity linear 0.2s;
+  ${({selected}) => selected && css`
+    opacity: 1;
   `}
 `
 
