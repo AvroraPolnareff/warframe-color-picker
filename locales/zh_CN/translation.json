@@ -67,10 +67,10 @@
       "energy": "能量颜色",
       "import": "导入",
       "export": "导出",
-      "manualUpload": "MANUAL UPLOAD",
-      "back": "back",
-      "exportDescription": "Opening this link will let you choose whether you want to overwrite your current scheme. <br/><br/> The link has been automatically copied to your clipboard.",
-      "importDescription": "Insert <1>your screenshot</1> here via <2>CTRL+V</2> in this text field for it to be uploaded and recognized automatically.<br/><br/>If it doesn’t work, please use the <3>MANUAL UPLOAD</3> button.",
+      "manualUpload": "手动上传",
+      "back": "返回",
+      "exportDescription": "复制此链接到任意位置以分享你的配色。<br/><br>打开此链接时将会询问是否覆盖你当前的色板 <br/><br/> 此链接已经自动复制你的剪贴板。",
+      "importDescription": "在文本框中按下 <2>CTRL+V</2> 来自动上传并识别<1>你的配色截图</1>。<br/><br/>如果无法通过这种方式导入，请尝试<3>手动上传</3>按钮。",
       "importGuide": "https://github.com/AvroraPolnareff/warframe-color-picker/blob/master/docs/GUIDE.CN.md#如何从截图导入配色"
 
     },
