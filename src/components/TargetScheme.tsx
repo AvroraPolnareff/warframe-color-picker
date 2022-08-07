@@ -290,7 +290,7 @@ const Export = (props: { colors: string[] }) => {
     </Box>
     <Divider/>
     <Box fontSize="0.82em" lineHeight={1.2} whiteSpace="pre-line" pt="0.6em">
-      <Trans src={`colorPicker.targetScheme.exportDescription`}>
+      <Trans i18nKey={`colorPicker.targetScheme.exportDescription`}>
         Opening this link will let you choose whether you want to overwrite your current scheme.
         <br/>
         <br/>
@@ -334,7 +334,7 @@ const Import = (props: { onImport: (colors: string[]) => void }) => {
     </Box>
     <Divider/>
     <Box fontSize="0.82em" whiteSpace="pre-line" lineHeight={1.2} pt="0.6em">
-      <Trans src="colorPicker.targetScheme.importDescription">
+      <Trans i18nKey="colorPicker.targetScheme.importDescription">
         Insert <Box component="a" color={colors.link} sx={{textDecoration: "none"}}
                     href={t(`colorPicker.targetScheme.importGuide`)}>your screenshot</Box> here
         via <Box component="span" fontWeight="bold">CTRL+V</Box> in this text field for it to be uploaded and recognized
