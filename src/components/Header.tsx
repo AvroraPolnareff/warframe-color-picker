@@ -37,7 +37,10 @@ const FadeTransition = (
     ...rest
   }: TransitionProps
 ) => <Transition {...rest}>
-  {state => <FadeDiv state={state}>{children}</FadeDiv>}
+  {state => <FadeDiv state={state}>
+    {/*@ts-ignore */}
+    {children}
+  </FadeDiv>}
 </Transition>;
 
 
