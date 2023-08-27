@@ -1,7 +1,7 @@
 import React, {ReactNode, useContext} from "react";
 import styled, {useTheme} from "styled-components";
 import {Divider} from "../shared/Divider";
-import {useTranslation} from "react-i18next";
+import {Trans, useTranslation} from "react-i18next";
 import {Language, SettingsContext} from "../../providers/SettingsProvider";
 import {css} from "styled-components";
 
@@ -15,8 +15,8 @@ export const Languages = () => {
         <Divider/>
         <Text>
           <span>
-            <Danger>{t("languageScreen.headerText", {returnObjects: true})[0]}</Danger>
-            {t("languageScreen.headerText", {returnObjects: true})[1]}
+            <Trans i18nKey={`languageScreen.headerText`}><Danger>Attention!</Danger>Color Palette names will be changed according to the chosen language.
+            </Trans>
           </span>
         </Text>
         <Divider/>
@@ -36,11 +36,13 @@ export const Languages = () => {
           <Divider/>
           <Text>
             <span>
-              {t("languageScreen.bottomText", {returnObjects: true})[0]}
-              <Link target="_blank" href="https://discord.gg/WWBYuY3">
-                {t("languageScreen.bottomText", {returnObjects: true})[1]}
-              </Link>
-              {t("languageScreen.bottomText", {returnObjects: true})[2]}
+              <Trans i18nKey={`languageScreen.bottomText`}>
+                  Your language is missing? No worries, you can support us by helping to add it! Head over to our 
+                  <Link target="_blank" href="https://discord.gg/WWBYuY3">
+                    Discord
+                  </Link>
+                  so we can cooperate.
+              </Trans>
             </span>
           </Text>
           <Divider/>

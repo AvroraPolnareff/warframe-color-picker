@@ -4,10 +4,11 @@ import React, {ReactNode, useContext, useEffect, useState} from "react";
 import {CurrentScreenProvider} from "../src/providers/CurrentScreenProvider";
 import {SettingsContext, SettingsProvider} from "../src/providers/SettingsProvider";
 import {UrlPaletteContextProvider} from "../src/providers/UrlColorsProvider";
-import {I18nextProvider, Resources, useSSR} from "react-i18next";
+import {I18nextProvider, useSSR} from "react-i18next";
 import i18n from "../src/i18n";
 import "public/fonts/stylesheet.css"
 import "public/css/normalize.css"
+import { Resource } from "i18next";
 
 
 const GlobalStyle = createGlobalStyle`
@@ -39,7 +40,7 @@ const AppThemeProvider = (props: {children: ReactNode}) => {
   )
 }
 
-function MyApp({ Component, pageProps }: AppProps<{langResources: Resources}>) {
+function MyApp({ Component, pageProps }: AppProps<{langResources: Resource}>) {
   // TODO: change to dynamic ssr translations
   useSSR(pageProps.langResources, "en")
   const [isMounted, setIsMounted] = useState(true)

@@ -3,19 +3,11 @@
     "headerImage": "/images/choose-your-fighter-ru.svg",
     "themeHint": "Выберите дневной или ночной режим.",
     "layoutHint": "Выберите расположение окон.",
-    "bottomText": [
-      "Более широкие инструменты настройки уже находятся в разработке! Заглядывай к нам на огонёк в ",
-      "Discord",
-      ", если хочешь узнать больше!"
-    ]
+    "bottomText": "Более широкие инструменты настройки уже находятся в разработке! Заглядывай к нам на огонёк в <1>Discord</1>, если хочешь узнать больше!"
   },
   "languageScreen": {
-    "headerText": ["Внимание!", " Названия палитр будут переведены в соответствии с выбранным языком."],
-    "bottomText": [
-      "Your language is missing? No worries, you can support us by helping to add it! Head over to our ",
-      "Discord",
-      " so we can cooperate."
-    ]
+    "headerText": "<0>Внимание!</0> Названия палитр будут переведены в соответствии с выбранным языком.",
+    "bottomText": "Your language is missing? No worries, you can support us by helping to add it! Head over to our <1>Discord</1> so we can cooperate."
   },
   "menu": {
     "interface": "Интерфейс",

@@ -4,7 +4,7 @@ import {ClassicLayoutIcon} from "../../assets/ClassicLayoutIcon"
 import {ExpandedLayoutIcon} from "../../assets/ExpandedLayoutIcon"
 import {Divider} from "../shared/Divider";
 import {Layout, SettingsContext} from "../../providers/SettingsProvider";
-import {useTranslation} from "react-i18next";
+import {Trans, useTranslation} from "react-i18next";
 import {css} from "styled-components";
 import {Day} from "../../assets/Day";
 import {Night} from "../../assets/Night";
@@ -54,11 +54,13 @@ export const Interface = () => {
           <Divider/>
           <Text>
             <span>
-              {t("interfaceScreen.bottomText", {returnObjects: true})[0]}
-              <Link target="_blank" href="https://discord.gg/WWBYuY3">
-                {t("interfaceScreen.bottomText", {returnObjects: true})[1]}
-              </Link>
-              {t("interfaceScreen.bottomText", {returnObjects: true})[2]}
+              <Trans i18nKey={`interfaceScreen.bottomText`}>
+                More customization options are on the way! Hop onto our 
+                <Link target="_blank" href="https://discord.gg/WWBYuY3">
+                  Discord
+                </Link>
+                so we can cooperate.
+              </Trans>
             </span>
           </Text>
           <Divider/>

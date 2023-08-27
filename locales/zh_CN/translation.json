@@ -3,19 +3,11 @@
     "headerImage": "/images/choose-your-fighter.svg",
     "themeHint": "选择日间、夜间模式",
     "layoutHint": "选择是要使用扩展布局还是原本的经典布局。",
-    "bottomText": [
-      "更多定制选项即将推出！如果您有好点子，或者想提前体验新功能，请加入我们的 ",
-      "Discord",
-      " !"
-    ]
+    "bottomText": "更多定制选项即将推出！如果您有好点子，或者想提前体验新功能，请加入我们的 <1>Discord</1> !"
   },
   "languageScreen": {
-    "headerText": ["注意!", " 调色板名称将根据所选语言进行翻译。"],
-    "bottomText": [
-      "缺少您所使用的语言？不用担心，您可以帮忙添加您的语言的翻译！前往我们的 ",
-      "Discord",
-      " 以便与我们合作。"
-    ]
+    "headerText": "<0>注意!</0> 调色板名称将根据所选语言进行翻译。",
+    "bottomText": "缺少您所使用的语言？不用担心，您可以帮忙添加您的语言的翻译！前往我们的 <1>Discord</1> 以便与我们合作。"
   },
   "menu": {
     "interface": "界面",

@@ -68,7 +68,7 @@ export const convertExportStringToColors = (exportString: string) => {
 }
 
 
-export const colorsFromImage = (image: CanvasImageSource): string[] => {
+export const colorsFromImage = (image: HTMLImageElement): string[] => {
   const canvas = document.createElement("canvas")
   canvas.width = image.width as number
   canvas.height = image.height as number

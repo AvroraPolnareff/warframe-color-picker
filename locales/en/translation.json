@@ -3,19 +3,11 @@
     "headerImage": "/images/choose-your-fighter.svg",
     "themeHint": "Select between Day & Night modes.",
     "layoutHint": "Select which layout you want to use.",
-    "bottomText": [
-      "More customization options are on the way! Hop onto our ",
-      "Discord",
-      " if you have any suggestions, or if you just want to get a sneak peek on the upcoming changes!"
-    ]
+    "bottomText": "More customization options are on the way! Hop onto our <1>Discord</1>  if you have any suggestions, or if you just want to get a sneak peek on the upcoming changes!"
   },
   "languageScreen": {
-    "headerText": ["Attention!", " Color Palette names will be changed according to the chosen language."],
-    "bottomText": [
-      "Your language is missing? No worries, you can support us by helping to add it! Head over to our ",
-      "Discord",
-      " so we can cooperate."
-    ]
+    "headerText": "<0>Attention!</0> Color Palette names will be changed according to the chosen language.",
+    "bottomText": "Your language is missing? No worries, you can support us by helping to add it! Head over to our <1>Discord</1> so we can cooperate."
   },
   "menu": {
     "interface": "Interface",
