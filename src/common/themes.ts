@@ -30,7 +30,7 @@ export const nightTheme: ColorsWithMode = {
     buttons: "#424242",
     misc: "#424242",
     danger: "#B25858",
-    success: "#5AB45A",
+    success: "#329632",
     link: "#5C60B9",
     warning: "#c2ab5c",
     targetSchemeHeader: "#C25C5C",

@@ -78,7 +78,7 @@ function App() {
       {
         !process.env.index ?
           <Credentials><a href="https://www.warframecolorpicker.app/">Hooray, we've gotten a new link!</a>Please follow <a href="https://github.com/AvroraPolnareff/warframe-color-picker/blob/master/README.md">this guide</a> to move your old palettes.</Credentials> :
-          <Credentials><span>Hippothoe & Moriscu, <br/>last upd.: 27/08/2023</span></Credentials>
+          <Credentials><span>Hippothoe & Moriscu, <br/>last upd.: 16/12/2023</span></Credentials>
       }
       {showPanel && <ThemePanel />}
     </StyledApp>

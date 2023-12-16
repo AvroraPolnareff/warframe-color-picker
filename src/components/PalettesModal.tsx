@@ -6,6 +6,7 @@ import {Button} from "./shared/Button";
 import {Divider} from "./shared/Divider";
 import {WarframePalette} from "./shared/WarframePalette";
 import {useTranslation} from "react-i18next";
+import { sortBy } from "lodash";
 
 interface PalettesModalProps {
   show: boolean,
@@ -41,8 +42,8 @@ export const PalettesModal = (
             <WarframePalette size={1.5} paletteName={hoveredPalette} />
         </HoveredPalette>
 
-      <Grid>
-        {palettes.map(({name}) => <Button round small
+      <Grid dir="">
+        {sortBy(palettes, ['name']).map(({name}) => <Button round small
           onClick={() => onPaletteClick(name)} onMouseOver={() => setHoveredPalette(name)}
           success={availablePalettes.indexOf(name) !== -1}
         >
@@ -52,10 +53,10 @@ export const PalettesModal = (
       </Grid>
       <Divider/>
       <div style={{textAlign: "right", marginTop: "0.5rem"}}>
-        <Button round small warning onClick={onDisableAll} style={{marginRight: '0.4em'}}>
+        <Button round small onClick={onDisableAll} style={{marginRight: '0.4em'}}>
           {t("palettesModal.disableAll")}
         </Button>
-        <Button round small warning onClick={onEnableAll}>
+        <Button round small onClick={onEnableAll}>
           {t("palettesModal.enableAll")}
         </Button>
       </div>
@@ -70,7 +71,7 @@ const HoveredPalette  = styled.div`
   position: absolute;
   right: -11.2em;
   top: -1.9em;
-  border: 4px solid ${props => props.theme.colors.textOnBackground};
+  border: 4px solid ${props => props.theme.colors.buttons};
   padding: 0.4em 0.6em;
   background-color: ${({theme}) => theme.colors.background};
   border-radius: 0.8em;
@@ -94,9 +95,10 @@ const PaletteName = styled.div`
 const Grid = styled.div`
   color: ${props => props.theme.colors.textOnBackground};
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(15, 1fr);
   row-gap: 0.2em;
-  
+  grid-auto-flow: column;
   justify-items: start;
+
   margin-bottom: 0.8em;
 `
