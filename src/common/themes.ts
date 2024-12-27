@@ -33,7 +33,7 @@ export const nightTheme: ColorsWithMode = {
     success: "#329632",
     link: "#5C60B9",
     warning: "#c2ab5c",
-    targetSchemeHeader: "#C25C5C",
+    targetSchemeHeader: "#B45F5E",
     selectedColorHeader: "linear-gradient(256.94deg, #66D1C5 22.98%, #CF8C67 69.24%, #D28C64 69.24%)",
     background: "#242424",
   }

@@ -6,12 +6,12 @@ import {Button} from "./shared/Button";
 import {Divider} from "./shared/Divider";
 import {ColorCell} from "./shared/ColorCell";
 import {Switch} from "./shared/Switch";
-import _ from "lodash";
+import _, { iteratee } from "lodash";
 import {Trans, useTranslation} from "react-i18next";
 import {createMachine} from "xstate";
 import {useMachine} from "@xstate/react";
 import {Input} from "./shared/Input";
-import {Box} from "@mui/system";
+import {Box, color} from "@mui/system";
 import {UrlPaletteContext} from "../providers/UrlColorsProvider";
 import {colorsFromImage, findClosestColors, shortenText} from "../common/helpers";
 import {Link} from "./shared/Link";
@@ -121,7 +121,7 @@ const TargetScheme = (
   }
 
   return (
-    <Window width={14.321} style={{zIndex: 0}} height={17.8}>
+    <Window width={14.321} style={{zIndex: 0}} height={17}>
       <Box display="flex" flexDirection="column" justifyContent="space-between" height="100%" width="100%">
         <Box>
           <FlexColumnCenter>
@@ -159,7 +159,7 @@ const TargetScheme = (
               <Export colors={paletteColors}/>
           }
           {current.matches("sharing.text") &&
-              <TextExport colors={paletteColors}/>
+              <TextExport colors={paletteColors.slice(Math.floor(selectedCell / 8) * 8, Math.floor(selectedCell / 8 + 1) * 8)}/>
           }
         </Box>
         <Box height={"2.1em"}>
@@ -319,25 +319,41 @@ const Export = (props: { colors: string[] }) => {
 const getClosestColor = (color: string, t: TFunction<"translation", undefined>, shorten = true) => {
   if (!color) return ""
   const matchedColor = findClosestColors(color, palettes, 1)[0]
-  const positionX = String.fromCharCode(97 + matchedColor.position.x)
+  const positionX = String.fromCharCode(97 + matchedColor.position.x).toUpperCase()
   const paletteName = t(`palettes.${matchedColor.paletteName}`)
   return `${shorten ? shortenText(paletteName, 12) : paletteName} · ${positionX}${matchedColor.position.y}`
 }
 
+const slotToSlotName = (i: number, t: TFunction<"translation", undefined>) => {
+  const translateString = [
+    ["colorPicker.targetScheme.primary"],
+    ["colorPicker.targetScheme.secondary"],
+    ["colorPicker.targetScheme.tertiary"],
+    ["colorPicker.targetScheme.quaternary"],
+    ["colorPicker.targetScheme.emissiveText", " 1"],
+    ["colorPicker.targetScheme.emissiveText", " 2"],
+    ["colorPicker.targetScheme.energyText", " 1"], 
+    ["colorPicker.targetScheme.energyText", " 2"], 
+  ]
+  return translateString[i].map(str => t(str)).join("")  
+}
 const TextExport = (props: {colors: string[]}) => {
   const {colors} = props
   const {t} = useTranslation()
   return <Wrapper>
     <Box fontSize="0.773rem">
-      <div>
-        <TextExportEntry>{t("colorPicker.targetScheme.primary")}: <strong>{getClosestColor(colors[0], t)}</strong></TextExportEntry>
-        <TextExportEntry>{t("colorPicker.targetScheme.secondary")}: <strong>{getClosestColor(colors[1], t)}</strong></TextExportEntry>
-        <TextExportEntry>{t("colorPicker.targetScheme.tertiary")}: <strong>{getClosestColor(colors[2], t)}</strong></TextExportEntry>
-        <TextExportEntry>{t("colorPicker.targetScheme.quaternary")}: <strong>{getClosestColor(colors[3], t)}</strong></TextExportEntry>
-        <TextExportEntry>{t("colorPicker.targetScheme.emissiveText")} 1: <strong>{getClosestColor(colors[4], t)}</strong></TextExportEntry>
-        <TextExportEntry>{t("colorPicker.targetScheme.emissiveText")} 2: <strong>{getClosestColor(colors[5], t)}</strong></TextExportEntry>
-        <TextExportEntry>{t("colorPicker.targetScheme.energyText")} 1: <strong>{getClosestColor(colors[6], t)}</strong></TextExportEntry>
-        <TextExportEntry>{t("colorPicker.targetScheme.energyText")} 2: <strong>{getClosestColor(colors[7], t)}</strong></TextExportEntry>
+      <div onCopy={(e) => {
+        e.preventDefault()
+        e.clipboardData.setData("text", colors.map((color, i) => `${slotToSlotName(i, t)}: ${getClosestColor(color, t, false)}`).join("\n"))
+      }}>
+        <TextExportEntry>{slotToSlotName(0, t)}: <strong>{getClosestColor(colors[0], t)}</strong></TextExportEntry>
+        <TextExportEntry>{slotToSlotName(1, t)}: <strong>{getClosestColor(colors[1], t)}</strong></TextExportEntry>
+        <TextExportEntry>{slotToSlotName(2, t)}: <strong>{getClosestColor(colors[2], t)}</strong></TextExportEntry>
+        <TextExportEntry>{slotToSlotName(3, t)}: <strong>{getClosestColor(colors[3], t)}</strong></TextExportEntry>
+        <TextExportEntry>{slotToSlotName(4, t)}: <strong>{getClosestColor(colors[4], t)}</strong></TextExportEntry>
+        <TextExportEntry>{slotToSlotName(5, t)}: <strong>{getClosestColor(colors[5], t)}</strong></TextExportEntry>
+        <TextExportEntry>{slotToSlotName(6, t)}: <strong>{getClosestColor(colors[6], t)}</strong></TextExportEntry>
+        <TextExportEntry>{slotToSlotName(7, t)}: <strong>{getClosestColor(colors[7], t)}</strong></TextExportEntry>
       </div>
       <Divider />
       <Box fontStyle="italic">
