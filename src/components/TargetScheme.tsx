@@ -13,8 +13,10 @@ import {useMachine} from "@xstate/react";
 import {Input} from "./shared/Input";
 import {Box} from "@mui/system";
 import {UrlPaletteContext} from "../providers/UrlColorsProvider";
-import {colorsFromImage} from "../common/helpers";
+import {colorsFromImage, findClosestColors, shortenText} from "../common/helpers";
 import {Link} from "./shared/Link";
+import { palettes } from "src/common/palettes";
+import { TFunction } from "i18next";
 
 interface TargetSchemeProps {
   paletteColors: string[]
@@ -27,6 +29,7 @@ type WindowMachineEvents =
   | { type: "EXPORT" }
   | { type: "IMPORT" }
   | { type: "BACK" }
+  | { type: "TEXT" }
 
 const windowMachine = createMachine({
   id: "window",
@@ -40,7 +43,8 @@ const windowMachine = createMachine({
       initial: "default",
       on: {
         EXPORT: {target: "sharing.export"},
-        IMPORT: {target: "sharing.import"}
+        IMPORT: {target: "sharing.import"},
+        TEXT: {target: "sharing.text"}
       },
       states: {
         default: {
@@ -66,7 +70,8 @@ const windowMachine = createMachine({
       initial: "export",
       states: {
         export: {},
-        import: {}
+        import: {},
+        text: {}
       },
     }
   }
@@ -153,6 +158,9 @@ const TargetScheme = (
           {current.matches("sharing.export") &&
               <Export colors={paletteColors}/>
           }
+          {current.matches("sharing.text") &&
+              <TextExport colors={paletteColors}/>
+          }
         </Box>
         <Box height={"2.1em"}>
           <Divider/>
@@ -181,12 +189,20 @@ const TargetScheme = (
               }
             </Box>
             <span>
+            {current.can("TEXT") &&
+                <Button
+                    round
+                    small
+                    onClick={() => send("TEXT")}
+                >
+                  {t("colorPicker.targetScheme.text")}
+                </Button>
+            }
             {current.can("IMPORT") &&
                 <Button
                     round
                     small
                     onClick={() => send("IMPORT")}
-                    primary
                 >
                   {t("colorPicker.targetScheme.import")}
                 </Button>
@@ -299,6 +315,44 @@ const Export = (props: { colors: string[] }) => {
     </Box>
   </Box>
 }
+
+const getClosestColor = (color: string, t: TFunction<"translation", undefined>, shorten = true) => {
+  if (!color) return ""
+  const matchedColor = findClosestColors(color, palettes, 1)[0]
+  const positionX = String.fromCharCode(97 + matchedColor.position.x)
+  const paletteName = t(`palettes.${matchedColor.paletteName}`)
+  return `${shorten ? shortenText(paletteName, 12) : paletteName} · ${positionX}${matchedColor.position.y}`
+}
+
+const TextExport = (props: {colors: string[]}) => {
+  const {colors} = props
+  const {t} = useTranslation()
+  return <Wrapper>
+    <Box fontSize="0.773rem">
+      <div>
+        <TextExportEntry>{t("colorPicker.targetScheme.primary")}: <strong>{getClosestColor(colors[0], t)}</strong></TextExportEntry>
+        <TextExportEntry>{t("colorPicker.targetScheme.secondary")}: <strong>{getClosestColor(colors[1], t)}</strong></TextExportEntry>
+        <TextExportEntry>{t("colorPicker.targetScheme.tertiary")}: <strong>{getClosestColor(colors[2], t)}</strong></TextExportEntry>
+        <TextExportEntry>{t("colorPicker.targetScheme.quaternary")}: <strong>{getClosestColor(colors[3], t)}</strong></TextExportEntry>
+        <TextExportEntry>{t("colorPicker.targetScheme.emissiveText")} 1: <strong>{getClosestColor(colors[4], t)}</strong></TextExportEntry>
+        <TextExportEntry>{t("colorPicker.targetScheme.emissiveText")} 2: <strong>{getClosestColor(colors[5], t)}</strong></TextExportEntry>
+        <TextExportEntry>{t("colorPicker.targetScheme.energyText")} 1: <strong>{getClosestColor(colors[6], t)}</strong></TextExportEntry>
+        <TextExportEntry>{t("colorPicker.targetScheme.energyText")} 2: <strong>{getClosestColor(colors[7], t)}</strong></TextExportEntry>
+      </div>
+      <Divider />
+      <Box fontStyle="italic">
+        <Trans i18nKey={"colorPicker.targetScheme.textGuide"}>
+          This text can either be copied or screenshotted with formatting. <br/><br/> Column by letter, row by number.
+        </Trans>
+      </Box>
+    </Box>
+  </Wrapper>
+}
+
+const TextExportEntry = styled.div`
+  text-transform: uppercase;
+  font-size: 0.773rem;
+`
 
 const Import = (props: { onImport: (colors: string[]) => void }) => {
   const {colors} = useTheme()

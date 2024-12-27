@@ -24,9 +24,10 @@ export interface Typegen0 {
     | "sharing"
     | "sharing.export"
     | "sharing.import"
+    | "sharing.text"
     | {
         colorWindows?: "default" | "manual" | "hist";
-        sharing?: "export" | "import";
+        sharing?: "export" | "import" | "text";
       };
   tags: never;
 }
