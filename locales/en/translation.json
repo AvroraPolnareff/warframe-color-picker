@@ -67,7 +67,7 @@
       "exportDescription": "Opening this link will let you choose whether you want to overwrite your current scheme. <br/><br/> The link has been automatically copied to your clipboard.",
       "importDescription": "Insert <1>your screenshot</1> here via <2>CTRL+V</2> in this text field for it to be uploaded and recognized automatically.<br/><br/>If it doesn’t work, please use the <3>MANUAL UPLOAD</3> button.",
       "importGuide": "https://github.com/AvroraPolnareff/warframe-color-picker/blob/master/docs/GUIDE.md#how-to-import-from-screenshot",
-      "textGuide": "This text can either be copied or screenshotted with formatting. <br/><br/> Column by letter, row by number.",
+      "textGuide": "<1>This text can either be copied or screenshotted with formatting.</1> <2>Column by letter, row by number.</2>",
       "copied": "copied!"
     },
     "suggestions": {

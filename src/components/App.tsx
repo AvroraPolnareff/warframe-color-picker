@@ -32,7 +32,7 @@ const ThemePanel = () => {
 
 const GlobalStyles = createGlobalStyle`
   body {
-    background: ${({theme}) => theme.colors.background};
+    background: ${({theme}) => theme.colors.rootBackground};
   }
 `
 
@@ -78,7 +78,7 @@ function App() {
       {
         !process.env.index ?
           <Credentials><a href="https://www.warframecolorpicker.app/">Hooray, we've gotten a new link!</a>Please follow <a href="https://github.com/AvroraPolnareff/warframe-color-picker/blob/master/README.md">this guide</a> to move your old palettes.</Credentials> :
-          <Credentials><span>Hippothoe & Moriscu, <br/>last upd.: 4/10/2024</span></Credentials>
+          <Credentials>Have questions? Head to our <a href="https://discord.gg/ZyHZES6BCY">Discord</a>!<br/>last upd.: 4/10/2024</Credentials>
       }
       {showPanel && <ThemePanel />}
     </StyledApp>

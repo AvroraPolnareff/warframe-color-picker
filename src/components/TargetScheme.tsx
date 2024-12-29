@@ -338,9 +338,11 @@ const slotToSlotName = (i: number, t: TFunction<"translation", undefined>) => {
 }
 const TextExport = (props: {colors: string[]}) => {
   const {colors} = props
+  const theme = useTheme()
   const {t} = useTranslation()
   return <Wrapper>
-    <Box fontSize="0.773rem">
+    <Box fontSize="0.773rem" color={theme.colors.exportText}>
+    <Divider/>
       <div onCopy={(e) => {
         e.preventDefault()
         e.clipboardData.setData("text", colors.map((color, i) => `${slotToSlotName(i, t)}: ${getClosestColor(color, t, false)}`).join("\n"))
@@ -355,9 +357,10 @@ const TextExport = (props: {colors: string[]}) => {
         <TextExportEntry>{slotToSlotName(7, t)}: <strong>{getClosestColor(colors[7], t)}</strong></TextExportEntry>
       </div>
       <Divider />
-      <Box fontStyle="italic">
+      <Box fontStyle="italic" display="flex" flexDirection="column" gap="0.31em">
         <Trans i18nKey={"colorPicker.targetScheme.textGuide"}>
-          This text can either be copied or screenshotted with formatting. <br/><br/> Column by letter, row by number.
+          <Box component="p" my="0">This text can either be copied or screenshotted with formatting.</Box> 
+          <Box component="p" my="0">Column by letter, row by number.</Box>
         </Trans>
       </Box>
     </Box>

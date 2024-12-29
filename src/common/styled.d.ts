@@ -20,7 +20,8 @@ declare module 'styled-components' {
     background: string;
     targetSchemeHeader: string;
     selectedColorHeader: string;
-
+    exportText: string;
+    rootBackground: string; 
     darken: Colors;
   }
 

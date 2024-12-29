@@ -169,7 +169,7 @@ const Suggestion = (
   const {t} = useTranslation()
   return (
     <StyledSuggestion onClick={() => onSuggestionClick(uid)} selected={selected} state={animationState}
-                      delay={0.05 * index}>
+                      delay={0.01 * index}>
       <FlexCentred>
 
         <ColorCell color={color} outline={selected}>
@@ -223,7 +223,7 @@ const StyledSuggestion = styled.div.attrs<{ selected: boolean, state: boolean, d
   margin-right: 0.2em;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
-  transition: opacity 0.15s linear;
+  transition: opacity 0.10s linear;
 `
 
 const FlexCentred = styled.div`

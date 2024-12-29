@@ -6,18 +6,21 @@ type ColorsWithMode = {colors: Colors, mode: Mode}
 export const dayTheme: ColorsWithMode = {
   mode: "light",
   colors: {
-    primary: "#A5E8E8",
-    textOnBackground: "#c8c8c8",
+    primary: "#4DE2E3",
+
+    textOnBackground: "#888888",
     textOnButtons: "#ffffff",
-    buttons: "#c8c8c8",
-    misc: "#e6e6e6",
-    danger: "#dba3a3",
-    success: "#A3DBA3",
-    link: "#A0A2EB",
+    buttons: "#A0A0A0",
+    misc: "#BABABA",
+    danger: "#E47272",
+    success: "#83E472",
+    link: "#7874E4",
     warning: "#e8dba5",
-    targetSchemeHeader: "#e8a5a5",
+    targetSchemeHeader: "#D47574",
+    exportText: "#888888",
     selectedColorHeader: "linear-gradient(90deg, rgba(233,165,165,1) 0%, rgba(184,193,192,1) 25%, rgba(101,192,224,1) 50%, rgba(174,162,219,1) 75%, rgba(129,193,217,1) 100%)",
     background: "#ffffff",
+    rootBackground: "#F4F4F4"
   }
 }
 
@@ -35,7 +38,9 @@ export const nightTheme: ColorsWithMode = {
     warning: "#c2ab5c",
     targetSchemeHeader: "#B45F5E",
     selectedColorHeader: "linear-gradient(256.94deg, #66D1C5 22.98%, #CF8C67 69.24%, #D28C64 69.24%)",
+    exportText: "#FFFFFF",
     background: "#242424",
+    rootBackground: "#F4F4F4"
   }
 }
 
