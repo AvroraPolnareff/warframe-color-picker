@@ -40,7 +40,7 @@ export const nightTheme: ColorsWithMode = {
     selectedColorHeader: "linear-gradient(256.94deg, #66D1C5 22.98%, #CF8C67 69.24%, #D28C64 69.24%)",
     exportText: "#FFFFFF",
     background: "#242424",
-    rootBackground: "#F4F4F4"
+    rootBackground: "#242424"
   }
 }
 
