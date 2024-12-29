@@ -9,9 +9,10 @@ interface ButtonProps {
   primary?: boolean,
   success?: boolean,
   warning?: boolean,
+  fullWidth?: boolean
 }
 
-export const Button = styled.div<ButtonProps>`
+export const Button = styled.button<ButtonProps>`
   user-select: none;
   background-color: ${props => props.backgroundColor || props.theme.colors.buttons};
   background-color: ${props => props.primary && props.theme.colors.primary};
@@ -43,6 +44,10 @@ export const Button = styled.div<ButtonProps>`
   font-size: 1.2rem;
   padding: 0.25em 1.45em;
   `};
+
+  ${props => props.fullWidth && css`
+    width: 100%;
+  `}
   
   &:hover {
     background-color: ${props => Color(props.theme.colors.buttons).darken(0.2).toString()};

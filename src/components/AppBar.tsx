@@ -39,6 +39,8 @@ export const Entry = (
 export const StyledEntry = styled.div<{active?: boolean}>`
   padding: 0.05em 0.3em;
   background-color: ${({theme}) => theme.colors.buttons};
+  text-transform: uppercase;
+  font-size: 0.773rem;
   ${({active, theme}) => active && `background-color: ${theme.colors.primary};`}
   border-bottom-left-radius: 0.7em;
   border-bottom-right-radius: 0.7em;

@@ -121,7 +121,7 @@ const TargetScheme = (
   }
 
   return (
-    <Window width={14.321} style={{zIndex: 0}} height={17}>
+    <Window width={14.321} style={{zIndex: 0}} height={17.8}>
       <Box display="flex" flexDirection="column" justifyContent="space-between" height="100%" width="100%">
         <Box>
           <FlexColumnCenter>
@@ -175,57 +175,56 @@ const TargetScheme = (
             display="inline-flex"
             width="100%"
             justifyContent="space-between"
+            gap="0.4em"
             margin="0.2em auto"
           >
-            <Box component="span" flex={1}>
-              {current.matches("sharing.import") &&
-                  <Button
-                      round small
-                      htmlFor="screenshot"
-                      as="label"
-                  >
-                    {t("colorPicker.targetScheme.manualUpload")}
-                  </Button>
-              }
-            </Box>
-            <span>
             {current.can("TEXT") &&
-                <Button
-                    round
-                    small
-                    onClick={() => send("TEXT")}
-                >
-                  {t("colorPicker.targetScheme.text")}
-                </Button>
+              <Button
+                round
+                small
+                fullWidth
+                onClick={() => send("TEXT")}
+              >
+                {t("colorPicker.targetScheme.text")}
+              </Button>
             }
             {current.can("IMPORT") &&
-                <Button
-                    round
-                    small
-                    onClick={() => send("IMPORT")}
-                >
-                  {t("colorPicker.targetScheme.import")}
-                </Button>
+              <Button
+                round
+                small
+                fullWidth
+                onClick={() => send("IMPORT")}
+              >
+                {t("colorPicker.targetScheme.import")}
+              </Button>
             }
-              {current.can("EXPORT") &&
-                  <Button
-                      round small
-                      onClick={() => send("EXPORT")}
-                      style={{marginLeft: "0.5em"}}
-                  >
-                    {t("colorPicker.targetScheme.export")}
-                  </Button>
-              }
-              {current.can("BACK") &&
-                  <Button
-                      round
-                      small
-                      onClick={() => send("BACK")}
-                  >
-                    {t("colorPicker.targetScheme.back")}
-                  </Button>
-              }
-          </span>
+            {current.can("EXPORT") &&
+              <Button
+                round small fullWidth
+                onClick={() => send("EXPORT")}
+              >
+                {t("colorPicker.targetScheme.export")}
+              </Button>
+            }
+            {current.can("BACK") &&
+              <Button
+                round
+                small
+                onClick={() => send("BACK")}
+              >
+                {t("colorPicker.targetScheme.back")}
+              </Button>
+            }
+            {current.matches("sharing.import") &&
+              <Button
+                round small
+                htmlFor="screenshot"
+                as="label"
+              >
+                {t("colorPicker.targetScheme.manualUpload")}
+              </Button>
+            }
+
           </Box>
         </Box>
       </Box>
@@ -368,6 +367,7 @@ const TextExport = (props: {colors: string[]}) => {
 const TextExportEntry = styled.div`
   text-transform: uppercase;
   font-size: 0.773rem;
+  line-height: 1.3;
 `
 
 const Import = (props: { onImport: (colors: string[]) => void }) => {
