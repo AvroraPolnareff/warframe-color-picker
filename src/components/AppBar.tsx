@@ -46,7 +46,7 @@ export const StyledEntry = styled.div<{active?: boolean}>`
   border-bottom-right-radius: 0.7em;
   user-select: none;
   cursor: pointer;
-  font-weight: 500;
+  font-weight: 600;
   text-align: center;
   width: 9em;
 

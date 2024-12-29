@@ -75,7 +75,6 @@ function App() {
         </Container>
         <Container/>
       </AppBar>
-      {screen === Screen.COLOR_PICKER && <AppDivider />}
       <ScreensSwitcher/>
       {
         !process.env.index ?
@@ -98,16 +97,6 @@ const Credentials = styled.div`
     color: ${({theme}) => theme.colors.link}
   }
 `
-const AppDivider = () => {
-  const {colors} = useTheme()
-  return <Box width="100%" display="flex" justifyContent="center" alignItems="center" mb="0.8em">
-    <Box width="46em" display="flex" gap="0.3em" alignItems="center">
-      <Box height="0.4em" width="0.4em" bgcolor={colors.misc} borderRadius="0.11em" />
-      <Box height="0.227em" width="100%" bgcolor={colors.misc} borderRadius="0.11em" />
-      <Box height="0.4em" width="0.4em" bgcolor={colors.misc} borderRadius="0.11em" />
-    </Box>
-  </Box>
-}
 
 export const StyledApp = styled.div`
   position: relative;
