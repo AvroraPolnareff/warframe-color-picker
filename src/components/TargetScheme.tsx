@@ -188,6 +188,14 @@ const TargetScheme = (
                 {t("colorPicker.targetScheme.text")}
               </Button>
             }
+            {current.can("EXPORT") &&
+              <Button
+                round small fullWidth
+                onClick={() => send("EXPORT")}
+              >
+                {t("colorPicker.targetScheme.export")}
+              </Button>
+            }
             {current.can("IMPORT") &&
               <Button
                 round
@@ -196,14 +204,6 @@ const TargetScheme = (
                 onClick={() => send("IMPORT")}
               >
                 {t("colorPicker.targetScheme.import")}
-              </Button>
-            }
-            {current.can("EXPORT") &&
-              <Button
-                round small fullWidth
-                onClick={() => send("EXPORT")}
-              >
-                {t("colorPicker.targetScheme.export")}
               </Button>
             }
             {current.can("BACK") &&
