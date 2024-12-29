@@ -1,5 +1,5 @@
 import React, {useContext, useEffect} from 'react';
-import styled, {Colors, createGlobalStyle} from "styled-components";
+import styled, {Colors, createGlobalStyle, useTheme} from "styled-components";
 import {AppBar, Container, Entry} from './AppBar';
 import {ScreensSwitcher} from "./ScreensSwitcher";
 import {CurrentScreenContext, Screen} from "../providers/CurrentScreenProvider";
@@ -8,6 +8,7 @@ import {useTranslation} from "react-i18next";
 import Color from "color";
 import {Window} from "./shared/Window";
 import {useRouter} from "next/router";
+import { Box } from '@mui/system';
 
 const ThemePanel = () => {
   const {colors, setColors} = useContext(SettingsContext);
@@ -74,6 +75,7 @@ function App() {
         </Container>
         <Container/>
       </AppBar>
+      <AppDivider />
       <ScreensSwitcher/>
       {
         !process.env.index ?
@@ -96,6 +98,16 @@ const Credentials = styled.div`
     color: ${({theme}) => theme.colors.link}
   }
 `
+const AppDivider = () => {
+  const {colors} = useTheme()
+  return <Box width="100%" display="flex" justifyContent="center" alignItems="center" mb="0.8em">
+    <Box width="46em" display="flex" gap="0.3em" alignItems="center">
+      <Box height="0.4em" width="0.4em" bgcolor={colors.misc} borderRadius="0.11em" />
+      <Box height="0.227em" width="100%" bgcolor={colors.misc} borderRadius="0.11em" />
+      <Box height="0.4em" width="0.4em" bgcolor={colors.misc} borderRadius="0.11em" />
+    </Box>
+  </Box>
+}
 
 export const StyledApp = styled.div`
   position: relative;

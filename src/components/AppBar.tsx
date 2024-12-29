@@ -6,7 +6,7 @@ export const AppBar = styled.div`
   display: grid;
   grid-template-columns: 1fr 3fr 1fr;
   justify-items: center;
-  height: 2em;
+  height: 1.7em;
   z-index: 100;
 `
 

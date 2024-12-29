@@ -35,6 +35,8 @@ export const ScreensSwitcher = () => {
 }
 
 const StyledScreenSwitcher = styled.div`
+  position: relative;
+  left: -1em;
 `
 
 const FadeDiv = styled.div<{state: string}>`
