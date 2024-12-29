@@ -75,7 +75,7 @@ function App() {
         </Container>
         <Container/>
       </AppBar>
-      <AppDivider />
+      {screen === Screen.COLOR_PICKER && <AppDivider />}
       <ScreensSwitcher/>
       {
         !process.env.index ?
