@@ -77,7 +77,8 @@ const LeftText = styled.div`
   text-transform: uppercase;
   user-select: none;
   margin-bottom: ${offset * 1.7}em;
-  
+  width: 100%;
+  text-align: center; 
 `
 const RightText = styled.div`
   color: ${props => props.theme.colors.textOnButtons};
@@ -85,7 +86,8 @@ const RightText = styled.div`
   text-transform: uppercase;
   user-select: none;
   margin-bottom: ${offset * 1.7}em;
-  
+  width: 100%;
+  text-align: center; 
 `
 
 const FlexWrapper = styled.div`

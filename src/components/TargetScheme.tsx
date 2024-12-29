@@ -265,26 +265,28 @@ const Default = (
 
   return (
     <Wrapper>
-      <ColorEntry text={t("colorPicker.targetScheme.primary")} selected={isSelected(0)}
-                  onClick={(e) => onCellClick(0, e)} color={colors[0]}/>
-      <ColorEntry text={t("colorPicker.targetScheme.secondary")} selected={isSelected(1)}
-                  onClick={(e) => onCellClick(1, e)} color={colors[1]}/>
-      <ColorEntry text={t("colorPicker.targetScheme.tertiary")} selected={isSelected(2)}
-                  onClick={(e) => onCellClick(2, e)} color={colors[2]}/>
-      <ColorEntry text={t("colorPicker.targetScheme.quaternary")} selected={isSelected(3)}
-                  onClick={(e) => onCellClick(3, e)} color={colors[3]}/>
-      <div>
-        <StyledColorEntry>
-          <ColorCell outline={isSelected(4)} color={colors[4]} onClick={(e) => onCellClick(4, e)}/>
-          <ColorCell outline={isSelected(5)} color={colors[5]} onClick={(e) => onCellClick(5, e)}/>
-          <ColorName>{t("colorPicker.targetScheme.emissive")}</ColorName>
-        </StyledColorEntry>
-        <StyledColorEntry>
-          <ColorCell outline={isSelected(6)} color={colors[6]} onClick={(e) => onCellClick(6, e)}/>
-          <ColorCell outline={isSelected(7)} color={colors[7]} onClick={(e) => onCellClick(7, e)}/>
-          <ColorName>{t("colorPicker.targetScheme.energy")}</ColorName>
-        </StyledColorEntry>
-      </div>
+      <Box pt="0.35em">
+        <ColorEntry text={t("colorPicker.targetScheme.primary")} selected={isSelected(0)}
+                    onClick={(e) => onCellClick(0, e)} color={colors[0]}/>
+        <ColorEntry text={t("colorPicker.targetScheme.secondary")} selected={isSelected(1)}
+                    onClick={(e) => onCellClick(1, e)} color={colors[1]}/>
+        <ColorEntry text={t("colorPicker.targetScheme.tertiary")} selected={isSelected(2)}
+                    onClick={(e) => onCellClick(2, e)} color={colors[2]}/>
+        <ColorEntry text={t("colorPicker.targetScheme.quaternary")} selected={isSelected(3)}
+                    onClick={(e) => onCellClick(3, e)} color={colors[3]}/>
+        <div>
+          <StyledColorEntry>
+            <ColorCell outline={isSelected(4)} color={colors[4]} onClick={(e) => onCellClick(4, e)}/>
+            <ColorCell outline={isSelected(5)} color={colors[5]} onClick={(e) => onCellClick(5, e)}/>
+            <ColorName>{t("colorPicker.targetScheme.emissive")}</ColorName>
+          </StyledColorEntry>
+          <StyledColorEntry>
+            <ColorCell outline={isSelected(6)} color={colors[6]} onClick={(e) => onCellClick(6, e)}/>
+            <ColorCell outline={isSelected(7)} color={colors[7]} onClick={(e) => onCellClick(7, e)}/>
+            <ColorName>{t("colorPicker.targetScheme.energy")}</ColorName>
+          </StyledColorEntry>
+        </div>
+      </Box>
     </Wrapper>
   )
 }
@@ -341,9 +343,9 @@ const TextExport = (props: {colors: string[]}) => {
   const theme = useTheme()
   const {t} = useTranslation()
   return <Wrapper>
-    <Box fontSize="0.773rem" color={theme.colors.exportText}>
+    <Box fontSize="0.773rem" >
     <Divider/>
-      <div onCopy={(e) => {
+      <Box color={theme.colors.exportText} onCopy={(e) => {
         e.preventDefault()
         e.clipboardData.setData("text", colors.map((color, i) => `${slotToSlotName(i, t)}: ${getClosestColor(color, t, false)}`).join("\n"))
       }}>
@@ -355,7 +357,7 @@ const TextExport = (props: {colors: string[]}) => {
         <TextExportEntry>{slotToSlotName(5, t)}: <strong>{getClosestColor(colors[5], t)}</strong></TextExportEntry>
         <TextExportEntry>{slotToSlotName(6, t)}: <strong>{getClosestColor(colors[6], t)}</strong></TextExportEntry>
         <TextExportEntry>{slotToSlotName(7, t)}: <strong>{getClosestColor(colors[7], t)}</strong></TextExportEntry>
-      </div>
+      </Box>
       <Divider />
       <Box fontStyle="italic" display="flex" flexDirection="column" gap="0.31em">
         <Trans i18nKey={"colorPicker.targetScheme.textGuide"}>
@@ -468,10 +470,7 @@ const Manual = (
 
 const StyledManual = styled.div`
 
-  //display: grid;
-  //grid-template-rows: repeat(6, 1fr);
-  //grid-template-columns: repeat(8, 1fr);
-  //row-gap: 0.15em;
+  padding-top: 0.3em;
 
 `
 
@@ -497,7 +496,6 @@ const CellsBorder = styled.div<{ selected?: boolean }>`
 `
 
 const Wrapper = styled.div`
-  //height: 9.35em;
 `
 
 const CellsRow = styled.div<{ selected?: boolean }>`

@@ -49,8 +49,8 @@
   "colorPicker": {
     "targetScheme": {
       "targetScheme": "TARGET SCHEME",
-      "default": "DEFAULT",
-      "manual": "MANUAL",
+      "default": "LAYOUT",
+      "manual": "TABLE",
       "primary": "PRIMARY",
       "secondary": "SECONDARY",
       "tertiary": "TERTIARY",
@@ -60,7 +60,7 @@
       "emissiveText": "EMISSIVE",
       "energyText": "ENERGY",
       "import": "import",
-      "export": "export",
+      "export": "link",
       "text": "text",
       "manualUpload": "MANUAL UPLOAD",
       "back": "back",

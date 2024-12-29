@@ -40,7 +40,7 @@ export const ScreensSwitcher = () => {
 const AppDivider = () => {
   const {colors} = useTheme()
   return <Box width="100%" display="flex" justifyContent="center" alignItems="center" mb="0.8em">
-    <Box width="46em" display="flex" gap="0.3em" alignItems="center">
+    <Box width="44em" display="flex" gap="0.3em" alignItems="center">
       <Box height="0.4em" width="0.4em" bgcolor={colors.misc} borderRadius="0.11em" />
       <Box height="0.227em" width="100%" bgcolor={colors.misc} borderRadius="0.11em" />
       <Box height="0.4em" width="0.4em" bgcolor={colors.misc} borderRadius="0.11em" />
