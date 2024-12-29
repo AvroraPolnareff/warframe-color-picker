@@ -1,5 +1,5 @@
 import React, {ReactNode} from 'react'
-import styled from "styled-components"
+import styled, {keyframes} from "styled-components"
 
 interface ColorCellProps {
   outline?: boolean
@@ -33,6 +33,24 @@ export const ColorCell = (
   )
 }
 
+const gradient = keyframes`
+  0% {
+    background-position: 0 0;
+  }
+  25% {
+    background-position: 50% 100%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  75% {
+    background-position: 50% 100%;
+  }
+  100% {
+    background-position: 0 0;
+  }
+`
+
 const CellWrapper = styled.div`
   z-index: 100;
 `
@@ -43,11 +61,13 @@ const OutlineWrapper = styled.div<{outline?: boolean}>`
     align-items: center;
     justify-content: center;
     border-radius: 0.7em;
-    background: ${ props => props.outline &&
-        "conic-gradient(hsla(0, 37%, 52%, 1), " +
-        "hsla(120, 37%, 53%, 1), " +
-        "hsla(237, 40%, 54%, 1))"
+    background: repeat ${ props => props.outline &&
+        "linear-gradient(120deg, rgba(233,165,165,1) 0%, " +
+        "rgba(184,193,192,1) 25%, rgba(101,192,224,1) 50%, " +
+        "rgba(174,162,219,1) 75%, rgba(129,193,217,1) 100%)"
     };
+    background-size: 900% 900%;
+    animation: ${gradient} 10s ease infinite;
     -webkit-tap-highlight-color: transparent;
 `
 
