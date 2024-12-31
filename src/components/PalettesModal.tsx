@@ -7,6 +7,7 @@ import {Divider} from "./shared/Divider";
 import {WarframePalette} from "./shared/WarframePalette";
 import {useTranslation} from "react-i18next";
 import { sortBy } from "lodash";
+import { Box } from "@mui/system";
 
 interface PalettesModalProps {
   show: boolean,
@@ -52,14 +53,14 @@ export const PalettesModal = (
         </Button>)}
       </Grid>
       <Divider/>
-      <div style={{textAlign: "right", marginTop: "0.5rem"}}>
+      <Box width="100%" display="flex" gap="0.2em" justifyContent="flex-end">
         <Button round small onClick={onDisableAll} style={{marginRight: '0.4em'}}>
           {t("palettesModal.disableAll")}
         </Button>
         <Button round small onClick={onEnableAll}>
           {t("palettesModal.enableAll")}
         </Button>
-      </div>
+      </Box>
       </div>
 
     </Modal>
