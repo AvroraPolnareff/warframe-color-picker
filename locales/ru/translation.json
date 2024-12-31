@@ -71,7 +71,7 @@
     },
     "suggestions": {
       "suggestions": "/images/suggestions.svg",
-      "scroll": "",
+      "scroll": " ",
       "palettes": "Палитры"
     },
     "selectedColor": {
