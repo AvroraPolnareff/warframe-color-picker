@@ -342,9 +342,9 @@ const TextExport = (props: {colors: string[]}) => {
   const {colors} = props
   const theme = useTheme()
   const {t} = useTranslation()
-  return <Wrapper>
+  return <Box position="relative" top="-0.2em">
     <Box fontSize="0.773rem" >
-    <Divider/>
+      <Divider />
       <Box color={theme.colors.exportText} onCopy={(e) => {
         e.preventDefault()
         e.clipboardData.setData("text", colors.map((color, i) => `${slotToSlotName(i, t)}: ${getClosestColor(color, t, false)}`).join("\n"))
@@ -359,14 +359,14 @@ const TextExport = (props: {colors: string[]}) => {
         <TextExportEntry>{slotToSlotName(7, t)}: <strong>{getClosestColor(colors[7], t)}</strong></TextExportEntry>
       </Box>
       <Divider />
-      <Box fontStyle="italic" display="flex" flexDirection="column" gap="0.31em">
+      <Box fontStyle="italic" display="flex" flexDirection="column" gap="0.31em" mt="0.5em">
         <Trans i18nKey={"colorPicker.targetScheme.textGuide"}>
           <Box component="p" my="0">This text can either be copied or screenshotted with formatting.</Box> 
           <Box component="p" my="0">Column by letter, row by number.</Box>
         </Trans>
       </Box>
     </Box>
-  </Wrapper>
+  </Box>
 }
 
 const TextExportEntry = styled.div`

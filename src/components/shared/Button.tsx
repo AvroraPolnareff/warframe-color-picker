@@ -24,7 +24,11 @@ export const Button = styled.button<ButtonProps>`
   cursor: pointer;
   display: inline-block;
   line-height: 1;
-  padding: 0.25em 1.45em;
+  padding: 0.25em 1.46em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   margin: 0 0.5em;
   text-transform: uppercase;
   transition: border-radius 0.50s linear, box-shadow 0.2s linear, background-color 0.15s linear;
@@ -36,7 +40,8 @@ export const Button = styled.button<ButtonProps>`
   ${props => props.small && css`
   font-size: 0.8rem;
   letter-spacing: 0.035em;
-  padding: 0.15em 0.45em;
+  padding: 0.13em 0.45em;
+  padding-top: 0.17em;
   margin: 0;
   `};
 
