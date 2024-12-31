@@ -6,15 +6,17 @@ import {Button} from "./shared/Button";
 import {Divider} from "./shared/Divider";
 import {ColorCell} from "./shared/ColorCell";
 import {Switch} from "./shared/Switch";
-import _ from "lodash";
+import _, { iteratee } from "lodash";
 import {Trans, useTranslation} from "react-i18next";
 import {createMachine} from "xstate";
 import {useMachine} from "@xstate/react";
 import {Input} from "./shared/Input";
-import {Box} from "@mui/system";
+import {Box, color} from "@mui/system";
 import {UrlPaletteContext} from "../providers/UrlColorsProvider";
-import {colorsFromImage} from "../common/helpers";
+import {colorsFromImage, findClosestColors, shortenText} from "../common/helpers";
 import {Link} from "./shared/Link";
+import { palettes } from "src/common/palettes";
+import { TFunction } from "i18next";
 
 interface TargetSchemeProps {
   paletteColors: string[]
@@ -27,6 +29,7 @@ type WindowMachineEvents =
   | { type: "EXPORT" }
   | { type: "IMPORT" }
   | { type: "BACK" }
+  | { type: "TEXT" }
 
 const windowMachine = createMachine({
   id: "window",
@@ -40,7 +43,8 @@ const windowMachine = createMachine({
       initial: "default",
       on: {
         EXPORT: {target: "sharing.export"},
-        IMPORT: {target: "sharing.import"}
+        IMPORT: {target: "sharing.import"},
+        TEXT: {target: "sharing.text"}
       },
       states: {
         default: {
@@ -66,7 +70,8 @@ const windowMachine = createMachine({
       initial: "export",
       states: {
         export: {},
-        import: {}
+        import: {},
+        text: {}
       },
     }
   }
@@ -153,6 +158,9 @@ const TargetScheme = (
           {current.matches("sharing.export") &&
               <Export colors={paletteColors}/>
           }
+          {current.matches("sharing.text") &&
+              <TextExport colors={paletteColors.slice(Math.floor(selectedCell / 8) * 8, Math.floor(selectedCell / 8 + 1) * 8)}/>
+          }
         </Box>
         <Box height={"2.1em"}>
           <Divider/>
@@ -167,49 +175,56 @@ const TargetScheme = (
             display="inline-flex"
             width="100%"
             justifyContent="space-between"
+            gap="0.4em"
             margin="0.2em auto"
           >
-            <Box component="span" flex={1}>
-              {current.matches("sharing.import") &&
-                  <Button
-                      round small
-                      htmlFor="screenshot"
-                      as="label"
-                  >
-                    {t("colorPicker.targetScheme.manualUpload")}
-                  </Button>
-              }
-            </Box>
-            <span>
-            {current.can("IMPORT") &&
-                <Button
-                    round
-                    small
-                    onClick={() => send("IMPORT")}
-                    primary
-                >
-                  {t("colorPicker.targetScheme.import")}
-                </Button>
+            {current.can("TEXT") &&
+              <Button
+                round
+                small
+                fullWidth
+                onClick={() => send("TEXT")}
+              >
+                {t("colorPicker.targetScheme.text")}
+              </Button>
             }
-              {current.can("EXPORT") &&
-                  <Button
-                      round small
-                      onClick={() => send("EXPORT")}
-                      style={{marginLeft: "0.5em"}}
-                  >
-                    {t("colorPicker.targetScheme.export")}
-                  </Button>
-              }
-              {current.can("BACK") &&
-                  <Button
-                      round
-                      small
-                      onClick={() => send("BACK")}
-                  >
-                    {t("colorPicker.targetScheme.back")}
-                  </Button>
-              }
-          </span>
+            {current.can("EXPORT") &&
+              <Button
+                round small fullWidth
+                onClick={() => send("EXPORT")}
+              >
+                {t("colorPicker.targetScheme.export")}
+              </Button>
+            }
+            {current.can("IMPORT") &&
+              <Button
+                round
+                small
+                fullWidth
+                onClick={() => send("IMPORT")}
+              >
+                {t("colorPicker.targetScheme.import")}
+              </Button>
+            }
+            {current.can("BACK") &&
+              <Button
+                round
+                small
+                onClick={() => send("BACK")}
+              >
+                {t("colorPicker.targetScheme.back")}
+              </Button>
+            }
+            {current.matches("sharing.import") &&
+              <Button
+                round small
+                htmlFor="screenshot"
+                as="label"
+              >
+                {t("colorPicker.targetScheme.manualUpload")}
+              </Button>
+            }
+
           </Box>
         </Box>
       </Box>
@@ -250,26 +265,28 @@ const Default = (
 
   return (
     <Wrapper>
-      <ColorEntry text={t("colorPicker.targetScheme.primary")} selected={isSelected(0)}
-                  onClick={(e) => onCellClick(0, e)} color={colors[0]}/>
-      <ColorEntry text={t("colorPicker.targetScheme.secondary")} selected={isSelected(1)}
-                  onClick={(e) => onCellClick(1, e)} color={colors[1]}/>
-      <ColorEntry text={t("colorPicker.targetScheme.tertiary")} selected={isSelected(2)}
-                  onClick={(e) => onCellClick(2, e)} color={colors[2]}/>
-      <ColorEntry text={t("colorPicker.targetScheme.quaternary")} selected={isSelected(3)}
-                  onClick={(e) => onCellClick(3, e)} color={colors[3]}/>
-      <div>
-        <StyledColorEntry>
-          <ColorCell outline={isSelected(4)} color={colors[4]} onClick={(e) => onCellClick(4, e)}/>
-          <ColorCell outline={isSelected(5)} color={colors[5]} onClick={(e) => onCellClick(5, e)}/>
-          <ColorName>{t("colorPicker.targetScheme.emissive")}</ColorName>
-        </StyledColorEntry>
-        <StyledColorEntry>
-          <ColorCell outline={isSelected(6)} color={colors[6]} onClick={(e) => onCellClick(6, e)}/>
-          <ColorCell outline={isSelected(7)} color={colors[7]} onClick={(e) => onCellClick(7, e)}/>
-          <ColorName>{t("colorPicker.targetScheme.energy")}</ColorName>
-        </StyledColorEntry>
-      </div>
+      <Box pt="0.35em">
+        <ColorEntry text={t("colorPicker.targetScheme.primary")} selected={isSelected(0)}
+                    onClick={(e) => onCellClick(0, e)} color={colors[0]}/>
+        <ColorEntry text={t("colorPicker.targetScheme.secondary")} selected={isSelected(1)}
+                    onClick={(e) => onCellClick(1, e)} color={colors[1]}/>
+        <ColorEntry text={t("colorPicker.targetScheme.tertiary")} selected={isSelected(2)}
+                    onClick={(e) => onCellClick(2, e)} color={colors[2]}/>
+        <ColorEntry text={t("colorPicker.targetScheme.quaternary")} selected={isSelected(3)}
+                    onClick={(e) => onCellClick(3, e)} color={colors[3]}/>
+        <div>
+          <StyledColorEntry>
+            <ColorCell outline={isSelected(4)} color={colors[4]} onClick={(e) => onCellClick(4, e)}/>
+            <ColorCell outline={isSelected(5)} color={colors[5]} onClick={(e) => onCellClick(5, e)}/>
+            <ColorName>{t("colorPicker.targetScheme.emissive")}</ColorName>
+          </StyledColorEntry>
+          <StyledColorEntry>
+            <ColorCell outline={isSelected(6)} color={colors[6]} onClick={(e) => onCellClick(6, e)}/>
+            <ColorCell outline={isSelected(7)} color={colors[7]} onClick={(e) => onCellClick(7, e)}/>
+            <ColorName>{t("colorPicker.targetScheme.energy")}</ColorName>
+          </StyledColorEntry>
+        </div>
+      </Box>
     </Wrapper>
   )
 }
@@ -299,6 +316,64 @@ const Export = (props: { colors: string[] }) => {
     </Box>
   </Box>
 }
+
+const getClosestColor = (color: string, t: TFunction<"translation", undefined>, shorten = true) => {
+  if (!color) return ""
+  const matchedColor = findClosestColors(color, palettes, 1)[0]
+  const positionX = String.fromCharCode(97 + matchedColor.position.x).toUpperCase()
+  const paletteName = t(`palettes.${matchedColor.paletteName}`)
+  return `${shorten ? shortenText(paletteName, 12) : paletteName} · ${positionX}${matchedColor.position.y}`
+}
+
+const slotToSlotName = (i: number, t: TFunction<"translation", undefined>) => {
+  const translateString = [
+    ["colorPicker.targetScheme.primary"],
+    ["colorPicker.targetScheme.secondary"],
+    ["colorPicker.targetScheme.tertiary"],
+    ["colorPicker.targetScheme.quaternary"],
+    ["colorPicker.targetScheme.emissiveText", " 1"],
+    ["colorPicker.targetScheme.emissiveText", " 2"],
+    ["colorPicker.targetScheme.energyText", " 1"], 
+    ["colorPicker.targetScheme.energyText", " 2"], 
+  ]
+  return translateString[i].map(str => t(str)).join("")  
+}
+const TextExport = (props: {colors: string[]}) => {
+  const {colors} = props
+  const theme = useTheme()
+  const {t} = useTranslation()
+  return <Box position="relative" top="-0.2em">
+    <Box fontSize="0.773rem" >
+      <Divider />
+      <Box color={theme.colors.exportText} onCopy={(e) => {
+        e.preventDefault()
+        e.clipboardData.setData("text", colors.map((color, i) => `${slotToSlotName(i, t)}: ${getClosestColor(color, t, false)}`).join("\n"))
+      }}>
+        <TextExportEntry>{slotToSlotName(0, t)}: <strong>{getClosestColor(colors[0], t)}</strong></TextExportEntry>
+        <TextExportEntry>{slotToSlotName(1, t)}: <strong>{getClosestColor(colors[1], t)}</strong></TextExportEntry>
+        <TextExportEntry>{slotToSlotName(2, t)}: <strong>{getClosestColor(colors[2], t)}</strong></TextExportEntry>
+        <TextExportEntry>{slotToSlotName(3, t)}: <strong>{getClosestColor(colors[3], t)}</strong></TextExportEntry>
+        <TextExportEntry>{slotToSlotName(4, t)}: <strong>{getClosestColor(colors[4], t)}</strong></TextExportEntry>
+        <TextExportEntry>{slotToSlotName(5, t)}: <strong>{getClosestColor(colors[5], t)}</strong></TextExportEntry>
+        <TextExportEntry>{slotToSlotName(6, t)}: <strong>{getClosestColor(colors[6], t)}</strong></TextExportEntry>
+        <TextExportEntry>{slotToSlotName(7, t)}: <strong>{getClosestColor(colors[7], t)}</strong></TextExportEntry>
+      </Box>
+      <Divider />
+      <Box fontStyle="italic" display="flex" flexDirection="column" gap="0.31em" mt="0.5em">
+        <Trans i18nKey={"colorPicker.targetScheme.textGuide"}>
+          <Box component="p" my="0">This text can either be copied or screenshotted with formatting.</Box> 
+          <Box component="p" my="0">Column by letter, row by number.</Box>
+        </Trans>
+      </Box>
+    </Box>
+  </Box>
+}
+
+const TextExportEntry = styled.div`
+  text-transform: uppercase;
+  font-size: 0.773rem;
+  line-height: 1.3;
+`
 
 const Import = (props: { onImport: (colors: string[]) => void }) => {
   const {colors} = useTheme()
@@ -395,10 +470,7 @@ const Manual = (
 
 const StyledManual = styled.div`
 
-  //display: grid;
-  //grid-template-rows: repeat(6, 1fr);
-  //grid-template-columns: repeat(8, 1fr);
-  //row-gap: 0.15em;
+  padding-top: 0.3em;
 
 `
 
@@ -424,7 +496,6 @@ const CellsBorder = styled.div<{ selected?: boolean }>`
 `
 
 const Wrapper = styled.div`
-  //height: 9.35em;
 `
 
 const CellsRow = styled.div<{ selected?: boolean }>`

@@ -74,7 +74,7 @@ export const ColorPicker = (
 const HeaderWrapper = styled.div<{compact?: boolean}>`
     position: absolute;
     
-    top: -1.5em;
+    top: -2.2rem;
     left: 0;
     pointer-events: none;
 `

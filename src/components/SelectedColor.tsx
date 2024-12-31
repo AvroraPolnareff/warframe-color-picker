@@ -72,7 +72,7 @@ export const SelectedColor = (
 }
 
 const Header = styled.div`
-    font-weight: 300;
+    font-weight: 200;
     font-size: 1.75rem;
     letter-spacing: 0.001em;
     line-height: 0.93em;

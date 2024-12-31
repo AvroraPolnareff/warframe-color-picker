@@ -9,9 +9,10 @@ interface ButtonProps {
   primary?: boolean,
   success?: boolean,
   warning?: boolean,
+  fullWidth?: boolean
 }
 
-export const Button = styled.div<ButtonProps>`
+export const Button = styled.button<ButtonProps>`
   user-select: none;
   background-color: ${props => props.backgroundColor || props.theme.colors.buttons};
   background-color: ${props => props.primary && props.theme.colors.primary};
@@ -23,7 +24,11 @@ export const Button = styled.div<ButtonProps>`
   cursor: pointer;
   display: inline-block;
   line-height: 1;
-  padding: 0.25em 1.45em;
+  padding: 0.25em 1.46em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   margin: 0 0.5em;
   text-transform: uppercase;
   transition: border-radius 0.50s linear, box-shadow 0.2s linear, background-color 0.15s linear;
@@ -35,7 +40,8 @@ export const Button = styled.div<ButtonProps>`
   ${props => props.small && css`
   font-size: 0.8rem;
   letter-spacing: 0.035em;
-  padding: 0.15em 0.45em;
+  padding: 0.13em 0.45em;
+  padding-top: 0.17em;
   margin: 0;
   `};
 
@@ -43,6 +49,10 @@ export const Button = styled.div<ButtonProps>`
   font-size: 1.2rem;
   padding: 0.25em 1.45em;
   `};
+
+  ${props => props.fullWidth && css`
+    width: 100%;
+  `}
   
   &:hover {
     background-color: ${props => Color(props.theme.colors.buttons).darken(0.2).toString()};

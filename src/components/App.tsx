@@ -1,5 +1,5 @@
 import React, {useContext, useEffect} from 'react';
-import styled, {Colors, createGlobalStyle} from "styled-components";
+import styled, {Colors, createGlobalStyle, useTheme} from "styled-components";
 import {AppBar, Container, Entry} from './AppBar';
 import {ScreensSwitcher} from "./ScreensSwitcher";
 import {CurrentScreenContext, Screen} from "../providers/CurrentScreenProvider";
@@ -19,7 +19,7 @@ const ThemePanel = () => {
   }
   return (
     <div style={{position: "fixed", bottom: 0, left: 0, zIndex: 100}}>
-      <Window >
+      <Window>
         {Object.entries(colors).map(([name, value]) => (
           <div>
             {name}{value}{<input type="color" value={value} onChange={(e) => setColor(name, e.target.value)}/>}
@@ -32,7 +32,7 @@ const ThemePanel = () => {
 
 const GlobalStyles = createGlobalStyle`
   body {
-    background: ${({theme}) => theme.colors.background};
+    background: ${({theme}) => theme.colors.rootBackground};
   }
 `
 
@@ -78,7 +78,7 @@ function App() {
       {
         !process.env.index ?
           <Credentials><a href="https://www.warframecolorpicker.app/">Hooray, we've gotten a new link!</a>Please follow <a href="https://github.com/AvroraPolnareff/warframe-color-picker/blob/master/README.md">this guide</a> to move your old palettes.</Credentials> :
-          <Credentials><span>Hippothoe & Moriscu, <br/>last upd.: 4/10/2024</span></Credentials>
+          <Credentials>Have questions? Head to our <a href="https://discord.gg/ZyHZES6BCY">Discord</a>!<br/>last upd.: 31/12/2024</Credentials>
       }
       {showPanel && <ThemePanel />}
     </StyledApp>

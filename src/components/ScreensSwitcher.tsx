@@ -6,9 +6,10 @@ import {Expanded} from "./layouts/Expanded";
 import {Interface} from "./screens/Interface";
 import {Languages} from "./screens/Languages";
 import {SwitchTransition, Transition} from "react-transition-group";
-import styled from "styled-components";
+import styled, { useTheme } from "styled-components";
 import {TransitionProps} from "react-transition-group/Transition";
 import {SchemeImport} from "./screens/SchemeImport";
+import { Box } from "@mui/system";
 
 export const ScreensSwitcher = () => {
   const {screen} = useContext(CurrentScreenContext);
@@ -21,6 +22,8 @@ export const ScreensSwitcher = () => {
         unmountOnExit
         mountOnEnter
       >
+
+      {screen === Screen.COLOR_PICKER && <AppDivider />}
         <StyledScreenSwitcher>
         {
           screen === Screen.COLOR_PICKER ? <CurrentLayout layout={layout}/> :
@@ -34,7 +37,20 @@ export const ScreensSwitcher = () => {
   )
 }
 
+const AppDivider = () => {
+  const {colors} = useTheme()
+  return <Box width="100%" display="flex" justifyContent="center" alignItems="center" mb="0.8em">
+    <Box width="44em" display="flex" gap="0.3em" alignItems="center">
+      <Box height="0.4em" width="0.4em" bgcolor={colors.misc} borderRadius="0.11em" />
+      <Box height="0.227em" width="100%" bgcolor={colors.misc} borderRadius="0.11em" />
+      <Box height="0.4em" width="0.4em" bgcolor={colors.misc} borderRadius="0.11em" />
+    </Box>
+  </Box>
+}
+
 const StyledScreenSwitcher = styled.div`
+  position: relative;
+  left: -1em;
 `
 
 const FadeDiv = styled.div<{state: string}>`

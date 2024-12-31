@@ -2,10 +2,8 @@ import {MatchedColor} from "../components/Suggestions";
 import {Palette} from "./Palette";
 import Color from "color";
 
-
-export const findClosestColors = (colorToCompare: string, palettes: Palette[], limit: number): MatchedColor[] => {
-  
-  const distances = palettes.map(palette => {
+const getDistances = (colorToCompare: string, palettes: Palette[]) => {
+  return palettes.map(palette => {
     return palette.colors.map((color) => {
       const currentPosition = color.position
       const distance = colorDistanceRGB(Color(colorToCompare).hex(), color.hex)
@@ -18,7 +16,10 @@ export const findClosestColors = (colorToCompare: string, palettes: Palette[], l
       } as MatchedColor
     })
   })
-  
+}
+
+export const findClosestColors = (colorToCompare: string, palettes: Palette[], limit: number): MatchedColor[] => {
+  const distances = getDistances(colorToCompare, palettes)  
   return distances.flat(1)
     .sort((a: MatchedColor, b: MatchedColor) => a.distance - b.distance)
     .slice(0, limit)
@@ -102,4 +103,17 @@ export const colorsFromImage = (image: HTMLImageElement): string[] => {
   }
   canvas.remove()
   return colors
+}
+
+interface ShortenTextOptions {
+  saveFormat: boolean
+}
+
+export const shortenText = (text: string, length: number, options: Partial<ShortenTextOptions> = {}) => {
+  if (text.length <= length) return text
+
+  const formatLabel = text.lastIndexOf(".") !== -1 ? text.substring(text.lastIndexOf(".") - 3) : ""
+  const cutLength = options.saveFormat ? length - formatLabel.length : length
+  const firstPart = text.substring(0, cutLength)
+  return `${firstPart.trim()}.${options.saveFormat ? formatLabel : ""}`
 }
