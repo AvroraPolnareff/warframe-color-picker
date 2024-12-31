@@ -1,5 +1,5 @@
 import React, {ReactNode} from 'react'
-import styled, {keyframes} from "styled-components"
+import styled, {keyframes, ThemeColors, useTheme} from "styled-components"
 
 interface ColorCellProps {
   outline?: boolean
@@ -16,9 +16,10 @@ export const ColorCell = (
     children
   }: ColorCellProps
 ) => {
+  const {colors} = useTheme()
   return (
     <CellWrapper onClick={onClick}>
-      <OutlineWrapper outline={outline}>
+      <OutlineWrapper outline={outline} colors={colors}>
         {process.browser && <StyledColorCell
             //@ts-ignore
             //TODO FIX
@@ -55,17 +56,13 @@ const CellWrapper = styled.div`
   z-index: 100;
 `
 
-const OutlineWrapper = styled.div<{outline?: boolean}>`
+const OutlineWrapper = styled.div<{outline?: boolean, colors: ThemeColors}>`
     cursor: ${props => props.outline ? "default" : "pointer"};
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 0.7em;
-    background: repeat ${ props => props.outline &&
-        "linear-gradient(120deg, rgba(233,165,165,1) 0%, " +
-        "rgba(184,193,192,1) 25%, rgba(101,192,224,1) 50%, " +
-        "rgba(174,162,219,1) 75%, rgba(129,193,217,1) 100%)"
-    };
+    background: repeat ${ props => props.outline && props.colors.colorCellGradient};
     background-size: 900% 900%;
     animation: ${gradient} 10s ease infinite;
     -webkit-tap-highlight-color: transparent;

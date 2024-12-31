@@ -21,6 +21,7 @@ declare module 'styled-components' {
     targetSchemeHeader: string;
     selectedColorHeader: string;
     exportText: string;
+    colorCellGradient: string;
     rootBackground: string; 
     darken: Colors;
   }

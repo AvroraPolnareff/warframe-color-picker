@@ -19,6 +19,7 @@ export const dayTheme: ColorsWithMode = {
     targetSchemeHeader: "#D47574",
     exportText: "#888888",
     selectedColorHeader: "linear-gradient(90deg, rgba(233,165,165,1) 0%, rgba(184,193,192,1) 25%, rgba(101,192,224,1) 50%, rgba(174,162,219,1) 75%, rgba(129,193,217,1) 100%)",
+    colorCellGradient: "linear-gradient(rgb(228, 114, 114) 0%, rgb(131, 228, 114) 33%, rgb(120, 116, 228) 67%, rgb(228, 114, 114) 100%)",
     background: "#ffffff",
     rootBackground: "#F4F4F4"
   }
@@ -38,6 +39,7 @@ export const nightTheme: ColorsWithMode = {
     warning: "#c2ab5c",
     targetSchemeHeader: "#B45F5E",
     selectedColorHeader: "linear-gradient(256.94deg, #66D1C5 22.98%, #CF8C67 69.24%, #D28C64 69.24%)",
+    colorCellGradient: "linear-gradient(rgb(166, 91, 90) 0%, rgb(112, 179, 97) 33%, rgb(96, 95, 181) 67%, rgb(166, 91, 90) 100%)",
     exportText: "#FFFFFF",
     background: "#242424",
     rootBackground: "#242424"
