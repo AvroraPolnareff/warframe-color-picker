@@ -34,7 +34,7 @@ Lucky for everyone, here's an app that lets you adjust your entire color scheme 
 
 We also now support import from screenshot, text export, link export, and several languages!
 
-<video src='https://github.com/user-attachments/assets/7c9e1b94-1fa9-4bca-bcaf-2b37b741de39' width=180/>
+<video src='https://github.com/user-attachments/assets/7c9e1b94-1fa9-4bca-bcaf-2b37b741de39' width=180>tutorial</video>
 
 
 
