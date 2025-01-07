@@ -36,10 +36,6 @@ We also now support import from screenshot, text export, link export, and severa
 
 <video src='https://github.com/user-attachments/assets/7c9e1b94-1fa9-4bca-bcaf-2b37b741de39' width=180>tutorial</video>
 
-
-
-
-
 # Warframe Color Picker Features
 Here's the list of currently available features, divided into sections. Named accordingly.
 
@@ -94,7 +90,7 @@ Here's the list of all available tips & guides for the app!
 
 ### HOW TO IMPORT FROM SCREENSHOT:
 
-![HowToImport](https://cdn.discordapp.com/attachments/752169119331385444/892780487532232824/HowToImport2.jpg)
+<video src='https://github.com/user-attachments/assets/7c9e1b94-1fa9-4bca-bcaf-2b37b741de39' width=180>tutorial</video>
 
 1. First make a screenshot of your in-game scheme using any software at your disposal (pro tip: using **Snip & Sketch** on Windows is pretty much enough), cropping it in the same way as shown in the picture. Please do not use your smartphone camera, that's cringe.
 
