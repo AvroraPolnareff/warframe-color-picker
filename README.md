@@ -34,7 +34,7 @@ Lucky for everyone, here's an app that lets you adjust your entire color scheme 
 
 We also now support import from screenshot, text export, link export, and several languages!
 
-<video src="https://raw.githubusercontent.com/AvroraPolnareff/warframe-color-picker/3c6d16b6ef7138734780144f761778475b63d79c/content/howtoimportguide1080.mp4" />
+<video src='https://raw.githubusercontent.com/AvroraPolnareff/warframe-color-picker/3c6d16b6ef7138734780144f761778475b63d79c/content/howtoimportguide1080.mp4' width=180/>
 
 # Warframe Color Picker Features
 Here's the list of currently available features, divided into sections. Named accordingly.
