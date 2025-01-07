@@ -53,35 +53,30 @@ Here's the list of currently available features, divided into sections. Named ac
 
 ### **TARGET SCHEME**:
 
-* Select a color from your collection for editing in Color Picker submenu;
-* Click right mouse button on a color to empty the slot;
-* Switch between Default and Manual color schemes
-* Default Scheme
-  * Manage your colors as they're arranged in the original order, with the tips on the right (Primary, Secondary, Tertiary, etc.);
-  * Chosen colors will be automatically transferred to the selected line in the Manual section
-* Manual Scheme
-  * Manage your colors using a custom order with a plethora of available slots, without the tips;
-  * Selected horizontal line of colors will be automatically transferred to Default
+* Adjust your selected color in the **COLOR PICKER** window!
+* **LAYOUT** / **TABLE** MODE
+  * **LAYOUT**: Adjust your color scheme the way it appears in the game!
+  * **TABLE**: Use the expanded color scheme viewer; the present scheme from **LAYOUT** will take a selected horizontal row in the **TABLE** mode, highlighted by a special selector.
 * Import
-  * Manually upload your entire scheme from a screenshot;
-  * Insert the code generated with Export button
-* Export
-  * Copying the URL will contain all colors from both Default and Manual palettes. Sharing is caring!
-  
+  * Upload the color scheme directly from clipboard via CTRL+V, it will occupy the scheme in the **LAYOUT** mode and the selected horizontal row in **TABLE** mode;
+  * Upload the color scheme manually via the MANUAL UPLOAD feature (in case import from clipboard doesn't work for you)
+* Text Export
+  * Get your current color scheme in a convenient text format that follows the "slot/palette/color" pattern.
+* Link Export
+  * Get a link with all your colors (from both **LAYOUT** and **TABLE** modes) coded in. Sharing is caring!
+* Click right mouse button on a color to clear the slot
+
 ### **SUGGESTIONS**:
 
 * Find the closest color to the one selected in Target Scheme submenu
-* % / (D)
-  * Switch between a more user-friendly percent-based value, or switch to a raw (D)istance variable, if you think you're the nerdiest of them all! 
-* Palettes Menu
-  * Customize the list of palettes that are being displayed as suggestions (green = enabled; gray = disabled);
-  * See the palette preview on the right to make sure it's... the right one!;
-  * Disable all palettes (except Classic) to manually enable only the ones that you currently have one by one;
-  * Enable all palettes if you want to see them all
+* **%** / **(D)**
+  * Switch between a more user-friendly percent-based value or a raw (D)istance variable, if you want to deal with the raw numbers!
+* Customize the list of palettes that are being displayed as suggestions (green = enabled; gray = disabled), disable the ones you don't want to be suggested, also features "**DISABLE ALL**" / "**ENABLE ALL**" features;
+* See the palette preview on the right. If you hover your mouse over a color, it will display its coordinates instead of the palette's name.
 
 ### **SELECTED COLOR**:
 
-* Find out where exactly the selected color from Suggestions is located
+* Find out where exactly the selected color from **TARGET SCHEME** / **SUGGESTIONS** is located
 * (Palette Name)
   * Hover your mouse over a color to get its coordinates displayed in the palette name field (X, Y)
 
@@ -97,7 +92,7 @@ Here's the list of all available tips & guides for the app!
 2. Once the screenshot is ready, use **CTRL+V** in the text field. If it doesn't work, please save it on your PC first, then use **MANUAL UPLOAD** button. Select the cropped screenshot and click the upload button.
 
 3. BOOM, you're done!! If you did everything right, the scheme will appear in the app. 
- 
+
 Note: if your **TARGET SCHEME** is set to **MANUAL**, the scheme will take the horizontal row.
 
 # Known issues
