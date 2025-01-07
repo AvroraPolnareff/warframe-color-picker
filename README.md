@@ -34,7 +34,7 @@ Lucky for everyone, here's an app that lets you adjust your entire color scheme 
 
 We also now support import from screenshot, text export, link export, and several languages!
 
-![1](./content/howtoimportguide1080.mp4)
+<video controls src="howtoimportguide1080.mp4" title="Title">How To Import From Screenshot</video>
 
 # Warframe Color Picker Features
 Here's the list of currently available features, divided into sections. Named accordingly.
