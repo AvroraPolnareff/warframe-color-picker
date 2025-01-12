@@ -322,7 +322,7 @@ const getClosestColor = (color: string, t: TFunction<"translation", undefined>, 
   const matchedColor = findClosestColors(color, palettes, 1)[0]
   const positionX = String.fromCharCode(97 + matchedColor.position.x).toUpperCase()
   const paletteName = t(`palettes.${matchedColor.paletteName}`)
-  return `${shorten ? shortenText(paletteName, 12) : paletteName} · ${positionX}${matchedColor.position.y}`
+  return `${shorten ? shortenText(paletteName, 12) : paletteName} · ${positionX}${matchedColor.position.y + 1}`
 }
 
 const slotToSlotName = (i: number, t: TFunction<"translation", undefined>) => {
