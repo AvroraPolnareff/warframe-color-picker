@@ -9,6 +9,9 @@ import i18n from "../src/i18n";
 import "public/fonts/stylesheet.css"
 import "public/css/normalize.css"
 import { Resource } from "i18next";
+import en from "locales/en/translation.json";
+import ru from "locales/ru/translation.json";
+import zh_CN from "locales/zh_CN/translation.json";
 
 
 const GlobalStyle = createGlobalStyle`
@@ -41,16 +44,11 @@ const AppThemeProvider = (props: {children: ReactNode}) => {
 }
 
 function MyApp({ Component, pageProps }: AppProps<{langResources: Resource}>) {
-  // TODO: change to dynamic ssr translations
-  useSSR(pageProps.langResources, "en")
-  const [isMounted, setIsMounted] = useState(true)
-
-  useEffect(() => {
-    setIsMounted(false)
-    setTimeout(() => {
-      setIsMounted(true)
-    }, 5)
-  }, [])
+  useSSR({
+    en: {translation: en},
+    ru: {translation: ru},
+    zh_CN: {translation: zh_CN}
+  }, "en")
 
   return (
     <I18nextProvider i18n={i18n}>
@@ -59,7 +57,7 @@ function MyApp({ Component, pageProps }: AppProps<{langResources: Resource}>) {
           <AppThemeProvider>
             <UrlPaletteContextProvider>
               <GlobalStyle/>
-              {isMounted && <Component {...pageProps} />}
+              <Component {...pageProps} />
             </UrlPaletteContextProvider>
           </AppThemeProvider>
         </SettingsProvider>

@@ -91,7 +91,7 @@ export class Picker extends Component<PickerProps> {
         width={this.props.size}
         onMouseDown={this.handleMouseDown}
         onTouchStart={this.handleTouchStart}
-        ref={ref => this.ref = ref}
+        ref={ref => { this.ref = ref }}
       />
     )
   }

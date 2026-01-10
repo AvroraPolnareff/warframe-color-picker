@@ -17,14 +17,8 @@ export default class MyDocument extends Document {
         })
 
       const initialProps = await Document.getInitialProps(ctx)
-      const resources = {
-        en: {translation: en},
-        ru: {translation: ru},
-        zh_CN: {translation: zh_CN}
-      }
       return {
         ...initialProps,
-        langResources: resources,
         styles: (
           <>
             {initialProps.styles}

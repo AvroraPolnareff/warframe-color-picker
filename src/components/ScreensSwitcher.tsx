@@ -5,71 +5,98 @@ import {Classic} from "./layouts/Classic";
 import {Expanded} from "./layouts/Expanded";
 import {Interface} from "./screens/Interface";
 import {Languages} from "./screens/Languages";
-import {SwitchTransition, Transition} from "react-transition-group";
+import {useTransition} from "react-transition-state";
 import styled, { useTheme } from "styled-components";
-import {TransitionProps} from "react-transition-group/Transition";
 import {SchemeImport} from "./screens/SchemeImport";
-import { Box } from "@mui/system";
+
 
 export const ScreensSwitcher = () => {
   const {screen} = useContext(CurrentScreenContext);
   const {layout} = useContext(SettingsContext);
-  return (
-    <SwitchTransition mode={"out-in"}>
-      <FadeTransition
-        key={screen}
-        timeout={250}
-        unmountOnExit
-        mountOnEnter
-      >
 
-      {screen === Screen.COLOR_PICKER && <AppDivider />}
-        <StyledScreenSwitcher>
+  const [state, toggle] = useTransition({
+    timeout: 250,
+    unmountOnExit: true,
+    initialEntered: true,
+    preEnter: true
+  });
+  const [displayScreen, setDisplayScreen] = React.useState(screen);
+
+  React.useEffect(() => {
+    if (screen !== displayScreen) {
+      toggle(false);
+    }
+  }, [screen, displayScreen, toggle]);
+
+  React.useEffect(() => {
+    if (state.status === "unmounted") {
+      setDisplayScreen(screen);
+      toggle(true);
+    }
+  }, [state.status, screen, toggle]);
+
+  return (
+    <FadeDiv state={state.status}>
+      {displayScreen === Screen.COLOR_PICKER && <AppDivider />}
+      <StyledScreenSwitcher>
         {
-          screen === Screen.COLOR_PICKER ? <CurrentLayout layout={layout}/> :
-          screen === Screen.LAYOUT_SELECTION ? <Interface/> :
-          screen === Screen.LANGUAGE_SELECTION ? <Languages/> :
-          screen === Screen.SCHEME_IMPORT && <SchemeImport/>
+          displayScreen === Screen.COLOR_PICKER ? <CurrentLayout layout={layout}/> :
+          displayScreen === Screen.LAYOUT_SELECTION ? <Interface/> :
+          displayScreen === Screen.LANGUAGE_SELECTION ? <Languages/> :
+          displayScreen === Screen.SCHEME_IMPORT && <SchemeImport/>
         }
-        </StyledScreenSwitcher>
-      </FadeTransition>
-    </SwitchTransition>
+      </StyledScreenSwitcher>
+    </FadeDiv>
   )
 }
 
 const AppDivider = () => {
   const {colors} = useTheme()
-  return <Box width="100%" display="flex" justifyContent="center" alignItems="center" mb="0.8em">
-    <Box width="44em" display="flex" gap="0.3em" alignItems="center">
-      <Box height="0.4em" width="0.4em" bgcolor={colors.misc} borderRadius="0.11em" />
-      <Box height="0.227em" width="100%" bgcolor={colors.misc} borderRadius="0.11em" />
-      <Box height="0.4em" width="0.4em" bgcolor={colors.misc} borderRadius="0.11em" />
-    </Box>
-  </Box>
+  return <AppDividerWrapper>
+    <AppDividerInner>
+      <DividerDot style={{backgroundColor: colors.misc}}/>
+      <DividerLine style={{backgroundColor: colors.misc}}/>
+      <DividerDot style={{backgroundColor: colors.misc}}/>
+    </AppDividerInner>
+  </AppDividerWrapper>
 }
+
+const AppDividerWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.8em;
+`
+
+const AppDividerInner = styled.div`
+  width: 44em;
+  display: flex;
+  gap: 0.3em;
+  align-items: center;
+`
+
+const DividerDot = styled.div`
+  height: 0.4em;
+  width: 0.4em;
+  border-radius: 0.11em;
+`
+
+const DividerLine = styled.div`
+  height: 0.227em;
+  width: 100%;
+  border-radius: 0.11em;
+`
 
 const StyledScreenSwitcher = styled.div`
   position: relative;
   left: -1em;
 `
 
-const FadeDiv = styled.div<{state: string}>`
+const FadeDiv = styled.div<{state: string; children?: React.ReactNode}>`
   transition: 0.3s ease;
-  opacity: ${({ state }) => (state === "entered" ? 1 : 0)};
-  display: ${({ state }) => (state === "exited" ? "none" : "block")};
+  opacity: ${({ state }) => (state === "entering" || state === "entered" ? 1 : 0)};
 `;
-
-const FadeTransition = (
-  {
-    children,
-    ...rest
-  }: TransitionProps
-) => <Transition {...rest}>
-  {state => <FadeDiv state={state}>
-    {/* @ts-ignore */}
-    {children}
-  </FadeDiv>}
-</Transition>;
 
 
 const CurrentLayout = (

@@ -62,13 +62,13 @@ function App() {
             onClick={() => setScreen(Screen.LAYOUT_SELECTION)}
             active={screen === Screen.LAYOUT_SELECTION}
           >
-            {t("menu.interface")}
+            {t("menu.interface", {defaultValue: "Interface"})}
           </Entry>
           <Entry
             onClick={() => setScreen(Screen.LANGUAGE_SELECTION)}
             active={screen === Screen.LANGUAGE_SELECTION}
           >
-            {t("menu.languageSwitch")}
+            {t("menu.languageSwitch", {defaultValue: "Language"})}
           </Entry>
           <Entry><a href={t("links.guide")} style={{textDecoration: "none", color: "inherit"}}>{t("menu.help")}</a></Entry>
         </Container>

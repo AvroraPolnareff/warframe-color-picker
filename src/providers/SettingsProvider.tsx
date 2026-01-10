@@ -35,7 +35,7 @@ const initSettings: Settings = {
   theme: "night",
   colors: createTheme(nightTheme),
   setColors: () => {},
-  enableMOTD: true,
+  enableMOTD: false,
   setLanguage: () => {},
   setTheme: () => {},
   setLayout: () => {},
@@ -50,21 +50,11 @@ export const SettingsProvider = ({children}: {children: ReactNode}) => {
   const [language, setLanguage] = useStickyState(initSettings.language, "language")
   const [theme, setTheme] = useStickyState(initSettings.theme, "theme")
   const [colors, setColors] = useState(() => createTheme(theme === "night" ? nightTheme : dayTheme))
-  const [enableMOTD, setEnableMOTD] = [false, (a: boolean) => {}]
+  const [enableMOTD, setEnableMOTD] = useStickyState(initSettings.enableMOTD, "enableMOTD")
 
   useEffect(() => {
     setColors(createTheme(theme === "night" ? nightTheme : dayTheme))
   }, [theme])
-
-  // fix improper hydration
-  useEffect(() => {
-    if (initSettings.layout !== layout) {
-      setLayout(initSettings.layout)
-      setTimeout(() => {
-        setLayout(layout)
-      })
-    }
-  }, [])
 
   return (
     <SettingsContext.Provider value={{

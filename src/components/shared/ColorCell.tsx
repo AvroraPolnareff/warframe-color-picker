@@ -20,7 +20,7 @@ export const ColorCell = (
   return (
     <CellWrapper onClick={onClick}>
       <OutlineWrapper outline={outline} colors={colors}>
-        {process.browser && <StyledColorCell
+        <StyledColorCell
             //@ts-ignore
             //TODO FIX
             cellColor={color}
@@ -28,7 +28,6 @@ export const ColorCell = (
         >
           {children}
         </StyledColorCell>
-        }
       </OutlineWrapper>
     </CellWrapper>
   )

@@ -2,8 +2,7 @@ import React, {useContext} from "react";
 import styled, { css } from "styled-components";
 import {CurrentScreenContext, Screen} from "../providers/CurrentScreenProvider";
 import {SettingsContext} from "../providers/SettingsProvider";
-import {TransitionProps} from "react-transition-group/Transition";
-import {Transition} from "react-transition-group";
+import {useTransition} from "react-transition-state";
 import {useTranslation} from "react-i18next";
 
 export const Header = () => {
@@ -11,37 +10,32 @@ export const Header = () => {
   const {enableMOTD} = useContext(SettingsContext)
   const showMOTD = screen === Screen.COLOR_PICKER
   const {t} = useTranslation()
+
+  const [state, toggle] = useTransition({
+    timeout: 250,
+    preEnter: true,
+  });
+
+  React.useEffect(() => {
+    toggle(enableMOTD && showMOTD);
+  }, [enableMOTD, showMOTD, toggle]);
+
   return (
-    <FadeTransition
-      in={enableMOTD && showMOTD}
-      timeout={250}
-    >
+    <FadeDiv state={state.status}>
       <StyledHeader>
         <TipOfADay/>
         <TipWrapper hidden={!enableMOTD}>
           {t("colorPicker.motd")}
         </TipWrapper>
       </StyledHeader>
-    </FadeTransition>
+    </FadeDiv>
   )
 }
 
-const FadeDiv = styled.div<{state: string}>`
+const FadeDiv = styled.div<{state: string; children?: React.ReactNode}>`
   transition: 0.3s ease;
-  opacity: ${({ state }) => (state === "entered" ? 1 : "exiting" ? 0 : "exited" ? 0 : "entering" && 0)};
+  opacity: ${({ state }) => (state === "entering" || state === "entered" ? 1 : 0)};
 `;
-
-const FadeTransition = (
-  {
-    children,
-    ...rest
-  }: TransitionProps
-) => <Transition {...rest}>
-  {state => <FadeDiv state={state}>
-    {/*@ts-ignore */}
-    {children}
-  </FadeDiv>}
-</Transition>;
 
 
 
