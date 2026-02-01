@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 
 export const useStickyState = <T>(initState: T, sticker: string) => {
   const [value, setValue] = useState(initState);
@@ -22,5 +22,5 @@ export const useStickyState = <T>(initState: T, sticker: string) => {
     }
   }, [sticker, value]);
 
-  return [value, setValue];
+  return [value, setValue] as const;
 };
