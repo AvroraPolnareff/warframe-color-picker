@@ -254,6 +254,7 @@ const Wrapper = styled.div`
 
 const Header = styled.h2`
   font-weight: 900;
+  white-space: nowrap;
   color: ${props => props.theme.colors.targetSchemeHeader};
   margin-bottom: 0.12em;
   margin-top: 0;
@@ -400,8 +401,8 @@ const TextExport = (props: { colors: string[] }) => {
       <Divider />
       <TextExportGuide>
         <Trans i18nKey={"colorPicker.targetScheme.textGuide"}>
-          <p style={{margin: 0}}>This text can either be copied or screenshotted with formatting.</p>
-          <p style={{margin: 0}}>Column by letter, row by number.</p>
+          <p style={{ margin: 0 }}>This text can either be copied or screenshotted with formatting.</p>
+          <p style={{ margin: 0 }}>Column by letter, row by number.</p>
         </Trans>
       </TextExportGuide>
     </TextExportContent>
@@ -474,11 +475,11 @@ const Import = (props: { onImport: (colors: string[]) => void }) => {
         components={[
           <></>,
           <Link
-            style={{color: colors.link, textDecoration: "none"}}
+            style={{ color: colors.link, textDecoration: "none" }}
             href={t(`colorPicker.targetScheme.importGuide`)}
           />,
-          <span style={{fontWeight: "bold"}} />,
-          <span style={{fontWeight: "bold"}} />,
+          <span style={{ fontWeight: "bold" }} />,
+          <span style={{ fontWeight: "bold" }} />,
         ]}
       />
     </DescriptionWrapper>
