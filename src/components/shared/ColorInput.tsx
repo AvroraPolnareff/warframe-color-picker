@@ -8,6 +8,8 @@ import { ColorCell } from "./ColorCell";
 import { FuzzyResult } from "@nozbe/microfuzz";
 import { QuestionMarkIcon } from "src/assets/QuestionMarkIcon";
 import { ExclamationMarkIcon } from "src/assets/ExclamationMarkIcon";
+import { Popover } from "@base-ui/react/popover";
+import { Window } from "./Window";
 
 export type ColorMode = "hex" | "palette"
 
@@ -251,18 +253,11 @@ export const ColorInput = (
     setInputField(color.hex())
   }, [color])
 
-  const handleSelect = (value: string) => {
-    if (!parsedField) return
-    onChange(getParsedInputColor(parsedField))
-
-  }
-
   return (
     <ColorInputWrapper>
-      <HelperButton
+      <HelperButtonPopover
         hidden={!focused}
         state={fieldState}
-        onMouseDown={e => e.preventDefault()}
       >
         {fieldState === "nominal" && (
           <QuestionMarkIcon />
@@ -270,7 +265,7 @@ export const ColorInput = (
         {fieldState === "error" && (
           <ExclamationMarkIcon />
         )}
-      </HelperButton>
+      </HelperButtonPopover>
       <Autocomplete
         items={palettes}
         value={inputField}
@@ -335,7 +330,7 @@ const HelperButton = styled.button<{ state: ColorInputState, hidden: boolean }>`
   position: absolute;
   content: ' ';
   top: 10px;
-  left: -24px;
+  left: -28px;
   width: 30px;
   height: 30px;
   border-radius: 50%;
@@ -377,9 +372,66 @@ const HelperButton = styled.button<{ state: ColorInputState, hidden: boolean }>`
   
 `
 
-const AutocompleteWrapper = styled.div`
-  position: relative;
+const WindowContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  font-size: 0.773rem;
+  font-family: 'Gilroy', sans-serif;
+  & ul {
+    list-style: none;
+    padding-left: 0;
+  }
 `
+const Popup = styled.div`
+  transform-origin: var(--transform-origin);
+  transition:
+    transform 150ms,
+    opacity 150ms;
+  &[data-starting-style],
+  &[data-ending-style] {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+`
+
+const HelperButtonPopover = (props: { state: ColorInputState, hidden: boolean } & React.ButtonHTMLAttributes<HTMLButtonElement>) => {
+  return <Popover.Root>
+    <Popover.Trigger
+      openOnHover
+      render={(triggerProps) =>
+        <HelperButton
+          {...props}
+          {...triggerProps}
+          onClick={(e) => {
+            e.preventDefault()
+            triggerProps.onClick?.(e)
+          }}
+          onMouseDown={(e) => {
+            e.preventDefault()
+            triggerProps.onMouseDown?.(e)
+          }}
+        />
+      }
+    >
+    </Popover.Trigger>
+    <Popover.Portal>
+      <Popover.Positioner sideOffset={8}>
+        <Popover.Popup render={props => <Popup {...props} />}>
+          <Window width={15} height={8}>
+            <WindowContainer>
+              <h3>Available formats</h3>
+              <ul>
+                <li>Hex color: <b>#000000</b></li>
+                <li>Palette color: <b>D17 Hallow's Eve</b></li>
+                <li>Palette color alt.: <b>C4R17 Hallow's Eve</b></li>
+              </ul>
+            </WindowContainer>
+          </Window>
+        </Popover.Popup>
+      </Popover.Positioner>
+    </Popover.Portal>
+  </Popover.Root>
+}
 
 const AutocompleteInput = styled.input.attrs(() => ({
   spellCheck: "false", type: "text"

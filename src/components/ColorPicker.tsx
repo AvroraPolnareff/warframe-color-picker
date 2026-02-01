@@ -75,7 +75,7 @@ export const ColorPicker = (
 const HeaderWrapper = styled.div<{ compact?: boolean }>`
     position: absolute;
     
-    top: -2.2rem;
+    top: -1.6rem;
     left: 0;
     pointer-events: none;
 `
@@ -83,7 +83,6 @@ const HeaderWrapper = styled.div<{ compact?: boolean }>`
 const FlexRow = styled.div`
     display: flex;
     justify-content: space-between;
-    align-
 `
 
 
