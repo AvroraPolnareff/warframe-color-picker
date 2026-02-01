@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@base-ui/react": "^1.1.0",
     "@emotion/react": "11.9.3",
     "@emotion/styled": "^11.9.3",
     "@nozbe/microfuzz": "^1.0.0",
