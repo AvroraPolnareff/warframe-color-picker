@@ -419,11 +419,11 @@ const HelperButtonPopover = (props: { state: ColorInputState, hidden: boolean } 
         <Popover.Popup render={props => <Popup {...props} />}>
           <Window width={15} height={8}>
             <WindowContainer>
-              <h3>Available formats</h3>
+              <h3>Available formats:</h3>
               <ul>
-                <li>Hex color: <b>#000000</b></li>
-                <li>Palette color: <b>D17 Hallow's Eve</b></li>
-                <li>Palette color alt.: <b>C4R17 Hallow's Eve</b></li>
+                <li>Hex Code: <b>#412073</b></li>
+                <li>Position: <b>D17 Hallow's Eve</b></li>
+                <li>Position (alt.): <b>C4R17 Hallow's Eve</b></li>
               </ul>
             </WindowContainer>
           </Window>
