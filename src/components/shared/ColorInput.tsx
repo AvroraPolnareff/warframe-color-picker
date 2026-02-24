@@ -147,6 +147,11 @@ const Autocomplete = <Item, MappedItem,>(
             {...inputProps}
             compact={props.compact}
             valid={props.valid ?? true}
+            onKeyDown={e => {
+              if (e.code === "Enter") {
+                props.onEnter?.()
+              }
+            }}
             onFocus={(e) => {
               inputProps.onFocus?.(e)
               props.onFocus?.()
@@ -250,13 +255,17 @@ export const ColorInput = (
     return "nominal"
   }, [parsedField, inputField])
   useEffect(() => {
-    setInputField(color.hex())
+    const hexColor = color.hex()
+    if (hexColor !== inputField) {
+      setInputField(color.hex())
+    }
+
   }, [color])
 
   return (
     <ColorInputWrapper>
       <HelperButtonPopover
-        hidden={!focused}
+        hidden={false}
         state={fieldState}
       >
         {fieldState === "nominal" && (
@@ -292,7 +301,7 @@ export const ColorInput = (
           try {
             Color(color)
           } catch {
-            console.log(`Wrong color is submitted: ${color}`)
+            console.log(`Wrong color submitted: ${color}`)
             return
           }
           onChange(getParsedInputColor(parsedField))
@@ -415,7 +424,7 @@ const HelperButtonPopover = (props: { state: ColorInputState, hidden: boolean } 
     >
     </Popover.Trigger>
     <Popover.Portal>
-      <Popover.Positioner sideOffset={8}>
+      <Popover.Positioner sideOffset={4} alignOffset={-20}>
         <Popover.Popup render={props => <Popup {...props} />}>
           <Window width={15} height={8}>
             <WindowContainer>

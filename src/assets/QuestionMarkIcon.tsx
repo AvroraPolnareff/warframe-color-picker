@@ -1,5 +1,5 @@
-import React, {CSSProperties} from "react";
-import {useTheme} from "styled-components";
+import React, { CSSProperties } from "react";
+import { useTheme } from "styled-components";
 
 export const QuestionMarkIcon = (
   {
@@ -8,8 +8,8 @@ export const QuestionMarkIcon = (
     style?: CSSProperties
   }
 ) => {
-  const {colors, mode} = useTheme() as any
-  const contentColor = mode === "dark" ? colors.textOnBackground : colors.background
+  const { colors, mode } = useTheme()
+  const contentColor = mode === "dark" ? colors.textOnButtons : colors.background
 
   return (
     <svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg" style={style}>

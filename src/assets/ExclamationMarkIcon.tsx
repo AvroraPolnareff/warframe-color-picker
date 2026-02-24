@@ -1,5 +1,5 @@
-import React, {CSSProperties} from "react";
-import {useTheme, DefaultTheme} from "styled-components";
+import React, { CSSProperties } from "react";
+import { useTheme, DefaultTheme } from "styled-components";
 
 export const ExclamationMarkIcon = (
   {
@@ -8,8 +8,8 @@ export const ExclamationMarkIcon = (
     style?: CSSProperties
   }
 ) => {
-  const {colors, mode} = useTheme() as DefaultTheme
-  const contentColor = mode === "dark" ? colors.textOnBackground : colors.background
+  const { colors, mode } = useTheme()
+  const contentColor = mode === "dark" ? colors.textOnButtons : colors.background
 
   return (
     <svg width="4" height="12" viewBox="0 0 4 12" fill="none" xmlns="http://www.w3.org/2000/svg" style={style}>
