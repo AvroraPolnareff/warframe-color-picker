@@ -1,14 +1,14 @@
-import {palettes} from "../common/palettes";
-import {convertExportStringToColors, findClosestColors} from "../common/helpers";
-import React, {useContext, useEffect, useRef, useState} from "react";
-import {MatchedColor} from "../components/Suggestions";
-import {debounce} from "lodash";
+import { palettes } from "../common/palettes";
+import { findClosestColors } from "../common/helpers";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { MatchedColor } from "../components/Suggestions";
+import { debounce } from "lodash";
 import Color from "color";
-import {useStickyState} from "./useStickyState";
-import {UrlColorsState, UrlPaletteContext} from "../providers/UrlColorsProvider";
-import {CurrentScreenContext, Screen} from "../providers/CurrentScreenProvider";
+import { useStickyState } from "./useStickyState";
+import { UrlColorsState, UrlPaletteContext } from "../providers/UrlColorsProvider";
+import { CurrentScreenContext, Screen } from "../providers/CurrentScreenProvider";
 
-export const initColors : string[] = Array(48).fill("")
+export const initColors: string[] = Array(48).fill("")
 
 export const initAvailablePalettes = palettes.map((palette) => palette.name)
 
@@ -16,7 +16,7 @@ const initMatchedColor = {
   distance: 0,
   color: "#000000",
   paletteName: "Classic",
-  position: {x: 0, y: 0},
+  position: { x: 0, y: 0 },
   uid: "3274823"
 }
 
@@ -30,8 +30,8 @@ export const useColorPickerLogic = () => {
   const [selectedColor, setSelectedColor] = useState<MatchedColor>(initMatchedColor)
   const [showPalettesModal, setShowPalettesModal] = useState(false)
   const [availablePalettes, setAvailablePalettes] = useStickyState<string[]>(initAvailablePalettes, "availablePalettes")
-  const {hookState, colors: importedColors, paletteImported} = useContext(UrlPaletteContext)
-  const {screen, setScreen} = useContext(CurrentScreenContext)
+  const { hookState, colors: importedColors, paletteImported } = useContext(UrlPaletteContext)
+  const { screen, setScreen } = useContext(CurrentScreenContext)
 
   useEffect(() => {
     if (hookState === UrlColorsState.LOADED && screen !== Screen.SCHEME_IMPORT) {
@@ -44,7 +44,7 @@ export const useColorPickerLogic = () => {
   }, [hookState, setPaletteColors, screen, setScreen])
 
 
-  const debounced = useRef(debounce((fn: () => void) => fn(), 150, {trailing: true, leading: false}))
+  const debounced = useRef(debounce((fn: () => void) => fn(), 150, { trailing: true, leading: false }))
 
   const getCurrentColor = (): string => {
     const color = paletteColors[currentColorIndex]
@@ -88,7 +88,7 @@ export const useColorPickerLogic = () => {
   }
 
   const onSuggestionClick = (key: string) => {
-    const filteredColor = matchedColors.filter(({uid}) => uid === key)[0]
+    const filteredColor = matchedColors.filter(({ uid }) => uid === key)[0]
     if (filteredColor.uid !== selectedColor.uid) {
       setSelectedColor(filteredColor);
     }
@@ -115,7 +115,7 @@ export const useColorPickerLogic = () => {
 
   const showAllAvailablePalettes = () => setAvailablePalettes(initAvailablePalettes)
 
-  const onScreenshotImport = (colors: String[]) => {
+  const onScreenshotImport = (colors: string[]) => {
     setPaletteColors([
       ...paletteColors.slice(0, Math.floor(currentColorIndex / 8) * 8),
       ...colors,
