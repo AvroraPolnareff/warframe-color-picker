@@ -103,7 +103,7 @@ const PaletteName = styled.div`
 const Grid = styled.div`
   color: ${props => props.theme.colors.textOnBackground};
   display: grid;
-  grid-template-rows: repeat(15, 1fr);
+  grid-template-rows: repeat(16, 1fr);
   row-gap: 0.2em;
   grid-auto-flow: column;
   justify-items: start;
