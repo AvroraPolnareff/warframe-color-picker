@@ -13,6 +13,7 @@ import {SwapIcon} from "../assets/SwapIcon"
 import Color from "color";
 import {useTranslation} from "react-i18next";
 import {SettingsContext} from "../providers/SettingsProvider";
+import { stringEllipsis } from "src/common/helpers";
 
 
 interface SuggestionsProps {
@@ -187,7 +188,7 @@ const Suggestion = (
         </ColorCell>
         <Badge hoverable={!selected} selected={selected}>
           {/*@ts-ignore*/}
-          {(t(`palettes.${name}`) as string).slice(0, 12) + ((t(`palettes.${name}`) as string).length > 12 ? "." : "")}
+          {stringEllipsis(t(`palettes.${name}`) as string, 13)}
         </Badge>
       </FlexCentred>
       <Badge width={3} style={{marginRight: "0.6em"}}>

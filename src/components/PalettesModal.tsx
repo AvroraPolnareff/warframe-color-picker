@@ -7,6 +7,7 @@ import {Divider} from "./shared/Divider";
 import {WarframePalette} from "./shared/WarframePalette";
 import {useTranslation} from "react-i18next";
 import { sortBy } from "lodash";
+import { stringEllipsis } from "src/common/helpers";
 
 
 interface PalettesModalProps {
@@ -49,7 +50,7 @@ export const PalettesModal = (
           success={availablePalettes.indexOf(name) !== -1}
         >
           {/*@ts-ignore*/}
-          {(t(`palettes.${name}`) as string).slice(0, 12) + ((t(`palettes.${name}`) as string).length > 13 ? "." : "")}
+          {stringEllipsis(t(`palettes.${name}`) as string, 13)}
         </Button>)}
       </Grid>
       <Divider/>
