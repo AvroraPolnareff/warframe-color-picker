@@ -79,6 +79,7 @@ export const Suggestions = (props: SuggestionsProps) => {
       <Divider/>
       <ScrollableFadedList
         height={props.height ?? "32.55em"}
+        // @ts-ignore
         scrollbarsRef={scrollbarsRef}
       >
         {
