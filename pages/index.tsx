@@ -5,7 +5,7 @@ import {generateNextSeo} from "next-seo/pages"
 const Index = () => {
   const description = !process.env.index ?
     "The app has been moved to a new link: https://www.warframecolorpicker.app/" :
-    "Unironically the best and most versatile fashionframe companion out there. Adjust your colors, import schemes from screenshots, share with your friends! Made by Moriscu & Hippothoe"
+    "Unironically the best and most versatile fashionframe companion out there! Fine-tune your colors, import schemes from screenshots, share with your friends! Made by whatthefxckstrid & MTHR."
   return (
     <>
       <Head>
