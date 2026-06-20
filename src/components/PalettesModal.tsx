@@ -101,9 +101,9 @@ export const PalettesModal = (
         <HoveredPalette>
           {/*@ts-ignore*/}
           <PaletteName>{t(`palettes.${hoveredPalette}`)}</PaletteName>
-            <WarframePalette size={1.5} paletteName={hoveredPalette} />
+          <WarframePalette size={1.665} paletteName={hoveredPalette} />
         </HoveredPalette>
-        <ScrollableFadedList height="24em" width="100%">
+        <ScrollableFadedList height="27em" width="100%">
           {modalPalettes.map(category => <>
             <HeaderWrapper>
               <CategoryHeader>{category.name}</CategoryHeader>
@@ -206,7 +206,8 @@ const GroupHeader = styled.h3`
 const GroupLine = styled.div`
   position: relative;
   content: " ";
-  margin: 0.45em 0.2em;
+  margin: 0.45em 0.4em;
+  margin-right: 0.1em;
   min-height: 100%;
   width: 0.4em;
   border: solid 0.2em;
@@ -250,6 +251,7 @@ const GroupButton = styled.button<{enabled: boolean}>`
 const GroupList = styled.div`
   display: flex;
   align-items: stretch;
+  gap: 4px;
 `
 const GroupListItems = styled.div`
   break-inside: avoid;
@@ -265,9 +267,10 @@ const GroupWrapper = styled.div`
 `
 
 const CategoryHeader = styled.h2`
-  font-size: 1rem;
-  color: ${({theme}) => theme.colors.textOnBackground};
   flex-shrink: 0;
+  font-size: 1rem;
+  margin: 0;
+  color: ${({theme}) => theme.colors.textOnBackground};
 `
 
 const ActionsWrapper = styled.div`
@@ -281,6 +284,7 @@ const ActionsWrapper = styled.div`
 
 const HeaderWrapper = styled.div`
   padding-right: 0.4em;
+  padding-bottom: 0.6em;
   width: 100%;
   align-items: center;
   display: flex;
@@ -290,8 +294,8 @@ const HeaderWrapper = styled.div`
 
 const HoveredPalette  = styled.div`
   position: absolute;
-  right: -11.2em;
-  top: -2.5em;
+  right: -11.7em;
+  top: -2.39em;
   border: 4px solid ${props => props.theme.colors.buttons};
   padding: 0.4em 0.6em;
   background-color: ${({theme}) => theme.colors.background};
@@ -300,16 +304,15 @@ const HoveredPalette  = styled.div`
 
 const PaletteName = styled.div`
   text-align: center;
-  color: ${props => props.theme.colors.textOnBackground};
   font-size: 0.655rem;
   text-transform: uppercase;
-  width: 11.8em;
-  border: 0.15em solid ${props => props.theme.colors.misc};
   border-radius: 0.5em;
   padding: 0.5em 0;
   margin-bottom: 0.5em;
   margin-top: 0.4em;
   font-weight: bold;
+  border: 0.15em solid ${props => props.theme.colors.misc};
+  color: ${props => props.theme.colors.textOnBackground};
 `
 
 

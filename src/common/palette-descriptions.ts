@@ -80,14 +80,14 @@ export const paletteDescriptions: PaletteDescriptions = {
 "Opal": "Switch-exclusive. Available during Nintendo Switch release anniversary celebration.",
 "PSIV": "PS-exclusive. Available during Playstation 4 release anniversary celebration."
 },
-// "OTHER": {
-// "Accessibility": "Some colors from this palette could be favorited via a bug up until one of the updates in early 2025. Now that it's fixed, colors from there can only be used by those lucky few who had favorited them in time."
-// }
+"OTHER": {
+"Accessibility": "Some colors from this palette could be favorited via a bug up until one of the updates in early 2025. Now that it's fixed, colors from there can only be used by those lucky few who had favorited them in time."
+}
 }
 
 type PaletteGroup = string
 
 export const paletteGroups: Record<PaletteGroup, PaletteName[]> = {
-  "Lich": ["Agony", "Darkness", "Fear", "Hatred", "Rot", "Undying"],
-  "Varzia's Market": ["Prime Finish", "Prime Lacquer"]
+  "Kuva Lich Hunter Collection": ["Agony", "Conquest", "Darkness", "Fear", "Hatred", "Rot", "Undying"],
+  "Color Pack: Prime": ["Prime Finish", "Prime Lacquer"]
 }
