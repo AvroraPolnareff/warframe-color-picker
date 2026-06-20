@@ -3,12 +3,13 @@ import {Position} from "../common/Palette";
 import {Divider} from "./shared/Divider";
 import {FlexColumnCenter} from "./shared/FlexColumnCenter";
 import {Window} from "./shared/Window";
-import styled, {useTheme} from "styled-components";
+import styled from "styled-components";
 import {ColorCell} from "./shared/ColorCell";
 import {Badge} from "./shared/Badge";
 import {Switch} from "./shared/Switch";
 import {Button} from "./shared/Button";
-import {positionValues, Scrollbars} from "./shared/scrollbars"
+import {Scrollbars} from "./shared/scrollbars"
+import {ScrollableFadedList} from "./shared/ScrollableFadedList"
 import {SwapIcon} from "../assets/SwapIcon"
 import Color from "color";
 import {useTranslation} from "react-i18next";
@@ -35,11 +36,9 @@ export interface MatchedColor {
 
 export const Suggestions = (props: SuggestionsProps) => {
   const scrollbarsRef = useRef<Scrollbars>(null)
-  const fadesRef = useRef<HTMLDivElement>(null)
   const [switched, setSwitched] = useState(false)
   const [selected, setSelected] = useState("")
   const {t} = useTranslation()
-  const {colors} = useTheme()
   const {theme} = useContext(SettingsContext)
   useEffect(() => {
     if (props.matchedColors.length)
@@ -52,26 +51,6 @@ export const Suggestions = (props: SuggestionsProps) => {
     if (props.matchedColors.length)
       setSelected(props.matchedColors[0].uid)
   }, [props.matchedColors])
-
-  const onScrollbarUpdate = (values: positionValues) => {
-    if (!fadesRef.current) return
-
-    const fadesStyle = `
-      position: absolute;
-      height: 100%;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      width: 100%;
-      pointer-events: none;
-    `
-    const gradient = `background: linear-gradient(
-      0deg, ${colors.background} 0%, rgba(0,0,0,0) ${(1 - values.top) * 20}%,
-      rgba(0,0,0,0) ${100 - (values.top) * 20}%, ${colors.background} 100%
-    )`
-
-    fadesRef.current.setAttribute("style", fadesStyle + gradient)
-  }
 
   const onSuggestionClick = (uid: string) => {
     props.onSuggestionClick(uid)
@@ -98,41 +77,29 @@ export const Suggestions = (props: SuggestionsProps) => {
 
       </FlexColumnCenter>
       <Divider/>
-      <Faded>
-        <Scrollbars
-          style={{height: props.height ?? "32.55em", width: "104%"}}
-          autoHide autoHideDuration={200}
-          universal
-          ref={scrollbarsRef}
-          onUpdate={onScrollbarUpdate}
-        >
-          {
-            props.matchedColors.map(({color, paletteName, distance, position, uid}, index) => (
-              <Suggestion
-                onSuggestionClick={onSuggestionClick}
-                color={color} name={paletteName}
-                value={(!switched ? Math.round(100 - distance) + "%" : distance.toFixed(2)).toString()}
-                uid={uid}
-                selected={selected === uid}
-                key={index}
-                index={index}
-                animationState={props.isSuggestionsUpdating}
-                onSwapColor={props.onSwapColor}
-              />
-            ))
-          }
-        </Scrollbars>
-        <div ref={fadesRef}/>
-      </Faded>
+      <ScrollableFadedList
+        height={props.height ?? "32.55em"}
+        scrollbarsRef={scrollbarsRef}
+      >
+        {
+          props.matchedColors.map(({color, paletteName, distance, position, uid}, index) => (
+            <Suggestion
+              onSuggestionClick={onSuggestionClick}
+              color={color} name={paletteName}
+              value={(!switched ? Math.round(100 - distance) + "%" : distance.toFixed(2)).toString()}
+              uid={uid}
+              selected={selected === uid}
+              key={index}
+              index={index}
+              animationState={props.isSuggestionsUpdating}
+              onSwapColor={props.onSwapColor}
+            />
+          ))
+        }
+      </ScrollableFadedList>
     </Window>
   )
 }
-
-const Faded = styled.div`
-  margin-top: 0.5em;
-  position: relative;
-`
-
 
 const ItalicText = styled.div`
   margin-top: 0.2em;

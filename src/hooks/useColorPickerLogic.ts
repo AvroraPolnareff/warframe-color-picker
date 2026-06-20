@@ -2,7 +2,7 @@ import { palettes } from "../common/palettes";
 import { findClosestColors } from "../common/helpers";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { MatchedColor } from "../components/Suggestions";
-import { debounce } from "lodash";
+import { debounce, uniq } from "lodash";
 import Color from "color";
 import { useStickyState } from "./useStickyState";
 import { UrlColorsState, UrlPaletteContext } from "../providers/UrlColorsProvider";
@@ -111,9 +111,12 @@ export const useColorPickerLogic = () => {
     onColorChange(Color(selectedColor.color))
   }
 
-  const clearAvailablePalettes = () => setAvailablePalettes(["Classic"]);
+  const clearAvailablePalettes = (palettes: string[]) => {
+    const filteredPalettes = availablePalettes.filter(palette => !palettes.includes(palette))
+    setAvailablePalettes(filteredPalettes.length ? filteredPalettes : ["Classic"])
+  };
 
-  const showAllAvailablePalettes = () => setAvailablePalettes(initAvailablePalettes)
+  const showAllAvailablePalettes = (palettes: string[]) => setAvailablePalettes(uniq([...availablePalettes, ...palettes]))
 
   const onScreenshotImport = (colors: string[]) => {
     setPaletteColors([
@@ -149,4 +152,3 @@ export const useColorPickerLogic = () => {
     selectedColor,
   }
 }
-

@@ -378,7 +378,7 @@ const HelperButton = styled.button<{ state: ColorInputState, hidden: boolean }>`
       background-color: ${props.theme.colors.danger};
     }
   `}
-  
+
 `
 
 const WindowContainer = styled.div`
@@ -400,6 +400,9 @@ const Popup = styled.div`
   &[data-ending-style] {
     opacity: 0;
     transform: scale(0.9);
+  }
+  &:focus-visible {
+    outline: none;
   }
 `
 
@@ -463,11 +466,11 @@ const AutocompleteInput = styled.input.attrs(() => ({
     margin-right: 0;
     font-size: 1em;
   `}
-  
+
   &:hover {
     background-color: ${props => props.valid ? props.theme.colors.darken.buttons : props.theme.colors.darken.danger};
   }
-  
+
   &:focus {
       outline: none;
   }

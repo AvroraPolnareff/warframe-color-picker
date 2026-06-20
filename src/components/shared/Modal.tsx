@@ -52,12 +52,14 @@ const StyledModal = styled.div<{show: boolean}>`
   left: 0; top: 0;
   overflow: auto;
   background-color:${({theme}) => theme.mode === "light" ? "rgba(255,255,255,0.7)" : "rgba(0,0,0,0.7)"};
-  
+
 `
 
 const WindowWrapper = styled.div<{width?: number, height?: number}>`
-  ${props => props.width && `width: ${props.width}em`};
-  ${props => props.height && `height: ${props.height}em`};
+  ${props => props.width && `min-width: ${props.width}em`};
+  ${props => props.width && `max-width: ${props.width}em`};
+  ${props => props.height && `min-height: ${props.height}em`};
+  ${props => props.height && `max-height: ${props.height}em`};
   margin: 10% auto;
 `
 const Borders = styled.div`
@@ -78,7 +80,7 @@ const TopBar = styled.div`
   justify-content: space-between;
   background-color: ${props => props.theme.colors.buttons};
   height: 1.2em;
-  
+
 `
 
 const Header = styled.div`
@@ -94,5 +96,5 @@ const ExitButton = styled.img.attrs<{ mode: "day" | "night" }>(({mode}) => ({src
   font-weight: bold;
   border: none;
   height: 1em;
-  
+
 `
