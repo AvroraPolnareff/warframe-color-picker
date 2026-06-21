@@ -66,7 +66,7 @@ export const paletteDescriptions: PaletteDescriptions = {
 "Bastille": "Originally sold for a limited time during France's Bastille Day 2013 for 75 Platinum. No longer obtainable.",
 "Red White Blue": "Originally sold for a limited time during US Independence Day 2013 for 75 Platinum. During July 2015, it was also made available to everyone who logged in for the Tenno United Celebration. No longer obtainable."
 },
-"Limited Time": {
+"LIMITED TIME": {
 "Orion Color Palette": "Obtainable via logging into the official Jade Shadows: Constellations webpage with a Warframe account and pressing the \"Orion\" button.",
 "Sirius Color Palette": "Obtainable via logging into the official Jade Shadows: Constellations webpage with a Warframe account and pressing the \"Sirius\" button.",
 "Discord": "Originally obtainable only by purchasing the Warframe Discord Nitro Pack on PC. No longer obtainable.",
