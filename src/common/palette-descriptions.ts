@@ -24,6 +24,7 @@ export const paletteDescriptions: PaletteDescriptions = {
 "Infested": "Purchasable from the in-game Market for 75 Platinum. Alternatively, obtained via Color Pack: Beta from the in-game market for 169 Platinum.",
 "Light & Shadow": "Purchasable from the in-game Market for 75 Platinum.",
 "Lotus": "Purchasable from the in-game Market for 75 Platinum.",
+"Mesa Heirloom": "Purchasable from the in-game Market for 80 Platinum. Alternatively, obtained via Mesa Heirloom Collection for 400 Platinum.",
 "Narmer": "Purchasable from the in-game Market for 75 Platinum. Alternatively, obtained via New War Tribute Pack from the in-game market for 145 Platinum.",
 "Orokin": "Purchasable from the in-game Market for 75 Platinum.",
 "Rhino Heirloom": "Purchasable from the in-game Market for 80 Platinum. Alternatively, obtained via Rhino Heirloom Iron Collection for 400 Platinum.",

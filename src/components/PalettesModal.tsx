@@ -271,6 +271,7 @@ const CategoryHeader = styled.h2`
   font-size: 1rem;
   margin: 0;
   color: ${({theme}) => theme.colors.textOnBackground};
+  text-transform: uppercase;
 `
 
 const ActionsWrapper = styled.div`
