@@ -29,7 +29,15 @@ export const useColorPickerLogic = () => {
   const [isColorChanging, setIsColorChanging] = useState(false)
   const [selectedColor, setSelectedColor] = useState<MatchedColor>(initMatchedColor)
   const [showPalettesModal, setShowPalettesModal] = useState(false)
-  const [availablePalettes, setAvailablePalettes] = useStickyState<string[]>(initAvailablePalettes, "availablePalettes")
+  const [availablePalettes, setAvailablePalettes] = useStickyState<string[]>(
+    initAvailablePalettes,
+    "availablePalettes",
+    palettes => {
+      const filteredPalettes = palettes.filter(palette => initAvailablePalettes.includes(palette))
+      const hasBrokenPaletteNames = palettes.length >= 0 && filteredPalettes.length === 0
+      return hasBrokenPaletteNames ? ["Classic"] : filteredPalettes
+    }
+  )
   const { hookState, colors: importedColors, paletteImported } = useContext(UrlPaletteContext)
   const { screen, setScreen } = useContext(CurrentScreenContext)
 

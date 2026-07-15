@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export const useStickyState = <T>(initState: T, sticker: string) => {
+export const useStickyState = <T>(initState: T, sticker: string, loader: (value: T) => T = a => a) => {
   const [value, setValue] = useState(initState);
 
   useEffect(() => {
@@ -8,7 +8,7 @@ export const useStickyState = <T>(initState: T, sticker: string) => {
       const stickyValue = window.localStorage.getItem(sticker);
       if (stickyValue !== null) {
         try {
-          setValue(JSON.parse(stickyValue));
+          setValue(loader(JSON.parse(stickyValue)));
         } catch (e) {
           console.error(e);
         }
