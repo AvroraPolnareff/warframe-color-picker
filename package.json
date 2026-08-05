@@ -13,7 +13,7 @@
     "dom-css": "2.1.0",
     "i18next": "25.7.3",
     "lodash": "4.17.23",
-    "next": "16.1.6",
+    "next": "16.3.0",
     "next-seo": "7.0.1",
     "raf": "3.4.1",
     "react": "19.2.3",
@@ -21,7 +21,7 @@
     "react-i18next": "16.5.1",
     "react-inlinesvg": "4.2.0",
     "react-transition-state": "2.3.2",
-    "styled-components": "6.2.0",
+    "styled-components": "6.5.0",
     "typescript": "5.2.2",
     "xstate": "5.25.0"
   },
