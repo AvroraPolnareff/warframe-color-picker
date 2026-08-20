@@ -61,7 +61,6 @@ const StyledLanguages = styled.div`
 const HeaderImage = styled.img`
   width: 35em;
   height: 9em;
-  image-rendering: crisp-edges;
 `;
 
 const DescriptionBlock = styled.div`
