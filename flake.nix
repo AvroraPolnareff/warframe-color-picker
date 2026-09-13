@@ -37,6 +37,7 @@
               pkgs.nodejs_24
               pkgs.typescript-language-server
               pkgs.eslint
+              pkgs.deno
             ];
             commands = [
               {

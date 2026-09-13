@@ -1,0 +1,1127 @@
+[
+  {
+    "name": "Alchemy Black",
+    "colorCode": "#292929",
+    "price": "55 Platinum",
+    "event": "In-Game Market",
+    "type": "Kavat",
+    "imageName": "KavatColourTertiaryKalymos.png",
+    "bundleName": "Kalymos"
+  },
+  {
+    "name": "Ancient Brown",
+    "colorCode": "#281D1A",
+    "price": "55 Platinum",
+    "event": "In-Game Market",
+    "type": "Kavat",
+    "imageName": "KavatColourAccentsContest.png",
+    "bundleName": "Deaeira"
+  },
+  {
+    "name": "Ancient Green",
+    "colorCode": "#5DC15D",
+    "price": "160000 Credits",
+    "event": "In-Game Market",
+    "type": "Kavat",
+    "imageName": "KavatColourTertiaryB.png",
+    "bundleName": "Kavat Gene Masking Kit"
+  },
+  {
+    "name": "Anti Moa Purple",
+    "colorCode": "#D4B4F1",
+    "price": "55 Platinum",
+    "event": "In-Game Market",
+    "type": "Kavat",
+    "imageName": "KavatColourBaseC.png",
+    "bundleName": "Nesyr"
+  },
+  {
+    "name": "Argon Violet",
+    "colorCode": "#4F3A84",
+    "price": "2 Regal Aya",
+    "event": "Varzia: Zephyr Prime Access",
+    "type": "Kavat",
+    "imageName": "KavatPrimeColourAccents.png",
+    "bundleName": "Tibor Prime"
+  },
+  {
+    "name": "Arid Brown",
+    "colorCode": "#5A3E2D",
+    "price": "55 Platinum",
+    "event": "In-Game Market",
+    "type": "Kavat",
+    "imageName": "KavatColourBaseContest.png",
+    "bundleName": "Deaeira"
+  },
+  {
+    "name": "Arid Brown",
+    "colorCode": "#5A3E2D",
+    "price": "55 Platinum",
+    "event": "In-Game Market",
+    "type": "Kubrow",
+    "imageName": "KubrowColorMundaneI.png",
+    "bundleName": "Deaeira"
+  },
+  {
+    "name": "Aros Brown",
+    "colorCode": "#B98C00",
+    "price": "2 Regal Aya",
+    "event": "Varzia: Gara Prime Access",
+    "type": "Kavat",
+    "imageName": "KavatGaraPrimeColourTertiary.png",
+    "bundleName": "Sabella Prime"
+  },
+  {
+    "name": "Ash Grey",
+    "colorCode": "#7F7F79",
+    "price": "50 Platinum",
+    "event": "In-Game Market",
+    "type": "Kubrow",
+    "imageName": "KubrowColorMundaneA.png",
+    "bundleName": "Telmation"
+  },
+  {
+    "name": "Asteroid Brown",
+    "colorCode": "#826F54",
+    "price": "40 Platinum",
+    "event": "Seasonal: Christmas / Tennobaum",
+    "type": "Kavat",
+    "imageName": "XmasKavatFurC.png",
+    "bundleName": "Argyl"
+  },
+  {
+    "name": "Asteroid Grey",
+    "colorCode": "#455651",
+    "price": "55 Platinum",
+    "event": "In-Game Market",
+    "type": "Kavat",
+    "imageName": "KavatColourSecondaryD.png",
+    "bundleName": "Krest"
+  },
+  {
+    "name": "Atlas Red",
+    "colorCode": "#5D3027",
+    "price": "40 Platinum",
+    "event": "Seasonal: Christmas / Tennobaum",
+    "type": "Kavat",
+    "imageName": "XmasKavatFurB.png",
+    "bundleName": "Atlas Red"
+  },
+  {
+    "name": "Auricle Green",
+    "colorCode": "#A3BBB9",
+    "price": "55 Platinum",
+    "event": "In-Game Market",
+    "type": "Kavat",
+    "imageName": "KavatColourBaseKalymos.png",
+    "bundleName": "Kalymos"
+  },
+  {
+    "name": "Banshee Blue",
+    "colorCode": "#2D3E43",
+    "price": "Nightwave Reward",
+    "event": "Nightwave",
+    "type": "Kavat",
+    "imageName": "KavatColourTertiaryCeph.png",
+    "bundleName": "Neura"
+  },
+  {
+    "name": "Blood Red",
+    "colorCode": "#720808",
+    "price": "55 Platinum",
+    "event": "In-Game Market",
+    "type": "Kavat",
+    "imageName": "HyekkaFurB.png",
+    "bundleName": "Hyekka"
+  },
+  {
+    "name": "Boiler Red",
+    "colorCode": "#C73429",
+    "price": "55 Platinum",
+    "event": "In-Game Market",
+    "type": "Kavat",
+    "imageName": "KavatColourTertiaryC.png",
+    "bundleName": "Nesyr"
+  },
+  {
+    "name": "Bombard White",
+    "colorCode": "#F2F2F2",
+    "price": "40 Platinum",
+    "event": "Seasonal: Christmas / Tennobaum",
+    "type": "Kavat",
+    "imageName": "SolsticeFurA.png",
+    "bundleName": "Solstice"
+  },
+  {
+    "name": "Bombard White",
+    "colorCode": "#F2F2F2",
+    "price": "40 Platinum",
+    "event": "Seasonal: Christmas / Tennobaum",
+    "type": "Kubrow",
+    "imageName": "SolsticeFurA.png",
+    "bundleName": "Solstice"
+  },
+  {
+    "name": "Bombard White",
+    "colorCode": "#F2F2F2",
+    "price": "40 Platinum",
+    "event": "Seasonal: Christmas / Tennobaum",
+    "type": "Kavat",
+    "imageName": "KubrowColorSolsticeFurA.png",
+    "bundleName": "Solstice"
+  },
+  {
+    "name": "Bombard White",
+    "colorCode": "#F2F2F2",
+    "price": "40 Platinum",
+    "event": "Seasonal: Christmas / Tennobaum",
+    "type": "Kubrow",
+    "imageName": "KubrowColorSolsticeFurA.png",
+    "bundleName": "Solstice"
+  },
+  {
+    "name": "Brokk Brown",
+    "colorCode": "#9B5D42",
+    "price": "50 Platinum",
+    "event": "Seasonal: Christmas / Tennobaum",
+    "type": "Kubrow",
+    "imageName": "KubrowColorXmasVibrantA.png",
+    "bundleName": "Nart-Deer"
+  },
+  {
+    "name": "Carbon Grey",
+    "colorCode": "#909587",
+    "price": "2 Regal Aya",
+    "event": "Varzia: Zephyr Prime Access",
+    "type": "Kavat",
+    "imageName": "KavatPrimeColourBaseA.png",
+    "bundleName": "Tibor Prime"
+  },
+  {
+    "name": "Cargo Yellow",
+    "colorCode": "#EBA517",
+    "price": "55 Platinum",
+    "event": "In-Game Market",
+    "type": "Kavat",
+    "imageName": "HyekkaFurD.png",
+    "bundleName": "Hyekka"
+  },
+  {
+    "name": "Castle Glint",
+    "colorCode": "#C39F5C",
+    "price": "12 Medical Debt-Bond",
+    "event": "Ticker, Event: Star Days",
+    "type": "Kavat",
+    "imageName": "KavatColourAccentsDuviri.png",
+    "bundleName": "Kexat"
+  },
+  {
+    "name": "Cephalon Blue",
+    "colorCode": "#55616C",
+    "price": "Nightwave Reward",
+    "event": "Nightwave",
+    "type": "Kavat",
+    "imageName": "KavatColourSecondaryCeph.png",
+    "bundleName": "Neura"
+  },
+  {
+    "name": "Cetus Brown",
+    "colorCode": "#A9A797",
+    "price": "Nightwave Reward",
+    "event": "Nightwave",
+    "type": "Kavat",
+    "imageName": "KavatColourBaseCeph.png",
+    "bundleName": "Neura"
+  },
+  {
+    "name": "Cleaver Green",
+    "colorCode": "#5A6554",
+    "price": "40 Platinum",
+    "event": "Seasonal: Christmas / Tennobaum",
+    "type": "Kavat",
+    "imageName": "XmasKavatFurD.png",
+    "bundleName": "Argyl"
+  },
+  {
+    "name": "Conculyst Brown",
+    "colorCode": "#6C3921",
+    "price": "160000 Credits",
+    "event": "In-Game Market",
+    "type": "Kavat",
+    "imageName": "KavatColourSecondaryB.png",
+    "bundleName": "Kavat Gene Masking Kit"
+  },
+  {
+    "name": "Condroc Brown",
+    "colorCode": "#A3978E",
+    "price": "40 Platinum",
+    "event": "In-Game Market",
+    "type": "Kubrow",
+    "imageName": "KubrowColorMidContest.png",
+    "bundleName": "Heino"
+  },
+  {
+    "name": "Corpus Grey",
+    "colorCode": "#7F7F7F",
+    "price": "100000 Credits",
+    "event": "In-Game Market",
+    "type": "Kubrow",
+    "imageName": "KubrowColorMundaneC.png",
+    "bundleName": "Basic Gene-Masking Kit"
+  },
+  {
+    "name": "Corrupted Gold",
+    "colorCode": "#CCA765",
+    "price": "2 Regal Aya",
+    "event": "Varzia: Wukong Prime Access",
+    "type": "Kubrow",
+    "imageName": "KubrowColorMundaneWukongPrime.png",
+    "bundleName": "Tang Prime"
+  },
+  {
+    "name": "Crewman Grey",
+    "colorCode": "#464646",
+    "price": "Nightwave Reward",
+    "event": "Nightwave",
+    "type": "Kubrow",
+    "imageName": "KubrowColorVibrantCeph.png",
+    "bundleName": "Neura"
+  },
+  {
+    "name": "Darvo Purple",
+    "colorCode": "#8E4DAF",
+    "price": "200 Ducats + 300000 Credits",
+    "event": "Baro Ki'Teer",
+    "type": "Kavat",
+    "imageName": "NexusFurD.png",
+    "bundleName": "Nexus"
+  },
+  {
+    "name": "Dawn Pink",
+    "colorCode": "#C6576C",
+    "price": "55 Platinum",
+    "event": "Nightwave (Needs Verification)",
+    "type": "Kavat",
+    "imageName": "KavatColourDaybreakBase.png",
+    "bundleName": "Daybreak"
+  },
+  {
+    "name": "Derelict Black",
+    "colorCode": "#262626",
+    "price": "100000 Credits",
+    "event": "In-Game Market",
+    "type": "Kubrow",
+    "imageName": "KubrowColorMidB.png",
+    "bundleName": "Basic Gene-Masking Kit"
+  },
+  {
+    "name": "Derelict White",
+    "colorCode": "#DBDBDB",
+    "price": "2 Regal Aya",
+    "event": "Varzia: Wukong Prime Access",
+    "type": "Kubrow",
+    "imageName": "KubrowColorVibrantWukongPrime.png",
+    "bundleName": "Tang Prime"
+  },
+  {
+    "name": "Draga Blue",
+    "colorCode": "#313345",
+    "price": "55 Platinum",
+    "event": "In-Game Market",
+    "type": "Kavat",
+    "imageName": "KavatColourSecondaryC.png",
+    "bundleName": "Nesyr"
+  },
+  {
+    "name": "Dragonlily Pink",
+    "colorCode": "#F0BABA",
+    "price": "55 Platinum",
+    "event": "In-Game Market",
+    "type": "Kavat",
+    "imageName": "KavatColourBaseD.png",
+    "bundleName": "Krest"
+  },
+  {
+    "name": "Dreg Red",
+    "colorCode": "#8C2C25",
+    "price": "55 Platinum",
+    "event": "In-Game Market",
+    "type": "Kavat",
+    "imageName": "KavatColourTertiaryD.png",
+    "bundleName": "Krest"
+  },
+  {
+    "name": "Earth Brown",
+    "colorCode": "#7F6A5D",
+    "price": "100000 Credits",
+    "event": "In-Game Market",
+    "type": "Kubrow",
+    "imageName": "KubrowColorMundaneB.png",
+    "bundleName": "Basic Gene-Masking Kit"
+  },
+  {
+    "name": "Embolist Blue",
+    "colorCode": "#025254",
+    "price": "Resources, Varies",
+    "event": "Master Teasonai, Cetus",
+    "type": "Kavat",
+    "imageName": "KavatColourTertiaryFeral.png",
+    "bundleName": "Moonless"
+  },
+  {
+    "name": "Eris Black",
+    "colorCode": "#564A43",
+    "price": "50 Platinum",
+    "event": "In-Game Market",
+    "type": "Kubrow",
+    "imageName": "KubrowColorMidI.png",
+    "bundleName": "Savenga"
+  },
+  {
+    "name": "Executioner Grey",
+    "colorCode": "#BEBCBC",
+    "price": "160000 Credits",
+    "event": "In-Game Market",
+    "type": "Kavat",
+    "imageName": "KavatColourBaseA.png",
+    "bundleName": "Kavat Gene Masking Kit"
+  },
+  {
+    "name": "Executioner Grey",
+    "colorCode": "#BEBCBC",
+    "price": "160000 Credits",
+    "event": "In-Game Market",
+    "type": "Kavat",
+    "imageName": "Icon.png",
+    "bundleName": "Kavat Gene Masking Kit"
+  },
+  {
+    "name": "Farbreeze Green",
+    "colorCode": "#748B8B",
+    "price": "12 Medical Debt-Bond",
+    "event": "Ticker, Event: Star Days",
+    "type": "Kavat",
+    "imageName": "KavatColourSecondaryDuviri.png",
+    "bundleName": "Kexat"
+  },
+  {
+    "name": "Flesh Brown",
+    "colorCode": "#B9A197",
+    "price": "55 Platinum",
+    "event": "In-Game Market",
+    "type": "Kavat",
+    "imageName": "HyekkaFurA.png",
+    "bundleName": "Hyekka"
+  },
+  {
+    "name": "Fomorian Grey",
+    "colorCode": "#484848",
+    "price": "50 Platinum",
+    "event": "In-Game Market",
+    "type": "Kubrow",
+    "imageName": "KubrowColorMidLiquid.png",
+    "bundleName": "Arklut"
+  },
+  {
+    "name": "Forest Grey",
+    "colorCode": "#B2A784",
+    "price": "50 Platinum",
+    "event": "In-Game Market",
+    "type": "Kubrow",
+    "imageName": "KubrowColorMundaneJ.png",
+    "bundleName": "Savenga"
+  },
+  {
+    "name": "Gallium Ash",
+    "colorCode": "#2D322F",
+    "price": "2 Regal Aya",
+    "event": "Varzia: Zephyr Prime Access",
+    "type": "Kavat",
+    "imageName": "KavatPrimeColourSecondaryA.png",
+    "bundleName": "Tibor Prime"
+  },
+  {
+    "name": "Gallium Grey",
+    "colorCode": "#78818B",
+    "price": "100000 Credits",
+    "event": "In-Game Market",
+    "type": "Kubrow",
+    "imageName": "KubrowColorMundaneF.png",
+    "bundleName": "Basic Gene-Masking Kit"
+  },
+  {
+    "name": "Grinlok Brown",
+    "colorCode": "#93847B",
+    "price": "Resources, Varies",
+    "event": "Master Teasonai, Cetus",
+    "type": "Kavat",
+    "imageName": "KavatColourBaseFeral.png",
+    "bundleName": "Moonless"
+  },
+  {
+    "name": "Harkonar Orange",
+    "colorCode": "#C93804",
+    "price": "160000 Credits",
+    "event": "In-Game Market",
+    "type": "Kavat",
+    "imageName": "KavatColourAccentsB.png",
+    "bundleName": "Kavat Gene Masking Kit"
+  },
+  {
+    "name": "Hek Green",
+    "colorCode": "#7E7F6A",
+    "price": "100000 Credits",
+    "event": "In-Game Market",
+    "type": "Kubrow",
+    "imageName": "KubrowColorMundaneD.png",
+    "bundleName": "Basic Gene-Masking Kit"
+  },
+  {
+    "name": "Hexis Black",
+    "colorCode": "#1D242F",
+    "price": "55 Platinum",
+    "event": "In-Game Market",
+    "type": "Kavat",
+    "imageName": "KavatColourAccentsD.png",
+    "bundleName": "Krest"
+  },
+  {
+    "name": "Horizon Pink",
+    "colorCode": "#DB687B",
+    "price": "55 Platinum",
+    "event": "Nightwave (Needs Verification)",
+    "type": "Kavat",
+    "imageName": "KavatColourDaybreakSecondary.png",
+    "bundleName": "Daybreak"
+  },
+  {
+    "name": "Hyacinth Blue",
+    "colorCode": "#199093",
+    "price": "160000 Credits",
+    "event": "In-Game Market",
+    "type": "Kavat",
+    "imageName": "KavatColourSecondaryA.png",
+    "bundleName": "Kavat Gene Masking Kit"
+  },
+  {
+    "name": "Hyacinth Blue",
+    "colorCode": "#199093",
+    "price": "160000 Credits",
+    "event": "In-Game Market",
+    "type": "Kavat",
+    "imageName": "Icon.png",
+    "bundleName": "Kavat Gene Masking Kit"
+  },
+  {
+    "name": "Ignis Red",
+    "colorCode": "#950E57",
+    "price": "200 Ducats + 300000 Credits",
+    "event": "Baro Ki'Teer",
+    "type": "Kavat",
+    "imageName": "NexusFurC.png",
+    "bundleName": "Nexus"
+  },
+  {
+    "name": "Inaros Brown",
+    "colorCode": "#D89D6F",
+    "price": "Resources, Varies",
+    "event": "Master Teasonai, Cetus",
+    "type": "Kubrow",
+    "imageName": "KubrowColorVibrantFeral.png",
+    "bundleName": "Underbrush"
+  },
+  {
+    "name": "Jadeleaf Green",
+    "colorCode": "#006100",
+    "price": "50 Platinum",
+    "event": "Seasonal: Christmas / Tennobaum",
+    "type": "Kubrow",
+    "imageName": "KubrowColorXmasMidB.png",
+    "bundleName": "Nistlebrush"
+  },
+  {
+    "name": "Kavasa White",
+    "colorCode": "#C8C8C8",
+    "price": "2 Regal Aya",
+    "event": "Varzia: Trinity Prime Access",
+    "type": "Kubrow",
+    "imageName": "KubrowColorMundanePrimeA.png",
+    "bundleName": "Kavasa Prime"
+  },
+  {
+    "name": "Ki'Teer Grey",
+    "colorCode": "#413E3B",
+    "price": "285 Ducats + 150000 Credits",
+    "event": "Baro Ki'Teer",
+    "type": "Kubrow",
+    "imageName": "KubrowColorMundaneDiamond.png",
+    "bundleName": "Atrox"
+  },
+  {
+    "name": "Liset Grey",
+    "colorCode": "#5D5D5D",
+    "price": "Nightwave Reward",
+    "event": "Nightwave",
+    "type": "Kubrow",
+    "imageName": "KubrowColorMidCeph.png",
+    "bundleName": "Neura"
+  },
+  {
+    "name": "Loka Brown",
+    "colorCode": "#7D4C2E",
+    "price": "160000 Credits",
+    "event": "In-Game Market",
+    "type": "Kavat",
+    "imageName": "KavatColourAccentsA.png",
+    "bundleName": "Kavat Gene Masking Kit"
+  },
+  {
+    "name": "Lotus Purple",
+    "colorCode": "#6C5D99",
+    "price": "50 Platinum",
+    "event": "In-Game Market",
+    "type": "Kubrow",
+    "imageName": "KubrowColorVibrantI.png",
+    "bundleName": "Savenga"
+  },
+  {
+    "name": "Lotus White",
+    "colorCode": "#F6E9E3",
+    "price": "50 Platinum",
+    "event": "Seasonal: Christmas / Tennobaum",
+    "type": "Kubrow",
+    "imageName": "KubrowColorXmasMidA.png",
+    "bundleName": "Nart-Deer"
+  },
+  {
+    "name": "Lua Purple",
+    "colorCode": "#31313E",
+    "price": "55 Platinum",
+    "event": "Nightwave (Needs Verification)",
+    "type": "Kavat",
+    "imageName": "KavatColourDaybreakTertiary.png",
+    "bundleName": "Daybreak"
+  },
+  {
+    "name": "Lynx Blue",
+    "colorCode": "#40F5FE",
+    "price": "40 Platinum",
+    "event": "Seasonal: Christmas / Tennobaum",
+    "type": "Kavat",
+    "imageName": "SolsticeFurD.png",
+    "bundleName": "Solstice"
+  },
+  {
+    "name": "Maggot Pink",
+    "colorCode": "#DF6161",
+    "price": "Resources, Varies",
+    "event": "Master Teasonai, Cetus",
+    "type": "Kubrow",
+    "imageName": "KubrowColorMidFeral.png",
+    "bundleName": "Underbrush"
+  },
+  {
+    "name": "Maipal Yellow",
+    "colorCode": "#D5AF55",
+    "price": "2 Regal Aya",
+    "event": "Varzia: Gara Prime Access",
+    "type": "Kavat",
+    "imageName": "KavatGaraPrimeColourAccents.png",
+    "bundleName": "Sabella Prime"
+  },
+  {
+    "name": "Manic Black",
+    "colorCode": "#1B1C1C",
+    "price": "40 Platinum",
+    "event": "Seasonal: Christmas / Tennobaum",
+    "type": "Kavat",
+    "imageName": "SolsticeFurC.png",
+    "bundleName": "Solstice"
+  },
+  {
+    "name": "Manic Black",
+    "colorCode": "#216F9B",
+    "price": "40 Platinum",
+    "event": "Seasonal: Christmas / Tennobaum",
+    "type": "Kubrow",
+    "imageName": "KubrowColorSolsticeFurC.png",
+    "bundleName": "Solstice"
+  },
+  {
+    "name": "Mesa Blue",
+    "colorCode": "#1E1F61",
+    "price": "200 Ducats + 300000 Credits",
+    "event": "Baro Ki'Teer",
+    "type": "Kavat",
+    "imageName": "NexusFurB.png",
+    "bundleName": "Nexus"
+  },
+  {
+    "name": "Mesa Yellow",
+    "colorCode": "#D4A93C",
+    "price": "160000 Credits",
+    "event": "In-Game Market",
+    "type": "Kavat",
+    "imageName": "KavatColourBaseB.png",
+    "bundleName": "Kavat Gene Masking Kit"
+  },
+  {
+    "name": "Mirage Purple",
+    "colorCode": "#493541",
+    "price": "Resources, Varies",
+    "event": "Master Teasonai, Cetus",
+    "type": "Kubrow",
+    "imageName": "KubrowColorVibrantDrahk.png",
+    "bundleName": "Drahk"
+  },
+  {
+    "name": "Mirage Red",
+    "colorCode": "#530F0C",
+    "price": "50 Platinum",
+    "event": "In-Game Market",
+    "type": "Kubrow",
+    "imageName": "KubrowColorVibrantK.png",
+    "bundleName": "Tigrol"
+  },
+  {
+    "name": "Mirage White",
+    "colorCode": "#898989",
+    "price": "Nightwave Reward",
+    "event": "Nightwave",
+    "type": "Kubrow",
+    "imageName": "KubrowColorMundaneCeph.png",
+    "bundleName": "Neura"
+  },
+  {
+    "name": "Moss Green",
+    "colorCode": "#90C3AD",
+    "price": "225 Platinum",
+    "event": "Khora Urushu Collection",
+    "type": "Kavat",
+    "imageName": "KhoraDeluxeKavatColourSecondary.png",
+    "bundleName": "Maculatia"
+  },
+  {
+    "name": "Mud Puddle Brown",
+    "colorCode": "#2B231D",
+    "price": "40 Platinum",
+    "event": "In-Game Market",
+    "type": "Kubrow",
+    "imageName": "KubrowColorMundaneContest.png",
+    "bundleName": "Heino"
+  },
+  {
+    "name": "Mutalist Brown",
+    "colorCode": "#402F26",
+    "price": "Resources, Varies",
+    "event": "Master Teasonai, Cetus",
+    "type": "Kavat",
+    "imageName": "KavatColourSecondaryFeral.png",
+    "bundleName": "Moonless"
+  },
+  {
+    "name": "Naru Blue",
+    "colorCode": "#CEFEF6",
+    "price": "2 Regal Aya",
+    "event": "Varzia: Gara Prime Access",
+    "type": "Kavat",
+    "imageName": "KavatGaraPrimeColourBase.png",
+    "bundleName": "Sabella Prime"
+  },
+  {
+    "name": "Nekros Black",
+    "colorCode": "#211F1F",
+    "price": "55 Platinum",
+    "event": "In-Game Market",
+    "type": "Kavat",
+    "imageName": "KavatColourTertiaryContest.png",
+    "bundleName": "Deaeira"
+  },
+  {
+    "name": "Netherbarrow Beige",
+    "colorCode": "#AA9E7F",
+    "price": "12 Medical Debt-Bond",
+    "event": "Ticker, Event: Star Days",
+    "type": "Kavat",
+    "imageName": "KavatColourBaseDuviri.png",
+    "bundleName": "Kexat"
+  },
+  {
+    "name": "Nidus White",
+    "colorCode": "#E5DFEC",
+    "price": "200 Ducats + 300000 Credits",
+    "event": "Baro Ki'Teer",
+    "type": "Kavat",
+    "imageName": "NexusFurA.png",
+    "bundleName": "Nexus"
+  },
+  {
+    "name": "Nova Grey",
+    "colorCode": "#CBCBCB",
+    "price": "50 Platinum",
+    "event": "In-Game Market",
+    "type": "Kubrow",
+    "imageName": "KubrowColorMidJ.png",
+    "bundleName": "Telmation"
+  },
+  {
+    "name": "Nova White",
+    "colorCode": "#F1F0F0",
+    "price": "50 Platinum",
+    "event": "Seasonal: Christmas / Tennobaum",
+    "type": "Kubrow",
+    "imageName": "KubrowColorXmasMundaneB.png",
+    "bundleName": "Nistlebrush"
+  },
+  {
+    "name": "Ogris Red",
+    "colorCode": "#4B1700",
+    "price": "Resources, Varies",
+    "event": "Master Teasonai, Cetus",
+    "type": "Kavat",
+    "imageName": "KavatColourAccentsFeral.png",
+    "bundleName": "Moonless"
+  },
+  {
+    "name": "Origin Black",
+    "colorCode": "#191919",
+    "price": "Nightwave Reward",
+    "event": "Nightwave",
+    "type": "Kavat",
+    "imageName": "KavatColourAccentsCeph.png",
+    "bundleName": "Neura"
+  },
+  {
+    "name": "Origin Brown",
+    "colorCode": "#9B8C6F",
+    "price": "2 Regal Aya",
+    "event": "Varzia: Trinity Prime Access",
+    "type": "Kubrow",
+    "imageName": "KubrowColorMidPrimeA.png",
+    "bundleName": "Kavasa Prime"
+  },
+  {
+    "name": "Orokin Gold",
+    "colorCode": "#A79933",
+    "price": "2 Regal Aya",
+    "event": "Varzia: Trinity Prime Access",
+    "type": "Kubrow",
+    "imageName": "KubrowColorVibrantPrimeA.png",
+    "bundleName": "Kavasa Prime"
+  },
+  {
+    "name": "Osprey Blue",
+    "colorCode": "#6CBCFE",
+    "price": "Resources, Varies",
+    "event": "Master Teasonai, Cetus",
+    "type": "Kubrow",
+    "imageName": "KubrowColorMidDrahk.png",
+    "bundleName": "Drahk"
+  },
+  {
+    "name": "Ostron Brown",
+    "colorCode": "#655443",
+    "price": "40 Platinum",
+    "event": "In-Game Market",
+    "type": "Kubrow",
+    "imageName": "KubrowColorVibrantContest.png",
+    "bundleName": "Heino"
+  },
+  {
+    "name": "Perrin Blue",
+    "colorCode": "#1E1F61",
+    "price": "150 Ducats + 300000 Credits",
+    "event": "Baro Ki'Teer",
+    "type": "Kubrow",
+    "imageName": "KubrowColorPrimeTraderMidA.png",
+    "bundleName": "Nexus"
+  },
+  {
+    "name": "Phobos Brown",
+    "colorCode": "#AD8E6F",
+    "price": "50 Platinum",
+    "event": "In-Game Market",
+    "type": "Kubrow",
+    "imageName": "KubrowColorMundaneK.png",
+    "bundleName": "Tigrol"
+  },
+  {
+    "name": "Prime Gold",
+    "colorCode": "#6F613E",
+    "price": "2 Regal Aya",
+    "event": "Varzia: Zephyr Prime Access",
+    "type": "Kavat",
+    "imageName": "KavatPrimeColourTertiaryA.png",
+    "bundleName": "Tibor Prime"
+  },
+  {
+    "name": "Rakta Red",
+    "colorCode": "#950E57",
+    "price": "150 Ducats + 300000 Credits",
+    "event": "Baro Ki'Teer",
+    "type": "Kubrow",
+    "imageName": "KubrowColorPrimeTraderVibrantA.png",
+    "bundleName": "Nexus"
+  },
+  {
+    "name": "Regor Green",
+    "colorCode": "#062922",
+    "price": "160000 Credits",
+    "event": "In-Game Market",
+    "type": "Kavat",
+    "imageName": "KavatColourTertiaryA.png",
+    "bundleName": "Kavat Gene Masking Kit"
+  },
+  {
+    "name": "Regor Green",
+    "colorCode": "#062922",
+    "price": "160000 Credits",
+    "event": "In-Game Market",
+    "type": "Kavat",
+    "imageName": "Icon.png",
+    "bundleName": "Kavat Gene Masking Kit"
+  },
+  {
+    "name": "Rhino Brown",
+    "colorCode": "#7B5A35",
+    "price": "50 Platinum",
+    "event": "In-Game Market",
+    "type": "Kubrow",
+    "imageName": "KubrowColorMidK.png",
+    "bundleName": "Tigrol"
+  },
+  {
+    "name": "Root Black",
+    "colorCode": "#23272A",
+    "price": "225 Platinum",
+    "event": "Khora Urushu Collection",
+    "type": "Kavat",
+    "imageName": "KhoraDeluxeKavatColourBase.png",
+    "bundleName": "Maculatia"
+  },
+  {
+    "name": "Rose Red",
+    "colorCode": "#A52138",
+    "price": "225 Platinum",
+    "event": "Khora Urushu Collection",
+    "type": "Kavat",
+    "imageName": "KhoraDeluxeKavatColourTertiary.png",
+    "bundleName": "Maculatia"
+  },
+  {
+    "name": "Rubedo Red",
+    "colorCode": "#FE0043",
+    "price": "Resources, Varies",
+    "event": "Master Teasonai, Cetus",
+    "type": "Kubrow",
+    "imageName": "KubrowColorMundaneDrahk.png",
+    "bundleName": "Drahk"
+  },
+  {
+    "name": "Sanctum Red",
+    "colorCode": "#C05D93",
+    "price": "55 Platinum",
+    "event": "In-Game Market",
+    "type": "Kavat",
+    "imageName": "KavatColourSecondaryKalymos.png",
+    "bundleName": "Kalymos"
+  },
+  {
+    "name": "Sandstorm Brown",
+    "colorCode": "#847D72",
+    "price": "40 Platinum",
+    "event": "Seasonal: Christmas / Tennobaum",
+    "type": "Kavat",
+    "imageName": "XmasKavatFurA.png",
+    "bundleName": "Argyl"
+  },
+  {
+    "name": "Sequence Blue",
+    "colorCode": "#45466C",
+    "price": "55 Platinum",
+    "event": "In-Game Market",
+    "type": "Kavat",
+    "imageName": "KavatColourAccentsC.png",
+    "bundleName": "Nesyr"
+  },
+  {
+    "name": "Singularity Black",
+    "colorCode": "#000000",
+    "price": "Resources, Varies",
+    "event": "Master Teasonai, Cetus",
+    "type": "Kubrow",
+    "imageName": "KubrowColorMundaneFeral.png",
+    "bundleName": "Underbrush"
+  },
+  {
+    "name": "Sludge Brown",
+    "colorCode": "#411D1D",
+    "price": "55 Platinum",
+    "event": "In-Game Market",
+    "type": "Kavat",
+    "imageName": "HyekkaFurC.png",
+    "bundleName": "Hyekka"
+  },
+  {
+    "name": "Sol Yellow",
+    "colorCode": "#FEC689",
+    "price": "55 Platinum",
+    "event": "Nightwave (Needs Verification)",
+    "type": "Kavat",
+    "imageName": "KavatColourDaybreakAccents.png",
+    "bundleName": "Daybreak"
+  },
+  {
+    "name": "Specter White",
+    "colorCode": "#D8F2F7",
+    "price": "50 Platinum",
+    "event": "In-Game Market",
+    "type": "Kubrow",
+    "imageName": "KubrowColorMundaneLiquid.png",
+    "bundleName": "Arklut"
+  },
+  {
+    "name": "Star White",
+    "colorCode": "#F8E0B7",
+    "price": "285 Ducats + 150000 Credits",
+    "event": "Baro Ki'Teer",
+    "type": "Kubrow",
+    "imageName": "KubrowColorMidDiamond.png",
+    "bundleName": "Atrox"
+  },
+  {
+    "name": "Tenno Red",
+    "colorCode": "#9F5A4D",
+    "price": "50 Platinum",
+    "event": "Seasonal: Christmas / Tennobaum",
+    "type": "Kubrow",
+    "imageName": "KubrowColorXmasMundaneA.png",
+    "bundleName": "Nart-Deer"
+  },
+  {
+    "name": "Thorn Pink",
+    "colorCode": "#E1B2A3",
+    "price": "225 Platinum",
+    "event": "Khora Urushu Collection",
+    "type": "Kavat",
+    "imageName": "KhoraDeluxeKavatColourAccent.png",
+    "bundleName": "Maculatia"
+  },
+  {
+    "name": "Tidal Blue",
+    "colorCode": "#575D75",
+    "price": "2 Regal Aya",
+    "event": "Varzia: Wukong Prime Access",
+    "type": "Kubrow",
+    "imageName": "KubrowColorMidWukongPrime.png",
+    "bundleName": "Tang Prime"
+  },
+  {
+    "name": "Trinity Red",
+    "colorCode": "#990000",
+    "price": "50 Platinum",
+    "event": "Seasonal: Christmas / Tennobaum",
+    "type": "Kubrow",
+    "imageName": "KubrowColorXmasVibrantB.png",
+    "bundleName": "Nistlebrush"
+  },
+  {
+    "name": "Valkyr Brown",
+    "colorCode": "#BB6F38",
+    "price": "50 Platinum",
+    "event": "In-Game Market",
+    "type": "Kubrow",
+    "imageName": "KubrowColorVibrantJ.png",
+    "bundleName": "Telmation"
+  },
+  {
+    "name": "Vandal Blue",
+    "colorCode": "#2F9696",
+    "price": "50 Platinum",
+    "event": "In-Game Market",
+    "type": "Kubrow",
+    "imageName": "KubrowColorVibrantLiquid.png",
+    "bundleName": "Arklut"
+  },
+  {
+    "name": "Vaykor White",
+    "colorCode": "#E5DFEC",
+    "price": "150 Ducats + 300000 Credits",
+    "event": "Baro Ki'Teer",
+    "type": "Kubrow",
+    "imageName": "KubrowColorPrimeTraderMundaneA.png",
+    "bundleName": "Nexus"
+  },
+  {
+    "name": "Vitreum Brown",
+    "colorCode": "#C3A15D",
+    "price": "55 Platinum",
+    "event": "In-Game Market",
+    "type": "Kavat",
+    "imageName": "KavatColourAccentsKalymos.png",
+    "bundleName": "Kalymos"
+  },
+  {
+    "name": "Volt Blue",
+    "colorCode": "#7D90AD",
+    "price": "55 Platinum",
+    "event": "In-Game Market",
+    "type": "Kavat",
+    "imageName": "KavatColourSecondaryContest.png",
+    "bundleName": "Deaeira"
+  },
+  {
+    "name": "Watershed Blue",
+    "colorCode": "#305D75",
+    "price": "12 Medical Debt-Bond",
+    "event": "Ticker, Event: Star Days",
+    "type": "Kavat",
+    "imageName": "KavatColourTertiaryDuviri.png",
+    "bundleName": "Kexat"
+  },
+  {
+    "name": "Wukong Blue",
+    "colorCode": "#216F9B",
+    "price": "40 Platinum",
+    "event": "Seasonal: Christmas / Tennobaum",
+    "type": "Kavat",
+    "imageName": "SolsticeFurB.png",
+    "bundleName": "Solstice"
+  },
+  {
+    "name": "Wukong Blue",
+    "colorCode": "#216F9B",
+    "price": "40 Platinum",
+    "event": "Seasonal: Christmas / Tennobaum",
+    "type": "Kubrow",
+    "imageName": "SolsticeFurB.png",
+    "bundleName": "Solstice"
+  },
+  {
+    "name": "Wukong Blue",
+    "colorCode": "#216F9B",
+    "price": "40 Platinum",
+    "event": "Seasonal: Christmas / Tennobaum",
+    "type": "Kavat",
+    "imageName": "KubrowColorSolsticeFurB.png",
+    "bundleName": "Solstice"
+  },
+  {
+    "name": "Wukong Blue",
+    "colorCode": "#216F9B",
+    "price": "40 Platinum",
+    "event": "Seasonal: Christmas / Tennobaum",
+    "type": "Kubrow",
+    "imageName": "KubrowColorSolsticeFurB.png",
+    "bundleName": "Solstice"
+  },
+  {
+    "name": "Wyrm Blue",
+    "colorCode": "#91B0C5",
+    "price": "285 Ducats + 150000 Credits",
+    "event": "Baro Ki'Teer",
+    "type": "Kubrow",
+    "imageName": "KubrowColorVibrantDiamond.png",
+    "bundleName": "Atrox"
+  }
+]

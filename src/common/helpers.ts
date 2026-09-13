@@ -1,6 +1,7 @@
 import {MatchedColor} from "../components/Suggestions";
 import {Palette} from "./Palette";
 import Color from "color";
+import { PetColor } from "./pet-colors";
 
 const getDistances = (colorToCompare: string, palettes: Palette[]) => {
   return palettes.map(palette => {
@@ -18,11 +19,54 @@ const getDistances = (colorToCompare: string, palettes: Palette[]) => {
   })
 }
 
-export const findClosestColors = (colorToCompare: string, palettes: Palette[], limit: number): MatchedColor[] => {
-  const distances = getDistances(colorToCompare, palettes)
+export const findClosestPaletteColors = (colorToCompare: string, palettes: Palette[], limit: number): MatchedColor[] => {
+  const distances: MatchedColor[][] = palettes.map(palette => {
+    return palette.colors.map((color) => {
+      const currentPosition = color.position
+      const distance = colorDistanceRGB(Color(colorToCompare).hex(), color.hex)
+      return {
+        kind: "palette",
+        distance,
+        color: color.hex,
+        position: currentPosition,
+        paletteName: palette.name,
+        uid: `${distance}${JSON.stringify(currentPosition)}${palette.name}`
+      }
+    })
+  })
   return distances.flat(1)
     .sort((a: MatchedColor, b: MatchedColor) => a.distance - b.distance)
     .slice(0, limit)
+}
+
+export const findClosestPetColors = (colorToCompare: string, petColors: PetColor[], limit: number): MatchedColor[] => {
+  const distances: MatchedColor[] = petColors.map((petColor) => {
+      const distance = colorDistanceRGB(Color(colorToCompare).hex(), petColor.colorCode)
+      return {
+        kind: "pet",
+        petColor,
+        distance,
+        name: petColor.name,
+        color: petColor.colorCode,
+        uid: `${distance}${petColor.type}${petColor.name}`
+      }
+  })
+  return distances
+    .sort((a: MatchedColor, b: MatchedColor) => a.distance - b.distance)
+    .slice(0, limit)
+}
+
+export function findClosestColors(kind: "palette", colorToCompare: string, palettes: Palette[], limit: number): MatchedColor[]
+export function findClosestColors(kind: "pet", colorToCompare: string, petColors: PetColor[], limit: number): MatchedColor[]
+export function findClosestColors(kind: MatchedColor["kind"], colorToCompare: string, data: Palette[] | PetColor[], limit: number): MatchedColor[] {
+  switch (kind) {
+    case "palette": {
+      return findClosestPaletteColors(colorToCompare, data as Palette[], limit)
+    }
+    case "pet": {
+      return findClosestPetColors(colorToCompare, data as PetColor[], limit)
+    }
+  }
 }
 
 const colorDistanceRGB = (color1: string, color2: string): number => {

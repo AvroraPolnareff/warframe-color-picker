@@ -38,6 +38,7 @@ export const Classic = () => {
 
     selectedColor,
   } = useColorPickerLogic()
+  if (selectedColor.kind !== "palette") throw Error("The matched color kind mistmach")
 
   const {enableMOTD, theme} = useContext(SettingsContext)
   const {t} = useTranslation()
@@ -94,6 +95,7 @@ export const Classic = () => {
                   paletteColors={paletteColors}
                   onCellClick={onCellClick}
                   onImportClick={onScreenshotImport}
+                  kind="palette"
                 />
               </Wires>
             </div>
@@ -128,5 +130,3 @@ export const StyledLayout = styled.div<{ slide: boolean }>`
   width: max-content;
   margin: 0.5em auto;
 `
-
-

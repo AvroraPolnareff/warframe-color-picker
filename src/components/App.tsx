@@ -59,6 +59,12 @@ function App() {
             {t("menu.colorPicker", {defaultValue: "Color Picker"})}
           </Entry>
           <Entry
+            onClick={() => setScreen(Screen.PETS)}
+            active={screen === Screen.PETS}
+          >
+            {t("menu.pets", {defaultValue: "Pets"})}
+          </Entry>
+          <Entry
             onClick={() => setScreen(Screen.LAYOUT_SELECTION)}
             active={screen === Screen.LAYOUT_SELECTION}
           >

@@ -57,7 +57,7 @@ export const SelectedColor = (
           userSelect: "none"
         }}/>
         {/* @ts-ignore */}
-        <PaletteName>{hoverPosition || t(`palettes.${paletteName}`)}</PaletteName>
+        <PaletteName>{hoverPosition || t(`palette.${paletteName}`)}</PaletteName>
 
         <WarframePalette
           size={1.735}
@@ -97,7 +97,3 @@ const PaletteName = styled.div`
     border-radius: 0.5em;
     text-transform: uppercase;
 `
-
-
-
-

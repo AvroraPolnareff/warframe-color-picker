@@ -12,7 +12,8 @@ export const initColors: string[] = Array(48).fill("")
 
 export const initAvailablePalettes = palettes.map((palette) => palette.name)
 
-const initMatchedColor = {
+const initMatchedColor: MatchedColor = {
+  kind: "palette",
   distance: 0,
   color: "#000000",
   paletteName: "Classic",
@@ -62,7 +63,7 @@ export const useColorPickerLogic = () => {
 
   const updateSuggestions = () => {
     const filteredPalettes = palettes.filter(palette => availablePalettes.indexOf(palette.name) !== -1)
-    const closestColors = findClosestColors(getCurrentColor(), filteredPalettes, 50)
+    const closestColors = findClosestColors("palette", getCurrentColor(), filteredPalettes, 50)
     setMatchedColors(closestColors)
     setSelectedColor(closestColors[0])
     setIsColorChanging(false)

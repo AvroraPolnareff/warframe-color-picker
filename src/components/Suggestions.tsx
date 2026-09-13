@@ -15,22 +15,31 @@ import Color from "color";
 import {useTranslation} from "react-i18next";
 import {SettingsContext} from "../providers/SettingsProvider";
 import { stringEllipsis } from "src/common/helpers";
+import { PetColor } from "src/common/pet-colors";
 
 
 interface SuggestionsProps {
   matchedColors: MatchedColor[],
   onSuggestionClick: (key: string) => void,
-  onPalettesClick: () => void
+  onPalettesClick?: () => void
   isSuggestionsUpdating: boolean
   onSwapColor: (key: string) => void,
   height?: string
 }
 
-export interface MatchedColor {
+export type MatchedColor = {
+  kind: "palette"
   color: string,
   paletteName: string,
   distance: number,
   position: Position,
+  uid: string
+} | {
+  kind: "pet",
+  petColor: PetColor,
+  color: string,
+  name: string,
+  distance: number,
   uid: string
 }
 
@@ -68,9 +77,9 @@ export const Suggestions = (props: SuggestionsProps) => {
         <ItalicText>{t("colorPicker.suggestions.scroll")}</ItalicText>
         <div style={{
           display: "flex", justifyContent: "space-between",
-          marginTop: "0.35em", marginBottom: "0.3em", marginRight: "0.6em"
+          marginTop: "0.35em", marginBottom: "0.3em", marginRight: "0.6em", width: "100%"
         }}>
-          <Button round onClick={props.onPalettesClick}>{t("colorPicker.suggestions.palettes")}</Button>
+          {props.onPalettesClick ? <Button round onClick={props.onPalettesClick}>{t("colorPicker.suggestions.palettes")}</Button> : <div></div>}
           <Switch switched={switched} width={3.5} onClick={() => setSwitched(!switched)} leftText={"%"}
                   rightText={"D"}/>
         </div>
@@ -83,19 +92,47 @@ export const Suggestions = (props: SuggestionsProps) => {
         scrollbarsRef={scrollbarsRef}
       >
         {
-          props.matchedColors.map(({color, paletteName, distance, position, uid}, index) => (
-            <Suggestion
-              onSuggestionClick={onSuggestionClick}
-              color={color} name={paletteName}
-              value={(!switched ? Math.round(100 - distance) + "%" : distance.toFixed(2)).toString()}
-              uid={uid}
-              selected={selected === uid}
-              key={index}
-              index={index}
-              animationState={props.isSuggestionsUpdating}
-              onSwapColor={props.onSwapColor}
-            />
-          ))
+          props.matchedColors.map((matchedColor, index) => {
+            const percent = Math.round(100 - matchedColor.distance)
+            const displayedPercent = percent > 0 ? percent + "%" : "N/A"
+            const value = (!switched ? displayedPercent : matchedColor.distance.toFixed(2)).toString()
+            switch (matchedColor.kind) {
+              case "palette": {
+                const {kind, color, paletteName, distance, uid} = matchedColor
+                return (
+                  <Suggestion
+                    kind={kind}
+                    onSuggestionClick={onSuggestionClick}
+                    color={color} name={paletteName}
+                    value={value}
+                    uid={uid}
+                    selected={selected === uid}
+                    key={index}
+                    index={index}
+                    animationState={props.isSuggestionsUpdating}
+                    onSwapColor={props.onSwapColor}
+                  />
+                )
+              }
+              case "pet": {
+                const {kind, color, name, distance, uid} = matchedColor
+                return (
+                  <Suggestion
+                    kind={kind}
+                    onSuggestionClick={onSuggestionClick}
+                    color={color} name={name}
+                    value={value}
+                    uid={uid}
+                    selected={selected === uid}
+                    key={index}
+                    index={index}
+                    animationState={props.isSuggestionsUpdating}
+                    onSwapColor={props.onSwapColor}
+                  />
+                )
+              }
+            }
+          })
         }
       </ScrollableFadedList>
     </Window>
@@ -111,6 +148,7 @@ const ItalicText = styled.div`
 `
 
 interface SuggestionProps {
+  kind: MatchedColor["kind"],
   color: string,
   name: string,
   value: string,
@@ -124,6 +162,7 @@ interface SuggestionProps {
 
 const Suggestion = (
   {
+    kind,
     color,
     name,
     value,
@@ -140,7 +179,6 @@ const Suggestion = (
     <StyledSuggestion onClick={() => onSuggestionClick(uid)} selected={selected} state={animationState}
                       delay={0.01 * index}>
       <FlexCentred>
-
         <ColorCell color={color} outline={selected}>
           {selected &&
             <HoverableSwap onClick={() => onSwapColor(uid)}>
@@ -149,14 +187,13 @@ const Suggestion = (
                   position: "absolute",
                   margin: "0 auto 0 0.1em",
                   fill: Color(color).isLight() ? "#000" : "#FFF"
-
                 }}/>
             </HoverableSwap>
           }
         </ColorCell>
         <Badge hoverable={!selected} selected={selected}>
           {/*@ts-ignore*/}
-          {stringEllipsis(t(`palettes.${name}`) as string, 13)}
+          {stringEllipsis(t(`${kind}.${name}`) as string, 13)}
         </Badge>
       </FlexCentred>
       <Badge width={3} style={{marginRight: "0.6em"}}>

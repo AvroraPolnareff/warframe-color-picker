@@ -37,6 +37,7 @@ export const Expanded = () => {
 
     selectedColor,
   } = useColorPickerLogic();
+  if (selectedColor.kind !== "palette") throw Error("The matched color kind mistmach")
 
   const {enableMOTD, theme} = useContext(SettingsContext)
   const {t} = useTranslation()
@@ -72,6 +73,7 @@ export const Expanded = () => {
                   paletteColors={paletteColors}
                   onCellClick={onCellClick}
                   onImportClick={onScreenshotImport}
+                  kind="palette"
                 />
               </Wires>
             </Wires>
@@ -114,5 +116,3 @@ export const Expanded = () => {
     </>
   );
 }
-
-

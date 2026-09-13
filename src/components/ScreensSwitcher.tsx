@@ -8,6 +8,7 @@ import {Languages} from "./screens/Languages";
 import {useTransition} from "react-transition-state";
 import styled, { useTheme } from "styled-components";
 import {SchemeImport} from "./screens/SchemeImport";
+import { Pets } from "./layouts/Pets";
 
 
 export const ScreensSwitcher = () => {
@@ -37,10 +38,11 @@ export const ScreensSwitcher = () => {
 
   return (
     <FadeDiv state={state.status}>
-      {displayScreen === Screen.COLOR_PICKER && <AppDivider />}
+      {[Screen.COLOR_PICKER, Screen.PETS].includes(displayScreen) && <AppDivider />}
       <StyledScreenSwitcher>
         {
           displayScreen === Screen.COLOR_PICKER ? <CurrentLayout layout={layout}/> :
+          displayScreen === Screen.PETS ? <Pets /> :
           displayScreen === Screen.LAYOUT_SELECTION ? <Interface/> :
           displayScreen === Screen.LANGUAGE_SELECTION ? <Languages/> :
           displayScreen === Screen.SCHEME_IMPORT && <SchemeImport/>

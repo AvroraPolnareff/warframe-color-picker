@@ -100,7 +100,7 @@ export const PalettesModal = (
       <div style={{position: "relative"}}>
         <HoveredPalette>
           {/*@ts-ignore*/}
-          <PaletteName>{t(`palettes.${hoveredPalette}`)}</PaletteName>
+          <PaletteName>{t(`palette.${hoveredPalette}`)}</PaletteName>
           <WarframePalette size={1.665} paletteName={hoveredPalette} />
         </HoveredPalette>
         <ScrollableFadedList height="27em" width="100%">
@@ -160,7 +160,7 @@ export const PalettesModal = (
                             success={availablePalettes.indexOf(el.name) !== -1}
                           >
                             {/*@ts-ignore*/}
-                            {stringEllipsis(t(`palettes.${el.name}`) as string, 21)}
+                            {stringEllipsis(t(`palette.${el.name}`) as string, 21)}
                           </Button>
                         ))}
                       </GroupListItems>
@@ -172,7 +172,7 @@ export const PalettesModal = (
                   success={availablePalettes.indexOf(el.name) !== -1}
                 >
                   {/*@ts-ignore*/}
-                  {stringEllipsis(t(`palettes.${el.name}`) as string, 21)}
+                  {stringEllipsis(t(`palette.${el.name}`) as string, 21)}
                 </Button>
               })}
 
