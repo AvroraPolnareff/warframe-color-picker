@@ -8,8 +8,10 @@ import { ColorPickerHeader } from "../assets/ColorPickerHeader"
 import { Picker } from "./Picker";
 import { useFontSize } from "../hooks/useFontSize";
 import { ColorInput } from "./shared/ColorInput";
+import { MatchedColor } from "./Suggestions";
 
 interface ColorPickerProps {
+  kind: MatchedColor["kind"]
   color: Color,
   onColorChange: (color: Color) => void
   compact?: boolean
@@ -19,7 +21,8 @@ export const ColorPicker = (
   {
     onColorChange,
     color,
-    compact
+    compact,
+    kind
   }: ColorPickerProps
 ) => {
   const fontSize = useFontSize();
@@ -42,6 +45,7 @@ export const ColorPicker = (
                 compact={compact}
                 color={color}
                 onChange={(value) => onColorChange(Color().hex(value))}
+                kind={kind}
               />
               <Divider />
               <NumbersPicker color={color} onColorChange={onColorChange} compact={compact} />
@@ -54,6 +58,7 @@ export const ColorPicker = (
                 compact={compact}
                 color={color}
                 onChange={(value) => onColorChange(Color().hex(value))}
+                kind={kind}
               />
             </div>
             <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginBottom: "0.3em" }}>
@@ -74,7 +79,7 @@ export const ColorPicker = (
 
 const HeaderWrapper = styled.div<{ compact?: boolean }>`
     position: absolute;
-    
+
     top: -1.6rem;
     left: 0;
     pointer-events: none;
@@ -274,13 +279,12 @@ const StyledInput = styled.input`
     border: none;
     transition: background-color 0.15s linear;
     text-align: center;
-  
+
     &:focus, &:hover {
       background-color: ${props => Color(props.color || props.theme.colors.buttons).darken(0.2).toString()};
     }
-    
+
     &:focus {
         outline: none;
     }
 `
-

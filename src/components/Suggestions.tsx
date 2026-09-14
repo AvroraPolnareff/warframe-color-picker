@@ -19,9 +19,10 @@ import { PetColor } from "src/common/pet-colors";
 
 
 interface SuggestionsProps {
+  kind: MatchedColor["kind"]
   matchedColors: MatchedColor[],
   onSuggestionClick: (key: string) => void,
-  onPalettesClick?: () => void
+  onPalettesClick: () => void
   isSuggestionsUpdating: boolean
   onSwapColor: (key: string) => void,
   height?: string
@@ -79,7 +80,7 @@ export const Suggestions = (props: SuggestionsProps) => {
           display: "flex", justifyContent: "space-between",
           marginTop: "0.35em", marginBottom: "0.3em", marginRight: "0.6em", width: "100%"
         }}>
-          {props.onPalettesClick ? <Button round onClick={props.onPalettesClick}>{t("colorPicker.suggestions.palettes")}</Button> : <div></div>}
+          {props.kind ? <Button round onClick={props.onPalettesClick}>{t("colorPicker.suggestions.palettes")}</Button> : <div></div>}
           <Switch switched={switched} width={3.5} onClick={() => setSwitched(!switched)} leftText={"%"}
                   rightText={"D"}/>
         </div>

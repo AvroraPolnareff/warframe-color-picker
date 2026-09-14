@@ -17,13 +17,13 @@ import { palettes } from "src/common/palettes";
 import { TFunction } from "i18next";
 import { MatchedColor } from "./Suggestions";
 import { petColors } from "src/common/pet-colors";
-import Color from "color";
+import { PaletteLayout } from "src/hooks/useColorPickerLogic";
 
 interface TargetSchemeProps {
   paletteColors: string[]
   onCellClick: (colorPosition: number, e: React.MouseEvent) => void;
   onImportClick: (colors: string[]) => void;
-  kind: MatchedColor["kind"]
+  paletteLayout: PaletteLayout
 }
 
 type WindowMachineEvents =
@@ -85,7 +85,7 @@ const TargetScheme = (
     paletteColors,
     onCellClick,
     onImportClick,
-    kind
+    paletteLayout
   }: TargetSchemeProps
 ) => {
   const { t } = useTranslation()
@@ -148,7 +148,7 @@ const TargetScheme = (
           }
           {current.matches({ colorWindows: "default" }) &&
             <Default
-              kind={kind}
+              paletteLayout={paletteLayout}
               colors={paletteColors.slice(Math.floor(selectedCell / 8) * 8, Math.floor(selectedCell / 8 + 1) * 8)}
               onCellChange={(index, e) => onCellChange(index + Math.floor(selectedCell / 8) * 8, e)}
               selectedCell={selectedCell % 8}
@@ -164,7 +164,7 @@ const TargetScheme = (
             <Export colors={paletteColors} />
           }
           {current.matches({ sharing: "text" }) &&
-            <TextExport kind={kind} colors={paletteColors.slice(Math.floor(selectedCell / 8) * 8, Math.floor(selectedCell / 8 + 1) * 8)} />
+            <TextExport paletteLayout={paletteLayout} colors={paletteColors.slice(Math.floor(selectedCell / 8) * 8, Math.floor(selectedCell / 8 + 1) * 8)} />
           }
         </TopContent>
         <BottomContent>
@@ -270,7 +270,7 @@ const Header = styled.h2`
 `
 
 interface DefaultProps {
-  kind: MatchedColor["kind"],
+  paletteLayout: PaletteLayout
   colors: string[],
   onCellChange: (colorIndex: number, e: React.MouseEvent) => void,
   selectedCell: number
@@ -278,10 +278,10 @@ interface DefaultProps {
 
 const Default = (
   {
-    kind,
     colors,
     onCellChange,
-    selectedCell
+    selectedCell,
+    paletteLayout
   }: DefaultProps
 ) => {
   const { t } = useTranslation()
@@ -295,27 +295,27 @@ const Default = (
   return (
     <DefaultWrapper>
       <DefaultContent>
-        <ColorEntry text={t("colorPicker.targetScheme.primary")} selected={isSelected(0)}
-          onClick={(e) => onCellClick(0, e)} color={colors[0]} />
-        <ColorEntry text={t("colorPicker.targetScheme.secondary")} selected={isSelected(1)}
-          onClick={(e) => onCellClick(1, e)} color={colors[1]} />
-        <ColorEntry text={t("colorPicker.targetScheme.tertiary")} selected={isSelected(2)}
-          onClick={(e) => onCellClick(2, e)} color={colors[2]} />
-        <ColorEntry text={t("colorPicker.targetScheme.quaternary")} selected={isSelected(3)}
-          onClick={(e) => onCellClick(3, e)} color={colors[3]} />
+        {paletteLayout.primary.enabled && <ColorEntry text={t("colorPicker.targetScheme.primary")} selected={isSelected(0)}
+          onClick={(e) => onCellClick(0, e)} color={colors[0]} />}
+        {paletteLayout.secondary.enabled && <ColorEntry text={t("colorPicker.targetScheme.secondary")} selected={isSelected(1)}
+          onClick={(e) => onCellClick(1, e)} color={colors[1]} />}
+        {paletteLayout.tertiary.enabled && <ColorEntry text={t("colorPicker.targetScheme.tertiary")} selected={isSelected(2)}
+          onClick={(e) => onCellClick(2, e)} color={colors[2]} />}
+        {paletteLayout.accents.enabled && <ColorEntry text={t("colorPicker.targetScheme.quaternary")} selected={isSelected(3)}
+          onClick={(e) => onCellClick(3, e)} color={colors[3]} />}
         <div>
-          <StyledColorEntry>
+          {paletteLayout.emissive.enabled && <StyledColorEntry>
             <ColorCell outline={isSelected(4)} color={colors[4]} onClick={(e) => onCellClick(4, e)} />
-            {kind === "palette" && <ColorCell outline={isSelected(5)} color={colors[5]} onClick={(e) => onCellClick(5, e)} />}
-            {kind === "palette" && <ColorName>{t("colorPicker.targetScheme.emissive")}</ColorName>}
-            {kind === "pet" && <ColorName>{t("colorPicker.targetScheme.emissiveText")}</ColorName>}
-          </StyledColorEntry>
-          <StyledColorEntry>
+            {paletteLayout.emissive.dual && <ColorCell outline={isSelected(5)} color={colors[5]} onClick={(e) => onCellClick(5, e)} />}
+            {paletteLayout.emissive.dual && <ColorName>{t("colorPicker.targetScheme.emissive")}</ColorName>}
+            {!paletteLayout.emissive.dual && <ColorName>{t("colorPicker.targetScheme.emissiveText")}</ColorName>}
+          </StyledColorEntry>}
+          {paletteLayout.energy.enabled && <StyledColorEntry>
             <ColorCell outline={isSelected(6)} color={colors[6]} onClick={(e) => onCellClick(6, e)} />
-            {kind === "palette" && <ColorCell outline={isSelected(7)} color={colors[7]} onClick={(e) => onCellClick(7, e)} />}
-            {kind === "palette" && <ColorName>{t("colorPicker.targetScheme.energy")}</ColorName>}
-            {kind === "pet" && <ColorName>{t("colorPicker.targetScheme.energyText")}</ColorName>}
-          </StyledColorEntry>
+            {paletteLayout.energy.dual && <ColorCell outline={isSelected(7)} color={colors[7]} onClick={(e) => onCellClick(7, e)} />}
+            {paletteLayout.energy.dual && <ColorName>{t("colorPicker.targetScheme.energy")}</ColorName>}
+            {!paletteLayout.energy.dual && <ColorName>{t("colorPicker.targetScheme.energyText")}</ColorName>}
+          </StyledColorEntry>}
         </div>
       </DefaultContent>
     </DefaultWrapper>
@@ -386,21 +386,21 @@ const getClosestColor = (color: string, kind: MatchedColor["kind"], t: TFunction
   }
 }
 
-const slotToSlotName = (i: number, kind: MatchedColor["kind"], t: TFunction<"translation", undefined>) => {
+const slotToSlotName = (i: number, paletteLayout: PaletteLayout, t: TFunction<"translation", undefined>) => {
   const translateString = compact([
     ["colorPicker.targetScheme.primary"],
     ["colorPicker.targetScheme.secondary"],
     ["colorPicker.targetScheme.tertiary"],
     ["colorPicker.targetScheme.quaternary"],
-    compact(["colorPicker.targetScheme.emissiveText", kind === "palette" && " 1"]),
+    compact(["colorPicker.targetScheme.emissiveText", paletteLayout.emissive.dual && " 1"]),
     ["colorPicker.targetScheme.emissiveText", " 2"],
-    compact(["colorPicker.targetScheme.energyText", kind === "palette" &&  " 1"]),
+    compact(["colorPicker.targetScheme.energyText", paletteLayout.energy.dual && " 1"]),
     ["colorPicker.targetScheme.energyText", " 2"],
   ])
   return translateString[i].map(str => t(str)).join("")
 }
-const TextExport = (props: { colors: string[], kind: MatchedColor["kind"]}) => {
-  const { colors, kind } = props
+const TextExport = (props: { colors: string[], paletteLayout: PaletteLayout}) => {
+  const { colors, paletteLayout } = props
   const theme = useTheme()
   const { t } = useTranslation()
   return <TextExportWrapper>
@@ -408,16 +408,31 @@ const TextExport = (props: { colors: string[], kind: MatchedColor["kind"]}) => {
       <Divider />
       <TextExportColors color={theme.colors.exportText} onCopy={(e) => {
         e.preventDefault()
-        e.clipboardData.setData("text", colors.map((color, i) => `${slotToSlotName(i, kind, t)}: ${getClosestColor(color, kind, t, false)}`).filter((_, i) => kind === "pet" ? ![5, 7].includes(i) : true).join("\n"))
+        const indexToSlotName: Record<number, keyof PaletteLayout> = {
+          0: "primary",
+          1: "secondary",
+          2: "tertiary",
+          3: "accents",
+          4: "emissive",
+          5: "emissive",
+          6: "energy",
+          7: "energy",
+        }
+        e.clipboardData.setData(
+          "text",
+          colors
+            .map((color, i) => `${slotToSlotName(i, paletteLayout, t)}: ${getClosestColor(color, paletteLayout[indexToSlotName[i]].kind, t, false)}`)
+            .filter((_, i) => paletteLayout[indexToSlotName[i]].enabled).join("\n")
+        )
       }}>
-        <TextExportEntry>{slotToSlotName(0, kind, t)}: <strong>{getClosestColor(colors[0], kind, t)}</strong></TextExportEntry>
-        <TextExportEntry>{slotToSlotName(1, kind, t)}: <strong>{getClosestColor(colors[1], kind, t)}</strong></TextExportEntry>
-        <TextExportEntry>{slotToSlotName(2, kind, t)}: <strong>{getClosestColor(colors[2], kind, t)}</strong></TextExportEntry>
-        <TextExportEntry>{slotToSlotName(3, kind, t)}: <strong>{getClosestColor(colors[3], kind, t)}</strong></TextExportEntry>
-        <TextExportEntry>{slotToSlotName(4, kind, t)}: <strong>{getClosestColor(colors[4], kind, t)}</strong></TextExportEntry>
-        {kind === "palette" && <TextExportEntry>{slotToSlotName(5, kind, t)}: <strong>{getClosestColor(colors[5], kind, t)}</strong></TextExportEntry>}
-        <TextExportEntry>{slotToSlotName(6, kind, t)}: <strong>{getClosestColor(colors[6], kind, t)}</strong></TextExportEntry>
-        {kind === "palette" && <TextExportEntry>{slotToSlotName(7, kind, t)}: <strong>{getClosestColor(colors[7], kind, t)}</strong></TextExportEntry>}
+        {paletteLayout.primary.enabled && <TextExportEntry>{slotToSlotName(0, paletteLayout, t)}: <strong>{getClosestColor(colors[0], paletteLayout.primary.kind, t)}</strong></TextExportEntry>}
+        {paletteLayout.secondary.enabled && <TextExportEntry>{slotToSlotName(1, paletteLayout, t)}: <strong>{getClosestColor(colors[1], paletteLayout.secondary.kind, t)}</strong></TextExportEntry>}
+        {paletteLayout.tertiary.enabled && <TextExportEntry>{slotToSlotName(2, paletteLayout, t)}: <strong>{getClosestColor(colors[2], paletteLayout.tertiary.kind, t)}</strong></TextExportEntry>}
+        {paletteLayout.accents.enabled && <TextExportEntry>{slotToSlotName(3, paletteLayout, t)}: <strong>{getClosestColor(colors[3], paletteLayout.accents.kind, t)}</strong></TextExportEntry>}
+        {paletteLayout.emissive.enabled && <TextExportEntry>{slotToSlotName(4, paletteLayout, t)}: <strong>{getClosestColor(colors[4], paletteLayout.emissive.kind, t)}</strong></TextExportEntry>}
+        {paletteLayout.emissive.enabled && paletteLayout.emissive.dual && <TextExportEntry>{slotToSlotName(5, paletteLayout, t)}: <strong>{getClosestColor(colors[5], paletteLayout.emissive.kind, t)}</strong></TextExportEntry>}
+        {paletteLayout.energy.enabled && <TextExportEntry>{slotToSlotName(6, paletteLayout, t)}: <strong>{getClosestColor(colors[6], paletteLayout.energy.kind, t)}</strong></TextExportEntry>}
+        {paletteLayout.energy.enabled && paletteLayout.energy.dual && <TextExportEntry>{slotToSlotName(7, paletteLayout, t)}: <strong>{getClosestColor(colors[7], paletteLayout.energy.kind, t)}</strong></TextExportEntry>}
       </TextExportColors>
       <Divider />
       <TextExportGuide>

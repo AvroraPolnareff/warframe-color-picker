@@ -7,6 +7,7 @@ import Color from "color";
 import { useStickyState } from "./useStickyState";
 import { UrlColorsState, UrlPaletteContext } from "../providers/UrlColorsProvider";
 import { CurrentScreenContext, Screen } from "../providers/CurrentScreenProvider";
+import { petColors } from "src/common/pet-colors";
 
 export const initColors: string[] = Array(48).fill("")
 
@@ -21,12 +22,21 @@ const initMatchedColor: MatchedColor = {
   uid: "3274823"
 }
 
+export type PaletteLayout  = {
+  primary: {enabled: boolean, kind: MatchedColor["kind"]}
+  secondary: {enabled: boolean, kind: MatchedColor["kind"]}
+  tertiary: {enabled: boolean, kind: MatchedColor["kind"]}
+  accents: {enabled: boolean, kind: MatchedColor["kind"]}
+  emissive: {enabled: boolean, dual: boolean, kind: MatchedColor["kind"]}
+  energy: {enabled: boolean, dual: boolean, kind: MatchedColor["kind"]}
+}
 
 
-export const useColorPickerLogic = () => {
+
+export const useColorPickerLogic = ({ paletteLayout }: {paletteLayout: PaletteLayout}) => {
   const [paletteColors, setPaletteColors] = useStickyState(initColors, "manualColors")
-  const [currentColorIndex, setCurrentColorIndex] = useState(0)
   const [matchedColors, setMatchedColors] = useState<MatchedColor[]>([])
+  const [currentColor, setCurrentColor] = useState({ kind: paletteLayout.primary.kind, index: 0 })
   const [isColorChanging, setIsColorChanging] = useState(false)
   const [selectedColor, setSelectedColor] = useState<MatchedColor>(initMatchedColor)
   const [showPalettesModal, setShowPalettesModal] = useState(false)
@@ -41,6 +51,9 @@ export const useColorPickerLogic = () => {
   )
   const { hookState, colors: importedColors, paletteImported } = useContext(UrlPaletteContext)
   const { screen, setScreen } = useContext(CurrentScreenContext)
+  useEffect(() => {
+    setCurrentColor({kind: paletteLayout.primary.kind, index: 0})
+  }, [paletteLayout])
 
   useEffect(() => {
     if (hookState === UrlColorsState.LOADED && screen !== Screen.SCHEME_IMPORT) {
@@ -56,16 +69,27 @@ export const useColorPickerLogic = () => {
   const debounced = useRef(debounce((fn: () => void) => fn(), 150, { trailing: true, leading: false }))
 
   const getCurrentColor = (): string => {
-    const color = paletteColors[currentColorIndex]
+    const color = paletteColors[currentColor.index]
     if (color === "") return "#000000"
     return color
   }
 
   const updateSuggestions = () => {
-    const filteredPalettes = palettes.filter(palette => availablePalettes.indexOf(palette.name) !== -1)
-    const closestColors = findClosestColors("palette", getCurrentColor(), filteredPalettes, 50)
-    setMatchedColors(closestColors)
-    setSelectedColor(closestColors[0])
+    switch (currentColor.kind) {
+      case "palette": {
+        const filteredPalettes = palettes.filter(palette => availablePalettes.indexOf(palette.name) !== -1)
+        const closestColors = findClosestColors("palette", getCurrentColor(), filteredPalettes, 50)
+        setMatchedColors(closestColors)
+        setSelectedColor(closestColors[0])
+        break
+      }
+      case "pet": {
+        const closestColors = findClosestColors("pet", getCurrentColor(), petColors, 50)
+        setMatchedColors(closestColors)
+        setSelectedColor(closestColors[0])
+        break
+      }
+    }
     setIsColorChanging(false)
   }
 
@@ -78,7 +102,7 @@ export const useColorPickerLogic = () => {
       setIsColorChanging(true)
     }
     debounced.current(updateSuggestions)
-  }, [paletteColors, currentColorIndex, availablePalettes, setIsColorChanging])
+  }, [paletteColors, currentColor, availablePalettes, setIsColorChanging])
 
   const onCellClick = (index: number, e: React.MouseEvent) => {
     if (e.type === "contextmenu") {
@@ -87,12 +111,21 @@ export const useColorPickerLogic = () => {
       newPaletteColors[index] = "";
       setPaletteColors(newPaletteColors);
     }
-    setCurrentColorIndex(index);
+    switch (index) {
+      case 0: return setCurrentColor({index, kind: paletteLayout.primary.kind})
+      case 1: return setCurrentColor({index, kind: paletteLayout.secondary.kind})
+      case 2: return setCurrentColor({index, kind: paletteLayout.tertiary.kind})
+      case 3: return setCurrentColor({index, kind: paletteLayout.accents.kind})
+      case 4: return setCurrentColor({index, kind: paletteLayout.emissive.kind})
+      case 5: return setCurrentColor({index, kind: paletteLayout.emissive.kind})
+      case 6: return setCurrentColor({index, kind: paletteLayout.energy.kind})
+      case 7: return setCurrentColor({index, kind: paletteLayout.energy.kind})
+    }
   }
 
   const onColorChange = (color: Color) => {
     const newColors = [...paletteColors]
-    newColors[currentColorIndex] = color.toString()
+    newColors[currentColor.index] = color.toString()
     setPaletteColors(newColors)
   }
 
@@ -129,9 +162,9 @@ export const useColorPickerLogic = () => {
 
   const onScreenshotImport = (colors: string[]) => {
     setPaletteColors([
-      ...paletteColors.slice(0, Math.floor(currentColorIndex / 8) * 8),
+      ...paletteColors.slice(0, Math.floor(currentColor.index / 8) * 8),
       ...colors,
-      ...paletteColors.slice(Math.floor(currentColorIndex / 8 + 1) * 8)
+      ...paletteColors.slice(Math.floor(currentColor.index / 8 + 1) * 8)
     ]);
   }
 
@@ -159,5 +192,6 @@ export const useColorPickerLogic = () => {
     onOverrideColor,
 
     selectedColor,
+    currentColor
   }
 }

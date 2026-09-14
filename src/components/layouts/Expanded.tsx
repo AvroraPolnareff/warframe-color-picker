@@ -1,5 +1,5 @@
 import React, {useContext} from "react";
-import {useColorPickerLogic} from "../../hooks/useColorPickerLogic";
+import {PaletteLayout, useColorPickerLogic} from "../../hooks/useColorPickerLogic";
 import {PalettesModal} from "../PalettesModal";
 import TargetScheme from "../TargetScheme";
 import {ColorPicker} from "../ColorPicker";
@@ -12,8 +12,9 @@ import {Header} from "../Header";
 import {SettingsContext} from "../../providers/SettingsProvider";
 import {StyledLayout} from "./Classic";
 import {useTranslation} from "react-i18next";
+import { SelectedPetColor } from "../SelectedPetColor";
 
-export const Expanded = () => {
+export const Expanded = ({ paletteLayout }: {paletteLayout: PaletteLayout}) => {
   const {
     availablePalettes,
     showPalettesModal,
@@ -36,8 +37,8 @@ export const Expanded = () => {
     onOverrideColor,
 
     selectedColor,
-  } = useColorPickerLogic();
-  if (selectedColor.kind !== "palette") throw Error("The matched color kind mistmach")
+    currentColor
+  } = useColorPickerLogic({paletteLayout});
 
   const {enableMOTD, theme} = useContext(SettingsContext)
   const {t} = useTranslation()
@@ -73,7 +74,7 @@ export const Expanded = () => {
                   paletteColors={paletteColors}
                   onCellClick={onCellClick}
                   onImportClick={onScreenshotImport}
-                  kind="palette"
+                  paletteLayout={paletteLayout}
                 />
               </Wires>
             </Wires>
@@ -82,6 +83,7 @@ export const Expanded = () => {
                 color={Color(getCurrentColor())}
                 onColorChange={onColorChange}
                 compact
+                kind={currentColor.kind}
               />
             </div>
             <Link
@@ -97,19 +99,23 @@ export const Expanded = () => {
           <div style={{marginRight: "0.6em", zIndex: 1}}>
             <Wires style={{top: "8.5em", right: "-1.2em", width: "2.1em", height: "13em"}} src="/images/Wires (Sugg -_ Sel Col).svg">
               <Suggestions matchedColors={matchedColors}
-                           onSuggestionClick={onSuggestionClick}
-                           onPalettesClick={() => setShowPalettesModal(true)}
-                           isSuggestionsUpdating={isColorChanging}
-                           onSwapColor={onOverrideColor}
+                onSuggestionClick={onSuggestionClick}
+                onPalettesClick={() => setShowPalettesModal(true)}
+                isSuggestionsUpdating={isColorChanging}
+                onSwapColor={onOverrideColor}
+                kind={currentColor.kind}
               />
             </Wires>
           </div>
           <div style={{zIndex: 2}}>
-            <SelectedColor
+            {selectedColor.kind === "palette" && <SelectedColor
               paletteName={selectedColor.paletteName}
               colorPosition={selectedColor.position}
               onColorChange={onColorChange}
-            />
+            />}
+            {selectedColor.kind === "pet" && <SelectedPetColor
+              matchedColor={selectedColor}
+            />}
           </div>
         </div>
       </StyledLayout>

@@ -10,6 +10,7 @@ import { QuestionMarkIcon } from "src/assets/QuestionMarkIcon";
 import { ExclamationMarkIcon } from "src/assets/ExclamationMarkIcon";
 import { Popover } from "@base-ui/react/popover";
 import { Window } from "./Window";
+import { MatchedColor } from "../Suggestions";
 
 export type ColorMode = "hex" | "palette"
 
@@ -220,6 +221,7 @@ interface ColorInputProps {
   color: Color
   onChange: (value: string) => void
   compact?: boolean
+  kind: MatchedColor["kind"]
 }
 
 type ColorInputState = "nominal" | "error"
@@ -240,7 +242,8 @@ export const ColorInput = (
   {
     onChange,
     color,
-    compact
+    compact,
+    kind
   }: ColorInputProps
 ) => {
   const [inputField, setInputField] = useState(() => color.hex())

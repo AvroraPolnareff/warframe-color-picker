@@ -1,5 +1,5 @@
 import React, {useContext} from "react"
-import {useColorPickerLogic} from "../../hooks/useColorPickerLogic"
+import {PaletteLayout, useColorPickerLogic} from "../../hooks/useColorPickerLogic"
 import {PalettesModal} from "../PalettesModal"
 import TargetScheme from "../TargetScheme"
 import {ColorPicker} from "../ColorPicker"
@@ -13,8 +13,9 @@ import {Header} from "../Header"
 import styled from "styled-components"
 import {SettingsContext} from "../../providers/SettingsProvider"
 import {useTranslation} from "react-i18next"
+import { SelectedPetColor } from "../SelectedPetColor"
 
-export const Classic = () => {
+export const Classic = ({paletteLayout}: {paletteLayout: PaletteLayout}) => {
   const {
     availablePalettes,
     showPalettesModal,
@@ -37,7 +38,8 @@ export const Classic = () => {
     onOverrideColor,
 
     selectedColor,
-  } = useColorPickerLogic()
+    currentColor
+  } = useColorPickerLogic({paletteLayout})
   if (selectedColor.kind !== "palette") throw Error("The matched color kind mistmach")
 
   const {enableMOTD, theme} = useContext(SettingsContext)
@@ -73,6 +75,7 @@ export const Classic = () => {
                 <ColorPicker
                   color={Color(getCurrentColor())}
                   onColorChange={onColorChange}
+                  kind={currentColor.kind}
                 />
               </div>
             </Wires>
@@ -95,12 +98,13 @@ export const Classic = () => {
                   paletteColors={paletteColors}
                   onCellClick={onCellClick}
                   onImportClick={onScreenshotImport}
-                  kind="palette"
+                  paletteLayout={paletteLayout}
                 />
               </Wires>
             </div>
             <Wires style={{top: "1.2em", right: "-1.2em", width: "2.1em", height: "13em"}} src="/images/Wires (Sugg -_ Sel Col).svg">
               <Suggestions
+                kind={currentColor.kind}
                 matchedColors={matchedColors}
                 onSuggestionClick={onSuggestionClick}
                 onPalettesClick={() => setShowPalettesModal(true)}
@@ -112,11 +116,14 @@ export const Classic = () => {
 
           </div>
           <div style={{zIndex: 2, marginTop: "2.5em"}}>
-            <SelectedColor
+            {currentColor.kind === "palette" && <SelectedColor
               paletteName={selectedColor.paletteName}
               colorPosition={selectedColor.position}
               onColorChange={onColorChange}
-            />
+            />}
+            {currentColor.kind === "pet" && <SelectedPetColor
+              matchedColor={selectedColor}
+            />}
           </div>
         </div>
       </StyledLayout>

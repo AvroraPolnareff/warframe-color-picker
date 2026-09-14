@@ -8,8 +8,25 @@ import {Languages} from "./screens/Languages";
 import {useTransition} from "react-transition-state";
 import styled, { useTheme } from "styled-components";
 import {SchemeImport} from "./screens/SchemeImport";
-import { Pets } from "./layouts/Pets";
+import { PaletteLayout } from "src/hooks/useColorPickerLogic";
 
+const warframeLayout: PaletteLayout = {
+  primary: {enabled: true, kind: "palette"},
+  secondary: {enabled: true, kind: "palette"},
+  tertiary: {enabled: true, kind: "palette"},
+  accents: {enabled: true, kind: "palette"},
+  emissive: {enabled: true, dual: true, kind: "palette"},
+  energy: {enabled: true, dual: true, kind: "palette"},
+}
+
+const petLayout: PaletteLayout = {
+  primary: {enabled: true, kind: "pet"},
+  secondary: {enabled: true, kind: "pet"},
+  tertiary: {enabled: true, kind: "pet"},
+  accents: {enabled: true, kind: "pet"},
+  emissive: {enabled: true, dual: false, kind: "pet"},
+  energy: {enabled: true, dual: false, kind: "palette"},
+}
 
 export const ScreensSwitcher = () => {
   const {screen} = useContext(CurrentScreenContext);
@@ -41,8 +58,8 @@ export const ScreensSwitcher = () => {
       {[Screen.COLOR_PICKER, Screen.PETS].includes(displayScreen) && <AppDivider />}
       <StyledScreenSwitcher>
         {
-          displayScreen === Screen.COLOR_PICKER ? <CurrentLayout layout={layout}/> :
-          displayScreen === Screen.PETS ? <Pets /> :
+          displayScreen === Screen.COLOR_PICKER ? <CurrentLayout paletteLayout={warframeLayout} layout={layout}/> :
+          displayScreen === Screen.PETS ? <CurrentLayout paletteLayout={petLayout} layout={layout} /> :
           displayScreen === Screen.LAYOUT_SELECTION ? <Interface/> :
           displayScreen === Screen.LANGUAGE_SELECTION ? <Languages/> :
           displayScreen === Screen.SCHEME_IMPORT && <SchemeImport/>
@@ -103,13 +120,15 @@ const FadeDiv = styled.div<{state: string; children?: React.ReactNode}>`
 
 const CurrentLayout = (
   {
-    layout
+    layout,
+    paletteLayout
   }: {
     layout: Layout
+    paletteLayout: PaletteLayout
   }
 ) => {
   switch (layout) {
-    case Layout.CLASSIC: return <Classic/>
-    case Layout.EXPANDED: return <Expanded/>
+    case Layout.CLASSIC: return <Classic paletteLayout={paletteLayout}/>
+    case Layout.EXPANDED: return <Expanded paletteLayout={paletteLayout}/>
   }
 }
