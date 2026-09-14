@@ -1,6 +1,6 @@
 import { palettes } from "../common/palettes";
 import { findClosestColors } from "../common/helpers";
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { MatchedColor } from "../components/Suggestions";
 import { debounce, uniq } from "lodash";
 import Color from "color";
@@ -32,9 +32,9 @@ export type PaletteLayout  = {
 }
 
 
-
-export const useColorPickerLogic = ({ paletteLayout }: {paletteLayout: PaletteLayout}) => {
-  const [paletteColors, setPaletteColors] = useStickyState(initColors, "manualColors")
+export const useColorPickerLogic = ({ paletteLayout }: { paletteLayout: PaletteLayout }) => {
+  const paletteString = useMemo(() => JSON.stringify(paletteLayout), [paletteLayout])
+  const [paletteColors, setPaletteColors] = useStickyState(initColors, paletteString)
   const [matchedColors, setMatchedColors] = useState<MatchedColor[]>([])
   const [currentColor, setCurrentColor] = useState({ kind: paletteLayout.primary.kind, index: 0 })
   const [isColorChanging, setIsColorChanging] = useState(false)
