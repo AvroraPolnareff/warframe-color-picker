@@ -11,6 +11,7 @@ import { ExclamationMarkIcon } from "src/assets/ExclamationMarkIcon";
 import { Popover } from "@base-ui/react/popover";
 import { Window } from "./Window";
 import { MatchedColor } from "../Suggestions";
+import { petColors } from "src/common/pet-colors";
 
 export type ColorMode = "hex" | "palette"
 
@@ -46,8 +47,12 @@ type PaletteInput = {
   row?: number
   palette?: string
 }
+type PetColorInput = {
+  type: "pet"
+  color: string
+}
 
-type ParsedInput = HexInput | PaletteInput
+type ParsedInput = HexInput | PaletteInput | PetColorInput
 
 
 const parseInput = (input: string): ParsedInput | undefined => {
@@ -86,6 +91,13 @@ const parseInput = (input: string): ParsedInput | undefined => {
       format: "CdRd"
     }
   }
+  const partialPetColorRegex = input.match(/^\w*(\s*)?(\w*)?$/)
+  if (partialPetColorRegex) {
+    return {
+      type: "pet",
+      color: input.trim()
+    }
+  }
   return
 }
 
@@ -103,6 +115,9 @@ const parsedInputToString = (input: ParsedInput): string => {
           return `${reverseColumnMap[(input.column ?? 0) + 1]}${(input.row ?? 0) + 1} ${input.palette}`
         }
       }
+    }
+    case "pet": {
+      return input.color
     }
   }
 }
@@ -235,6 +250,9 @@ const getParsedInputColor = (parsedInput: ParsedInput): string => {
       const palette = palettes.find(palette => palette.name === parsedInput.palette)
       return palette?.colors[(parsedInput.column ?? 0) + (parsedInput.row ?? 0) * 5].hex ?? ""
     }
+    case "pet": {
+      return petColors.find(color => color.name === parsedInput.color)?.colorCode ?? ""
+    }
   }
 }
 
@@ -251,6 +269,7 @@ export const ColorInput = (
   const defferedInputField = useDeferredValue(inputField)
   const parsedField = parseInput(defferedInputField)
   const paletteColor: PaletteInput | undefined = parsedField?.type === "palette" ? parsedField : undefined
+  const petColor: PetColorInput | undefined = parsedField?.type === "pet" ? parsedField : undefined
   const fieldState: ColorInputState = useMemo(() => {
     if (inputField && !parsedField) {
       return "error"
@@ -278,7 +297,7 @@ export const ColorInput = (
           <ExclamationMarkIcon />
         )}
       </HelperButtonPopover>
-      <Autocomplete
+      {kind === "palette" && <Autocomplete
         items={palettes}
         value={inputField}
         getText={(item) => [item.name]}
@@ -327,7 +346,57 @@ export const ColorInput = (
             </React.Fragment>
           )
         }
-      />
+      />}
+      {kind === "pet" && <Autocomplete
+        items={petColors}
+        value={inputField}
+        getText={(item) => [item.name]}
+        searchValue={petColor?.color ?? ""}
+        compact={compact}
+        mapResultItem={item => ({
+          name: item.item.name,
+          color: item.item.colorCode,
+          item,
+          highlightRanges: item.matches[0]
+        })}
+        getItemValue={item => {
+          if (parsedField?.type === "palette") {
+            return parsedInputToString({ ...parsedField, palette: item.name })
+          }
+          return item.name
+        }}
+        onFocus={() => setFocused(true)}
+        onBlur={() => {
+          setFocused(false)
+          if (!parsedField) return
+          const color = getParsedInputColor(parsedField)
+          try {
+            Color(color)
+          } catch {
+            console.log(`Wrong color submitted: ${color}`)
+            return
+          }
+          onChange(getParsedInputColor(parsedField))
+        }}
+        onChange={v => setInputField(v)}
+        onSelect={item => {
+          if (parsedField?.type === "palette") {
+            onChange(getParsedInputColor({ ...parsedField, palette: item.name }))
+          }
+        }}
+        onEnter={() => {
+          if (!parsedField) return
+          onChange(getParsedInputColor(parsedField))
+        }}
+        ItemRender={
+          (item) => (
+            <React.Fragment key={item.name}>
+              <ColorCell color={item.color} />
+              <span><Highlight text={item.name} ranges={item.highlightRanges} /></span>
+            </React.Fragment>
+          )
+        }
+      />}
     </ColorInputWrapper>
   )
 }
