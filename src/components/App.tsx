@@ -53,13 +53,13 @@ function App() {
         </Container>
         <Container>
           <Entry
-            onClick={() => setScreen(Screen.COLOR_PICKER)}
+            onClick={() => { setScreen(Screen.COLOR_PICKER);  router.replace("/")}}
             active={screen === Screen.COLOR_PICKER}
           >
             {t("menu.colorPicker", {defaultValue: "Color Picker"})}
           </Entry>
           <Entry
-            onClick={() => setScreen(Screen.PETS)}
+            onClick={() => { setScreen(Screen.PETS);  router.replace("/pets")}}
             active={screen === Screen.PETS}
           >
             {t("menu.pets", {defaultValue: "Pets"})}

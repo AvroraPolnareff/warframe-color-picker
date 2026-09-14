@@ -40,7 +40,6 @@ export const Classic = ({paletteLayout}: {paletteLayout: PaletteLayout}) => {
     selectedColor,
     currentColor
   } = useColorPickerLogic({paletteLayout})
-  if (selectedColor.kind !== "palette") throw Error("The matched color kind mistmach")
 
   const {enableMOTD, theme} = useContext(SettingsContext)
   const {t} = useTranslation()
@@ -116,12 +115,12 @@ export const Classic = ({paletteLayout}: {paletteLayout: PaletteLayout}) => {
 
           </div>
           <div style={{zIndex: 2, marginTop: "2.5em"}}>
-            {currentColor.kind === "palette" && <SelectedColor
+            {selectedColor.kind === "palette" && <SelectedColor
               paletteName={selectedColor.paletteName}
               colorPosition={selectedColor.position}
               onColorChange={onColorChange}
             />}
-            {currentColor.kind === "pet" && <SelectedPetColor
+            {selectedColor.kind === "pet" && <SelectedPetColor
               matchedColor={selectedColor}
             />}
           </div>

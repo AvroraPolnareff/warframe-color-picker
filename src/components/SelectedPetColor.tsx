@@ -5,6 +5,7 @@ import { MatchedColor } from "./Suggestions"
 import { Waves } from "src/assets/Waves"
 import { useTranslation } from "react-i18next"
 import { useTheme } from "styled-components"
+import { FlexColumnCenter } from "./shared/FlexColumnCenter"
 
 
 interface SelectedPetColorProps {
@@ -16,33 +17,35 @@ export const SelectedPetColor = ({ matchedColor: matchedColor }: SelectedPetColo
   const { t } = useTranslation()
   const theme = useTheme()
   return <Window width={10.6} height={30}>
-    <Waves style={{
-      width: "8.8em",
-      marginTop: "0.2em",
-      marginBottom: "0.1em",
-      pointerEvents: "none",
-      userSelect: "none"
-    }}/>
-    <Header>{t("colorPicker.selectedColor.selectedColor")}</Header>
-    <Waves style={{
-      width: "8.8em",
-      marginTop: "0",
-      marginBottom: "0.5em",
-      pointerEvents: "none",
-      userSelect: "none"
-    }}/>
-    <ColorWrapper colors={theme.colors} outline>
-      <FurImg src={`images/pet_colors/${matchedColor.petColor.imageName}`} />
-      <ColorCell style={{backgroundColor: matchedColor.color}} />
-    </ColorWrapper>
-    <ParamTitle>Type</ParamTitle>
-    <ParamDescription><strong>{matchedColor.petColor.type}</strong></ParamDescription>
-    <ParamTitle>Bundle</ParamTitle>
-    <ParamDescription><strong>{matchedColor.petColor.bundleName || "N/A"}</strong></ParamDescription>
-    <ParamTitle>Price</ParamTitle>
-    <ParamDescription><strong>{matchedColor.petColor.price || "N/A"}</strong></ParamDescription>
-    <ParamTitle>How to get</ParamTitle>
-    <ParamDescription><strong>{matchedColor.petColor.event || "N/A"}</strong></ParamDescription>
+    <FlexColumnCenter style={{textAlign: "center"}}>
+      <Waves style={{
+        width: "8.8em",
+        marginTop: "0.2em",
+        marginBottom: "0.1em",
+        pointerEvents: "none",
+        userSelect: "none"
+      }}/>
+      <Header>{t("colorPicker.selectedColor.selectedColor")}</Header>
+      <Waves style={{
+        width: "8.8em",
+        marginTop: "0",
+        marginBottom: "0.5em",
+        pointerEvents: "none",
+        userSelect: "none"
+      }}/>
+      <ColorWrapper colors={theme.colors} outline>
+        <FurImg src={`images/pet_colors/${matchedColor.petColor.imageName}`} />
+        <ColorCell style={{backgroundColor: matchedColor.color}} />
+      </ColorWrapper>
+      <ParamTitle>Type</ParamTitle>
+      <ParamDescription><strong>{matchedColor.petColor.type}</strong></ParamDescription>
+      <ParamTitle>Bundle</ParamTitle>
+      <ParamDescription><strong>{matchedColor.petColor.bundleName || "N/A"}</strong></ParamDescription>
+      <ParamTitle>Price</ParamTitle>
+      <ParamDescription><strong>{matchedColor.petColor.price || "N/A"}</strong></ParamDescription>
+      <ParamTitle>How to get</ParamTitle>
+      <ParamDescription><strong>{matchedColor.petColor.event || "N/A"}</strong></ParamDescription>
+    </FlexColumnCenter>
   </Window>
 }
 
@@ -80,7 +83,6 @@ const gradient = keyframes`
 `
 
 const ColorWrapper = styled.div<{outline?: boolean, colors: ThemeColors}>`
-
   width: 100%;
   aspect-ratio: 1/1;
   display: flex;
@@ -98,7 +100,7 @@ const ColorWrapper = styled.div<{outline?: boolean, colors: ThemeColors}>`
 
 const ColorCell = styled.div`
   width: 100%;
-  height: 1em;
+  height: 100%;
   border-bottom-left-radius: 0.5em;
   border-bottom-right-radius: 0.5em;
 `
