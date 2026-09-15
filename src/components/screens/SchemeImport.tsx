@@ -8,6 +8,8 @@ import {UrlPaletteContext} from "../../providers/UrlColorsProvider";
 import {Button} from "../shared/Button";
 import {css} from "styled-components";
 import {CurrentScreenContext, Screen} from "../../providers/CurrentScreenProvider";
+import {loadPaletteColors, petLayout, warframeLayout} from "../../services/paletteStorage";
+import {useRouter} from "next/router";
 import InlineSVG from "react-inlinesvg";
 
 enum SelectedPalette {
@@ -21,16 +23,17 @@ export const SchemeImport = () => {
   const [currentColors, setCurrentColors] = useState<string[]>([])
   const {colors: importedColors, confirmPalette} = useContext(UrlPaletteContext)
   const {setScreen} = useContext(CurrentScreenContext)
+  const {pathname} = useRouter()
+  const isPets = pathname === "/pets"
+  const paletteLayout = isPets ? petLayout : warframeLayout
 
   const handleConfirm = () => {
     confirmPalette(selectedPalette === SelectedPalette.NEW)
-    setScreen(Screen.COLOR_PICKER);
+    setScreen(isPets ? Screen.PETS : Screen.COLOR_PICKER);
   }
 
   useEffect(() => {
-    if (typeof localStorage === "undefined") return
-    const colors = JSON.parse(localStorage.getItem("manualColors") ?? "{}") as string[]
-    setCurrentColors(colors)
+    setCurrentColors(loadPaletteColors(paletteLayout))
   }, [])
 
   return (

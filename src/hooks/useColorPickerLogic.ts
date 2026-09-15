@@ -1,6 +1,6 @@
 import { palettes } from "../common/palettes";
 import { findClosestColors } from "../common/helpers";
-import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { MatchedColor } from "../components/Suggestions";
 import { debounce, uniq } from "lodash";
 import Color from "color";
@@ -8,6 +8,10 @@ import { useStickyState } from "./useStickyState";
 import { UrlColorsState, UrlPaletteContext } from "../providers/UrlColorsProvider";
 import { CurrentScreenContext, Screen } from "../providers/CurrentScreenProvider";
 import { petColors } from "src/common/pet-colors";
+import { getPaletteStorageKey, petLayout, warframeLayout, PaletteLayout } from "../services/paletteStorage";
+
+export type { PaletteLayout } from "../services/paletteStorage"
+export { petLayout, warframeLayout }
 
 export const initColors: string[] = Array(48).fill("")
 
@@ -22,19 +26,8 @@ const initMatchedColor: MatchedColor = {
   uid: "3274823"
 }
 
-export type PaletteLayout  = {
-  primary: {enabled: boolean, kind: MatchedColor["kind"]}
-  secondary: {enabled: boolean, kind: MatchedColor["kind"]}
-  tertiary: {enabled: boolean, kind: MatchedColor["kind"]}
-  accents: {enabled: boolean, kind: MatchedColor["kind"]}
-  emissive: {enabled: boolean, dual: boolean, kind: MatchedColor["kind"]}
-  energy: {enabled: boolean, dual: boolean, kind: MatchedColor["kind"]}
-}
-
-
 export const useColorPickerLogic = ({ paletteLayout }: { paletteLayout: PaletteLayout }) => {
-  const paletteString = useMemo(() => JSON.stringify(paletteLayout), [paletteLayout])
-  const [paletteColors, setPaletteColors] = useStickyState(initColors, paletteString)
+  const [paletteColors, setPaletteColors] = useStickyState(initColors, getPaletteStorageKey(paletteLayout))
   const [matchedColors, setMatchedColors] = useState<MatchedColor[]>([])
   const [currentColor, setCurrentColor] = useState({ kind: paletteLayout.primary.kind, index: 0 })
   const [isColorChanging, setIsColorChanging] = useState(false)

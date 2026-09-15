@@ -408,7 +408,7 @@ const TextExport = (props: { colors: string[], paletteLayout: PaletteLayout}) =>
       <Divider />
       <TextExportColors color={theme.colors.exportText} onCopy={(e) => {
         e.preventDefault()
-        const indexToSlotName: Record<number, keyof PaletteLayout> = {
+        const indexToSlotName: Record<number, Exclude<keyof PaletteLayout, "id">> = {
           0: "primary",
           1: "secondary",
           2: "tertiary",

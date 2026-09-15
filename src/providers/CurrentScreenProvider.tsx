@@ -22,8 +22,8 @@ const initSettings: Settings = {
 export const CurrentScreenContext = createContext<Settings>(initSettings);
 
 export const CurrentScreenProvider = ({children}: { children: ReactNode }) => {
-  const {asPath} = useRouter()
-  const [screen, setScreen] = useState(asPath === "/pets" ? Screen.PETS : Screen.COLOR_PICKER);
+  const {pathname} = useRouter()
+  const [screen, setScreen] = useState(pathname === "/pets" ? Screen.PETS : Screen.COLOR_PICKER);
 
   return (
     <CurrentScreenContext.Provider value={{

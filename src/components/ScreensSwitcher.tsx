@@ -8,25 +8,7 @@ import {Languages} from "./screens/Languages";
 import {useTransition} from "react-transition-state";
 import styled, { useTheme } from "styled-components";
 import {SchemeImport} from "./screens/SchemeImport";
-import { PaletteLayout } from "src/hooks/useColorPickerLogic";
-
-const warframeLayout: PaletteLayout = {
-  primary: {enabled: true, kind: "palette"},
-  secondary: {enabled: true, kind: "palette"},
-  tertiary: {enabled: true, kind: "palette"},
-  accents: {enabled: true, kind: "palette"},
-  emissive: {enabled: true, dual: true, kind: "palette"},
-  energy: {enabled: true, dual: true, kind: "palette"},
-}
-
-const petLayout: PaletteLayout = {
-  primary: {enabled: true, kind: "pet"},
-  secondary: {enabled: true, kind: "pet"},
-  tertiary: {enabled: true, kind: "pet"},
-  accents: {enabled: true, kind: "pet"},
-  emissive: {enabled: true, dual: false, kind: "pet"},
-  energy: {enabled: true, dual: false, kind: "palette"},
-}
+import { PaletteLayout, petLayout, warframeLayout } from "src/hooks/useColorPickerLogic";
 
 export const ScreensSwitcher = () => {
   const {screen} = useContext(CurrentScreenContext);
