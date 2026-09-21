@@ -43,6 +43,7 @@ export const paletteDescriptions: PaletteDescriptions = {
 "Gamma": "Sometimes returns as a potential reward via the Nightwave seasons. Originally distributed to players who logged in from July 26, 2014 to August 9, 2014.",
 "Void Trader": "Purchasable from Baro Ki'Teer for 250000 Credits and 200 Ducats. Note that Baro's stock changes with each appearance and this palette may not be available on a succeeding appearance.",
 "Eminence": "Purchasable from Baro Ki'Teer for 220000 Credits and 220 Ducats. Note that Baro's stock changes with each appearance and this palette may not be available on a succeeding appearance.",
+"Entropic Color Palette": "Awarded after reaching Rank 27 during Nightwave: Amir's Shockwave.",
 "Ki'Teer": "Purchasable from Baro Ki'Teer for 300000 Credits and 150 Ducats. Note that Baro's stock changes with each appearance and this palette may not be available on a succeeding appearance.",
 "Potentia": "Purchasable from Varzia's Prime Resurgence Market for 5 Aya. Originally obtained via Amazon Prime Gaming rewards from August 14, 2021 to September 13, 2021.",
 "Spektaka": "Purchasable from Varzia's Prime Resurgence Market for 5 Aya. Originally obtained via the Prime Day Bundle through Twitch Prime from July 12, 2018 to August 11, 2018.",
