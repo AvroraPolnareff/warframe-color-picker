@@ -162,24 +162,6 @@
     "bundleName": "Solstice"
   },
   {
-    "name": "Bombard White",
-    "colorCode": "#F2F2F2",
-    "price": "40 Platinum",
-    "event": "Seasonal: Christmas / Tennobaum",
-    "type": "Kavat",
-    "imageName": "KubrowColorSolsticeFurA.png",
-    "bundleName": "Solstice"
-  },
-  {
-    "name": "Bombard White",
-    "colorCode": "#F2F2F2",
-    "price": "40 Platinum",
-    "event": "Seasonal: Christmas / Tennobaum",
-    "type": "Kubrow",
-    "imageName": "KubrowColorSolsticeFurA.png",
-    "bundleName": "Solstice"
-  },
-  {
     "name": "Brokk Brown",
     "colorCode": "#9B5D42",
     "price": "50 Platinum",
@@ -387,15 +369,6 @@
     "bundleName": "Kavat Gene Masking Kit"
   },
   {
-    "name": "Executioner Grey",
-    "colorCode": "#BEBCBC",
-    "price": "160000 Credits",
-    "event": "In-Game Market",
-    "type": "Kavat",
-    "imageName": "Icon.png",
-    "bundleName": "Kavat Gene Masking Kit"
-  },
-  {
     "name": "Farbreeze Green",
     "colorCode": "#748B8B",
     "price": "12 Medical Debt-Bond",
@@ -501,15 +474,6 @@
     "event": "In-Game Market",
     "type": "Kavat",
     "imageName": "KavatColourSecondaryA.png",
-    "bundleName": "Kavat Gene Masking Kit"
-  },
-  {
-    "name": "Hyacinth Blue",
-    "colorCode": "#199093",
-    "price": "160000 Credits",
-    "event": "In-Game Market",
-    "type": "Kavat",
-    "imageName": "Icon.png",
     "bundleName": "Kavat Gene Masking Kit"
   },
   {
@@ -636,15 +600,6 @@
     "event": "Seasonal: Christmas / Tennobaum",
     "type": "Kavat",
     "imageName": "SolsticeFurC.png",
-    "bundleName": "Solstice"
-  },
-  {
-    "name": "Manic Black",
-    "colorCode": "#216F9B",
-    "price": "40 Platinum",
-    "event": "Seasonal: Christmas / Tennobaum",
-    "type": "Kubrow",
-    "imageName": "KubrowColorSolsticeFurC.png",
     "bundleName": "Solstice"
   },
   {
@@ -873,15 +828,6 @@
     "bundleName": "Kavat Gene Masking Kit"
   },
   {
-    "name": "Regor Green",
-    "colorCode": "#062922",
-    "price": "160000 Credits",
-    "event": "In-Game Market",
-    "type": "Kavat",
-    "imageName": "Icon.png",
-    "bundleName": "Kavat Gene Masking Kit"
-  },
-  {
     "name": "Rhino Brown",
     "colorCode": "#7B5A35",
     "price": "50 Platinum",
@@ -1095,24 +1041,6 @@
     "event": "Seasonal: Christmas / Tennobaum",
     "type": "Kubrow",
     "imageName": "SolsticeFurB.png",
-    "bundleName": "Solstice"
-  },
-  {
-    "name": "Wukong Blue",
-    "colorCode": "#216F9B",
-    "price": "40 Platinum",
-    "event": "Seasonal: Christmas / Tennobaum",
-    "type": "Kavat",
-    "imageName": "KubrowColorSolsticeFurB.png",
-    "bundleName": "Solstice"
-  },
-  {
-    "name": "Wukong Blue",
-    "colorCode": "#216F9B",
-    "price": "40 Platinum",
-    "event": "Seasonal: Christmas / Tennobaum",
-    "type": "Kubrow",
-    "imageName": "KubrowColorSolsticeFurB.png",
     "bundleName": "Solstice"
   },
   {
