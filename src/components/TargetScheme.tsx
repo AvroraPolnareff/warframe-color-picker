@@ -128,7 +128,7 @@ const TargetScheme = (
     <Window width={14.321} style={{ zIndex: 0 }} height={17.8}>
       <Wrapper>
         <TopContent>
-          <FlexColumnCenter>
+          <FlexColumnCenter style={{marginBottom: "-0.2em"}}>
             <Header>{t("colorPicker.targetScheme.targetScheme")}</Header>
             {current.matches("colorWindows") && <>
               <SwitchWrapper>
@@ -241,9 +241,14 @@ const ButtonsWrapper = styled.div`
 
 const BottomContent = styled.div`
   height: 2.1em;
+  flex-shrink: 0;
 `
 
 const TopContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
 `
 
 const SwitchWrapper = styled.div`
@@ -405,37 +410,40 @@ const TextExport = (props: { colors: string[], paletteLayout: PaletteLayout}) =>
   const { t } = useTranslation()
   return <TextExportWrapper>
     <TextExportContent >
-      <Divider />
-      <TextExportColors color={theme.colors.exportText} onCopy={(e) => {
-        e.preventDefault()
-        const indexToSlotName: Record<number, Exclude<keyof PaletteLayout, "id">> = {
-          0: "primary",
-          1: "secondary",
-          2: "tertiary",
-          3: "accents",
-          4: "emissive",
-          5: "emissive",
-          6: "energy",
-          7: "energy",
-        }
-        e.clipboardData.setData(
-          "text",
-          colors
-            .map((color, i) => `${slotToSlotName(i, paletteLayout, t)}: ${getClosestColor(color, paletteLayout[indexToSlotName[i]].kind, t, false)}`)
-            .filter((_, i) => paletteLayout[indexToSlotName[i]].enabled).join("\n")
-        )
-      }}>
-        {paletteLayout.primary.enabled && <TextExportEntry>{slotToSlotName(0, paletteLayout, t)}: <strong>{getClosestColor(colors[0], paletteLayout.primary.kind, t)}</strong></TextExportEntry>}
-        {paletteLayout.secondary.enabled && <TextExportEntry>{slotToSlotName(1, paletteLayout, t)}: <strong>{getClosestColor(colors[1], paletteLayout.secondary.kind, t)}</strong></TextExportEntry>}
-        {paletteLayout.tertiary.enabled && <TextExportEntry>{slotToSlotName(2, paletteLayout, t)}: <strong>{getClosestColor(colors[2], paletteLayout.tertiary.kind, t)}</strong></TextExportEntry>}
-        {paletteLayout.accents.enabled && <TextExportEntry>{slotToSlotName(3, paletteLayout, t)}: <strong>{getClosestColor(colors[3], paletteLayout.accents.kind, t)}</strong></TextExportEntry>}
-        {paletteLayout.emissive.enabled && <TextExportEntry>{slotToSlotName(4, paletteLayout, t)}: <strong>{getClosestColor(colors[4], paletteLayout.emissive.kind, t)}</strong></TextExportEntry>}
-        {paletteLayout.emissive.enabled && paletteLayout.emissive.dual && <TextExportEntry>{slotToSlotName(5, paletteLayout, t)}: <strong>{getClosestColor(colors[5], paletteLayout.emissive.kind, t)}</strong></TextExportEntry>}
-        {paletteLayout.energy.enabled && <TextExportEntry>{slotToSlotName(6, paletteLayout, t)}: <strong>{getClosestColor(colors[6], paletteLayout.energy.kind, t)}</strong></TextExportEntry>}
-        {paletteLayout.energy.enabled && paletteLayout.energy.dual && <TextExportEntry>{slotToSlotName(7, paletteLayout, t)}: <strong>{getClosestColor(colors[7], paletteLayout.energy.kind, t)}</strong></TextExportEntry>}
-      </TextExportColors>
-      <Divider />
+      <div>
+        <Divider />
+        <TextExportColors color={theme.colors.exportText} onCopy={(e) => {
+          e.preventDefault()
+          const indexToSlotName: Record<number, Exclude<keyof PaletteLayout, "id">> = {
+            0: "primary",
+            1: "secondary",
+            2: "tertiary",
+            3: "accents",
+            4: "emissive",
+            5: "emissive",
+            6: "energy",
+            7: "energy",
+          }
+          e.clipboardData.setData(
+            "text",
+            colors
+              .map((color, i) => `${slotToSlotName(i, paletteLayout, t)}: ${getClosestColor(color, paletteLayout[indexToSlotName[i]].kind, t, false)}`)
+              .filter((_, i) => paletteLayout[indexToSlotName[i]].enabled).join("\n")
+          )
+        }}>
+          {paletteLayout.primary.enabled && <TextExportEntry>{slotToSlotName(0, paletteLayout, t)}: <strong>{getClosestColor(colors[0], paletteLayout.primary.kind, t)}</strong></TextExportEntry>}
+          {paletteLayout.secondary.enabled && <TextExportEntry>{slotToSlotName(1, paletteLayout, t)}: <strong>{getClosestColor(colors[1], paletteLayout.secondary.kind, t)}</strong></TextExportEntry>}
+          {paletteLayout.tertiary.enabled && <TextExportEntry>{slotToSlotName(2, paletteLayout, t)}: <strong>{getClosestColor(colors[2], paletteLayout.tertiary.kind, t)}</strong></TextExportEntry>}
+          {paletteLayout.accents.enabled && <TextExportEntry>{slotToSlotName(3, paletteLayout, t)}: <strong>{getClosestColor(colors[3], paletteLayout.accents.kind, t)}</strong></TextExportEntry>}
+          {paletteLayout.emissive.enabled && <TextExportEntry>{slotToSlotName(4, paletteLayout, t)}: <strong>{getClosestColor(colors[4], paletteLayout.emissive.kind, t)}</strong></TextExportEntry>}
+          {paletteLayout.emissive.enabled && paletteLayout.emissive.dual && <TextExportEntry>{slotToSlotName(5, paletteLayout, t)}: <strong>{getClosestColor(colors[5], paletteLayout.emissive.kind, t)}</strong></TextExportEntry>}
+          {paletteLayout.energy.enabled && <TextExportEntry>{slotToSlotName(6, paletteLayout, t)}: <strong>{getClosestColor(colors[6], paletteLayout.energy.kind, t)}</strong></TextExportEntry>}
+          {paletteLayout.energy.enabled && paletteLayout.energy.dual && <TextExportEntry>{slotToSlotName(7, paletteLayout, t)}: <strong>{getClosestColor(colors[7], paletteLayout.energy.kind, t)}</strong></TextExportEntry>}
+        </TextExportColors>
+
+      </div>
       <TextExportGuide>
+        <Divider style={{marginBottom: 0, marginTop: 0}}/>
         <Trans i18nKey={"colorPicker.targetScheme.textGuide"}>
           <p style={{ margin: 0 }}>Copying this text expands all shortened names.</p>
           <p style={{ margin: 0 }}>Column by letter, row by number.</p>
@@ -450,7 +458,7 @@ const TextExportGuide = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.31em;
-  margin-top: 0.5em;
+  flex-shrink: 0;
 `
 
 const TextExportColors = styled.div`
@@ -459,11 +467,19 @@ const TextExportColors = styled.div`
 
 const TextExportContent = styled.div`
   font-size: 0.773rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.5em;
+  flex: 1;
+  min-height: 0;
 `
 
 const TextExportWrapper = styled.div`
-  position: relative;
-  top: -0.2em;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
 `
 
 const TextExportEntry = styled.div`
