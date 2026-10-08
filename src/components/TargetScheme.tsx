@@ -437,7 +437,7 @@ const TextExport = (props: { colors: string[], paletteLayout: PaletteLayout}) =>
       <Divider />
       <TextExportGuide>
         <Trans i18nKey={"colorPicker.targetScheme.textGuide"}>
-          <p style={{ margin: 0 }}>This text can either be copied or screenshotted with formatting.</p>
+          <p style={{ margin: 0 }}>Copying this text expands all shortened names.</p>
           <p style={{ margin: 0 }}>Column by letter, row by number.</p>
         </Trans>
       </TextExportGuide>
