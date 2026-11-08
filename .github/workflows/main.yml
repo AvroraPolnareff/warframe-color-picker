@@ -2,7 +2,7 @@
 
 name: CI
 
-# Controls when the action will run. 
+# Controls when the action will run.
 on:
   push:
     branches:
@@ -18,11 +18,11 @@ jobs:
     env:
       ASSET_PREFIX: /warframe-color-picker/
       NO_INDEX: true
-    
+
     strategy:
       matrix:
         node-version: [20.x]
-  
+
     steps:
       - uses: actions/checkout@v2
 
@@ -30,7 +30,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-          
+
       - name: Use NPM
         run: npm i -g npm@latest
 
@@ -48,7 +48,7 @@ jobs:
           npm ci --legacy-peer-deps
           npm run build
           npm run export
-          
+
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@3.7.1
         with:
